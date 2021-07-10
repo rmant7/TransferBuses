@@ -3,7 +3,7 @@ import { Switch,Route } from 'react-router-dom';
 import './App.css';
 import MainPage from "./components/MainPage/MainPage"
 import BusPage from "./components/BusPage/BusPage"
-import PassangerPage from './components/PassangerPage/PassangerPage';
+import PassangerPage from './components/PassengerPage/PassengerPage';
 import DriverPage from "./components/DriverPage/DriverPage";
 function App() {
   getUser('HWbiCRaDI8WhI8QWCWcL');

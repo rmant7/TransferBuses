@@ -22,16 +22,16 @@ export async function uploadTransfer(from, to, date, email, places){
     }
 }
 
-// export async function getLots(){
-//     try{
-//         const collection = await fb.firestore().collection("lots").get();
-//         const lots = collection.docs.map(doc => { return{ ...doc.data(),id:doc.id}})
-//         console.log(lots);
-//         return lots;
-//     }catch(error){
-//         return Promise.reject(error);
-//     }
-// }
+export async function getTransfers(){
+    try{
+        const collection = await fb.firestore().collection("transfers").get();
+        const transfers = collection.docs.map(doc => { return{ ...doc.data(),id:doc.id}})
+        console.log('received transfers: ', transfers);
+        return transfers;
+    }catch(error){
+        return Promise.reject(error);
+    }
+}
 
 // export async function getMyLots(uid){
 //     try{
