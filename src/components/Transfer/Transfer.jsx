@@ -1,13 +1,14 @@
 import React from 'react'
+import './Transfer.css'
 
-export default function Transfer(props) {
+export default function Transfer({transfer}) {
     return (
         <div>
-            <span>{props.from}</span>
-            <span>{props.to}</span>
-            <span>{props.date}</span>
-            <span>{props.email}</span>
-            <span>{props.places}</span>
+            <span>{transfer.from}</span>
+            <span>{transfer.to}</span>
+            <span>{transfer.date}</span>
+            <span>{transfer.email}</span>
+            <span>{transfer.places}</span>
         </div>
     )
 }
