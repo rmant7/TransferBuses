@@ -5,5 +5,6 @@ export default function MainPage(){
   return <div className="MainPage">
     <button className="btn" onClick={() => history.push("/viewRoutes")}>Я турист</button>
     <button className="btn" onClick={() => history.push("/addRoute")}>Я извозчик</button>
+    <button className="btn" onClick={() => history.push("/addTransfer")}>Я водитель</button>
   </div>
 }
