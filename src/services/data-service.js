@@ -1,22 +1,19 @@
 import {fb} from '../config/firebase-config';
-// import firebase from "firebase";
 
-export async function uploadTransfer(from, to, date, email, places){
+export async function uploadTransfer(from, to, date, phoneNumber, places){
     try{
-        // const ref = fb.firestore().collection("users").doc(uid);
         const collection = fb.firestore().collection("transfers");
         const response = await collection.add({
             from,
             to,
             date,
-            email,
+            phoneNumber,
             places,
         })
-        console.log("response is",response.id);
+        console.log("response id",response.id);
         // await ref.update({
         //     lotsIds:firebase.firestore.FieldValue.arrayUnion(response.id)
         // })
-
     }catch(error){
         return Promise.reject(error);
     }
