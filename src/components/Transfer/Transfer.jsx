@@ -20,7 +20,7 @@ export default function Transfer({ transfer }) {
           <Grid
             item
             xs
-            container="true"
+            container
             justifyContent="space-between"
             alignItems="center"
             spacing={3}
@@ -39,6 +39,15 @@ export default function Transfer({ transfer }) {
               justifyContent="center"
             >
               <Paper> Date of travel: {transfer.date}</Paper>
+            </Grid>
+            <Grid
+              container
+              item
+              xs={3}
+              alignItems="stretch"
+              justifyContent="center"
+            >
+              <Paper> Duration of travel: {transfer.duration}</Paper>
             </Grid>
             <Grid
               container
@@ -64,11 +73,25 @@ export default function Transfer({ transfer }) {
                 <AirlineSeatReclineNormalIcon fontSize="small" />
               </Paper>
             </Grid>
+
+            <Grid
+              container
+              item
+              xs={2}
+              alignItems="stretch"
+              justifyContent="center"
+            >
+              <Paper>
+                Price: {transfer.price}{" "}
+              </Paper>
+            </Grid>
+
             <Grid item xs={1} alignItems="stretch" justifyContent="flex-end">
               <IconButton onClick={() => history.push("/addTransfer")}>
                 <NearMeIcon fontSize="large" />
               </IconButton>
             </Grid>
+
           </Grid>
         </CardContent>
       </Card>

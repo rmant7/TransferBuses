@@ -1,6 +1,6 @@
 import {fb} from '../config/firebase-config';
 
-export async function uploadTransfer(from, to, date, phoneNumber, places){
+export async function uploadTransfer(from, to, date, phoneNumber, places, price, duration){
     try{
         const collection = fb.firestore().collection("transfers");
         const response = await collection.add({
@@ -9,6 +9,8 @@ export async function uploadTransfer(from, to, date, phoneNumber, places){
             date,
             phoneNumber,
             places,
+            price,
+            duration
         })
         console.log("response id",response.id);
         // await ref.update({

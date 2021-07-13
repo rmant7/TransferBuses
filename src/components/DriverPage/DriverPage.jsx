@@ -4,10 +4,10 @@ import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-
 import "./DriverPage.css";
 import { uploadTransfer } from "../../services/data-service";
 import { useHistory } from "react-router-dom";
+import { Grid } from "@material-ui/core";
 
 const validationSchema = yup.object({
   // from: yup
@@ -31,6 +31,7 @@ const validationSchema = yup.object({
 });
 
 export default function DriverPage() {
+  const cities = [{ title: "Moscow" }, { title: "Odessa" }, { title: "Minsk" }];
   const history = useHistory();
   const formik = useFormik({
     initialValues: {
@@ -41,6 +42,8 @@ export default function DriverPage() {
       date: new Date().toJSON().slice(0, 16),
       phone: "",
       places: 1,
+      price: "",
+      duration: 0,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -52,7 +55,9 @@ export default function DriverPage() {
         values.to,
         values.date,
         values.phoneNumber,
-        values.places
+        values.places,
+        values.price,
+        values.duration
       )
         .then((response) => {
           console.log(response);
@@ -63,9 +68,6 @@ export default function DriverPage() {
         });
     },
   });
-
-  const cities = [{ title: "Moscow" }, { title: "Odessa" }, { title: "Minsk" }];
-
   const defaultProps = {
     options: cities,
     getOptionLabel: (option) => {
@@ -105,22 +107,37 @@ export default function DriverPage() {
             <TextField {...params} label="To" margin="normal" />
           )}
         />
-        <TextField
-          id="date"
-          label="Date and time"
-          // type="date"
-          type="datetime-local"
-          margin="normal"
-          value={formik.values.date}
-          onChange={formik.handleChange}
-          inputProps={{
-            // min: new Date().toISOString().slice(0, 10)
-            min: new Date().toISOString().slice(0, 16),
-          }}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
+        <Grid container justifyContent="space-between">
+          <TextField
+            id="date"
+            label="Date and time"
+            // type="date"
+            type="datetime-local"
+            margin="normal"
+            value={formik.values.date}
+            onChange={formik.handleChange}
+            inputProps={{
+              min: new Date().toISOString().slice(0, 16),
+            }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+
+          <TextField
+            id="duration"
+            label="Duration of travel"
+            type="Time"
+            margin="normal"
+            value={formik.values.duration}
+            onChange={formik.handleChange}
+            error={formik.touched.duration && Boolean(formik.errors.duration)}
+            helperText={formik.touched.duration && formik.errors.duration}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </Grid>
 
         <TextField
           fullWidth
@@ -130,24 +147,41 @@ export default function DriverPage() {
           margin="normal"
           value={formik.values.phoneNumber}
           onChange={formik.handleChange}
-          error={formik.touched.phone && Boolean(formik.errors.phone)}
-          helperText={formik.touched.phone && formik.errors.phone}
+          error={
+            formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
+          }
+          helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
         />
 
-        <TextField
-          value={formik.values.places}
-          margin="normal"
-          id="places"
-          label={"Places"}
-          onChange={formik.handleChange}
-          inputProps={{
-            step: 1,
-            min: 1,
-            max: 8,
-            type: "number",
-            // 'aria-labelledby': 'input-slider',
-          }}
-        />
+        <Grid container justifyContent="space-between">
+          <TextField
+            value={formik.values.places}
+            margin="normal"
+            id="places"
+            label={"Places"}
+            onChange={formik.handleChange}
+            inputProps={{
+              step: 1,
+              min: 1,
+              max: 8,
+              type: "number",
+              // 'aria-labelledby': 'input-slider',
+            }}
+          />
+          <TextField
+            value={formik.values.price}
+            margin="normal"
+            id="price"
+            label={"Price"}
+            onChange={formik.handleChange}
+            inputProps={{
+              min: 0,
+              type: "price",
+              "aria-labelledby": "input-slider",
+            }}
+          />
+        </Grid>
+
         <div className={"submitBtn"}>
           <Button color="primary" variant="contained" fullWidth type="submit">
             Submit
