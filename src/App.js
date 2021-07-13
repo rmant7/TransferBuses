@@ -5,6 +5,7 @@ import MainPage from "./components/MainPage/MainPage"
 import BusPage from "./components/BusPage/BusPage"
 import PassangerPage from './components/PassengerPage/PassengerPage';
 import DriverPage from "./components/DriverPage/DriverPage";
+import TransferPage from "./components/TransferPage/TransferPage";
 function App() {
   getUser('HWbiCRaDI8WhI8QWCWcL');
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/viewRoutes" component={PassangerPage}/>
       <Route path="/addRoute" component={BusPage}/>
       <Route path="/addTransfer" component={DriverPage}/>
+      <Route path="/transfer" component={TransferPage}/>
     </Switch>
   );
 }
