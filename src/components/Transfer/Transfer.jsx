@@ -27,7 +27,7 @@ export default function Transfer({ transfer }) {
           >
             <Grid container item xs alignItems="center" justifyContent="center">
               <Paper>
-                {transfer.from} <ArrowForwardSharpIcon fontSize="small" />
+                {transfer.from} <ArrowForwardSharpIcon style={{fontSize: 15, margin: "0 10 -2.5 10"}} />
                 {transfer.to}
               </Paper>
             </Grid>
