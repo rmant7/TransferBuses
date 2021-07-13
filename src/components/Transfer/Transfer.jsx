@@ -25,8 +25,8 @@ export default function Transfer({transfer}) {
                         alignItems="center"
                         spacing={3}
                     >
-                        <Grid container item xs alignItems="center" justifyContent="center">
-                            <Paper>
+                        <Grid container item xs alignItems="center" justifyContent="center" >
+                            <Paper className={"paper"}>
                                 {transfer.from} <ArrowForwardSharpIcon style={{fontSize: 15, margin: "0 10 -2.5 10"}}/>
                                 {transfer.to}
                             </Paper>
@@ -38,7 +38,7 @@ export default function Transfer({transfer}) {
                             alignItems="stretch"
                             justifyContent="center"
                         >
-                            <Paper> Date of travel: {transfer.date}</Paper>
+                            <Paper className={"paper"}> Date of travel: {transfer.date}</Paper>
                         </Grid>
                         <Grid
                             container
@@ -47,7 +47,7 @@ export default function Transfer({transfer}) {
                             alignItems="stretch"
                             justifyContent="center"
                         >
-                            <Paper> Duration of travel: {transfer.duration}</Paper>
+                            <Paper className={"paper"}> Duration of travel: {transfer.duration}</Paper>
                         </Grid>
                         <Grid
                             container
@@ -56,7 +56,7 @@ export default function Transfer({transfer}) {
                             alignItems="stretch"
                             justifyContent="center"
                         >
-                            <Paper>
+                            <Paper className={"paper"}>
                                 Driver's phone number: {transfer.phoneNumber}{" "}
                                 <RingVolumeIcon fontSize="small"/>
                             </Paper>
@@ -68,7 +68,7 @@ export default function Transfer({transfer}) {
                             alignItems="stretch"
                             justifyContent="center"
                         >
-                            <Paper>
+                            <Paper className={"paper"}>
                                 Places: {transfer.places}{" "}
                                 <AirlineSeatReclineNormalIcon fontSize="small"/>
                             </Paper>
@@ -81,7 +81,7 @@ export default function Transfer({transfer}) {
                             alignItems="stretch"
                             justifyContent="center"
                         >
-                            <Paper>
+                            <Paper className={"paper"}>
                                 Price: {transfer.price}{" "}
                             </Paper>
                         </Grid>
