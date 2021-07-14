@@ -8,7 +8,7 @@ import "./DriverPage.css";
 import { uploadTransfer } from "../../services/data-service";
 import { useHistory } from "react-router-dom";
 import { Grid } from "@material-ui/core";
-
+import data from "../../data.json"
 const validationSchema = yup.object({
   // from: yup
   //     .string('Enter or select a city')
@@ -31,7 +31,7 @@ const validationSchema = yup.object({
 });
 
 export default function DriverPage() {
-  const cities = [{ title: "Moscow" }, { title: "Odessa" }, { title: "Minsk" }];
+  const cities = data.cities.map(feature => {return {title:feature.city}})
   const history = useHistory();
   const formik = useFormik({
     initialValues: {
