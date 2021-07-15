@@ -114,7 +114,7 @@ export default function DriverPage() {
           <TextField
             id="date"
             // label="Date and time"
-            label={i18n.t("translation.dateAndTime")}
+            label={i18n.t("dateAndTime")}
             // type="date"
             type="datetime-local"
             margin="normal"
