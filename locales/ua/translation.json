@@ -1,6 +1,9 @@
 {
-    "description": {
-        "part1":"",
-        "part2":""
+    "translation": {
+        "part1":"Вітаю 1",
+        "part2":"Вітаю 2",
+        "from": "З",
+        "to": "У",
+        "dateAndTime": "Дата і час"
     }
 }
