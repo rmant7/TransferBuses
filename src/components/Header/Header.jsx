@@ -8,7 +8,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Grid from "@material-ui/core/Grid";
 // import { Trans, useTranslation } from "react-i18next";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import {createTheme, ThemeProvider} from "@material-ui/core/styles";
 
 const theme = createTheme({
   palette: {
@@ -22,11 +22,13 @@ const theme = createTheme({
 });
 
 export default function Header({changeLanguage}) {
-    
-  //const { t, i18n } = useTranslation();
-  // const changeLanguage = (language) => {
-  //   i18n.changeLanguage(language);
-  // };
+
+  const [locale, setLocale] = React.useState('en');
+  const handleLocaleChange = (event) => {
+    setLocale(event.target.value)
+    changeLanguage(event.target.value)
+  }
+
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -46,10 +48,17 @@ export default function Header({changeLanguage}) {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
+                  value={locale}
+                  onChange={handleLocaleChange}
+                  renderValue={(value) => `${value}`}
+                  disableUnderline
                 >
-                  <MenuItem onClick={() => changeLanguage("en")}>English</MenuItem>
-                  <MenuItem onClick={() => changeLanguage("ru")}>Русский</MenuItem>
-                  <MenuItem onClick={() => changeLanguage("ua")}>Українська</MenuItem>
+                  {/*<MenuItem onClick={() => changeLanguage("en")}>English</MenuItem>*/}
+                  {/*<MenuItem onClick={() => changeLanguage("ru")}>Русский</MenuItem>*/}
+                  {/*<MenuItem onClick={() => changeLanguage("ua")}>Українська</MenuItem>*/}
+                  <MenuItem value={"en"}>English</MenuItem>
+                  <MenuItem value={"ru"}>Русский</MenuItem>
+                  <MenuItem value={"ua"}>Українська</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
