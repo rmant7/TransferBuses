@@ -1,6 +1,10 @@
 {
-    "description": {
-        "part1":"",
-        "part2":""
+    "translation": {
+        "part1": "Edit <1>src/App.js</1> and save to reload.",
+        "part2": "Learn React",
+        "from": "From",
+        "to": "To",
+        "dateAndTime": "Date and time"
+
     }
 }

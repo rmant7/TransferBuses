@@ -9,6 +9,9 @@ import { uploadTransfer } from "../../services/data-service";
 import { useHistory } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import data from "../../data.json"
+import i18n from "../../i18n"
+
+
 const validationSchema = yup.object({
   // from: yup
   //     .string('Enter or select a city')
@@ -110,7 +113,8 @@ export default function DriverPage() {
         <Grid container justifyContent="space-between">
           <TextField
             id="date"
-            label="Date and time"
+            // label="Date and time"
+            label={i18n.t("translation.dateAndTime")}
             // type="date"
             type="datetime-local"
             margin="normal"

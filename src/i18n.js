@@ -21,14 +21,25 @@ i18n.use(Backend)
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
-    resources: {
-      en: {
-        translation: {
-            part1: 'Edit <1>src/App.js</1> and save to reload.',
-            part2: 'Learn React' // here we will place our translations...
-        }
-      }
-    }
-  });
+
+    // resources: {
+    //   en: {
+    //     translation: {
+    //         part1: 'Edit <1>src/App.js</1> and save to reload.',
+    //         part2: 'Learn React' // here we will place our translations...
+    //     }
+    //   },
+    //     ru: {
+    //         translation: {
+    //             part1: 'ыапыапыап',
+    //             part2: 'фффффффффффффффффф' // here we will place our translations...
+    //         }
+    //     }
+    // }
+  }, (err, t) => {
+      if (err) return console.log('something went wrong loading', err);
+      //console.log( t)
+      t("description"); // -> same as i18next.t
+  }) ;
 
 export default i18n;
