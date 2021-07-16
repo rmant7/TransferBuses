@@ -1,7 +1,9 @@
 {
-        "part1":"Вітаю 1",
-        "part2":"Вітаю 2",
-        "from": "З",
-        "to": "У",
-        "dateAndTime": "Дата і час"
+  "Date and time": "Дата і час",
+  "From": "З",
+  "Phone number": "Телефон",
+  "Places": "Доступно місць",
+  "Price": "Ціна",
+  "To": "У",
+  "Travel time": "Час у дорозі"
 }
