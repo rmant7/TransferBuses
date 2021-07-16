@@ -11,7 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import {createTheme, ThemeProvider} from "@material-ui/core/styles";
 import currenciesList from "../../currencies.json"
 import {Divider} from "@material-ui/core";
-
+import {useHistory} from "react-router-dom";
 
 const languagesList = [
   {locale: "en", label: "English"},
@@ -33,6 +33,7 @@ const theme = createTheme({
 const preferableCurrencies = ['EUR', 'USD', 'RUB', 'UAH', 'BYN', 'ILS', 'INR']
 
 export default function Header({changeLanguage}) {
+  const history = useHistory();
   const topCurrencies = preferableCurrencies
     .map(cur => currenciesList.find(item => item.IsoCode === cur))
   const otherCurrencies = currenciesList.filter(item => !preferableCurrencies.includes(item.IsoCode))
@@ -53,7 +54,9 @@ export default function Header({changeLanguage}) {
       <ThemeProvider theme={theme}>
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="h3">TransferBuses</Typography>
+            <Typography variant="h3" onClick={() => history.push("/")}
+            style={{"cursor":"pointer"}}
+            >TransferBuses</Typography>
             <Grid
               container
               spacing={2}
