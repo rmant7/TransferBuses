@@ -9,6 +9,15 @@ import Select from "@material-ui/core/Select";
 import Grid from "@material-ui/core/Grid";
 // import { Trans, useTranslation } from "react-i18next";
 import {createTheme, ThemeProvider} from "@material-ui/core/styles";
+import currenciesList from "../../currencies.json"
+import {Divider} from "@material-ui/core";
+
+
+const languagesList = [
+  {locale: "en", label: "English"},
+  {locale: "ru", label: "Русский"},
+  {locale: "ua", label: "Українська"},
+]
 
 const theme = createTheme({
   palette: {
@@ -21,12 +30,22 @@ const theme = createTheme({
   },
 });
 
+const preferableCurrencies = ['EUR', 'USD', 'RUB', 'UAH', 'BYN', 'ILS', 'INR']
+
 export default function Header({changeLanguage}) {
+  const topCurrencies = preferableCurrencies
+    .map(cur => currenciesList.find(item => item.IsoCode === cur))
+  const otherCurrencies = currenciesList.filter(item => !preferableCurrencies.includes(item.IsoCode))
+  const [currency, setCurrency] = React.useState('EUR');
 
   const [locale, setLocale] = React.useState('en');
   const handleLocaleChange = (event) => {
     setLocale(event.target.value)
     changeLanguage(event.target.value)
+  }
+
+  const handleCurrencyChange = (event) => {
+    setCurrency(event.target.value)
   }
 
   return (
@@ -46,19 +65,35 @@ export default function Header({changeLanguage}) {
               <Button color="inherit">Login</Button>
               <FormControl>
                 <Select
+                  labelId="currencies-select-label"
+                  id="currencies-select"
+                  value={currency}
+                  onChange={handleCurrencyChange}
+                  renderValue={(value) => `${value}`}
+                  disableUnderline
+                >
+                  {topCurrencies.map(cur => {
+                    return <MenuItem value={cur.IsoCode}>{`${cur.IsoCode} ${cur.currency}`}</MenuItem>
+                  })}
+                  <Divider/>
+                  {otherCurrencies.map(cur => {
+                    return <MenuItem value={cur.IsoCode}>{`${cur.IsoCode} ${cur.currency}`}</MenuItem>
+                  })}
+                </Select>
+              </FormControl>
+
+              <FormControl>
+                <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={locale}
                   onChange={handleLocaleChange}
-                  renderValue={(value) => `${value}`}
+                  renderValue={(value) => `${value.toUpperCase()}`}
                   disableUnderline
                 >
-                  {/*<MenuItem onClick={() => changeLanguage("en")}>English</MenuItem>*/}
-                  {/*<MenuItem onClick={() => changeLanguage("ru")}>Русский</MenuItem>*/}
-                  {/*<MenuItem onClick={() => changeLanguage("ua")}>Українська</MenuItem>*/}
-                  <MenuItem value={"en"}>English</MenuItem>
-                  <MenuItem value={"ru"}>Русский</MenuItem>
-                  <MenuItem value={"ua"}>Українська</MenuItem>
+                  {languagesList.map(lng => {
+                    return <MenuItem value={lng.locale}>{lng.label}</MenuItem>
+                  })}
                 </Select>
               </FormControl>
             </Grid>
