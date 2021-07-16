@@ -36,7 +36,9 @@ export default function Header({changeLanguage}) {
   const history = useHistory();
   const topCurrencies = preferableCurrencies
     .map(cur => currenciesList.find(item => item.IsoCode === cur))
-  const otherCurrencies = currenciesList.filter(item => !preferableCurrencies.includes(item.IsoCode))
+  const otherCurrencies = currenciesList
+    .filter(item => !preferableCurrencies.includes(item.IsoCode))
+    .sort((a, b) => { return  a.IsoCode < b.IsoCode ? -1 : 1})
   const [currency, setCurrency] = React.useState('EUR');
 
   const [locale, setLocale] = React.useState('en');
