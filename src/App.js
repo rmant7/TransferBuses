@@ -1,5 +1,4 @@
-
-import { Switch, Route } from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import "./App.css";
 import MainPage from "./components/MainPage/MainPage";
 import BusPage from "./components/BusPage/BusPage";
@@ -11,29 +10,29 @@ import {useTranslation} from "react-i18next"
 
 function App() {
 
-const {t, i18n} = useTranslation();
-const changeLanguage = (language) => {
-    // ВОЗМОЖНО НУЖНО ПЕРЕНЕСТИ ЭТОТ КУСОК ТУДА, ГДЕ ВЫЗЫВАЕТСЯ СМЕНА ЯЗЫКА (В ХЕДЕР)
-    //alert(language)
-    i18n.changeLanguage(language).then(t=>console.log(t('translation.part1'))).catch(err=>console.error(err))
-}
+  const {i18n} = useTranslation();
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language).then(t => console.log(t('translation.part1'))).catch(err => console.error(err))
+  }
+
+  i18n.reloadResources().then(res => console.log("res: ", res))
 
   return (
     <div>
-        {/*{t("translation.part1")}*/}
-          {/*<Route path="/" component={Header} />*/}
+      {/*{t("translation.part1")}*/}
+      {/*<Route path="/" component={Header} />*/}
 
-          <Route path="/"
-                 render={() => (
-              <Header changeLanguage={changeLanguage} />
-          )} />
-          <Switch>
-            <Route path="/" exact component={MainPage} />
-            <Route path="/viewRoutes" component={PassengerPage} />
-            <Route path="/addRoute" component={BusPage} />
-            <Route path="/addTransfer" component={DriverPage} />
-            <Route path="/transfer" component={TransferPage} />
-          </Switch>
+      <Route path="/"
+             render={() => (
+               <Header changeLanguage={changeLanguage}/>
+             )}/>
+      <Switch>
+        <Route path="/" exact component={MainPage}/>
+        <Route path="/viewRoutes" component={PassengerPage}/>
+        <Route path="/addRoute" component={BusPage}/>
+        <Route path="/addTransfer" component={DriverPage}/>
+        <Route path="/transfer" component={TransferPage}/>
+      </Switch>
     </div>
   );
 }

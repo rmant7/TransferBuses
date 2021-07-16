@@ -1,7 +1,9 @@
 {
-        "part1": "щщщщщ",
-        "part2": "ффффффф",
-        "from": "Из",
-        "to": "В",
-        "dateAndTime": "Дата и время"
+  "Date and time": "Дата и время",
+  "From": "Из",
+  "Phone number": "Телефон",
+  "Places": "Доступно мест",
+  "Price": "Цена",
+  "To": "В",
+  "Travel time": "Время в пути"
 }

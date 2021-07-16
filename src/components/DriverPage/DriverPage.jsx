@@ -50,8 +50,6 @@ export default function DriverPage() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // console.log('hello')
-      // alert(JSON.stringify(values, null, 2));
       console.log("SUBMITTING");
       uploadTransfer(
         values.from,
@@ -92,7 +90,7 @@ export default function DriverPage() {
           renderInput={(params) => (
             <TextField
               {...params}
-              label="From"
+              label={i18n.t("From")}
               margin="normal"
               value={formik.values.from}
             />
@@ -107,15 +105,14 @@ export default function DriverPage() {
             formik.setFieldValue("to", v?.title || "");
           }}
           renderInput={(params) => (
-            <TextField {...params} label="To" margin="normal" />
+            <TextField {...params} label={i18n.t("To")} margin="normal" />
           )}
         />
         <Grid container justifyContent="space-between">
           <TextField
             id="date"
             // label="Date and time"
-            label={i18n.t("dateAndTime")}
-            // type="date"
+            label={i18n.t("Date and time")}
             type="datetime-local"
             margin="normal"
             value={formik.values.date}
@@ -130,7 +127,8 @@ export default function DriverPage() {
 
           <TextField
             id="duration"
-            label="Duration of travel"
+            //label="Duration of travel"
+            label={i18n.t("Travel time")}
             type="Time"
             margin="normal"
             value={formik.values.duration}
@@ -147,7 +145,7 @@ export default function DriverPage() {
           fullWidth
           id="phone"
           name="phoneNumber"
-          label="Phone Number"
+          label={i18n.t("Phone number")}
           margin="normal"
           value={formik.values.phoneNumber}
           onChange={formik.handleChange}
@@ -162,7 +160,8 @@ export default function DriverPage() {
             value={formik.values.places}
             margin="normal"
             id="places"
-            label={"Places"}
+            // label={"Places"}
+            label={i18n.t("Places")}
             onChange={formik.handleChange}
             inputProps={{
               step: 1,
@@ -176,7 +175,8 @@ export default function DriverPage() {
             value={formik.values.price}
             margin="normal"
             id="price"
-            label={"Price"}
+            // label={"Price"}
+            label={i18n.t("Price")}
             onChange={formik.handleChange}
             inputProps={{
               min: 0,
