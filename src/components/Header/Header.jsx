@@ -46,7 +46,7 @@ export default function Header({changeLanguage}) {
     })
 
   const [currency, setCurrency] = React.useState(localStorage.getItem('currency')
-    || topCurrencies[0] || 'EUR');
+    || preferableCurrencies[0] || 'EUR');
 
 
   const [locale, setLocale] = React.useState(localStorage.getItem('locale') || 'en');
