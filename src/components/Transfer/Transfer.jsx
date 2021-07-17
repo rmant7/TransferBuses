@@ -85,6 +85,17 @@ export default function Transfer({transfer}) {
                 Price: {transfer.price}{" "}
               </Paper>
             </Grid>
+            <Grid
+              container
+              item
+              xs={2}
+              alignItems="stretch"
+              justifyContent="center"
+            >
+              <Paper className={"paper"}>
+                Pass a parcel: {transfer.passAParcel ? "Yes" : "No"}
+              </Paper>
+            </Grid>
 
             <Grid item xs={1} alignItems="stretch" justifyContent="flex-end">
               {/*<IconButton onClick={() => history.push("/addTransfer")}>*/}

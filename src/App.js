@@ -10,9 +10,6 @@ import {useTranslation} from "react-i18next"
 import {useEffect} from "react";
 
 function App() {
-
-
-
   const {i18n} = useTranslation();
   const changeLanguage = (language) => {
     i18n.changeLanguage(language)
@@ -26,15 +23,11 @@ function App() {
     )
 
   useEffect(() => {
-    changeLanguage(localStorage.getItem('locale')||'en')
+    changeLanguage(localStorage.getItem('locale') || 'en')
   }, []);
-
 
   return (
     <div>
-      {/*{t("translation.part1")}*/}
-      {/*<Route path="/" component={Header} />*/}
-
       <Route path="/"
              render={() => (
                <Header changeLanguage={changeLanguage}/>

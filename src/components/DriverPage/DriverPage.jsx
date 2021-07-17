@@ -1,13 +1,13 @@
 import React from "react";
-import { useFormik } from "formik";
+import {useFormik} from "formik";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
-import { uploadTransfer } from "../../services/data-service";
-import { useHistory } from "react-router-dom";
-import { Grid } from "@material-ui/core";
+import {uploadTransfer} from "../../services/data-service";
+import {useHistory} from "react-router-dom";
+import {Checkbox, FormControlLabel, Grid} from "@material-ui/core";
 import data from "../../data.json"
 import i18n from "../../i18n"
 
@@ -34,19 +34,20 @@ const validationSchema = yup.object({
 });
 
 export default function DriverPage() {
-  const cities = data.cities.map(feature => {return {title:feature.city}})
+  const cities = data.cities.map(feature => {
+    return {title: feature.city}
+  })
   const history = useHistory();
+
+
   const formik = useFormik({
     initialValues: {
-      // from: "",
-      // to: "",
-      // date: new Date().toJSON().slice(0,10).replace(/-/g,'/'),
-      // date: new Date().toJSON().slice(0, 10),
       date: new Date().toJSON().slice(0, 16),
       phone: "",
       places: 1,
       price: "",
       duration: 0,
+      passAParcel: false,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -58,7 +59,8 @@ export default function DriverPage() {
         values.phoneNumber,
         values.places,
         values.price,
-        values.duration
+        values.duration,
+        values.passAParcel
       )
         .then((response) => {
           console.log(response);
@@ -105,7 +107,7 @@ export default function DriverPage() {
             formik.setFieldValue("to", v?.title || "");
           }}
           renderInput={(params) => (
-            <TextField {...params} label={i18n.t("To")} margin="normal" />
+            <TextField {...params} label={i18n.t("To")} margin="normal"/>
           )}
         />
         <Grid container justifyContent="space-between">
@@ -175,7 +177,6 @@ export default function DriverPage() {
             value={formik.values.price}
             margin="normal"
             id="price"
-            // label={"Price"}
             label={i18n.t("Price")}
             onChange={formik.handleChange}
             inputProps={{
@@ -184,11 +185,24 @@ export default function DriverPage() {
               "aria-labelledby": "input-slider",
             }}
           />
+
         </Grid>
+
+        <FormControlLabel
+          control={
+            <Checkbox
+              id={'passAParcel'}
+              checked={formik.values.passAParcel}
+              onChange={formik.handleChange}
+              color="primary"
+            />
+          }
+          label={i18n.t("Pass a parcel")}
+        />
 
         <div className={"submitBtn"}>
           <Button color="primary" variant="contained" fullWidth type="submit">
-            {i18n.t("Submit a travel")}
+            {i18n.t("Publish a ride")}
           </Button>
         </div>
       </form>
