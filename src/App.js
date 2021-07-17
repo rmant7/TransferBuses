@@ -7,15 +7,28 @@ import DriverPage from "./components/DriverPage/DriverPage";
 import TransferPage from "./components/TransferPage/TransferPage";
 import Header from "./components/Header/Header";
 import {useTranslation} from "react-i18next"
+import {useEffect} from "react";
 
 function App() {
 
+
+
   const {i18n} = useTranslation();
   const changeLanguage = (language) => {
-    i18n.changeLanguage(language).then(t => console.log(t('translation.part1'))).catch(err => console.error(err))
+    i18n.changeLanguage(language)
+      .then(
+      )
+      .catch(err => console.error(err))
   }
 
-  i18n.reloadResources().then(res => console.log("res: ", res))
+  i18n.reloadResources()
+    .then(
+    )
+
+  useEffect(() => {
+    changeLanguage(localStorage.getItem('locale')||'en')
+  }, []);
+
 
   return (
     <div>

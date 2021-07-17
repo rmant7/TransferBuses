@@ -188,7 +188,7 @@ export default function DriverPage() {
 
         <div className={"submitBtn"}>
           <Button color="primary" variant="contained" fullWidth type="submit">
-            Submit
+            {i18n.t("Submit a travel")}
           </Button>
         </div>
       </form>

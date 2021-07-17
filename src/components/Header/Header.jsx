@@ -34,20 +34,30 @@ const preferableCurrencies = ['EUR', 'USD', 'RUB', 'UAH', 'BYN', 'ILS', 'INR']
 
 export default function Header({changeLanguage}) {
   const history = useHistory();
+
   const topCurrencies = preferableCurrencies
     .map(cur => currenciesList.find(item => item.IsoCode === cur))
+
   const otherCurrencies = currenciesList
     .filter(item => !preferableCurrencies.includes(item.IsoCode))
-    .sort((a, b) => { return  a.IsoCode < b.IsoCode ? -1 : 1})
-  const [currency, setCurrency] = React.useState('EUR');
+    // .slice(0,7)
+    .sort((a, b) => {
+      return a.IsoCode < b.IsoCode ? -1 : 1
+    })
 
-  const [locale, setLocale] = React.useState('en');
+  const [currency, setCurrency] = React.useState(localStorage.getItem('currency')
+    || topCurrencies[0] || 'EUR');
+
+
+  const [locale, setLocale] = React.useState(localStorage.getItem('locale') || 'en');
   const handleLocaleChange = (event) => {
+    localStorage.setItem('locale', event.target.value);
     setLocale(event.target.value)
     changeLanguage(event.target.value)
   }
 
   const handleCurrencyChange = (event) => {
+    localStorage.setItem('currency', event.target.value);
     setCurrency(event.target.value)
   }
 
@@ -57,7 +67,7 @@ export default function Header({changeLanguage}) {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h3" onClick={() => history.push("/")}
-            style={{"cursor":"pointer"}}
+                        style={{"cursor": "pointer"}}
             >TransferBuses</Typography>
             <Grid
               container
