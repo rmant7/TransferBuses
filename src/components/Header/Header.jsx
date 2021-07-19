@@ -7,11 +7,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Grid from "@material-ui/core/Grid";
-// import { Trans, useTranslation } from "react-i18next";
 import {createTheme, ThemeProvider} from "@material-ui/core/styles";
 import {Divider} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
-import axios from "axios";
+import {getCurrencies} from "../../services/api";
 
 const languagesList = [
   {locale: "en", label: "English"},
@@ -33,17 +32,6 @@ const theme = createTheme({
 const preferableCurrencies = ['EUR', 'USD', 'RUB', 'UAH', 'BYN', 'ILS', 'INR']
 let topCurrencies = [];
 let otherCurrencies = [];
-
-const instance = axios.create({
-  baseURL: 'https://cheaptrip.guru:8443/CheapTrip'
-})
-
-const getCurrencies = () => {
-  return instance.get(`GetCurrencyRate`)
-    .then(response => {
-      return response.data;
-    });
-}
 
 export default function Header({changeLanguage}) {
   const [currenciesList, setCurrenciesList] = React.useState([
