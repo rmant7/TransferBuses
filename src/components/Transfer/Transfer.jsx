@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import "./Transfer.css";
 import {useHistory} from "react-router-dom";
+import i18n from "i18next";
 
 export default function Transfer({transfer}) {
   const history = useHistory();
@@ -38,7 +39,7 @@ export default function Transfer({transfer}) {
               alignItems="stretch"
               justifyContent="center"
             >
-              <Paper className={"paper"}> Date of travel: {transfer.date.replace('T', '  ')}</Paper>
+              <Paper className={"paper"}> {i18n.t("Date of travel")}: {transfer.date.replace('T', '  ')}</Paper>
             </Grid>
             <Grid
               container
@@ -47,7 +48,7 @@ export default function Transfer({transfer}) {
               alignItems="stretch"
               justifyContent="center"
             >
-              <Paper className={"paper"}> Duration of travel: {transfer.duration}</Paper>
+              <Paper className={"paper"}> {i18n.t("Duration of ride")}: {transfer.duration}</Paper>
             </Grid>
             <Grid
               container
@@ -57,7 +58,7 @@ export default function Transfer({transfer}) {
               justifyContent="center"
             >
               <Paper className={"paper"}>
-                Driver's phone number: {transfer.phoneNumber}{" "}
+                {i18n.t("Driver's phone number")}: {transfer.phoneNumber}{" "}
                 <RingVolumeIcon fontSize="small"/>
               </Paper>
             </Grid>
@@ -69,7 +70,7 @@ export default function Transfer({transfer}) {
               justifyContent="center"
             >
               <Paper className={"paper"}>
-                Places: {transfer.places}{" "}
+                {i18n.t("Places")}: {transfer.places}{" "}
                 <AirlineSeatReclineNormalIcon fontSize="small"/>
               </Paper>
             </Grid>
@@ -82,7 +83,7 @@ export default function Transfer({transfer}) {
               justifyContent="center"
             >
               <Paper className={"paper"}>
-                Price: {transfer.price}{" "}
+                {i18n.t("Price")}: {transfer.price}{" "}
               </Paper>
             </Grid>
             <Grid
@@ -93,7 +94,7 @@ export default function Transfer({transfer}) {
               justifyContent="center"
             >
               <Paper className={"paper"}>
-                Pass a parcel: {transfer.passAParcel ? "Yes" : "No"}
+                {i18n.t("A parcel delivery")}: {transfer.passAParcel ? i18n.t("Yes") : i18n.t("No")}
               </Paper>
             </Grid>
 
