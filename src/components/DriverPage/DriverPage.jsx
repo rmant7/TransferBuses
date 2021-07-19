@@ -11,7 +11,6 @@ import {Checkbox, FormControlLabel, Grid} from "@material-ui/core";
 import data from "../../data.json"
 import i18n from "../../i18n"
 
-
 const validationSchema = yup.object({
   // from: yup
   //     .string('Enter or select a city')
@@ -34,6 +33,7 @@ const validationSchema = yup.object({
 });
 
 export default function DriverPage() {
+  // TODO: Переделать на данные получаемые с CheapTrip.guru (функция getCities(searchString) )
   const cities = data.cities.map(feature => {
     return {title: feature.city}
   })
@@ -85,17 +85,12 @@ export default function DriverPage() {
           {...defaultProps}
           id="from"
           name={"from"}
-          value={formik.values.to}
+          value={formik.values.from}
           onChange={(e, v) => {
             formik.setFieldValue("from", v?.title || "");
           }}
           renderInput={(params) => (
-            <TextField
-              {...params}
-              label={i18n.t("From")}
-              margin="normal"
-              value={formik.values.from}
-            />
+            <TextField {...params} label={i18n.t("From")} margin="normal"/>
           )}
         />
         <Autocomplete

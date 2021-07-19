@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -9,9 +9,10 @@ import Select from "@material-ui/core/Select";
 import Grid from "@material-ui/core/Grid";
 // import { Trans, useTranslation } from "react-i18next";
 import {createTheme, ThemeProvider} from "@material-ui/core/styles";
-import currenciesList from "../../currencies.json"
+// import currenciesList from "../../currencies.json"
 import {Divider} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
+import axios from "axios";
 
 const languagesList = [
   {locale: "en", label: "English"},
@@ -31,23 +32,54 @@ const theme = createTheme({
 });
 
 const preferableCurrencies = ['EUR', 'USD', 'RUB', 'UAH', 'BYN', 'ILS', 'INR']
+let topCurrencies = [];
+let otherCurrencies = [];
+
+const instance = axios.create({
+  baseURL: 'https://cheaptrip.guru:8443/CheapTrip'
+})
+
+const getCurrencies = () => {
+  return instance.get(`GetCurrencyRate`)
+    .then(response => {
+      return response.data;
+    });
+}
 
 export default function Header({changeLanguage}) {
+  const [currenciesList, setCurrenciesList] = React.useState([
+    {
+      "name": "Euro",
+      "code": "EUR",
+      "oneEuroRate": 1.0,
+      "r2rSymbol": "€"
+    },
+  ]);
+
+
+  useEffect(() => {
+    getCurrencies().then(res => {
+      setCurrenciesList([...res])
+    })
+  }, [])
+
   const history = useHistory();
 
-  const topCurrencies = preferableCurrencies
-    .map(cur => currenciesList.find(item => item.IsoCode === cur))
-
-  const otherCurrencies = currenciesList
-    .filter(item => !preferableCurrencies.includes(item.IsoCode))
-    // .slice(0,7)
-    .sort((a, b) => {
-      return a.IsoCode < b.IsoCode ? -1 : 1
-    })
+  if (currenciesList.length > 1) {
+    topCurrencies = preferableCurrencies
+      .map(cur => currenciesList.find(item => {
+        return item.code === cur
+      }))
+    otherCurrencies = currenciesList
+      .filter(item => !preferableCurrencies.includes(item.code))
+      // .slice(0,7)
+      .sort((a, b) => {
+        return a.code < b.code ? -1 : 1
+      })
+  }
 
   const [currency, setCurrency] = React.useState(localStorage.getItem('currency')
     || preferableCurrencies[0] || 'EUR');
-
 
   const [locale, setLocale] = React.useState(localStorage.getItem('locale') || 'en');
   const handleLocaleChange = (event) => {
@@ -88,11 +120,11 @@ export default function Header({changeLanguage}) {
                   disableUnderline
                 >
                   {topCurrencies.map(cur => {
-                    return <MenuItem value={cur.IsoCode}>{`${cur.IsoCode} ${cur.currency}`}</MenuItem>
+                    return <MenuItem value={cur.code} id={cur.code + cur.name}>{`${cur.code} ${cur.name}`}</MenuItem>
                   })}
                   <Divider/>
                   {otherCurrencies.map(cur => {
-                    return <MenuItem value={cur.IsoCode}>{`${cur.IsoCode} ${cur.currency}`}</MenuItem>
+                    return <MenuItem value={cur.code} id={cur.code + cur.name}>{`${cur.code} ${cur.name}`}</MenuItem>
                   })}
                 </Select>
               </FormControl>
@@ -107,7 +139,7 @@ export default function Header({changeLanguage}) {
                   disableUnderline
                 >
                   {languagesList.map(lng => {
-                    return <MenuItem value={lng.locale}>{lng.label}</MenuItem>
+                    return <MenuItem value={lng.locale} id={lng.locale + lng.label}>{lng.label}</MenuItem>
                   })}
                 </Select>
               </FormControl>
