@@ -9,7 +9,6 @@ import Select from "@material-ui/core/Select";
 import Grid from "@material-ui/core/Grid";
 // import { Trans, useTranslation } from "react-i18next";
 import {createTheme, ThemeProvider} from "@material-ui/core/styles";
-// import currenciesList from "../../currencies.json"
 import {Divider} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
