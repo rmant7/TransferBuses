@@ -6,15 +6,16 @@
   "Pass a parcel": "Передам посылку",
   "Phone number": "Телефон",
   "Places": "Доступно мест",
-  "Price": "Цена",
   "Publish a ride": "Опубликовать поездку",
   "To": "Куда",
   "Travel time": "Время в пути",
-  "Driver's phone number": "Номер Телефона Водителя",
-  "Date of travel": "Дата Путешествия",
-  "Duration of ride": "Продолжительность Поездки",
+  "Driver's phone number": "Номер телефона водителя",
+  "Date of travel:": "Дата путешествия:",
+  "Duration of ride": "Продолжительность поездки",
+  "Price": "Цена",
   "A parcel delivery": "Передача посылки",
   "Yes": "Да",
   "No": "Нет",
-  "Yes or no": "Да Или Нет"
+  "Yes or no": "Да или нет",
+  "Driver's Comment": "Комментарий водителя"
 }

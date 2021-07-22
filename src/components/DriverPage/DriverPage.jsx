@@ -48,6 +48,7 @@ export default function DriverPage() {
       price: "",
       duration: 0,
       passAParcel: false,
+      driversComment: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -60,7 +61,8 @@ export default function DriverPage() {
         values.places,
         values.price,
         values.duration,
-        values.passAParcel
+        values.passAParcel,
+        values.driversComment
       )
         .then((response) => {
           console.log(response);
@@ -194,7 +196,21 @@ export default function DriverPage() {
           }
           label={i18n.t("Pass a parcel")}
         />
-
+        <TextField
+          value={formik.values.driversComment}
+          margin="normal"
+          id="driversComment"
+          name="driversComment"
+          multiline
+          rows={4}
+          label={i18n.t("Driver's Comment")}
+          onChange={formik.handleChange}
+          // inputProps={{
+          //   min: 0,
+          //   type: "price",
+          //   "aria-labelledby": "input-slider",
+          // }}
+        />
         <div className={"submitBtn"}>
           <Button color="primary" variant="contained" fullWidth type="submit">
             {i18n.t("Publish a ride")}

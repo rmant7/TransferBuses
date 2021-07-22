@@ -86,6 +86,19 @@ export default function Transfer({transfer}) {
                 {i18n.t("Price")}: {transfer.price}{" "}
               </Paper>
             </Grid>
+
+            <Grid
+              container
+              item
+              xs={2}
+              alignItems="stretch"
+              justifyContent="center"
+            >
+              <Paper className={"paper"}>
+                {i18n.t("Driver's Comment")}: {transfer.driversComment}{" "}
+              </Paper>
+            </Grid>
+
             <Grid
               container
               item

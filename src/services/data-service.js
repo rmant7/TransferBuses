@@ -1,36 +1,39 @@
 import {fb} from '../config/firebase-config';
 
-export async function uploadTransfer(from, to, date, phoneNumber, places, price, duration, passAParcel){
-    try{
-        const collection = fb.firestore().collection("transfers");
-        const response = await collection.add({
-            from,
-            to,
-            date,
-            phoneNumber,
-            places,
-            price,
-            duration,
-            passAParcel,
-        })
-        console.log("response id",response.id);
-        // await ref.update({
-        //     lotsIds:firebase.firestore.FieldValue.arrayUnion(response.id)
-        // })
-    }catch(error){
-        return Promise.reject(error);
-    }
+export async function uploadTransfer(from, to, date, phoneNumber, places, price, duration, passAParcel, driversComment) {
+  try {
+    const collection = fb.firestore().collection("transfers");
+    const response = await collection.add({
+      from,
+      to,
+      date,
+      phoneNumber,
+      places,
+      price,
+      duration,
+      passAParcel,
+      driversComment,
+    })
+    console.log("response id", response.id);
+    // await ref.update({
+    //     lotsIds:firebase.firestore.FieldValue.arrayUnion(response.id)
+    // })
+  } catch (error) {
+    return Promise.reject(error);
+  }
 }
 
-export async function getTransfers(){
-    try{
-        const collection = await fb.firestore().collection("transfers").get();
-        const transfers = collection.docs.map(doc => { return{ ...doc.data(),id:doc.id}})
-        console.log('received transfers: ', transfers);
-        return transfers;
-    }catch(error){
-        return Promise.reject(error);
-    }
+export async function getTransfers() {
+  try {
+    const collection = await fb.firestore().collection("transfers").get();
+    const transfers = collection.docs.map(doc => {
+      return {...doc.data(), id: doc.id}
+    })
+    console.log('received transfers: ', transfers);
+    return transfers;
+  } catch (error) {
+    return Promise.reject(error);
+  }
 }
 
 // export async function getMyLots(uid){
