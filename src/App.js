@@ -9,6 +9,7 @@ import Header from "./components/Header/Header";
 import {useTranslation} from "react-i18next"
 import {useEffect} from "react";
 
+
 function App() {
   const {i18n} = useTranslation();
   const changeLanguage = (language) => {
@@ -39,6 +40,7 @@ function App() {
         <Route path="/addTransfer" component={DriverPage}/>
         <Route path="/transfer" component={TransferPage}/>
       </Switch>
+
     </div>
   );
 }
