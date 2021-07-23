@@ -69,7 +69,7 @@ export default function Transfer({transfer}) {
               alignItems="stretch"
               justifyContent="center"
             >
-              <Paper className={"paper"}>
+              <Paper className={"paper hidden"}>
                 {i18n.t("Places")}: {transfer.places}{" "}
                 <AirlineSeatReclineNormalIcon fontSize="small"/>
               </Paper>

@@ -6,3 +6,7 @@ margin-bottom:20px;
 .paper{
     padding: 0 4px;
 }
+
+.hidden {
+    display: none;
+}

@@ -155,21 +155,23 @@ export default function DriverPage() {
         />
 
         <Grid container justifyContent="space-between">
-          <TextField
-            value={formik.values.places}
-            margin="normal"
-            id="places"
-            // label={"Places"}
-            label={i18n.t("Places")}
-            onChange={formik.handleChange}
-            inputProps={{
-              step: 1,
-              min: 1,
-              max: 8,
-              type: "number",
-              // 'aria-labelledby': 'input-slider',
-            }}
-          />
+          <div className={"hidden"}>
+            <TextField
+              value={formik.values.places}
+              margin="normal"
+              id="places"
+              // label={"Places"}
+              label={i18n.t("Places")}
+              onChange={formik.handleChange}
+              inputProps={{
+                step: 1,
+                min: 1,
+                max: 8,
+                type: "number",
+                // 'aria-labelledby': 'input-slider',
+              }}
+            />
+          </div>
           <TextField
             value={formik.values.price}
             margin="normal"
@@ -182,7 +184,6 @@ export default function DriverPage() {
               "aria-labelledby": "input-slider",
             }}
           />
-
         </Grid>
 
         <FormControlLabel

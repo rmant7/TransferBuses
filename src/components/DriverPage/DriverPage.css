@@ -1,14 +1,19 @@
-.container{
-    width:300px;
-    height:400px;
-    margin:100px auto;
+.container {
+    width: 300px;
+    height: 400px;
+    margin: 100px auto;
 
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-around;
     padding: 5px;
 }
-.submitBtn{
+
+.submitBtn {
     margin-top: 32px;
+}
+
+.hidden {
+    display: none;
 }
