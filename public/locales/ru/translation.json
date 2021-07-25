@@ -10,12 +10,21 @@
   "To": "Куда",
   "Travel time": "Время в пути",
   "Driver's phone number": "Номер телефона водителя",
-  "Date of travel:": "Дата путешествия:",
+  "Date of travel": "Дата поездки",
   "Duration of ride": "Продолжительность поездки",
   "Price": "Цена",
   "A parcel delivery": "Передача посылки",
   "Yes": "Да",
   "No": "Нет",
   "Yes or no": "Да или нет",
-  "Driver's Comment": "Комментарий водителя"
+  "Driver's comment": "Комментарий водителя",
+  "Regular trips": "Регулярные поездки",
+  "_0monday": "Понедельник",
+  "_1tuesday": "Вторник",
+  "_2wednesday": "Среда",
+  "_3thursday": "Четверг",
+  "_4friday": "Пятница",
+  "_5saturday": "Суббота",
+  "_6sunday": "Воскресенье",
+  "Select all": "Выбрать все"
 }

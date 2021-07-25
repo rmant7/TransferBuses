@@ -17,5 +17,14 @@
   "Yes": "Так",
   "No": "Ні",
   "Yes or no": "Так Або Ні",
-  "Driver's Comment": "Коментар водія"
+  "Driver's comment": "Коментар водія",
+  "Regular trips": "Регулярні поїздки",
+  "_0monday": "Понеділок",
+  "_1tuesday": "Вівторок",
+  "_2wednesday": "Середа",
+  "_3thursday": "Четвер",
+  "_4friday": "П'ятниця",
+  "_5saturday": "Субота",
+  "_6sunday": "Неділя",
+  "Select all": "Вибрати все"
 }

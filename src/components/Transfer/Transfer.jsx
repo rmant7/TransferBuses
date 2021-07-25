@@ -11,6 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import "./Transfer.css";
 import {useHistory} from "react-router-dom";
 import i18n from "i18next";
+import {WeekDayIcon} from "../WeekDayIcon/WeekDayIcon";
 
 export default function Transfer({transfer}) {
   const history = useHistory();
@@ -26,21 +27,61 @@ export default function Transfer({transfer}) {
             alignItems="center"
             spacing={3}
           >
-            <Grid container item xs alignItems="center" justifyContent="center">
+            <Grid
+              container
+              item
+              xs
+              alignItems="center"
+              justifyContent="center">
               <Paper className={"paper"}>
                 {transfer.from} <ArrowForwardSharpIcon style={{fontSize: 15, margin: "0 10 -2.5 10"}}/>
                 {transfer.to}
               </Paper>
             </Grid>
-            <Grid
-              container
-              item
-              xs={3}
-              alignItems="stretch"
-              justifyContent="center"
-            >
-              <Paper className={"paper"}> {i18n.t("Date of travel")}: {transfer.date.replace('T', '  ')}</Paper>
-            </Grid>
+            {
+              !transfer.regularTrips &&
+              <Grid
+                container
+                item
+                xs={3}
+                alignItems="stretch"
+                justifyContent="center"
+              >
+                <Paper className={"paper"}> {i18n.t("Date of travel")}: {transfer.date.replace('T', '  ')}</Paper>
+              </Grid>
+            }
+
+            {
+              transfer.regularTrips &&
+              <Grid
+                container
+                item
+                xs={3}
+                direction={"column"}
+                alignItems="stretch"
+                justifyContent="center"
+              >
+                <Paper className={"paper"}> {i18n.t("Regular trips")}
+                <Grid
+                  container
+                  item
+                  xs={3}
+                  direction={"row"}
+                  alignItems="stretch"
+                  justifyContent="center">
+                  {
+                    Object.keys(transfer.regularTripsDays)
+                      .sort()
+                      .map(weekDay => {
+
+                      return <WeekDayIcon name={weekDay} value={transfer.regularTripsDays[weekDay]} />
+                    })
+                  }
+                </Grid>
+
+                </Paper>
+              </Grid>
+            }
             <Grid
               container
               item
@@ -87,17 +128,21 @@ export default function Transfer({transfer}) {
               </Paper>
             </Grid>
 
-            <Grid
-              container
-              item
-              xs={2}
-              alignItems="stretch"
-              justifyContent="center"
-            >
-              <Paper className={"paper"}>
-                {i18n.t("Driver's Comment")}: {transfer.driversComment}{" "}
-              </Paper>
-            </Grid>
+
+            {
+              transfer.driversComment &&
+              <Grid
+                container
+                item
+                xs={2}
+                alignItems="stretch"
+                justifyContent="center"
+              >
+                <Paper className={"paper"}>
+                  {i18n.t("Driver's comment")}: {transfer.driversComment}{" "}
+                </Paper>
+              </Grid>
+            }
 
             <Grid
               container
@@ -111,10 +156,12 @@ export default function Transfer({transfer}) {
               </Paper>
             </Grid>
 
-            <Grid item xs={1} alignItems="stretch" justifyContent="flex-end">
-              {/*<IconButton onClick={() => history.push("/addTransfer")}>*/}
-              {/*  <NearMeIcon fontSize="large" />*/}
-              {/*</IconButton>*/}
+            <Grid
+
+              item
+              xs={1}
+            >
+
               <IconButton onClick={() =>
                 history.push(
                   {

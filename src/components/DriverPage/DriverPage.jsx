@@ -7,9 +7,10 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
 import {uploadTransfer} from "../../services/data-service";
 import {useHistory} from "react-router-dom";
-import {Checkbox, FormControlLabel, Grid} from "@material-ui/core";
+import {Checkbox, FormControlLabel, Grid, Paper} from "@material-ui/core";
 import data from "../../data.json"
 import i18n from "../../i18n"
+import {createTheme, ThemeProvider} from "@material-ui/core/styles";
 
 const validationSchema = yup.object({
   // from: yup
@@ -32,6 +33,17 @@ const validationSchema = yup.object({
   //     .required("Required field"),
 });
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: "#ff8a50",
+      main: "#ff5722",
+      dark: "#c41c00",
+      contrastText: "#fff",
+    },
+  },
+});
+
 export default function DriverPage() {
   // TODO: Переделать на данные получаемые с CheapTrip.guru (функция getCities(searchString) )
   const cities = data.cities.map(feature => {
@@ -49,10 +61,22 @@ export default function DriverPage() {
       duration: 0,
       passAParcel: false,
       driversComment: "",
+      regularTrips: false,
+      regularTripsDays: {
+        _0monday: false,
+        _1tuesday: false,
+        _2wednesday: false,
+        _3thursday: false,
+        _4friday: false,
+        _5saturday: false,
+        _6sunday: false,
+      },
+
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       console.log("SUBMITTING");
+      console.log(values)
       uploadTransfer(
         values.from,
         values.to,
@@ -62,7 +86,9 @@ export default function DriverPage() {
         values.price,
         values.duration,
         values.passAParcel,
-        values.driversComment
+        values.driversComment,
+        values.regularTrips,
+        values.regularTripsDays
       )
         .then((response) => {
           console.log(response);
@@ -80,144 +106,221 @@ export default function DriverPage() {
     },
   };
 
+  const handleSelectAllDaysChange = (event) => {
+    console.log(event.target)
+    console.log(event.target.checked)
+    const weekDays = {}
+    Object.keys(formik.values.regularTripsDays).map(weekDay => {
+      weekDays[weekDay] = event.target.checked
+     })
+
+    console.log(weekDays)
+    formik.setFieldValue("regularTripsDays", weekDays)
+
+  }
+
   return (
-    <div className={"container"}>
-      <form onSubmit={formik.handleSubmit}>
-        <Autocomplete
-          {...defaultProps}
-          id="from"
-          name={"from"}
-          value={formik.values.from}
-          onChange={(e, v) => {
-            formik.setFieldValue("from", v?.title || "");
-          }}
-          renderInput={(params) => (
-            <TextField {...params} label={i18n.t("From")} margin="normal"/>
-          )}
-        />
-        <Autocomplete
-          {...defaultProps}
-          id="to"
-          name={"to"}
-          value={formik.values.to}
-          onChange={(e, v) => {
-            formik.setFieldValue("to", v?.title || "");
-          }}
-          renderInput={(params) => (
-            <TextField {...params} label={i18n.t("To")} margin="normal"/>
-          )}
-        />
-        <Grid container justifyContent="space-between">
-          <TextField
-            id="date"
-            // label="Date and time"
-            label={i18n.t("Date and time")}
-            type="datetime-local"
-            margin="normal"
-            value={formik.values.date}
-            onChange={formik.handleChange}
-            inputProps={{
-              min: new Date().toISOString().slice(0, 16),
+    <ThemeProvider theme={theme}>
+      <div className={"container"}>
+        <form onSubmit={formik.handleSubmit}>
+          <Autocomplete
+            {...defaultProps}
+            id="from"
+            name={"from"}
+            value={formik.values.from}
+            onChange={(e, v) => {
+              formik.setFieldValue("from", v?.title || "");
             }}
-            InputLabelProps={{
-              shrink: true,
+            renderInput={(params) => (
+              <TextField {...params} label={i18n.t("From")} margin="normal"/>
+            )}
+          />
+          <Autocomplete
+            {...defaultProps}
+            id="to"
+            name={"to"}
+            value={formik.values.to}
+            onChange={(e, v) => {
+              formik.setFieldValue("to", v?.title || "");
             }}
+            renderInput={(params) => (
+              <TextField {...params} label={i18n.t("To")} margin="normal"/>
+            )}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                id={'regularTrips'}
+                checked={formik.values.regularTrips}
+                onChange={formik.handleChange}
+                color="primary"
+              />
+            }
+            label={i18n.t("Regular trips")}
           />
 
-          <TextField
-            id="duration"
-            //label="Duration of travel"
-            label={i18n.t("Travel time")}
-            type="Time"
-            margin="normal"
-            value={formik.values.duration}
-            onChange={formik.handleChange}
-            error={formik.touched.duration && Boolean(formik.errors.duration)}
-            helperText={formik.touched.duration && formik.errors.duration}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </Grid>
+          {
+            formik.values.regularTrips &&
+            <Paper
+              variant="outlined"
+              style={{padding: "8px"}}
+            >
 
-        <TextField
-          fullWidth
-          id="phone"
-          name="phoneNumber"
-          label={i18n.t("Phone number")}
-          margin="normal"
-          value={formik.values.phoneNumber}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
+              <Grid
+                container
+                direction={"column"}
+              >
+                <FormControlLabel
+                  control={<Checkbox
+                    checked={
+                      Object.values(formik.values.regularTripsDays)
+                        .reduce((acc, val) => acc += (+val), 0) === 7}
+                    onChange={handleSelectAllDaysChange}
+                    name="selectAll"
+                    margin={""}
+                  />}
+                  label={i18n.t("Select all")}
+                />
+
+                {Object.keys(formik.values.regularTripsDays).map(weekDay => {
+                    return (
+                      <FormControlLabel
+                        style={{marginLeft: "10px"}}
+                        control={<Checkbox
+                          checked={formik.values.regularTripsDays[weekDay]}
+                          onChange={formik.handleChange}
+                          name={'regularTripsDays.' + weekDay}
+                          key={'regularTripsDays.' + weekDay}
+                        />}
+                        label={i18n.t(weekDay)}
+                      />
+                    )
+                  }
+                )
+                }
+              </Grid>
+            </Paper>
           }
-          helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-        />
 
-        <Grid container justifyContent="space-between">
-          <div className={"hidden"}>
+          {
+            !formik.values.regularTrips &&
+            <Grid container justifyContent="space-between">
+              <TextField
+                id="date"
+                // label="Date and time"
+                label={i18n.t("Date and time")}
+                type="datetime-local"
+                margin="normal"
+                value={formik.values.date}
+                onChange={formik.handleChange}
+                inputProps={{
+                  min: new Date().toISOString().slice(0, 16),
+                }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+
+              <TextField
+                id="duration"
+                //label="Duration of travel"
+                label={i18n.t("Travel time")}
+                type="Time"
+                margin="normal"
+                value={formik.values.duration}
+                onChange={formik.handleChange}
+                error={formik.touched.duration && Boolean(formik.errors.duration)}
+                helperText={formik.touched.duration && formik.errors.duration}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </Grid>
+          }
+
+          <TextField
+            fullWidth
+            id="phone"
+            name="phoneNumber"
+            label={i18n.t("Phone number")}
+            margin="normal"
+            value={formik.values.phoneNumber}
+            onChange={formik.handleChange}
+            error={
+              formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
+            }
+            helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+          />
+
+          <Grid container justifyContent="space-between">
+            <div className={"hidden"}>
+              <TextField
+                value={formik.values.places}
+                margin="normal"
+                id="places"
+                // label={"Places"}
+                label={i18n.t("Places")}
+                onChange={formik.handleChange}
+                inputProps={{
+                  step: 1,
+                  min: 1,
+                  max: 8,
+                  type: "number",
+                  // 'aria-labelledby': 'input-slider',
+                }}
+              />
+            </div>
             <TextField
-              value={formik.values.places}
+              value={formik.values.price}
               margin="normal"
-              id="places"
-              // label={"Places"}
-              label={i18n.t("Places")}
+              id="price"
+              label={i18n.t("Price")}
               onChange={formik.handleChange}
               inputProps={{
-                step: 1,
-                min: 1,
-                max: 8,
-                type: "number",
-                // 'aria-labelledby': 'input-slider',
+                min: 0,
+                type: "price",
+                "aria-labelledby": "input-slider",
               }}
             />
-          </div>
+          </Grid>
           <TextField
-            value={formik.values.price}
+            value={formik.values.driversComment}
             margin="normal"
-            id="price"
-            label={i18n.t("Price")}
+            id="driversComment"
+            name="driversComment"
+            multiline
+            rows={4}
+            label={i18n.t("Driver's comment")}
             onChange={formik.handleChange}
-            inputProps={{
-              min: 0,
-              type: "price",
-              "aria-labelledby": "input-slider",
-            }}
+            variant="outlined"
+            fullWidth
+            // inputProps={{
+            //   min: 0,
+            //   type: "price",
+            //   "aria-labelledby": "input-slider",
+            // }}
           />
-        </Grid>
+          <FormControlLabel
+            control={
+              <Checkbox
+                id={'passAParcel'}
+                checked={formik.values.passAParcel}
+                onChange={formik.handleChange}
+                color="primary"
+                variant="outlined"
+              />
+            }
+            label={i18n.t("Pass a parcel")}
+          />
 
-        <FormControlLabel
-          control={
-            <Checkbox
-              id={'passAParcel'}
-              checked={formik.values.passAParcel}
-              onChange={formik.handleChange}
-              color="primary"
-            />
-          }
-          label={i18n.t("Pass a parcel")}
-        />
-        <TextField
-          value={formik.values.driversComment}
-          margin="normal"
-          id="driversComment"
-          name="driversComment"
-          multiline
-          rows={4}
-          label={i18n.t("Driver's Comment")}
-          onChange={formik.handleChange}
-          // inputProps={{
-          //   min: 0,
-          //   type: "price",
-          //   "aria-labelledby": "input-slider",
-          // }}
-        />
-        <div className={"submitBtn"}>
-          <Button color="primary" variant="contained" fullWidth type="submit">
-            {i18n.t("Publish a ride")}
-          </Button>
-        </div>
-      </form>
-    </div>
+
+          <div className={"submitBtn"}>
+            <Button color="primary" variant="contained" fullWidth type="submit">
+              {i18n.t("Publish a ride")}
+            </Button>
+          </div>
+        </form>
+      </div>
+    </ThemeProvider>
   );
 }
