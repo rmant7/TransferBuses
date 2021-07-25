@@ -17,5 +17,14 @@
   "Yes": "Yes",
   "No": "No",
   "Yes or no": "Yes or no",
-  "Driver's Comment": "Driver's Comment"
+  "Driver's comment": "Driver's comment",
+  "Regular trips": "Regular trips",
+  "_0monday": "Monday",
+  "_1tuesday": "Tuesday",
+  "_2wednesday": "Wednesday",
+  "_3thursday": "Thursday",
+  "_4friday": "Friday",
+  "_5saturday": "Saturday",
+  "_6sunday": "Sunday",
+  "Select all": "Select all"
 }
