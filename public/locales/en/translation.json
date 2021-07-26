@@ -37,8 +37,11 @@
        "to": {
         "Required": "Required field"
        },
-       "date":{
+       "date": {
          "Required": "Required field"
+        },
+        "time": {
+          "Required": "Required field"
         },
         "duration":{
           "Required": "Required field"

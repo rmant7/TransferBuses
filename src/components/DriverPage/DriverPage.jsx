@@ -18,7 +18,7 @@ const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
   to: yup.string().required("to.Required"),
   date: yup.string().required("date.Required"),
-  time: yup.string().required("date.Required"),
+  time: yup.string().required("time.Required"),
   duration: yup.string().required("duration.Required"),
   places: yup
     .number()
