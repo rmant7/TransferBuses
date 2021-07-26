@@ -26,5 +26,32 @@
   "_4friday": "П'ятниця",
   "_5saturday": "Субота",
   "_6sunday": "Неділя",
-  "Select all": "Вибрати все"
+  "Select all": "Вибрати все",
+
+    "form": {
+      "errors": {
+        "from": {
+          "Required": "Обов'язкове поле"
+         },
+         "to": {
+          "Required": "Обов'язкове поле"
+         },
+         "date":{
+           "Required": "Обов'язкове поле"
+          },
+          "duration":{
+            "Required": "Обов'язкове поле"
+          },
+          "places":{
+            "Required": "Обов'язкове поле"
+          },
+         "phoneNumber": {
+           "Required": "Обов'язкове поле",
+           "Phone number is not valid": "Неправильний формат"
+         },
+         "price": {
+           "Required": "Обов'язкове поле"
+        }
+       }
+     }
 }

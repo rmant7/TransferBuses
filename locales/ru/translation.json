@@ -26,5 +26,32 @@
   "_4friday": "Пятница",
   "_5saturday": "Суббота",
   "_6sunday": "Воскресенье",
-  "Select all": "Выбрать все"
+  "Select all": "Выбрать все",
+
+   "form": {
+    "errors": {
+      "from": {
+        "Required": "Обязательное поле"
+       },
+       "to": {
+        "Required": "Обязательное поле"
+       },
+       "date":{
+         "Required": "Обязательное поле"
+        },
+        "duration":{
+          "Required": "Обязательное поле"
+        },
+        "places":{
+          "Required": "Обязательное поле"        
+        },
+       "phoneNumber": {
+         "Required": "Обязательное поле",
+         "Phone number is not valid": "Неверный формат"
+       },
+       "price": {
+         "Required": "Обязательное поле"
+      }
+     }
+   }
 }
