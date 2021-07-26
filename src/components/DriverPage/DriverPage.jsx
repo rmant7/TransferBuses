@@ -9,21 +9,22 @@ import {uploadTransfer} from "../../services/data-service";
 import {useHistory} from "react-router-dom";
 import {Checkbox, FormControlLabel, Grid, Paper} from "@material-ui/core";
 import data from "../../data.json"
-import i18n from "../../i18n"
 import {createTheme, ThemeProvider} from "@material-ui/core/styles";
+import { useTranslation } from "react-i18next";
 
+const phoneRegExp = /^(?!\+.*\(.*\).*\-\-.*$)(?!\+.*\(.*\).*\-$)(([0-9]{0,4})?(\+[0-9]{1,3})?(\([0-9]{1,3})?(\)[0-9]{1})?([-0-9]{0,8})?([0-9]{0,1})?)$/;
 const schema = yup.object().shape({
-  from: yup.string().required("From is required"),
-  to: yup.string().required("To is required"),
-  date: yup.string().required("Date is required"),
-  duration: yup.string().required("Duration is required"),
+  from: yup.string().required("from.Required"),
+  to: yup.string().required(("to.Required")),
+  date: yup.string().required(("date.Required")),
+  duration: yup.string().required(("duration.Required")),
   places: yup
     .number()
     .min(1, "Available places must be more or equal to 1")
     .max(8, "Available places must be less or equal to 8")
-    .required("Required field"),
-  phoneNumber: yup.string().required("Phone number is required"),
-  price: yup.string().required("Price is required"),
+    .required(("places.Required")),
+  phoneNumber: yup.string().matches(phoneRegExp, "phoneNumber.Phone number is not valid").required("phoneNumber.Required"),
+  price: yup.string().required("price.Required"),
 });
 
 const theme = createTheme({
@@ -37,9 +38,9 @@ const theme = createTheme({
   },
 });
 
-
 export default function DriverPage() {
   // TODO: Переделать на данные получаемые с CheapTrip.guru (функция getCities(searchString) )
+  const { t, i18n } = useTranslation();
   const cities = data.cities.map((feature) => {
     return {title: feature.city};
   });
@@ -54,7 +55,6 @@ export default function DriverPage() {
 
   return (
     <ThemeProvider theme={theme}>
-
       <div className={"container"}>
         <Formik
           initialValues={{
@@ -138,7 +138,7 @@ export default function DriverPage() {
                 />
 
                 {props.errors.from && (
-                  <span style={{color: "red"}}>{props.errors.from}</span>
+                  <span style={{color: "red"}}>{i18n.t(`form.errors.${props.errors.from}`)}</span>
                 )}
 
                 <Autocomplete
@@ -155,7 +155,7 @@ export default function DriverPage() {
                 />
 
                 {props.errors.to && (
-                  <span style={{color: "red"}}>{props.errors.to}</span>
+                  <span style={{color: "red"}}>{i18n.t(`form.errors.${props.errors.to}`)}</span>
                 )}
 
                 <FormControlLabel
@@ -235,7 +235,7 @@ export default function DriverPage() {
                     />
 
                     {props.errors.date && (
-                      <span style={{color: "red"}}>{props.errors.date}</span>
+                      <span style={{color: "red"}}>{i18n.t(`form.errors.${props.errors.date}`)}</span>
                     )}
 
 
@@ -256,7 +256,7 @@ export default function DriverPage() {
                       }}
                     />
                     {props.errors.duration && (
-                      <span style={{color: "red"}}>{props.errors.duration}</span>
+                      <span style={{color: "red"}}>{i18n.t(`form.errors.${props.errors.duration}`)}</span>
                     )}
                   </Grid>
                 }
@@ -277,7 +277,7 @@ export default function DriverPage() {
                   // }
                 />
                 {props.errors.phoneNumber && (
-                  <span style={{color: "red"}}>{props.errors.phoneNumber}</span>
+                  <span style={{color: "red"}}>{i18n.t(`form.errors.${props.errors.phoneNumber}`)}</span>
                 )}
 
                 <Grid container justifyContent="space-between">
@@ -298,7 +298,7 @@ export default function DriverPage() {
                   />
 
                   {props.errors.places && (
-                    <span style={{color: "red"}}>{props.errors.places}</span>
+                    <span style={{color: "red"}}>{i18n.t(`form.errors.${props.errors.places}`)}</span>
                   )}
 
                   <TextField
@@ -315,7 +315,7 @@ export default function DriverPage() {
                   />
 
                   {props.errors.price && (
-                    <span style={{color: "red"}}>{props.errors.price}</span>
+                    <span style={{color: "red"}}>{i18n.t(`form.errors.${props.errors.price}`)}</span>
                   )}
                 </Grid>
 
@@ -344,7 +344,7 @@ export default function DriverPage() {
 
                 {props.errors.driversComment && (
                   <span style={{color: "red"}}>
-                  {props.errors.driversComment}
+                  {i18n.t(`form.errors.${props.errors.driversComment}`)}
                 </span>
                 )}
 
@@ -357,12 +357,6 @@ export default function DriverPage() {
                   >
                     {i18n.t("Publish a ride")}
                   </Button>
-
-                  {props.errors.driversComment && (
-                    <span style={{color: "red"}}>
-                    {props.errors.driversComment}
-                  </span>
-                  )}
                 </div>
               </form>
             );

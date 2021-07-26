@@ -26,5 +26,32 @@
   "_4friday": "Friday",
   "_5saturday": "Saturday",
   "_6sunday": "Sunday",
-  "Select all": "Select all"
+  "Select all": "Select all",
+
+  "form": {
+    "errors": {
+      "from": {
+        "Required": "Required field"
+       },
+       "to": {
+        "Required": "Required field"
+       },
+       "date":{
+         "Required": "Required field"
+        },
+        "duration":{
+          "Required": "Required field"
+        },
+        "places":{
+          "Required": "Required field"
+        },
+       "phoneNumber": {
+         "Required": "Required field",
+         "Phone number is not valid": "Phone number is not valid"
+       },
+       "price": {
+         "Required": "Required field"
+      }
+     }
+   }
 }
