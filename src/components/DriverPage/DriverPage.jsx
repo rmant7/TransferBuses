@@ -377,7 +377,7 @@ export default function DriverPage() {
                   name="driversComment"
                   multiline
                   rows={4}
-                  label={i18n.t("Driver's Comment")}
+                  label={i18n.t("Driver's comment")}
                   onChange={props.handleChange}
                 />
 

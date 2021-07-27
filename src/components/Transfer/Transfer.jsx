@@ -9,12 +9,12 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import "./Transfer.css";
-import {useHistory} from "react-router-dom";
 import i18n from "i18next";
 import {WeekDayIcon} from "../WeekDayIcon/WeekDayIcon";
+import {useHistory} from "react-router-dom";
 
-export default function Transfer({ transfer }) {
-  // const history = useHistory();
+export default function Transfer({transfer}) {
+  const history = useHistory();
   return (
     <div className="transfer">
       <Card>
@@ -38,7 +38,7 @@ export default function Transfer({ transfer }) {
               <Paper className={"paper"}>
                 {transfer.from}{" "}
                 <ArrowForwardSharpIcon
-                  style={{ fontSize: 15, margin: "0 10 -2.5 10" }}
+                  style={{fontSize: 15, margin: "0 10 -2.5 10"}}
                 />
                 {transfer.to}
               </Paper>
@@ -54,8 +54,7 @@ export default function Transfer({ transfer }) {
                 // spacing={2}
               >
                 <Paper className={"paper"}>
-                  {" "}
-                  {"Date of travel"}: {transfer.date.replace("T", "  ")}
+                  {i18n.t("Date of travel")}: {transfer.date.replace('T', '  ')}
                 </Paper>
               </Grid>
             )}
@@ -72,7 +71,7 @@ export default function Transfer({ transfer }) {
                 // spacing="4"
               >
                 <Paper className={"paper"}>
-                  <div style={{ marginBottom: "8px" }}>{"Regular trips"}</div>
+                  <div style={{marginBottom: "8px"}}>{i18n.t("Regular trips")}</div>
                   <Grid container spacing="0">
                     {Object.keys(transfer.regularTripsDays)
                       .sort()
@@ -97,8 +96,7 @@ export default function Transfer({ transfer }) {
               justifyContent="center"
             >
               <Paper className={"paper"}>
-                {" "}
-                {"Duration of ride"}: {transfer.duration}
+                {i18n.t("Duration of ride")}: {transfer.duration}
               </Paper>
             </Grid>
             <Grid
@@ -110,8 +108,8 @@ export default function Transfer({ transfer }) {
               justifyContent="center"
             >
               <Paper className={"paper"}>
-                {"Driver's phone number"}: {transfer.phoneNumber}{" "}
-                <RingVolumeIcon fontSize="small" />
+                {i18n.t("Driver's phone number")}: {transfer.phoneNumber}{" "}
+                <RingVolumeIcon fontSize="small"/>
               </Paper>
             </Grid>
             <Grid
@@ -123,8 +121,8 @@ export default function Transfer({ transfer }) {
               justifyContent="center"
             >
               <Paper className={"paper hidden"}>
-                {"Places"}: {transfer.places}{" "}
-                <AirlineSeatReclineNormalIcon fontSize="small" />
+                {i18n.t("Places")}: {transfer.places}{" "}
+                <AirlineSeatReclineNormalIcon fontSize="small"/>
               </Paper>
             </Grid>
 
@@ -137,7 +135,7 @@ export default function Transfer({ transfer }) {
               justifyContent="center"
             >
               <Paper className={"paper"}>
-                {"Price"}: {transfer.price}{" "}
+                {i18n.t("Price")}: {transfer.price}{" "}
               </Paper>
             </Grid>
 
@@ -151,9 +149,9 @@ export default function Transfer({ transfer }) {
                 justifyContent="center"
               >
                 <Paper className={"paper"}>
-                  <div>{"Driver's comment"}:</div>
+                  <div>{i18n.t("Driver's comment")}:</div>
                   <div
-                    style={{ textOverflow: "ellipsis", wordBreak: "break-all" }}
+                    style={{textOverflow: "ellipsis", wordBreak: "break-all"}}
                   >
                     {transfer.driversComment}{" "}
                   </div>
@@ -169,13 +167,21 @@ export default function Transfer({ transfer }) {
               justifyContent="center"
             >
               <Paper className={"paper"}>
-                {"A parcel delivery"}: {transfer.passAParcel ? "Yes" : "No"}
+                {i18n.t("A parcel delivery")}: {transfer.passAParcel ? i18n.t("Yes") : i18n.t("No")}
               </Paper>
             </Grid>
 
             <Grid item xs={2}>
-              <IconButton onClick={() => {}}>
-                <NearMeIcon fontSize="large" />
+              <IconButton onClick={() =>
+                history.push(
+                  {
+                    pathname: '/transfer',
+                    // search: '?query=abc',
+                    transfer: transfer, // passing transfer data to a component
+                  }
+                )
+              }>
+                <NearMeIcon fontSize="large"/>
               </IconButton>
             </Grid>
           </Grid>
