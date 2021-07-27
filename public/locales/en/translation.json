@@ -1,25 +1,26 @@
 {
+  "A parcel delivery": "A parcel delivery",
   "Date": "Date",
+  "Date of travel": "Date of travel",
+  "Driver\u0027s comment": "Driver\u0027s comment",
+  "Driver\u0027s phone number": "Driver\u0027s phone number",
+  "Duration of ride": "Duration of ride",
   "From": "From",
-  "Time": "Departure Time",
   "I\u0027m a driver": "I\u0027m a driver",
   "I\u0027m a passenger": "I\u0027m a passenger",
+  "No": "No",
   "Pass a parcel": "Pass a parcel",
   "Phone number": "Phone Number",
   "Places": "Places",
   "Price": "Price",
   "Publish a ride": "Publish a ride",
+  "Regular trips": "Regular trips",
+  "Select all": "Select all",
+  "Time": "Departure Time",
   "To": "To",
   "Travel time": "Travel time",
-  "Driver's phone number": "Driver's phone number",
-  "Date of travel": "Date of travel",
-  "Duration of ride": "Duration of ride",
-  "A parcel delivery": "A parcel delivery",
   "Yes": "Yes",
-  "No": "No",
   "Yes or no": "Yes or no",
-  "Driver's comment": "Driver's comment",
-  "Regular trips": "Regular trips",
   "_0monday": "Monday",
   "_1tuesday": "Tuesday",
   "_2wednesday": "Wednesday",
@@ -27,35 +28,30 @@
   "_4friday": "Friday",
   "_5saturday": "Saturday",
   "_6sunday": "Sunday",
-  "Select all": "Select all",
-
   "form": {
     "errors": {
+      "date": {
+        "Required": "Required field"
+      },
+      "duration": {
+        "Required": "Required field"
+      },
       "from": {
         "Required": "Required field"
-       },
-       "to": {
+      },
+      "phoneNumber": {
+        "Phone number is not valid": "Phone number is not valid",
         "Required": "Required field"
-       },
-       "date": {
-         "Required": "Required field"
-        },
-        "time": {
-          "Required": "Required field"
-        },
-        "duration":{
-          "Required": "Required field"
-        },
-        "places":{
-          "Required": "Required field"
-        },
-       "phoneNumber": {
-         "Required": "Required field",
-         "Phone number is not valid": "Phone number is not valid"
-       },
-       "price": {
-         "Required": "Required field"
+      },
+      "places": {
+        "Required": "Required field"
+      },
+      "price": {
+        "Required": "Required field"
+      },
+      "to": {
+        "Required": "Required field"
       }
-     }
-   }
+    }
+  }
 }
