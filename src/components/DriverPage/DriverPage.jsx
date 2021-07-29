@@ -64,7 +64,7 @@ export default function DriverPage() {
           initialValues={{
             date: new Date().toJSON().slice(0, 16),
             time: "",
-            phone: "",
+            phoneNumber: "",
             places: 1,
             price: "",
             duration: "",
@@ -296,7 +296,7 @@ export default function DriverPage() {
 
                 <TextField
                   fullWidth
-                  id="phone"
+                  id="phoneNumber"
                   name="phoneNumber"
                   label={i18n.t("Phone number")}
                   margin="normal"

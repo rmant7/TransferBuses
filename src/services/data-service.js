@@ -1,7 +1,18 @@
-import {fb} from '../config/firebase-config';
+import { fb } from "../config/firebase-config";
 
-export async function uploadTransfer(from, to, date, phoneNumber, places, price, duration, passAParcel, driversComment,
-                                     regularTrips, regularTripsDays) {
+export async function uploadTransfer(
+  from,
+  to,
+  date,
+  phoneNumber,
+  places,
+  price,
+  duration,
+  passAParcel,
+  driversComment,
+  regularTrips,
+  regularTripsDays
+) {
   try {
     const collection = fb.firestore().collection("transfers");
     const response = await collection.add({
@@ -15,8 +26,8 @@ export async function uploadTransfer(from, to, date, phoneNumber, places, price,
       passAParcel,
       driversComment,
       regularTrips,
-      regularTripsDays
-    })
+      regularTripsDays,
+    });
     console.log("response id", response.id);
     // await ref.update({
     //     lotsIds:firebase.firestore.FieldValue.arrayUnion(response.id)
@@ -29,10 +40,10 @@ export async function uploadTransfer(from, to, date, phoneNumber, places, price,
 export async function getTransfers() {
   try {
     const collection = await fb.firestore().collection("transfers").get();
-    const transfers = collection.docs.map(doc => {
-      return {...doc.data(), id: doc.id}
-    })
-    console.log('received transfers: ', transfers);
+    const transfers = collection.docs.map((doc) => {
+      return { ...doc.data(), id: doc.id };
+    });
+    console.log("received transfers: ", transfers);
     return transfers;
   } catch (error) {
     return Promise.reject(error);
