@@ -83,20 +83,8 @@ export default function DriverPage() {
           }}
           onSubmit={(values) => {
             console.log("SUBMITTING");
-            uploadTransfer(
-              values.from,
-              values.to,
-              values.date,
-              values.time,
-              values.phoneNumber,
-              values.places,
-              values.price,
-              values.duration,
-              values.passAParcel,
-              values.driversComment,
-              values.regularTrips,
-              values.regularTripsDays
-            )
+
+            uploadTransfer(values)
               .then((response) => {
                 console.log(response);
                 history.push("/");

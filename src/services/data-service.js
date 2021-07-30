@@ -1,35 +1,14 @@
 import { fb } from "../config/firebase-config";
 
 export async function uploadTransfer(
-  from,
-  to,
-  date,
-  time,
-  phoneNumber,
-  places,
-  price,
-  duration,
-  passAParcel,
-  driversComment,
-  regularTrips,
-  regularTripsDays
+  transfer
 ) {
+
   try {
     const collection = fb.firestore().collection("transfers");
-    const response = await collection.add({
-      from,
-      to,
-      date,
-      time,
-      phoneNumber,
-      places,
-      price,
-      duration,
-      passAParcel,
-      driversComment,
-      regularTrips,
-      regularTripsDays,
-    });
+    const response = await collection.add(
+      transfer
+    );
     console.log("response id", response.id);
     // await ref.update({
     //     lotsIds:firebase.firestore.FieldValue.arrayUnion(response.id)
