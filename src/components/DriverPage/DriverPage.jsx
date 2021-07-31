@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import * as yup from "yup";
-import { Formik } from "formik";
+import {Formik} from "formik";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
-import { uploadTransfer } from "../../services/data-service";
-import { useHistory } from "react-router-dom";
-import { Checkbox, FormControlLabel, Grid, Paper } from "@material-ui/core";
+import {uploadTransfer} from "../../services/data-service";
+import {useHistory} from "react-router-dom";
+import {Checkbox, FormControlLabel, Grid, Paper} from "@material-ui/core";
 import data from "../../data.json";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import {createTheme, ThemeProvider} from "@material-ui/core/styles";
 import i18n from "../../i18n";
 
 const phoneRegExp =
@@ -44,10 +44,27 @@ const theme = createTheme({
 });
 
 export default function DriverPage() {
-  // TODO: Переделать на данные получаемые с CheapTrip.guru (функция getCities(searchString) )
-  const cities = data.cities.map((feature) => {
-    return { title: feature.city };
-  });
+  // const cities = data.cities.map((feature) => {
+  //   return ({
+  //     id: feature.id,
+  //     title: feature.name
+  //   },
+  //     {
+  //       id: feature.id,
+  //       title: feature.name_ru
+  //     })
+  //     ;
+  // });
+
+  const cities = data.cities.reduce((acc, val) => {
+
+    acc.push({id: val.id, title: val.name})
+    acc.push({id: val.id, title: val.name_ru})
+    return acc
+  }, []).sort((a, b) => a.title < b.title ? -1 : 1);
+
+
+
   const [state, setState] = useState({});
   const history = useHistory();
   const defaultProps = {
@@ -91,7 +108,7 @@ export default function DriverPage() {
               })
               .catch((error) => {
                 console.log(error);
-                setState({ error: error });
+                setState({error: error});
               });
           }}
           validationSchema={schema}
@@ -131,7 +148,7 @@ export default function DriverPage() {
                 />
 
                 {props.errors.from && (
-                  <span style={{ color: "red" }}>
+                  <span style={{color: "red"}}>
                     {i18n.t(`form.errors.${props.errors.from}`)}
                   </span>
                 )}
@@ -154,7 +171,7 @@ export default function DriverPage() {
                 />
 
                 {props.errors.to && (
-                  <span style={{ color: "red" }}>
+                  <span style={{color: "red"}}>
                     {i18n.t(`form.errors.${props.errors.to}`)}
                   </span>
                 )}
@@ -172,7 +189,7 @@ export default function DriverPage() {
                 />
 
                 {props.values.regularTrips && (
-                  <Paper variant="outlined" style={{ padding: "8px" }}>
+                  <Paper variant="outlined" style={{padding: "8px"}}>
                     <Grid container direction={"column"}>
                       <FormControlLabel
                         control={
@@ -194,7 +211,7 @@ export default function DriverPage() {
                         (weekDay) => {
                           return (
                             <FormControlLabel
-                              style={{ marginLeft: "10px" }}
+                              style={{marginLeft: "10px"}}
                               control={
                                 <Checkbox
                                   checked={
@@ -232,7 +249,7 @@ export default function DriverPage() {
                     />
 
                     {props.errors.date && (
-                      <span style={{ color: "red" }}>
+                      <span style={{color: "red"}}>
                         {i18n.t(`form.errors.${props.errors.date}`)}
                       </span>
                     )}
@@ -253,7 +270,7 @@ export default function DriverPage() {
                     />
 
                     {props.errors.time && (
-                      <span style={{ color: "red" }}>
+                      <span style={{color: "red"}}>
                         {i18n.t(`form.errors.${props.errors.time}`)}
                       </span>
                     )}
@@ -275,7 +292,7 @@ export default function DriverPage() {
                       }}
                     />
                     {props.errors.duration && (
-                      <span style={{ color: "red" }}>
+                      <span style={{color: "red"}}>
                         {i18n.t(`form.errors.${props.errors.duration}`)}
                       </span>
                     )}
@@ -298,7 +315,7 @@ export default function DriverPage() {
                   // }
                 />
                 {props.errors.phoneNumber && (
-                  <span style={{ color: "red" }}>
+                  <span style={{color: "red"}}>
                     {i18n.t(`form.errors.${props.errors.phoneNumber}`)}
                   </span>
                 )}
@@ -321,7 +338,7 @@ export default function DriverPage() {
                   />
 
                   {props.errors.places && (
-                    <span style={{ color: "red" }}>
+                    <span style={{color: "red"}}>
                       {i18n.t(`form.errors.${props.errors.places}`)}
                     </span>
                   )}
@@ -340,7 +357,7 @@ export default function DriverPage() {
                   />
 
                   {props.errors.price && (
-                    <span style={{ color: "red" }}>
+                    <span style={{color: "red"}}>
                       {i18n.t(`form.errors.${props.errors.price}`)}
                     </span>
                   )}
@@ -370,7 +387,7 @@ export default function DriverPage() {
                 />
 
                 {props.errors.driversComment && (
-                  <span style={{ color: "red" }}>
+                  <span style={{color: "red"}}>
                     {i18n.t(`form.errors.${props.errors.driversComment}`)}
                   </span>
                 )}
