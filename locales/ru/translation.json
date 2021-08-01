@@ -36,6 +36,9 @@
       "duration": {
         "Required": "Обязательное поле"
       },
+      "departureTime": {
+        "Required": "Обязательное поле"
+      },
       "from": {
         "Required": "Обязательное поле"
       },
