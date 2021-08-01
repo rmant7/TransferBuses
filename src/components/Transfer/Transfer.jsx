@@ -1,8 +1,6 @@
 import React from "react";
-import Card from "@material-ui/core/Card";
 import ArrowForwardSharpIcon from "@material-ui/icons/ArrowForwardSharp";
 import AirlineSeatReclineNormalIcon from "@material-ui/icons/AirlineSeatReclineNormal";
-import NearMeIcon from "@material-ui/icons/NearMe";
 import RingVolumeIcon from "@material-ui/icons/RingVolume";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
@@ -12,8 +10,6 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
 import "./Transfer.css";
 import i18n from "i18next";
 import { WeekDayIcon } from "../WeekDayIcon/WeekDayIcon";
@@ -22,11 +18,11 @@ import { useHistory } from "react-router-dom";
 const theme = createTheme({
   palette: {
     primary: {
-      light: "#ff8a50",
       main: "#ff5722",
-      dark: "#c41c00",
-      contrastText: "#fff",
     },
+    secondary: {
+      main: "#607d8b",
+    }
   },
 });
 
@@ -51,7 +47,7 @@ export default function Transfer({ transfer }) {
               >
                 <Paper className={"paper"}>
                   {transfer.from}
-                  <ArrowForwardSharpIcon />
+                  <ArrowForwardSharpIcon style={{marginBottom:"-6px"}}/>
                   {transfer.to}
                 </Paper>
               </Grid>
@@ -64,7 +60,7 @@ export default function Transfer({ transfer }) {
                 justifyContent="flex-start"
               >
                 <Button>
-                  {i18n.t("Duration of ride")}: {transfer.duration}
+                  {/* {i18n.t("Duration of ride")}:*/} {transfer.duration}
                 </Button>
               </Grid>
 
@@ -76,7 +72,7 @@ export default function Transfer({ transfer }) {
                 justifyContent="flex-end"
               >
                 <Button color="primary" variant="contained" className={"paper"}>
-                  {i18n.t("Price")}: {transfer.price}{" "}
+                  {/* {i18n.t("Price")}: */}{transfer.price}{" "}
                 </Button>
               </Grid>
             </Grid>
@@ -144,6 +140,7 @@ export default function Transfer({ transfer }) {
                 container
                 item
                 xs={12}
+
                 justifyContent="flex-start"
                 alignItems="center"
               >

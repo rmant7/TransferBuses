@@ -33,6 +33,9 @@
       "date": {
         "Required": "Required field"
       },
+      "departureTime": {
+        "Required": "Required field"
+      },
       "duration": {
         "Required": "Required field"
       },

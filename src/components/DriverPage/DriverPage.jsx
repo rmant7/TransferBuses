@@ -19,6 +19,7 @@ const schema = yup.object().shape({
   to: yup.string().required("to.Required"),
   date: yup.string().required("date.Required"),
   time: yup.string().required("time.Required"),
+  departureTime: yup.string().required("departureTime.Required"),
   duration: yup.string().required("duration.Required"),
   places: yup
     .number()
@@ -81,6 +82,7 @@ export default function DriverPage() {
           initialValues={{
             date: new Date().toJSON().slice(0, 16),
             time: "",
+            departureTime: "",
             phoneNumber: "",
             places: 1,
             price: "",
@@ -255,11 +257,11 @@ export default function DriverPage() {
                     )}
 
                     <TextField
-                      id="time"
+                      id="departureTime"
                       label={i18n.t("Time")}
                       type="time"
                       margin="normal"
-                      value={props.values.time}
+                      value={props.values.departureTime}
                       onChange={props.handleChange}
                       inputProps={{
                         min: new Date().toISOString().slice(0, 16),
@@ -269,9 +271,9 @@ export default function DriverPage() {
                       }}
                     />
 
-                    {props.errors.time && (
+                    {props.errors.departureTime && (
                       <span style={{color: "red"}}>
-                        {i18n.t(`form.errors.${props.errors.time}`)}
+                        {i18n.t(`form.errors.${props.errors.departureTime}`)}
                       </span>
                     )}
 

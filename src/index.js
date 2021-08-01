@@ -1,9 +1,10 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "typeface-roboto";
+import "./i18n.js";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import "./i18n.js";
 
 ReactDOM.render(
   <React.StrictMode>
