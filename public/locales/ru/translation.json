@@ -30,7 +30,7 @@
   "_6sunday": "Воскресенье",
   "form": {
     "errors": {
-      "date": {
+      "time": {
         "Required": "Обязательное поле"
       },
       "duration": {
