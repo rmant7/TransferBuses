@@ -30,7 +30,7 @@
   "_6sunday": "Неділя",
   "form": {
     "errors": {
-      "date": {
+      "time": {
         "Required": "Обов\u0027язкове поле"
       },
       "duration": {
