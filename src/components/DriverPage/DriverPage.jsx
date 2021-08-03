@@ -131,11 +131,10 @@ export default function DriverPage() {
                     label={i18n.t("From")}
                     margin="normal"
                     error={
-                      props.errors.from && props.touched.from ? true : false
+                      props.errors.from ? true : false
                     }
                     helperText={
                       props.errors.from &&
-                      props.touched.from &&
                       i18n.t(`form.errors.${props.errors.from}`)
                     }
                   />
@@ -155,10 +154,9 @@ export default function DriverPage() {
                     {...params}
                     label={i18n.t("To")}
                     margin="normal"
-                    error={props.errors.to && props.touched.to ? true : false}
+                    error={props.errors.to ? true : false}
                     helperText={
                       props.errors.to &&
-                      props.touched.to &&
                       i18n.t(`form.errors.${props.errors.to}`)
                     }
                   />
