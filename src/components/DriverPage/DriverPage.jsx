@@ -213,9 +213,9 @@ export default function DriverPage() {
                     type="date"
                     margin="normal"
                     error={
-                      props.errors.time && props.touched.time ? true : false
+                      !!(props.errors.time && props.touched.time)
                     }
-                    value={props.values.time}
+                    value={props.values.date}
                     onChange={props.handleChange}
                     inputProps={{
                       min: new Date().toISOString().slice(0, 10),
@@ -224,9 +224,9 @@ export default function DriverPage() {
                       shrink: true,
                     }}
                     helperText={
-                      props.errors.time &&
-                      props.touched.time &&
-                      i18n.t(`form.errors.${props.errors.time}`)
+                      props.errors.date &&
+                      props.touched.date &&
+                      i18n.t(`form.errors.${props.errors.date}`)
                     }
                   />
 
@@ -236,9 +236,7 @@ export default function DriverPage() {
                     type="time"
                     margin="normal"
                     error={
-                      props.errors.departureTime && props.touched.departureTime
-                        ? true
-                        : false
+                      !!(props.errors.departureTime && props.touched.departureTime)
                     }
                     value={props.values.departureTime}
                     onChange={props.handleChange}
@@ -263,8 +261,6 @@ export default function DriverPage() {
                     value={props.values.duration}
                     error={
                       props.errors.duration && props.touched.duration
-                        ? true
-                        : false
                     }
                     onChange={props.handleChange}
                     InputLabelProps={{
@@ -287,8 +283,6 @@ export default function DriverPage() {
                 margin="normal"
                 error={
                   props.errors.phoneNumber && props.touched.phoneNumber
-                    ? true
-                    : false
                 }
                 value={props.values.phoneNumber}
                 onChange={props.handleChange}
