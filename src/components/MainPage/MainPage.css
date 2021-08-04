@@ -1,8 +1,8 @@
-.MainPage{
-  width:300px;
-  height:400px;
-  margin:100px auto;
-  display:flex;
+.MainPage {
+  width: 300px;
+  height: 600px;
+  margin: 100px auto;
+  display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-around;
