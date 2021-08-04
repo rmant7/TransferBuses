@@ -16,7 +16,7 @@ const phoneRegExp =
 const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
   to: yup.string().required("to.Required"),
-  time: yup.string().required("time.Required"),
+  // time: yup.string().required("time.Required"),
   departureTime: yup.string().required("departureTime.Required"),
   duration: yup.string().required("duration.Required"),
   places: yup
@@ -32,18 +32,6 @@ const schema = yup.object().shape({
 });
 
 export default function DriverPage() {
-  // const cities = data.cities.map((feature) => {
-  //   return ({
-  //     id: feature.id,
-  //     title: feature.name
-  //   },
-  //     {
-  //       id: feature.id,
-  //       title: feature.name_ru
-  //     })
-  //     ;
-  // });
-
   const cities = data.cities
     .reduce((acc, val) => {
       acc.push({ id: val.ID, title: val.name });
@@ -65,7 +53,7 @@ export default function DriverPage() {
     <div className={"container"}>
       <Formik
         initialValues={{
-          date: new Date().toJSON().slice(0, 16),
+          date: new Date().toJSON().slice(0, 10),
           time: "",
           departureTime: "",
           phoneNumber: "",
@@ -230,7 +218,7 @@ export default function DriverPage() {
                     value={props.values.time}
                     onChange={props.handleChange}
                     inputProps={{
-                      min: new Date().toISOString().slice(0, 16),
+                      min: new Date().toISOString().slice(0, 10),
                     }}
                     InputLabelProps={{
                       shrink: true,
