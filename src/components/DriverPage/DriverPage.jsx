@@ -46,8 +46,8 @@ export default function DriverPage() {
 
   const cities = data.cities
     .reduce((acc, val) => {
-      acc.push({ id: val.id, title: val.name });
-      acc.push({ id: val.id, title: val.name_ru });
+      acc.push({ id: val.ID, title: val.name });
+      acc.push({ id: val.ID, title: val['name_ru'] });
       return acc;
     }, [])
     .sort((a, b) => (a.title < b.title ? -1 : 1));
