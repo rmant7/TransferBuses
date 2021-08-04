@@ -6095,6 +6095,86 @@
             "latitude": "09.09",
             "longitude": "76.49",
             "name_ru": "Амритапури);"
+        },
+        {
+            "ID": "2000",
+            "name": "Chernihiv",
+            "country_id": "186",
+            "latitude": "51.50551",
+            "longitude": "31.28487",
+            "name_ru": "Чернигов"
+        },
+        {
+            "ID": "2001",
+            "name": "Cherkasy",
+            "country_id": "186",
+            "latitude": "49.44452",
+            "longitude": "32.05738",
+            "name_ru": "Черкассы"
+        },
+        {
+            "ID": "2002",
+            "name": "Zhytomyr",
+            "country_id": "186",
+            "latitude": "50.26487",
+            "longitude": "28.67669",
+            "name_ru": "Житомир"
+        },
+        {
+            "ID": "2003",
+            "name": "Rivne",
+            "country_id": "186",
+            "latitude": "50.62308",
+            "longitude": "26.22743",
+            "name_ru": "Ровно "
+        },
+        {
+            "ID": "2004",
+            "name": "Lutsk",
+            "country_id": "186",
+            "latitude": "50.75932",
+            "longitude": "25.34244",
+            "name_ru": "Луцк"
+        },
+        {
+            "ID": "2005",
+            "name": "Khmelnytskyi",
+            "country_id": "186",
+            "latitude": "49.41835",
+            "longitude": "26.97936",
+            "name_ru": "Хмельницкий"
+        },
+        {
+            "ID": "2006",
+            "name": "Ternopil",
+            "country_id": "186",
+            "latitude": "49.55404",
+            "longitude": "25.59067",
+            "name_ru": "Тернополь"
+        },
+        {
+            "ID": "2007",
+            "name": "Mukachevo",
+            "country_id": "186",
+            "latitude": "48.44248",
+            "longitude": "22.718",
+            "name_ru": "Мукачево"
+        },
+        {
+            "ID": "2008",
+            "name": "Uzhgorod",
+            "country_id": "186",
+            "latitude": "48.6242",
+            "longitude": "22.2947",
+            "name_ru": "Ужгород"
+        },
+        {
+            "ID": "2009",
+            "name": "Poltava",
+            "country_id": "186",
+            "latitude": "49.62375",
+            "longitude": "38.12014",
+            "name_ru": "Полтава"
         }
     ]
 }
