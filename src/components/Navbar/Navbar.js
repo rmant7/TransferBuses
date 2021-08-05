@@ -9,7 +9,7 @@ import { menuData } from '../../utils/menuData';
 import { MAIN_ROUTE } from '../../utils/constants';
 import Sidebar from './Sidebar/Sidebar';
 import { setSidebar } from '../../redux/reducers/appReducer';
-
+import logo from '../../assets/logo.png';
 const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -17,13 +17,14 @@ const Navbar = () => {
 
   return (
     <AppBar position="fixed">
-      <Container maxWidth="md" fixed>
+      <Container maxWidth="lg" fixed>
         <Toolbar>
           <Typography
             variant="h6"
             className={classes.title}
             onClick={() => history.push(MAIN_ROUTE)}>
-            TransferBuses
+            <img src={logo} alt="Transfer Buses Logo" />
+            <span className={classes.titleName}>TransferBuses</span>
           </Typography>
           <nav>
             {menuData.map((item) => (
