@@ -2,6 +2,15 @@ import { makeStyles } from '@material-ui/core';
 import { createTheme } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+  paper: {
+    background: '#ff5722',
+  },
   menuButton: {
     marginLeft: theme.spacing(1),
     [theme.breakpoints.up('md')]: {
@@ -11,6 +20,14 @@ export const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     cursor: 'pointer',
+    textAlign: 'center',
+    alignItems: 'center',
+    display: 'flex',
+  },
+  titleName: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   link: {
     margin: theme.spacing(1, 1.5),
@@ -60,7 +77,6 @@ export const useStyles = makeStyles((theme) => ({
     border: '8px solid #ff5722',
   },
   sidebarList: {
-    backgroundColor: '#ff5722',
     color: '#fff',
     zIndex: '-1',
     paddingTop: '45px',

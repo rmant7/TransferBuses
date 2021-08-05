@@ -12,6 +12,7 @@ import {
   Avatar,
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
+import { IconButton } from '@material-ui/core';
 import { menuData } from '../../../utils/menuData';
 import { useStyles } from '../../../utils/useStyles';
 import { setSidebar } from '../../../redux/reducers/appReducer';
@@ -23,7 +24,11 @@ const Sidebar = () => {
   const history = useHistory();
 
   return (
-    <Drawer anchor="right" open={sidebar} onClose={() => dispatch(setSidebar(false))}>
+    <Drawer
+      anchor="right"
+      classes={{ paper: classes.paper }}
+      open={sidebar}
+      onClose={() => dispatch(setSidebar(false))}>
       <Container fluid className={classes.sidebarHeader}>
         <Container className={classes.sidebarHeaderInfo}>
           <CloseIcon onClick={() => dispatch(setSidebar(false))} />
@@ -36,7 +41,21 @@ const Sidebar = () => {
         <Typography className={classes.sidebarEmail} gutterBottom>
           tproger1986@gmail.com
         </Typography>
-        <Avatar alt="state.user.name" src={ava} className={classes.sidebarAvatar} />
+        <IconButton>
+          <Avatar
+            src={ava}
+            style={{
+              position: 'absolute',
+              top: '40%',
+              right: '20%',
+              margin: '10px',
+              width: '65px',
+              height: '65px',
+              border: '8px solid #ff5722',
+            }}
+          />
+        </IconButton>
+        {/* <Avatar alt="state.user.name" src={ava} className={classes.sidebarAvatar} /> */}
       </Container>
 
       <List className={classes.sidebarList}>
