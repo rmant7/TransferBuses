@@ -64,6 +64,7 @@ export const useStyles = makeStyles((theme) => ({
     color: '#fff',
     zIndex: '-1',
     paddingTop: '45px',
+    width: '200px',
   },
 }));
 
