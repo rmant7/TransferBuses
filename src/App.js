@@ -1,10 +1,10 @@
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import { AppRouter, Navbar } from './components';
+import { AppRouter, Navbar, Sidebar } from './components';
 import { ThemeProvider } from '@material-ui/core/styles';
-
 import Header from './components/Header/Header';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
+
 import { theme } from './utils/useStyles';
 function App() {
   const { i18n } = useTranslation();
