@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { store } from './redux/reducers';
 import './index.css';
 import 'typeface-roboto';
-import './i18n.js';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 
