@@ -16,7 +16,7 @@ const phoneRegExp =
 const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
   to: yup.string().required("to.Required"),
-  time: yup.string().required("time.Required"),
+  // time: yup.string().required("time.Required"),
   departureTime: yup.string().required("departureTime.Required"),
   duration: yup.string().required("duration.Required"),
   places: yup
@@ -32,22 +32,10 @@ const schema = yup.object().shape({
 });
 
 export default function DriverPage() {
-  // const cities = data.cities.map((feature) => {
-  //   return ({
-  //     id: feature.id,
-  //     title: feature.name
-  //   },
-  //     {
-  //       id: feature.id,
-  //       title: feature.name_ru
-  //     })
-  //     ;
-  // });
-
   const cities = data.cities
     .reduce((acc, val) => {
-      acc.push({ id: val.id, title: val.name });
-      acc.push({ id: val.id, title: val.name_ru });
+      acc.push({ id: val.ID, title: val.name });
+      acc.push({ id: val.ID, title: val['name_ru'] });
       return acc;
     }, [])
     .sort((a, b) => (a.title < b.title ? -1 : 1));
@@ -65,7 +53,7 @@ export default function DriverPage() {
     <div className={"container"}>
       <Formik
         initialValues={{
-          date: new Date().toJSON().slice(0, 16),
+          date: new Date().toJSON().slice(0, 10),
           time: "",
           departureTime: "",
           phoneNumber: "",
@@ -225,20 +213,20 @@ export default function DriverPage() {
                     type="date"
                     margin="normal"
                     error={
-                      props.errors.time && props.touched.time ? true : false
+                      !!(props.errors.time && props.touched.time)
                     }
-                    value={props.values.time}
+                    value={props.values.date}
                     onChange={props.handleChange}
                     inputProps={{
-                      min: new Date().toISOString().slice(0, 16),
+                      min: new Date().toISOString().slice(0, 10),
                     }}
                     InputLabelProps={{
                       shrink: true,
                     }}
                     helperText={
-                      props.errors.time &&
-                      props.touched.time &&
-                      i18n.t(`form.errors.${props.errors.time}`)
+                      props.errors.date &&
+                      props.touched.date &&
+                      i18n.t(`form.errors.${props.errors.date}`)
                     }
                   />
 
@@ -248,9 +236,7 @@ export default function DriverPage() {
                     type="time"
                     margin="normal"
                     error={
-                      props.errors.departureTime && props.touched.departureTime
-                        ? true
-                        : false
+                      !!(props.errors.departureTime && props.touched.departureTime)
                     }
                     value={props.values.departureTime}
                     onChange={props.handleChange}
@@ -275,8 +261,6 @@ export default function DriverPage() {
                     value={props.values.duration}
                     error={
                       props.errors.duration && props.touched.duration
-                        ? true
-                        : false
                     }
                     onChange={props.handleChange}
                     InputLabelProps={{
@@ -299,8 +283,6 @@ export default function DriverPage() {
                 margin="normal"
                 error={
                   props.errors.phoneNumber && props.touched.phoneNumber
-                    ? true
-                    : false
                 }
                 value={props.values.phoneNumber}
                 onChange={props.handleChange}
