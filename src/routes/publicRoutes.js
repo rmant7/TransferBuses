@@ -1,5 +1,5 @@
 import { MainPage, PassengerPage, BusPage, DriverPage, TransferPage } from '../components';
-import { AboutUs, Contacts, Services } from '../pages';
+import { Contacts } from '../pages';
 import {
   MAIN_ROUTE,
   PASSENGER_ROUTE,
@@ -7,8 +7,6 @@ import {
   DRIVER_ROUTE,
   TRANSFER_ROUTE,
   CONTACTS_ROUTE,
-  ABOUT_ROUTE,
-  SERVICES_ROUTE,
 } from '../utils/constants';
 
 export const publicRoutes = [
@@ -33,15 +31,7 @@ export const publicRoutes = [
     Component: TransferPage,
   },
   {
-    path: ABOUT_ROUTE,
-    Component: AboutUs,
-  },
-  {
     path: CONTACTS_ROUTE,
     Component: Contacts,
-  },
-  {
-    path: SERVICES_ROUTE,
-    Component: Services,
   },
 ];

@@ -1,7 +1,9 @@
 import React from 'react';
+import { useStyles } from '../utils/useStyles';
 
 const Contacts = () => {
-  return <div>Contacts here</div>;
+  const classes = useStyles();
+  return <div className={classes.contacts}>Contacts here</div>;
 };
 
 export default Contacts;

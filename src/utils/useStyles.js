@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core';
 import { createTheme } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
+  ///material ui default classes
   list: {
     width: 250,
   },
@@ -11,11 +12,26 @@ export const useStyles = makeStyles((theme) => ({
   paper: {
     background: '#ff5722',
   },
+  icon: {
+    fill: 'white',
+  },
+  select: {
+    fontSize: '0.875rem',
+    fontFamily: 'Roboto',
+    fontWeight: 500,
+    lineHeight: 1.75,
+    letterSpacing: '0.02857em',
+    textTransform: 'uppercase',
+    color: 'white',
+    marginLeft: '10px',
+  },
+  /// header
+  nav: {
+    display: 'flex',
+    alignItems: 'center',
+  },
   menuButton: {
     marginLeft: theme.spacing(1),
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
   },
   title: {
     flexGrow: 1,
@@ -23,11 +39,6 @@ export const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     alignItems: 'center',
     display: 'flex',
-  },
-  titleName: {
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
-    },
   },
   link: {
     margin: theme.spacing(1, 1.5),
@@ -46,11 +57,18 @@ export const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  flag: {
+    width: '15px',
+    height: '15px',
+    marginRight: '15px',
+  },
+
+  //sidebar
   sidebarHeader: {
     position: 'relative',
     backgroundColor: '#607d8b',
     color: '#fff',
-    padding: '1rem 1rem 2rem 1rem',
+    padding: '1rem 1rem 1rem 1rem',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -58,29 +76,18 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding: '0',
-    marginBottom: '20px',
   },
   sidebarCloseButton: {
     width: '1rem',
     height: '1rem',
   },
-  sidebarEmail: {
-    fontSize: '13px',
-    opacity: '.5',
-  },
-  sidebarAvatar: {
-    position: 'absolute',
-    top: '80%',
-    right: '28%',
-    width: '65px',
-    height: '65px',
-    border: '8px solid #ff5722',
-  },
   sidebarList: {
     color: '#fff',
-    zIndex: '-1',
-    paddingTop: '45px',
     width: '200px',
+  },
+  //contact page
+  contacts: {
+    padding: '60px',
   },
 }));
 
