@@ -30,7 +30,7 @@
   "_6sunday": "Sunday",
   "form": {
     "errors": {
-      "date": {
+      "time": {
         "Required": "Required field"
       },
       "departureTime": {
