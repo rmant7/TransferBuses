@@ -1,0 +1,60 @@
+{
+  "A parcel delivery": "Передача посылки",
+  "Date": "Дата",
+  "Date of travel": "Дата путешествия",
+  "Driver\u0027s comment": "Комментарий водителя",
+  "Driver\u0027s phone number": "Номер телефона водителя",
+  "Duration of ride": "Продолжительность поездки",
+  "From": "Откуда",
+  "I\u0027m a driver": "Я водитель",
+  "I\u0027m a passenger": "Я пассажир",
+  "No": "Нет",
+  "Pass a parcel": "Передам посылку",
+  "Phone number": "Телефон",
+  "Places": "Доступно мест",
+  "Price": "Цена",
+  "Publish a ride": "Опубликовать поездку",
+  "Regular trips": "Регулярные поездки",
+  "Select all": "Выбрать все",
+  "Time": "Время отправки",
+  "To": "Куда",
+  "Travel time": "Время в пути",
+  "Yes": "Да",
+  "Yes or no": "Да или нет",
+  "_0monday": "Понедельник",
+  "_1tuesday": "Вторник",
+  "_2wednesday": "Среда",
+  "_3thursday": "Четверг",
+  "_4friday": "Пятница",
+  "_5saturday": "Суббота",
+  "_6sunday": "Воскресенье",
+  "form": {
+    "errors": {
+      "time": {
+        "Required": "Обязательное поле"
+      },
+      "duration": {
+        "Required": "Обязательное поле"
+      },
+      "departureTime": {
+        "Required": "Обязательное поле"
+      },
+      "from": {
+        "Required": "Обязательное поле"
+      },
+      "phoneNumber": {
+        "Phone number is not valid": "Неверный формат",
+        "Required": "Обязательное поле"
+      },
+      "places": {
+        "Required": "Обязательное поле"
+      },
+      "price": {
+        "Required": "Обязательное поле"
+      },
+      "to": {
+        "Required": "Обязательное поле"
+      }
+    }
+  }
+}

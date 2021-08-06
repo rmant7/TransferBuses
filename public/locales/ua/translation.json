@@ -1,0 +1,60 @@
+{
+  "A parcel delivery": "Передача посилки",
+  "Date": "Дата",
+  "Date of travel": "Дата подорожі",
+  "Driver\u0027s comment": "Коментар водія",
+  "Driver\u0027s phone number": "Номер телефону водія",
+  "Duration of ride": "Тривалість їзди",
+  "From": "Звiдки",
+  "I\u0027m a driver": "Я водій",
+  "I\u0027m a passenger": "Я пасажир",
+  "No": "Ні",
+  "Pass a parcel": "Передам посилку",
+  "Phone number": "Телефон",
+  "Places": "Доступно місць",
+  "Price": "Ціна",
+  "Publish a ride": "Опублікувати поїздку",
+  "Regular trips": "Регулярні поїздки",
+  "Select all": "Вибрати все",
+  "Time": "Час відбуття",
+  "To": "Куди",
+  "Travel time": "Час у дорозі",
+  "Yes": "Так",
+  "Yes or no": "Так Або Ні",
+  "_0monday": "Понеділок",
+  "_1tuesday": "Вівторок",
+  "_2wednesday": "Середа",
+  "_3thursday": "Четвер",
+  "_4friday": "П\u0027ятниця",
+  "_5saturday": "Субота",
+  "_6sunday": "Неділя",
+  "form": {
+    "errors": {
+      "time": {
+        "Required": "Обов\u0027язкове поле"
+      },
+      "duration": {
+        "Required": "Обов\u0027язкове поле"
+      },
+      "departureTime": {
+        "Required": "Обов\u0027язкове поле"
+      },
+      "from": {
+        "Required": "Обов\u0027язкове поле"
+      },
+      "phoneNumber": {
+        "Phone number is not valid": "Неправильний формат",
+        "Required": "Обов\u0027язкове поле"
+      },
+      "places": {
+        "Required": "Обов\u0027язкове поле"
+      },
+      "price": {
+        "Required": "Обов\u0027язкове поле"
+      },
+      "to": {
+        "Required": "Обов\u0027язкове поле"
+      }
+    }
+  }
+}

@@ -1,0 +1,837 @@
+[
+  {
+    "currency": "Euro",
+    "symbol": "€",
+    "IsoCode": "EUR"
+  },
+  {
+    "currency": "United States dollar",
+    "symbol": "$",
+    "IsoCode": "USD"
+  },
+  {
+    "currency": "Russian ruble",
+    "symbol": "₽",
+    "IsoCode": "RUB"
+  },
+  {
+    "currency": "Belarusian ruble",
+    "symbol": "Br",
+    "IsoCode": "BYN"
+  },
+  {
+    "currency": "Ukrainian hryvnia",
+    "symbol": "₴",
+    "IsoCode": "UAH"
+  },
+  {
+    "currency": "Afghan afghani",
+    "symbol": "؋",
+    "IsoCode": "AFN"
+  },
+  {
+    "currency": "Albanian lek",
+    "symbol": "L",
+    "IsoCode": "ALL"
+  },
+  {
+    "currency": "Algerian dinar",
+    "symbol": "د.ج",
+    "IsoCode": "DZD"
+  },
+  {
+    "currency": "Angolan kwanza",
+    "symbol": "Kz",
+    "IsoCode": "AOA"
+  },
+  {
+    "currency": "Argentine peso",
+    "symbol": "$",
+    "IsoCode": "ARS"
+  },
+  {
+    "currency": "Armenian dram",
+    "symbol": "֏",
+    "IsoCode": "AMD"
+  },
+  {
+    "currency": "Aruban florin",
+    "symbol": "ƒ",
+    "IsoCode": "AWG"
+  },
+  {
+    "currency": "Australian dollar",
+    "symbol": "$",
+    "IsoCode": "AUD"
+  },
+  {
+    "currency": "Azerbaijani manat",
+    "symbol": "₼",
+    "IsoCode": "AZN"
+  },
+  {
+    "currency": "Bahamian dollar",
+    "symbol": "$",
+    "IsoCode": "BSD"
+  },
+  {
+    "currency": "Bahraini dinar",
+    "symbol": ".د.ب",
+    "IsoCode": "BHD"
+  },
+  {
+    "currency": "Bangladeshi taka",
+    "symbol": "৳",
+    "IsoCode": "BDT"
+  },
+  {
+    "currency": "Barbadian dollar",
+    "symbol": "$",
+    "IsoCode": "BBD"
+  },
+  {
+    "currency": "Belize dollar",
+    "symbol": "$",
+    "IsoCode": "BZD"
+  },
+  {
+    "currency": "Bermudian dollar",
+    "symbol": "$",
+    "IsoCode": "BMD"
+  },
+  {
+    "currency": "Bhutanese ngultrum",
+    "symbol": "Nu.",
+    "IsoCode": "BTN"
+  },
+  {
+    "currency": "Bolivian boliviano",
+    "symbol": "Bs.",
+    "IsoCode": "BOB"
+  },
+  {
+    "currency": "Bosnia and Herzegovina convertible mark",
+    "symbol": "KM or КМ",
+    "IsoCode": "BAM"
+  },
+  {
+    "currency": "Botswana pula",
+    "symbol": "P",
+    "IsoCode": "BWP"
+  },
+  {
+    "currency": "Brazilian real",
+    "symbol": "R$",
+    "IsoCode": "BRL"
+  },
+  {
+    "currency": "British pound",
+    "symbol": "£",
+    "IsoCode": "GBP"
+  },
+  {
+    "currency": "Brunei dollar",
+    "symbol": "$",
+    "IsoCode": "BND"
+  },
+  {
+    "currency": "Bulgarian lev",
+    "symbol": "лв.",
+    "IsoCode": "BGN"
+  },
+  {
+    "currency": "Burmese kyat",
+    "symbol": "Ks",
+    "IsoCode": "MMK"
+  },
+  {
+    "currency": "Burundian franc",
+    "symbol": "Fr",
+    "IsoCode": "BIF"
+  },
+  {
+    "currency": "CFP franc",
+    "symbol": "₣",
+    "IsoCode": "XPF"
+  },
+  {
+    "currency": "Cambodian riel",
+    "symbol": "៛",
+    "IsoCode": "KHR"
+  },
+  {
+    "currency": "Canadian dollar",
+    "symbol": "$",
+    "IsoCode": "CAD"
+  },
+  {
+    "currency": "Cape Verdean escudo",
+    "symbol": "Esc or $",
+    "IsoCode": "CVE"
+  },
+  {
+    "currency": "Cayman Islands dollar",
+    "symbol": "$",
+    "IsoCode": "KYD"
+  },
+  {
+    "currency": "Central African CFA franc",
+    "symbol": "Fr",
+    "IsoCode": "XAF"
+  },
+  {
+    "currency": "Chilean peso",
+    "symbol": "$",
+    "IsoCode": "CLP"
+  },
+  {
+    "currency": "Chinese yuan",
+    "symbol": "¥ or 元",
+    "IsoCode": "CNY"
+  },
+  {
+    "currency": "Colombian peso",
+    "symbol": "$",
+    "IsoCode": "COP"
+  },
+  {
+    "currency": "Comorian franc",
+    "symbol": "Fr",
+    "IsoCode": "KMF"
+  },
+  {
+    "currency": "Congolese franc",
+    "symbol": "Fr",
+    "IsoCode": "CDF"
+  },
+  {
+    "currency": "Cook Islands dollar",
+    "symbol": "$",
+    "IsoCode": "CKD"
+  },
+  {
+    "currency": "Costa Rican colón",
+    "symbol": "₡",
+    "IsoCode": "CRC"
+  },
+  {
+    "currency": "Croatian kuna",
+    "symbol": "kn",
+    "IsoCode": "HRK"
+  },
+  {
+    "currency": "Cuban peso",
+    "symbol": "$",
+    "IsoCode": "CUP"
+  },
+  {
+    "currency": "Czech koruna",
+    "symbol": "Kč",
+    "IsoCode": "CZK"
+  },
+  {
+    "currency": "Danish krone",
+    "symbol": "kr",
+    "IsoCode": "DKK"
+  },
+  {
+    "currency": "Djiboutian franc",
+    "symbol": "Fr",
+    "IsoCode": "DJF"
+  },
+  {
+    "currency": "Dominican peso",
+    "symbol": "RD$",
+    "IsoCode": "DOP"
+  },
+  {
+    "currency": "Eastern Caribbean dollar",
+    "symbol": "$",
+    "IsoCode": "XCD"
+  },
+  {
+    "currency": "Egyptian pound",
+    "symbol": "£ or ج.م",
+    "IsoCode": "EGP"
+  },
+  {
+    "currency": "Eritrean nakfa",
+    "symbol": "Nfk",
+    "IsoCode": "ERN"
+  },
+  {
+    "currency": "Ethiopian birr",
+    "symbol": "Br",
+    "IsoCode": "ETB"
+  },
+  {
+    "currency": "Euro",
+    "symbol": "€",
+    "IsoCode": "EUR"
+  },
+  {
+    "currency": "Falkland Islands pound",
+    "symbol": "£",
+    "IsoCode": "FKP"
+  },
+  {
+    "currency": "Fijian dollar",
+    "symbol": "$",
+    "IsoCode": "FJD"
+  },
+  {
+    "currency": "Gambian dalasi",
+    "symbol": "D",
+    "IsoCode": "GMD"
+  },
+  {
+    "currency": "Georgian lari",
+    "symbol": "₾",
+    "IsoCode": "GEL"
+  },
+  {
+    "currency": "Ghanaian cedi",
+    "symbol": "₵",
+    "IsoCode": "GHS"
+  },
+  {
+    "currency": "Gibraltar pound",
+    "symbol": "£",
+    "IsoCode": "GIP"
+  },
+  {
+    "currency": "Guatemalan quetzal",
+    "symbol": "Q",
+    "IsoCode": "GTQ"
+  },
+  {
+    "currency": "Guernsey pound",
+    "symbol": "£",
+    "IsoCode": "GGP"
+  },
+  {
+    "currency": "Guinean franc",
+    "symbol": "Fr",
+    "IsoCode": "GNF"
+  },
+  {
+    "currency": "Guyanese dollar",
+    "symbol": "$",
+    "IsoCode": "GYD"
+  },
+  {
+    "currency": "Haitian gourde",
+    "symbol": "G",
+    "IsoCode": "HTG"
+  },
+  {
+    "currency": "Honduran lempira",
+    "symbol": "L",
+    "IsoCode": "HNL"
+  },
+  {
+    "currency": "Hong Kong dollar",
+    "symbol": "$",
+    "IsoCode": "HKD"
+  },
+  {
+    "currency": "Hungarian forint",
+    "symbol": "Ft",
+    "IsoCode": "HUF"
+  },
+  {
+    "currency": "Icelandic króna",
+    "symbol": "kr",
+    "IsoCode": "ISK"
+  },
+  {
+    "currency": "Indian rupee",
+    "symbol": "₹",
+    "IsoCode": "INR"
+  },
+  {
+    "currency": "Indonesian rupiah",
+    "symbol": "Rp",
+    "IsoCode": "IDR"
+  },
+  {
+    "currency": "Iranian rial",
+    "symbol": "﷼",
+    "IsoCode": "IRR"
+  },
+  {
+    "currency": "Iraqi dinar",
+    "symbol": "ع.د",
+    "IsoCode": "IQD"
+  },
+  {
+    "currency": "Israeli new shekel",
+    "symbol": "₪",
+    "IsoCode": "ILS"
+  },
+  {
+    "currency": "Jamaican dollar",
+    "symbol": "$",
+    "IsoCode": "JMD"
+  },
+  {
+    "currency": "Japanese yen",
+    "symbol": "¥ or 円",
+    "IsoCode": "JPY"
+  },
+  {
+    "currency": "Jersey pound",
+    "symbol": "£",
+    "IsoCode": "JEP"
+  },
+  {
+    "currency": "Jordanian dinar",
+    "symbol": "د.ا",
+    "IsoCode": "JOD"
+  },
+  {
+    "currency": "Kazakhstani tenge",
+    "symbol": "₸",
+    "IsoCode": "KZT"
+  },
+  {
+    "currency": "Kenyan shilling",
+    "symbol": "Sh",
+    "IsoCode": "KES"
+  },
+  {
+    "currency": "Kiribati dollar",
+    "symbol": "$",
+    "IsoCode": "KID"
+  },
+  {
+    "currency": "Kuwaiti dinar",
+    "symbol": "د.ك",
+    "IsoCode": "KWD"
+  },
+  {
+    "currency": "Kyrgyzstani som",
+    "symbol": "с",
+    "IsoCode": "KGS"
+  },
+  {
+    "currency": "Lao kip",
+    "symbol": "₭",
+    "IsoCode": "LAK"
+  },
+  {
+    "currency": "Lebanese pound",
+    "symbol": "ل.ل",
+    "IsoCode": "LBP"
+  },
+  {
+    "currency": "Lesotho loti",
+    "symbol": "L",
+    "IsoCode": "LSL"
+  },
+  {
+    "currency": "Liberian dollar",
+    "symbol": "$",
+    "IsoCode": "LRD"
+  },
+  {
+    "currency": "Libyan dinar",
+    "symbol": "ل.د",
+    "IsoCode": "LYD"
+  },
+  {
+    "currency": "Macanese pataca",
+    "symbol": "MOP$",
+    "IsoCode": "MOP"
+  },
+  {
+    "currency": "Macedonian denar",
+    "symbol": "ден",
+    "IsoCode": "MKD"
+  },
+  {
+    "currency": "Malagasy ariary",
+    "symbol": "Ar",
+    "IsoCode": "MGA"
+  },
+  {
+    "currency": "Malawian kwacha",
+    "symbol": "MK",
+    "IsoCode": "MWK"
+  },
+  {
+    "currency": "Malaysian ringgit",
+    "symbol": "RM",
+    "IsoCode": "MYR"
+  },
+  {
+    "currency": "Maldivian rufiyaa",
+    "symbol": ".ރ",
+    "IsoCode": "MVR"
+  },
+  {
+    "currency": "Manx pound",
+    "symbol": "£",
+    "IsoCode": "IMP"
+  },
+  {
+    "currency": "Mauritanian ouguiya",
+    "symbol": "UM",
+    "IsoCode": "MRU"
+  },
+  {
+    "currency": "Mauritian rupee",
+    "symbol": "₨",
+    "IsoCode": "MUR"
+  },
+  {
+    "currency": "Mexican peso",
+    "symbol": "$",
+    "IsoCode": "MXN"
+  },
+  {
+    "currency": "Moldovan leu",
+    "symbol": "L",
+    "IsoCode": "MDL"
+  },
+  {
+    "currency": "Mongolian tögrög",
+    "symbol": "₮",
+    "IsoCode": "MNT"
+  },
+  {
+    "currency": "Moroccan dirham",
+    "symbol": "د.م.",
+    "IsoCode": "MAD"
+  },
+  {
+    "currency": "Mozambican metical",
+    "symbol": "MT",
+    "IsoCode": "MZN"
+  },
+  {
+    "currency": "Namibian dollar",
+    "symbol": "$",
+    "IsoCode": "NAD"
+  },
+  {
+    "currency": "Nepalese rupee",
+    "symbol": "रू",
+    "IsoCode": "NPR"
+  },
+  {
+    "currency": "Netherlands Antillean guilder",
+    "symbol": "ƒ",
+    "IsoCode": "ANG"
+  },
+  {
+    "currency": "New Taiwan dollar",
+    "symbol": "$",
+    "IsoCode": "TWD"
+  },
+  {
+    "currency": "New Zealand dollar",
+    "symbol": "$",
+    "IsoCode": "NZD"
+  },
+  {
+    "currency": "Nicaraguan córdoba",
+    "symbol": "C$",
+    "IsoCode": "NIO"
+  },
+  {
+    "currency": "Nigerian naira",
+    "symbol": "₦",
+    "IsoCode": "NGN"
+  },
+  {
+    "currency": "North Korean won",
+    "symbol": "₩",
+    "IsoCode": "KPW"
+  },
+  {
+    "currency": "Norwegian krone",
+    "symbol": "kr",
+    "IsoCode": "NOK"
+  },
+  {
+    "currency": "Omani rial",
+    "symbol": "ر.ع.",
+    "IsoCode": "OMR"
+  },
+  {
+    "currency": "Pakistani rupee",
+    "symbol": "₨",
+    "IsoCode": "PKR"
+  },
+  {
+    "currency": "Panamanian balboa",
+    "symbol": "B/.",
+    "IsoCode": "PAB"
+  },
+  {
+    "currency": "Papua New Guinean kina",
+    "symbol": "K",
+    "IsoCode": "PGK"
+  },
+  {
+    "currency": "Paraguayan guaraní",
+    "symbol": "₲",
+    "IsoCode": "PYG"
+  },
+  {
+    "currency": "Peruvian sol",
+    "symbol": "S/.",
+    "IsoCode": "PEN"
+  },
+  {
+    "currency": "Philippine peso",
+    "symbol": "₱",
+    "IsoCode": "PHP"
+  },
+  {
+    "currency": "Polish złoty",
+    "symbol": "zł",
+    "IsoCode": "PLN"
+  },
+  {
+    "currency": "Qatari riyal",
+    "symbol": "ر.ق",
+    "IsoCode": "QAR"
+  },
+  {
+    "currency": "South African rand",
+    "symbol": "R",
+    "IsoCode": "ZAR"
+  },
+  {
+    "currency": "Romanian leu",
+    "symbol": "lei",
+    "IsoCode": "RON"
+  },
+  {
+    "currency": "Rwandan franc",
+    "symbol": "Fr",
+    "IsoCode": "RWF"
+  },
+  {
+    "currency": "Saint Helena pound",
+    "symbol": "£",
+    "IsoCode": "SHP"
+  },
+  {
+    "currency": "Samoan tālā",
+    "symbol": "T",
+    "IsoCode": "WST"
+  },
+  {
+    "currency": "Saudi riyal",
+    "symbol": "﷼",
+    "IsoCode": "SAR"
+  },
+  {
+    "currency": "Serbian dinar",
+    "symbol": "дин. or din.",
+    "IsoCode": "RSD"
+  },
+  {
+    "currency": "Seychellois rupee",
+    "symbol": "₨",
+    "IsoCode": "SCR"
+  },
+  {
+    "currency": "Sierra Leonean leone",
+    "symbol": "Le",
+    "IsoCode": "SLL"
+  },
+  {
+    "currency": "Singapore dollar",
+    "symbol": "$",
+    "IsoCode": "SGD"
+  },
+  {
+    "currency": "Solomon Islands dollar",
+    "symbol": "$",
+    "IsoCode": "SBD"
+  },
+  {
+    "currency": "Somali shilling",
+    "symbol": "Sh",
+    "IsoCode": "SOS"
+  },
+  {
+    "currency": "Somaliland shilling",
+    "symbol": "Sl",
+    "IsoCode": "SLS"
+  },
+  {
+    "currency": "South African rand",
+    "symbol": "R",
+    "IsoCode": "ZAR"
+  },
+  {
+    "currency": "South Korean won",
+    "symbol": "₩",
+    "IsoCode": "KRW"
+  },
+  {
+    "currency": "South Sudanese pound",
+    "symbol": "£",
+    "IsoCode": "SSP"
+  },
+  {
+    "currency": "Sri Lankan rupee",
+    "symbol": "Rs, රු or ரூ",
+    "IsoCode": "LKR"
+  },
+  {
+    "currency": "Sudanese pound",
+    "symbol": "ج.س.",
+    "IsoCode": "SDG"
+  },
+  {
+    "currency": "Surinamese dollar",
+    "symbol": "$",
+    "IsoCode": "SRD"
+  },
+  {
+    "currency": "Swazi lilangeni",
+    "symbol": "L",
+    "IsoCode": "SZL"
+  },
+  {
+    "currency": "Swedish krona",
+    "symbol": "kr",
+    "IsoCode": "SEK"
+  },
+  {
+    "currency": "Swiss franc",
+    "symbol": "Fr.",
+    "IsoCode": "CHF"
+  },
+  {
+    "currency": "Swiss franc",
+    "symbol": "Fr.",
+    "IsoCode": "CHF"
+  },
+  {
+    "currency": "Syrian pound",
+    "symbol": "£ or ل.س",
+    "IsoCode": "SYP"
+  },
+  {
+    "currency": "São Tomé and Príncipe dobra",
+    "symbol": "Db",
+    "IsoCode": "STN"
+  },
+  {
+    "currency": "Tajikistani somoni",
+    "symbol": "с.",
+    "IsoCode": "TJS"
+  },
+  {
+    "currency": "Tanzanian shilling",
+    "symbol": "Sh",
+    "IsoCode": "TZS"
+  },
+  {
+    "currency": "Thai baht",
+    "symbol": "฿",
+    "IsoCode": "THB"
+  },
+  {
+    "currency": "Tongan paʻanga",
+    "symbol": "T$",
+    "IsoCode": "TOP"
+  },
+  {
+    "currency": "Transnistrian ruble",
+    "symbol": "р.",
+    "IsoCode": "PRB"
+  },
+  {
+    "currency": "Trinidad and Tobago dollar",
+    "symbol": "$",
+    "IsoCode": "TTD"
+  },
+  {
+    "currency": "Tunisian dinar",
+    "symbol": "د.ت",
+    "IsoCode": "TND"
+  },
+  {
+    "currency": "Turkish lira",
+    "symbol": "₺",
+    "IsoCode": "TRY"
+  },
+  {
+    "currency": "Turkmenistan manat",
+    "symbol": "m.",
+    "IsoCode": "TMT"
+  },
+  {
+    "currency": "Tuvaluan dollar",
+    "symbol": "$",
+    "IsoCode": "TVD"
+  },
+  {
+    "currency": "Mauritanian ouguiya",
+    "symbol": "UM",
+    "IsoCode": "MRU"
+  },
+  {
+    "currency": "Ugandan shilling",
+    "symbol": "Sh",
+    "IsoCode": "UGX"
+  },
+  {
+    "currency": "United Arab Emirates dirham",
+    "symbol": "د.إ",
+    "IsoCode": "AED"
+  },
+  {
+    "currency": "Uruguayan peso",
+    "symbol": "$",
+    "IsoCode": "UYU"
+  },
+  {
+    "currency": "Uzbekistani soʻm",
+    "symbol": "Sʻ",
+    "IsoCode": "UZS"
+  },
+  {
+    "currency": "Vanuatu vatu",
+    "symbol": "Vt",
+    "IsoCode": "VUV"
+  },
+  {
+    "currency": "Venezuelan bolívar soberano",
+    "symbol": "Bs.S. or Bs.",
+    "IsoCode": "VES"
+  },
+  {
+    "currency": "Vietnamese đồng",
+    "symbol": "₫",
+    "IsoCode": "VND"
+  },
+  {
+    "currency": "West African CFA franc",
+    "symbol": "Fr",
+    "IsoCode": "XOF"
+  },
+  {
+    "currency": "Yemeni rial",
+    "symbol": "﷼",
+    "IsoCode": "YER"
+  },
+  {
+    "currency": "Zambian kwacha",
+    "symbol": "ZK",
+    "IsoCode": "ZMW"
+  },
+  {
+    "currency": "Bitcoin",
+    "symbol": "₿",
+    "IsoCode": "BTC"
+  }
+]

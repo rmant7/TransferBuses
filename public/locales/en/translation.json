@@ -1,0 +1,60 @@
+{
+  "A parcel delivery": "A parcel delivery",
+  "Date": "Date",
+  "Date of travel": "Date of travel",
+  "Driver\u0027s comment": "Driver\u0027s comment",
+  "Driver\u0027s phone number": "Driver\u0027s phone number",
+  "Duration of ride": "Duration of ride",
+  "From": "From",
+  "I\u0027m a driver": "I\u0027m a driver",
+  "I\u0027m a passenger": "I\u0027m a passenger",
+  "No": "No",
+  "Pass a parcel": "Pass a parcel",
+  "Phone number": "Phone Number",
+  "Places": "Places",
+  "Price": "Price",
+  "Publish a ride": "Publish a ride",
+  "Regular trips": "Regular trips",
+  "Select all": "Select all",
+  "Time": "Departure Time",
+  "To": "To",
+  "Travel time": "Travel time",
+  "Yes": "Yes",
+  "Yes or no": "Yes or no",
+  "_0monday": "Monday",
+  "_1tuesday": "Tuesday",
+  "_2wednesday": "Wednesday",
+  "_3thursday": "Thursday",
+  "_4friday": "Friday",
+  "_5saturday": "Saturday",
+  "_6sunday": "Sunday",
+  "form": {
+    "errors": {
+      "time": {
+        "Required": "Required field"
+      },
+      "departureTime": {
+        "Required": "Required field"
+      },
+      "duration": {
+        "Required": "Required field"
+      },
+      "from": {
+        "Required": "Required field"
+      },
+      "phoneNumber": {
+        "Phone number is not valid": "Phone number is not valid",
+        "Required": "Required field"
+      },
+      "places": {
+        "Required": "Required field"
+      },
+      "price": {
+        "Required": "Required field"
+      },
+      "to": {
+        "Required": "Required field"
+      }
+    }
+  }
+}
