@@ -9,27 +9,25 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import "./Transfer.css";
 import i18n from "i18next";
 import { WeekDayIcon } from "../WeekDayIcon/WeekDayIcon";
 import { useHistory } from "react-router-dom";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#ff5722",
-    },
-    secondary: {
-      main: "#607d8b",
-    }
-  },
-});
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: "#ff5722",
+//     },
+//     secondary: {
+//       main: "#607d8b",
+//     }
+//   },
+// });
 
 export default function Transfer({ transfer }) {
   const history = useHistory();
   return (
-    <ThemeProvider theme={theme}>
       <div className="transfer">
         <Accordion>
           <AccordionSummary
@@ -192,6 +190,5 @@ export default function Transfer({ transfer }) {
               </IconButton>
             </Grid> */}
       </div>
-    </ThemeProvider>
   );
 }
