@@ -1,3 +1,5 @@
+
+import Cheaptrip from "../../components/CheaptripCommercial/Cheaptrip";
 import './MainPage.css';
 import { useHistory } from 'react-router-dom';
 import i18n from '../../i18n';
@@ -21,6 +23,7 @@ export default function MainPage() {
           onClick={() => history.push('/addTransfer')}>
           {i18n.t("I'm a driver")}
         </Button>
+        <Cheaptrip />
     </div>
   );
 }
