@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import * as yup from "yup";
-import { Formik } from "formik";
+import {Formik} from "formik";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
-import { uploadTransfer } from "../../services/data-service";
-import { useHistory } from "react-router-dom";
-import { Checkbox, FormControlLabel, Grid, Paper } from "@material-ui/core";
+import {uploadTransfer} from "../../services/data-service";
+import {useHistory} from "react-router-dom";
+import {Checkbox, FormControlLabel, Grid, Paper, Tooltip} from "@material-ui/core";
 import data from "../../data.json";
 import i18n from "../../i18n";
 
@@ -34,8 +34,8 @@ const schema = yup.object().shape({
 export default function DriverPage() {
   const cities = data.cities
     .reduce((acc, val) => {
-      acc.push({ id: val.ID, title: val.name });
-      acc.push({ id: val.ID, title: val['name_ru'] });
+      acc.push({id: val.ID, title: val.name});
+      acc.push({id: val.ID, title: val['name_ru']});
       return acc;
     }, [])
     .sort((a, b) => (a.title < b.title ? -1 : 1));
@@ -65,6 +65,7 @@ export default function DriverPage() {
           regularTrips: false,
           regularTripsDays: {
             _0monday: false,
+
             _1tuesday: false,
             _2wednesday: false,
             _3thursday: false,
@@ -83,7 +84,7 @@ export default function DriverPage() {
             })
             .catch((error) => {
               console.log(error);
-              setState({ error: error });
+              setState({error: error});
             });
         }}
         validationSchema={schema}
@@ -164,7 +165,7 @@ export default function DriverPage() {
               />
 
               {props.values.regularTrips && (
-                <Paper variant="outlined" style={{ padding: "8px" }}>
+                <Paper variant="outlined" style={{padding: "8px"}}>
                   <Grid container direction={"column"}>
                     <FormControlLabel
                       control={
@@ -186,18 +187,55 @@ export default function DriverPage() {
                     {Object.keys(props.values.regularTripsDays).map(
                       (weekDay) => {
                         return (
-                          <FormControlLabel
-                            style={{ marginLeft: "10px" }}
-                            control={
-                              <Checkbox
-                                checked={props.values.regularTripsDays[weekDay]}
-                                onChange={props.handleChange}
-                                name={"regularTripsDays." + weekDay}
-                                key={"regularTripsDays." + weekDay}
+                          <Grid
+                            container
+                            direction={"row"}
+                            alignItems="flex-end"
+                          >
+                            <Grid item xs={9}>
+                              <FormControlLabel
+                                style={{marginLeft: "10px"}}
+                                control={
+                                  <Checkbox
+                                    checked={props.values.regularTripsDays[weekDay]}
+                                    onChange={props.handleChange}
+                                    name={"regularTripsDays." + weekDay}
+                                    key={"regularTripsDays." + weekDay}
+                                  />
+                                }
+                                label={i18n.t(weekDay)}
                               />
-                            }
-                            label={i18n.t(weekDay)}
-                          />
+                            </Grid>
+                            <Grid item xs={3}>
+                              <Tooltip title={i18n.t("Time")} placement="top">
+                                <TextField
+                                  id="departureTime"
+                                  // label={i18n.t("Time")}
+                                  type="time"
+                                  margin="normal"
+                                  // style={{width:"150px"}}
+                                  error={
+                                    !!(props.errors.departureTime && props.touched.departureTime)
+                                  }
+                                  value={props.values.departureTime}
+                                  onChange={props.handleChange}
+                                  inputProps={{
+                                    min: new Date().toISOString().slice(0, 16),
+                                  }}
+                                  InputLabelProps={{
+                                    shrink: true,
+                                  }}
+                                  helperText={
+                                    props.errors.departureTime &&
+                                    props.touched.departureTime &&
+                                    i18n.t(`form.errors.${props.errors.departureTime}`)
+                                  }
+                                />
+                              </Tooltip>
+                            </Grid>
+
+
+                          </Grid>
                         );
                       }
                     )}
@@ -213,7 +251,7 @@ export default function DriverPage() {
                     type="date"
                     margin="normal"
                     error={
-                      !!(props.errors.time && props.touched.time)
+                      !!(props.errors.date && props.touched.date)
                     }
                     value={props.values.date}
                     onChange={props.handleChange}
