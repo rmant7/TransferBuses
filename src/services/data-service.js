@@ -4,15 +4,16 @@ export async function uploadTransfer(
   transfer
 ) {
 
+  if(!transfer.regularTrips){
+    delete(transfer.regularTripsDays)
+  }
   try {
     const collection = fb.firestore().collection("transfers");
     const response = await collection.add(
       transfer
     );
     console.log("response id", response.id);
-    // await ref.update({
-    //     lotsIds:firebase.firestore.FieldValue.arrayUnion(response.id)
-    // })
+
   } catch (error) {
     return Promise.reject(error);
   }
