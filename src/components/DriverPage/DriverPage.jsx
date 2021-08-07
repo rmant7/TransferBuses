@@ -64,13 +64,34 @@ export default function DriverPage() {
           driversComment: "",
           regularTrips: false,
           regularTripsDays: {
-            _0monday: false,
-            _1tuesday: false,
-            _2wednesday: false,
-            _3thursday: false,
-            _4friday: false,
-            _5saturday: false,
-            _6sunday: false,
+            _0monday: {
+              selected: false,
+              departureTime: ""
+            },
+            _1tuesday: {
+              selected: false,
+              departureTime: ""
+            },
+            _2wednesday: {
+              selected: false,
+              departureTime: ""
+            },
+            _3thursday: {
+              selected: false,
+              departureTime: ""
+            },
+            _4friday: {
+              selected: false,
+              departureTime: ""
+            },
+            _5saturday: {
+              selected: false,
+              departureTime: ""
+            },
+            _6sunday: {
+              selected: false,
+              departureTime: ""
+            },
           },
         }}
         onSubmit={values => {
@@ -95,11 +116,14 @@ export default function DriverPage() {
             console.log(event.target);
             console.log(event.target.checked);
             const weekDays = {};
-            Object.keys(props.values.regularTripsDays).map(weekDay => {
-              weekDays[weekDay] = event.target.checked;
+            Object.keys(props.values.regularTripsDays).map((weekDay) => {
+              weekDays[weekDay] = {
+                selected: event.target.checked,
+                departureTime: props.values.regularTripsDays[weekDay].departureTime
+              };
             });
 
-            console.log(weekDays);
+            console.log("weekdays: ", weekDays);
             props.setFieldValue("regularTripsDays", weekDays);
           };
 
@@ -118,7 +142,9 @@ export default function DriverPage() {
                     {...params}
                     label={i18n.t("From")}
                     margin="normal"
-                    error={props.errors.from ? true : false}
+                    error={
+                      props.errors.from ? true : false
+                    }
                     helperText={
                       props.errors.from &&
                       i18n.t(`form.errors.${props.errors.from}`)
@@ -169,7 +195,7 @@ export default function DriverPage() {
                         <Checkbox
                           checked={
                             Object.values(props.values.regularTripsDays).reduce(
-                              (acc, val) => (acc += +val),
+                              (acc, val) => (acc += +val.selected),
                               0
                             ) === 7
                           }
@@ -181,22 +207,51 @@ export default function DriverPage() {
                       label={i18n.t("Select all")}
                     />
 
-                    {Object.keys(props.values.regularTripsDays).map(weekDay => {
-                      return (
-                        <FormControlLabel
-                          style={{ marginLeft: "10px" }}
-                          control={
-                            <Checkbox
-                              checked={props.values.regularTripsDays[weekDay]}
-                              onChange={props.handleChange}
-                              name={"regularTripsDays." + weekDay}
-                              key={"regularTripsDays." + weekDay}
-                            />
-                          }
-                          label={i18n.t(weekDay)}
-                        />
-                      );
-                    })}
+                    {Object.keys(props.values.regularTripsDays).map(
+                      (weekDay) => {
+                        return (
+                          <Grid
+                            container
+                            direction={"row"}
+                            alignItems="flex-end"
+                            id={"regularTripsDays." + weekDay}
+                            key={"regularTripsDays." + weekDay}
+                          >
+                            <Grid
+                              item
+                              xs={9}
+                            >
+                              <FormControlLabel
+                                style={{marginLeft: "10px"}}
+                                control={
+                                  <Checkbox
+                                    id={"regularTripsDays." + weekDay + ".selected"}
+                                    checked={props.values.regularTripsDays[weekDay].selected}
+                                    onChange={props.handleChange}
+                                    name={"regularTripsDays." + weekDay + ".selected"}
+                                  />
+                                }
+                                label={i18n.t(weekDay)}
+                              />
+                            </Grid>
+                            <Grid item xs={3}>
+                              <Tooltip title={i18n.t("Time")} placement="top">
+                                <TextField
+                                  // id={"departureTime" + weekDay}
+                                  id={"regularTripsDays." + weekDay + ".departureTime"}
+                                  name={"regularTripsDays." + weekDay + ".departureTime"}
+                                  type="time"
+                                  margin="normal"
+                                  disabled={!props.values.regularTripsDays[weekDay].selected}
+                                  value={props.values.regularTripsDays[weekDay].departureTime}
+                                  onChange={props.handleChange}
+                                />
+                              </Tooltip>
+                            </Grid>
+                          </Grid>
+                        );
+                      }
+                    )}
                   </Grid>
                 </Paper>
               )}
@@ -208,7 +263,9 @@ export default function DriverPage() {
                     label={i18n.t("Date")}
                     type="date"
                     margin="normal"
-                    error={!!(props.errors.time && props.touched.time)}
+                    error={
+                      !!(props.errors.date && props.touched.date)
+                    }
                     value={props.values.date}
                     onChange={props.handleChange}
                     inputProps={{
