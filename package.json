@@ -34,7 +34,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "react-scripts start",
     "run1": "node server.js",
     "run": "react-scripts start",
     "build": "react-scripts build",
