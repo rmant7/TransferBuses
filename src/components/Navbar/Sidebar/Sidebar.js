@@ -22,11 +22,11 @@ const Sidebar = () => {
       <Container fluid className={classes.sidebarHeader}>
         <Container className={classes.sidebarHeaderInfo}>
           <CloseIcon onClick={() => dispatch(setSidebar(false))} />
-          TranBus
+          TransferBuses
         </Container>
       </Container>
 
-      <List className={classes.sidebarList}>
+      <List onClick={() => console.log("Need to close drawer on click here")} className={classes.sidebarList}>
         {menuData.map((item) => (
           <ListItem button key={item.path}>
             <ListItemText primary={item.title} onClick={() => history.push(item.path)} />
