@@ -15,16 +15,19 @@ export const useStyles = makeStyles((theme) => ({
   icon: {
     fill: 'white',
   },
-  select: {
-    fontSize: '0.875rem',
-    fontFamily: 'Roboto',
-    fontWeight: 500,
-    lineHeight: 1.75,
-    letterSpacing: '0.02857em',
-    textTransform: 'uppercase',
+  whiteColor: {
     color: 'white',
-    marginLeft: '10px',
   },
+  // select: {
+  //   fontSize: '0.875rem',
+  //   fontFamily: 'Roboto',
+  //   fontWeight: 500,
+  //   lineHeight: 1.75,
+  //   letterSpacing: '0.02857em',
+  //   textTransform: 'uppercase',
+  //   color: 'white',
+  //   marginLeft: '10px',
+  // },
   /// header
   nav: {
     display: 'flex',

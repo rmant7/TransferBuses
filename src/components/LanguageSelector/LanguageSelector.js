@@ -15,7 +15,7 @@ const LanguageSelector = () => {
       <Select
         inputProps={{
           classes: {
-            root: classes.select,
+            root: classes.whiteColor,
             icon: classes.icon,
           },
         }}
