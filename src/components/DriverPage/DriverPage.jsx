@@ -64,14 +64,34 @@ export default function DriverPage() {
           driversComment: "",
           regularTrips: false,
           regularTripsDays: {
-            _0monday: false,
-
-            _1tuesday: false,
-            _2wednesday: false,
-            _3thursday: false,
-            _4friday: false,
-            _5saturday: false,
-            _6sunday: false,
+            _0monday: {
+              selected: false,
+              departureTime: ""
+            },
+            _1tuesday: {
+              selected: false,
+              departureTime: ""
+            },
+            _2wednesday: {
+              selected: false,
+              departureTime: ""
+            },
+            _3thursday: {
+              selected: false,
+              departureTime: ""
+            },
+            _4friday: {
+              selected: false,
+              departureTime: ""
+            },
+            _5saturday: {
+              selected: false,
+              departureTime: ""
+            },
+            _6sunday: {
+              selected: false,
+              departureTime: ""
+            },
           },
         }}
         onSubmit={(values) => {
@@ -97,10 +117,13 @@ export default function DriverPage() {
             console.log(event.target.checked);
             const weekDays = {};
             Object.keys(props.values.regularTripsDays).map((weekDay) => {
-              weekDays[weekDay] = event.target.checked;
+              weekDays[weekDay] = {
+                selected: event.target.checked,
+                departureTime: props.values.regularTripsDays[weekDay].departureTime
+              };
             });
 
-            console.log(weekDays);
+            console.log("weekdays: ", weekDays);
             props.setFieldValue("regularTripsDays", weekDays);
           };
 
@@ -172,7 +195,7 @@ export default function DriverPage() {
                         <Checkbox
                           checked={
                             Object.values(props.values.regularTripsDays).reduce(
-                              (acc, val) => (acc += +val),
+                              (acc, val) => (acc += +val.selected),
                               0
                             ) === 7
                           }
@@ -191,16 +214,21 @@ export default function DriverPage() {
                             container
                             direction={"row"}
                             alignItems="flex-end"
+                            id={"regularTripsDays." + weekDay}
+                            key={"regularTripsDays." + weekDay}
                           >
-                            <Grid item xs={9}>
+                            <Grid
+                              item
+                              xs={9}
+                            >
                               <FormControlLabel
                                 style={{marginLeft: "10px"}}
                                 control={
                                   <Checkbox
-                                    checked={props.values.regularTripsDays[weekDay]}
+                                    id={"regularTripsDays." + weekDay + ".selected"}
+                                    checked={props.values.regularTripsDays[weekDay].selected}
                                     onChange={props.handleChange}
-                                    name={"regularTripsDays." + weekDay}
-                                    key={"regularTripsDays." + weekDay}
+                                    name={"regularTripsDays." + weekDay + ".selected"}
                                   />
                                 }
                                 label={i18n.t(weekDay)}
@@ -209,32 +237,17 @@ export default function DriverPage() {
                             <Grid item xs={3}>
                               <Tooltip title={i18n.t("Time")} placement="top">
                                 <TextField
-                                  id="departureTime"
-                                  // label={i18n.t("Time")}
+                                  // id={"departureTime" + weekDay}
+                                  id={"regularTripsDays." + weekDay + ".departureTime"}
+                                  name={"regularTripsDays." + weekDay + ".departureTime"}
                                   type="time"
                                   margin="normal"
-                                  // style={{width:"150px"}}
-                                  error={
-                                    !!(props.errors.departureTime && props.touched.departureTime)
-                                  }
-                                  value={props.values.departureTime}
+                                  disabled={!props.values.regularTripsDays[weekDay].selected}
+                                  value={props.values.regularTripsDays[weekDay].departureTime}
                                   onChange={props.handleChange}
-                                  inputProps={{
-                                    min: new Date().toISOString().slice(0, 16),
-                                  }}
-                                  InputLabelProps={{
-                                    shrink: true,
-                                  }}
-                                  helperText={
-                                    props.errors.departureTime &&
-                                    props.touched.departureTime &&
-                                    i18n.t(`form.errors.${props.errors.departureTime}`)
-                                  }
                                 />
                               </Tooltip>
                             </Grid>
-
-
                           </Grid>
                         );
                       }
