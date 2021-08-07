@@ -15,16 +15,6 @@ export const useStyles = makeStyles((theme) => ({
   icon: {
     fill: 'white',
   },
-  select: {
-    fontSize: '0.875rem',
-    fontFamily: 'Roboto',
-    fontWeight: 500,
-    lineHeight: 1.75,
-    letterSpacing: '0.02857em',
-    textTransform: 'uppercase',
-    color: 'white',
-    marginLeft: '10px',
-  },
   /// header
   nav: {
     display: 'flex',
@@ -92,6 +82,19 @@ export const useStyles = makeStyles((theme) => ({
 }));
 
 export const theme = createTheme({
+  overrides: {
+    MuiInputBase: {
+      root: {
+        color: 'white',
+        fontSize: '0.875rem',
+        fontFamily: 'Roboto',
+        fontWeight: 500,
+        lineHeight: 1.75,
+        letterSpacing: '0.02857em',
+        textTransform: 'uppercase',
+      },
+    },
+  },
   palette: {
     primary: {
       main: '#ff5722',
