@@ -13,6 +13,10 @@ const Sidebar = () => {
   const classes = useStyles();
   const history = useHistory();
 
+  const closeHandler = (path) => {
+    history.push(path);
+    dispatch(setSidebar(false));
+  };
   return (
     <Drawer
       anchor="right"
@@ -26,10 +30,12 @@ const Sidebar = () => {
         </Container>
       </Container>
 
-      <List onClick={() => console.log("Need to close drawer on click here")} className={classes.sidebarList}>
+      <List
+        onClick={() => console.log('Need to close drawer on click here')}
+        className={classes.sidebarList}>
         {menuData.map((item) => (
           <ListItem button key={item.path}>
-            <ListItemText primary={item.title} onClick={() => history.push(item.path)} />
+            <ListItemText primary={item.title} onClick={() => closeHandler(item.path)} />
           </ListItem>
         ))}
       </List>
