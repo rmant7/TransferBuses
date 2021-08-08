@@ -8,7 +8,7 @@ import "./DriverPage.css";
 import { uploadTransfer } from "../../services/data-service";
 import { useHistory } from "react-router-dom";
 import {Checkbox, FormControlLabel, Grid, Paper, Tooltip} from "@material-ui/core";
-import data from "../../data.json";
+import cities_json from "../../cities.json";
 import i18n from "../../i18n";
 
 const phoneRegExp =
@@ -32,7 +32,7 @@ const schema = yup.object().shape({
 });
 
 export default function DriverPage() {
-  const cities = data.cities
+   const cities = cities_json
     .reduce((acc, val) => {
       acc.push({ id: val.ID, title: val.name });
       acc.push({ id: val.ID, title: val["name_ru"] });
