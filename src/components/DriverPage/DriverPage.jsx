@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import * as yup from "yup";
-import { Formik } from "formik";
+import {Formik} from "formik";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
-import { uploadTransfer } from "../../services/data-service";
-import { useHistory } from "react-router-dom";
-import {Checkbox, FormControlLabel, Grid, Paper, Tooltip} from "@material-ui/core";
+import {uploadTransfer} from "../../services/data-service";
+import {useHistory} from "react-router-dom";
+import {Checkbox, FormControlLabel, Grid, MenuItem, Paper, Select, Tooltip} from "@material-ui/core";
 import cities_json from "../../cities.json";
 import i18n from "../../i18n";
+import {useSelector} from "react-redux";
+import {currencies} from "../../utils/currencies";
 
 const phoneRegExp =
   /^(?!\+.*\(.*\).*\-\-.*$)(?!\+.*\(.*\).*\-$)(([0-9]{0,4})?(\+[0-9]{1,3})?(\([0-9]{1,3})?(\)[0-9]{1})?([-0-9]{0,8})?([0-9]{0,1})?)$/;
@@ -32,10 +34,17 @@ const schema = yup.object().shape({
 });
 
 export default function DriverPage() {
-   const cities = cities_json
+
+  const cur = useSelector((state) => state.app.currency);
+  const [rideCurrency, setRideCurrency] = useState(cur)
+
+  console.log("cur: ", cur)
+  console.log("rideCurrency: ", rideCurrency)
+
+  const cities = cities_json
     .reduce((acc, val) => {
-      acc.push({ id: val.ID, title: val.name });
-      acc.push({ id: val.ID, title: val["name_ru"] });
+      acc.push({id: val.ID, title: val.name});
+      acc.push({id: val.ID, title: val["name_ru"]});
       return acc;
     }, [])
     .sort((a, b) => (a.title < b.title ? -1 : 1));
@@ -59,6 +68,7 @@ export default function DriverPage() {
           phoneNumber: "",
           places: 1,
           price: "",
+          currency: rideCurrency,
           duration: "",
           passAParcel: false,
           driversComment: "",
@@ -104,7 +114,7 @@ export default function DriverPage() {
             })
             .catch(error => {
               console.log(error);
-              setState({ error: error });
+              setState({error: error});
             });
         }}
         validationSchema={schema}
@@ -188,7 +198,7 @@ export default function DriverPage() {
               />
 
               {props.values.regularTrips && (
-                <Paper variant="outlined" style={{ padding: "8px" }}>
+                <Paper variant="outlined" style={{padding: "8px"}}>
                   <Grid container direction={"column"}>
                     <FormControlLabel
                       control={
@@ -344,48 +354,79 @@ export default function DriverPage() {
               />
 
               <Grid container justifyContent="space-between">
-                <TextField
-                  value={props.values.places}
-                  margin="normal"
-                  error={
-                    props.errors.places && props.touched.plases ? true : false
-                  }
-                  id="places"
-                  label={i18n.t("Places")}
-                  onChange={props.handleChange}
-                  inputProps={{
-                    step: 1,
-                    min: 1,
-                    max: 8,
-                    type: "number",
-                  }}
-                  helperText={
-                    props.errors.places &&
-                    props.touched.places &&
-                    i18n.t(`form.errors.${props.errors.places}`)
-                  }
-                />
+                <Grid item xs={2}>
+                  <TextField
+                    value={props.values.places}
+                    margin="normal"
+                    error={
+                      props.errors.places && props.touched.plases ? true : false
+                    }
+                    id="places"
+                    label={i18n.t("Places")}
+                    onChange={props.handleChange}
+                    inputProps={{
+                      step: 1,
+                      min: 1,
+                      max: 8,
+                      type: "number",
+                    }}
+                    helperText={
+                      props.errors.places &&
+                      props.touched.places &&
+                      i18n.t(`form.errors.${props.errors.places}`)
+                    }
+                  />
+                </Grid>
 
-                <TextField
-                  value={props.values.price}
-                  margin="normal"
-                  error={
-                    props.errors.price && props.touched.price ? true : false
-                  }
-                  id="price"
-                  label={i18n.t("Price")}
-                  onChange={props.handleChange}
-                  inputProps={{
-                    min: 0,
-                    type: "price",
-                    "aria-labelledby": "input-slider",
-                  }}
-                  helperText={
-                    props.errors.price &&
-                    props.touched.price &&
-                    i18n.t(`form.errors.${props.errors.price}`)
-                  }
-                />
+                <Grid item xs={7}
+                      container
+                      justifyContent="flex-end"
+                      alignItems="flex-end"
+                >
+                  <Grid item xs={6}>
+
+                    <TextField
+                      value={props.values.price}
+                      margin="normal"
+                      error={
+                        props.errors.price && props.touched.price ? true : false
+                      }
+                      id="price"
+                      label={i18n.t("Price")}
+                      onChange={props.handleChange}
+                      inputProps={{
+                        min: 0,
+                        type: "price",
+                        "aria-labelledby": "input-slider",
+                      }}
+                      helperText={
+                        props.errors.price &&
+                        props.touched.price &&
+                        i18n.t(`form.errors.${props.errors.price}`)
+                      }
+                    />
+                  </Grid>
+                  <Grid item xs={4}>
+
+                    <Select
+                      id="currency"
+                      name={"currency"}
+                      value={rideCurrency}
+                      renderValue={(value) => `${value.toUpperCase()}`}
+                      margin="normal"
+                      disableUnderline
+                      onChange={props.handleChange}
+                    >
+                      {currencies.map((item) => {
+                        return (
+                          <MenuItem key={item.code} value={item.code} onClick={() => setRideCurrency(item.code)}>
+                            {item.code + `  ` + item.name}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </Grid>
+                </Grid>
               </Grid>
 
               <FormControlLabel
