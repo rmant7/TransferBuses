@@ -286,71 +286,80 @@ export default function DriverPage() {
                 </Paper>
               )}
               {!props.values.regularTrips && (
-                <Grid container justifyContent="space-between">
-                  <TextField
-                    id="date"
-                    label={i18n.t("Date")}
-                    type="date"
-                    margin="normal"
-                    error={!!(props.errors.date && props.touched.date)}
-                    value={props.values.date}
-                    onChange={props.handleChange}
-                    inputProps={{
-                      min: new Date().toISOString().slice(0, 10),
-                    }}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    helperText={
-                      props.errors.date &&
-                      props.touched.date &&
-                      i18n.t(`form.errors.${props.errors.date}`)
-                    }
-                  />
-
-                  <TextField
-                    id="departureTime"
-                    label={i18n.t("Time")}
-                    type="time"
-                    margin="normal"
-                    error={
-                      !!(
+                <Grid container justifyContent="space-between"
+                  <Grid item xs={5}>
+                    <TextField
+                      id="date"
+                      label={i18n.t("Date")}
+                      type="date"
+                      margin="normal"
+                      fullWidth
+                      error={
+                        !!(props.errors.date && props.touched.date)
+                      }
+                      value={props.values.date}
+                      onChange={props.handleChange}
+                      inputProps={{
+                        min: new Date().toISOString().slice(0, 10),
+                      }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      helperText={
+                        props.errors.date &&
+                        props.touched.date &&
+                        i18n.t(`form.errors.${props.errors.date}`)
+                      }
+                    />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <TextField
+                      id="departureTime"
+                      label={i18n.t("Time")}
+                      type="time"
+                      margin="normal"
+                      fullWidth
+                      error={
+                        !!(
+                          props.errors.departureTime &&
+                          props.touched.departureTime
+                        )
+                      }
+                      value={props.values.departureTime}
+                      onChange={props.handleChange}
+                      inputProps={{
+                        min: new Date().toISOString().slice(0, 16),
+                      }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      helperText={
                         props.errors.departureTime &&
-                        props.touched.departureTime
-                      )
-                    }
-                    value={props.values.departureTime}
-                    onChange={props.handleChange}
-                    inputProps={{
-                      min: new Date().toISOString().slice(0, 16),
-                    }}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    helperText={
-                      props.errors.departureTime &&
-                      props.touched.departureTime &&
-                      i18n.t(`form.errors.${props.errors.departureTime}`)
-                    }
-                  />
-
-                  <TextField
-                    id="duration"
-                    label={i18n.t("Travel time")}
-                    type="Time"
-                    margin="normal"
-                    value={props.values.duration}
-                    error={props.errors.duration && props.touched.duration}
-                    onChange={props.handleChange}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    helperText={
-                      props.errors.duration &&
-                      props.touched.duration &&
-                      i18n.t(`form.errors.${props.errors.duration}`)
-                    }
-                  />
+                        props.touched.departureTime &&
+                        i18n.t(`form.errors.${props.errors.departureTime}`)
+                      }
+                    />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <TextField
+                      id="duration"
+                      label={i18n.t("Travel time")}
+                      type="Time"
+                      margin="normal"
+                      fullWidth
+                      value={props.values.duration}
+                      error={props.errors.duration && props.touched.duration}
+                      onChange={props.handleChange}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      helperText={
+                        props.errors.duration &&
+                        props.touched.duration &&
+                        i18n.t(`form.errors.${props.errors.duration}`)
+                      }
+                    />
+                  </Grid>
                 </Grid>
               )}
               <Grid

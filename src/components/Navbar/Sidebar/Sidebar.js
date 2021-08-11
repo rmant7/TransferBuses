@@ -32,17 +32,15 @@ const Sidebar = () => {
       </Container>
 
       <List
-
+        onClick={() => dispatch(setSidebar(false))}
         className={classes.sidebarList}
-        onClick={element => console.log(element.target)}
       >
         {menuData.map(item => (
           <ListItem button key={item.path}>
             <ListItemText
               primary={item.title}
-              onClick={() => history.push(item.path)}
+              onClick={() => closeHandler(item.path)}
             />
-
           </ListItem>
         ))}
       </List>
