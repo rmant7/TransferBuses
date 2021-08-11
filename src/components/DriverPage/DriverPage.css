@@ -17,3 +17,7 @@
 .hidden {
   display: none;
 }
+
+.select {
+  color: black !important;
+}
