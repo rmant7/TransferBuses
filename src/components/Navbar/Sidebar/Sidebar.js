@@ -22,7 +22,8 @@ const Sidebar = () => {
       anchor="right"
       classes={{ paper: classes.paper }}
       open={sidebar}
-      onClose={() => dispatch(setSidebar(false))}>
+      onClose={() => dispatch(setSidebar(false))}
+    >
       <Container fluid className={classes.sidebarHeader}>
         <Container className={classes.sidebarHeaderInfo}>
           <CloseIcon onClick={() => dispatch(setSidebar(false))} />
@@ -31,11 +32,15 @@ const Sidebar = () => {
       </Container>
 
       <List
-        onClick={() => console.log('Need to close drawer on click here')}
-        className={classes.sidebarList}>
-        {menuData.map((item) => (
+        onClick={() => dispatch(setSidebar(false))}
+        className={classes.sidebarList}
+      >
+        {menuData.map(item => (
           <ListItem button key={item.path}>
-            <ListItemText primary={item.title} onClick={() => closeHandler(item.path)} />
+            <ListItemText
+              primary={item.title}
+              onClick={() => closeHandler(item.path)}
+            />
           </ListItem>
         ))}
       </List>
