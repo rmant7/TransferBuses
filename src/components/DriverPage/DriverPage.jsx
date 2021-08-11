@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { Formik } from "formik";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import InputLabel from "@material-ui/core/InputLabel";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
 import { uploadTransfer } from "../../services/data-service";
@@ -20,6 +21,8 @@ import cities_json from "../../cities.json";
 import i18n from "../../i18n";
 import { useSelector } from "react-redux";
 import { currencies } from "../../utils/currencies";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+import TelegramIcon from "@material-ui/icons/Telegram";
 
 const phoneRegExp =
   /^(?!\+.*\(.*\).*\-\-.*$)(?!\+.*\(.*\).*\-$)(([0-9]{0,4})?(\+[0-9]{1,3})?(\([0-9]{1,3})?(\)[0-9]{1})?([-0-9]{0,8})?([0-9]{0,1})?)$/;
@@ -286,7 +289,7 @@ export default function DriverPage() {
                 </Paper>
               )}
               {!props.values.regularTrips && (
-                <Grid container justifyContent="space-between"
+                <Grid container justifyContent="space-between">
                   <Grid item xs={5}>
                     <TextField
                       id="date"
@@ -294,9 +297,7 @@ export default function DriverPage() {
                       type="date"
                       margin="normal"
                       fullWidth
-                      error={
-                        !!(props.errors.date && props.touched.date)
-                      }
+                      error={!!(props.errors.date && props.touched.date)}
                       value={props.values.date}
                       onChange={props.handleChange}
                       inputProps={{
@@ -387,10 +388,11 @@ export default function DriverPage() {
                   />
                 </Grid>
                 <Grid item xs={4}>
+                  <InputLabel id="messengers">{i18n.t("Messenger")}</InputLabel>
                   <Select
                     className="select"
                     id="messengers"
-                    // value={messenger}
+                    labelId="messenger"
                     name={"messengers"}
                     margin="normal"
                     disableUnderline
@@ -398,46 +400,28 @@ export default function DriverPage() {
                       setMessenger(value);
                     }}
                   >
-                    <MenuItem value="Telegram">Telegram</MenuItem>
-                    <MenuItem value="WhatsApp">WhatsApp</MenuItem>
+                    <MenuItem value="Telegram">
+                      <TelegramIcon>Telegram</TelegramIcon>
+                    </MenuItem>
+                    <MenuItem value="WhatsApp">
+                      <WhatsAppIcon>WhatsApp</WhatsAppIcon>
+                    </MenuItem>
+                    <MenuItem value="VContacte">VContacte</MenuItem>
+                    <MenuItem value="Viber">Viber</MenuItem>
                   </Select>
 
                   {/*  */}
                 </Grid>
               </Grid>
               <Grid container justifyContent="space-between">
-                <Grid item xs={2}>
-                  <TextField
-                    value={props.values.places}
-                    margin="normal"
-                    error={
-                      props.errors.places && props.touched.plases ? true : false
-                    }
-                    id="places"
-                    label={i18n.t("Places")}
-                    onChange={props.handleChange}
-                    inputProps={{
-                      step: 1,
-                      min: 1,
-                      max: 8,
-                      type: "number",
-                    }}
-                    helperText={
-                      props.errors.places &&
-                      props.touched.places &&
-                      i18n.t(`form.errors.${props.errors.places}`)
-                    }
-                  />
-                </Grid>
-
                 <Grid
                   item
-                  xs={7}
+                  xs={12}
                   container
-                  justifyContent="flex-end"
+                  justifyContent="space-between"
                   alignItems="flex-end"
                 >
-                  <Grid item xs={6}>
+                  <Grid item xs={8}>
                     <TextField
                       value={props.values.price}
                       margin="normal"
