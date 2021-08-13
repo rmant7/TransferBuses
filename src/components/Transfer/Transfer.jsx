@@ -12,27 +12,19 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import "./Transfer.css";
 import i18n from "i18next";
 import {WeekDayIcon} from "../WeekDayIcon/WeekDayIcon";
-import {useHistory} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {currencies} from "../../utils/currencies";
 import {Tooltip} from "@material-ui/core";
-
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: "#ff5722",
-//     },
-//     secondary: {
-//       main: "#607d8b",
-//     }
-//   },
-// });
+import cities from "../../cities.json";
 
 export default function Transfer({transfer}) {
-  const history = useHistory();
   const globalCurrencyCode = useSelector(state => state.app.currency)
-  let priceNum = ''
-  let priceToDisplay = ''
+  const lang = useSelector(state => state.app.lang)
+  const cityFrom = cities.find(city => city.ID === transfer.from)
+  const cityTo = cities.find(city => city.ID === transfer.to)
+  let priceNum
+  let priceToDisplay
+
 
   // check if currency selected in app (globalCurrency)
   const globalCurrency = currencies.find(cur => cur.code === globalCurrencyCode);
@@ -78,9 +70,9 @@ export default function Transfer({transfer}) {
               justifyContent="flex-start"
             >
               <Paper className={"paper"}>
-                {transfer.from}
+                {cityFrom["name" + (lang === "ru" ? "_ru": "" )]}
                 <ArrowForwardSharpIcon style={{marginBottom: "-6px"}}/>
-                {transfer.to}
+                {cityTo["name" + (lang === "ru" ? "_ru": "" )]}
               </Paper>
             </Grid>
 

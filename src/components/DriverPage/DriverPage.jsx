@@ -157,7 +157,7 @@ export default function DriverPage() {
                 name={"from"}
                 value={props.values.from}
                 onChange={(e, v) => {
-                  props.setFieldValue("from", v?.title || "");
+                  props.setFieldValue("from", v?.id || "");
                 }}
                 renderInput={params => (
                   <TextField
@@ -178,7 +178,7 @@ export default function DriverPage() {
                 name={"to"}
                 value={props.values.to}
                 onChange={(e, v) => {
-                  props.setFieldValue("to", v?.title || "");
+                  props.setFieldValue("to", v?.id || "");
                 }}
                 renderInput={params => (
                   <TextField
