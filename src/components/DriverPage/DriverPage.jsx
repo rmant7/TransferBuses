@@ -3,12 +3,15 @@ import * as yup from "yup";
 import { Formik } from "formik";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import InputLabel from "@material-ui/core/InputLabel";
+import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
 import { uploadTransfer } from "../../services/data-service";
 import { useHistory } from "react-router-dom";
 import {
+  InputLabel,
+  FormGroup,
   Checkbox,
   FormControlLabel,
   Grid,
@@ -82,7 +85,7 @@ export default function DriverPage() {
           currency: rideCurrency,
           duration: "",
           passAParcel: false,
-          driversComment: "",
+          additionalInfo: "",
           regularTrips: false,
           regularTripsDays: {
             _0monday: {
@@ -363,11 +366,13 @@ export default function DriverPage() {
                   </Grid>
                 </Grid>
               )}
+              {/* Phone number block */}
               <Grid
                 container
                 justifyContent="space-between"
                 alignItems="flex-end"
               >
+                {/* Phone */}
                 <Grid item xs={8}>
                   <TextField
                     fullWidth
@@ -387,7 +392,36 @@ export default function DriverPage() {
                     }
                   />
                 </Grid>
+                {/* Messenger */}
                 <Grid item xs={4}>
+                  {/* Checkboxes */}
+                  {/* <FormGroup aria-label="position" row>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={state.checkedB}
+                          // onChange={}
+                          name="checkedB"
+                          color="primary"
+                        />
+                      }
+                      labelPlacement="top"
+                      label="Telegram"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={state.checkedB}
+                          // onChange={}
+                          name="checkedB"
+                          color="primary"
+                        />
+                      }
+                      labelPlacement="top"
+                      label="WhatsApp"
+                    />
+                  </FormGroup> */}
+                  {/* Select */}
                   <InputLabel id="messengers">{i18n.t("Messenger")}</InputLabel>
                   <Select
                     className="select"
@@ -409,7 +443,6 @@ export default function DriverPage() {
                     <MenuItem value="VContacte">VContacte</MenuItem>
                     <MenuItem value="Viber">Viber</MenuItem>
                   </Select>
-
                   {/*  */}
                 </Grid>
               </Grid>
@@ -481,23 +514,24 @@ export default function DriverPage() {
                 label={i18n.t("Pass a parcel")}
               />
               <TextField
-                value={props.values.driversComment}
+                value={props.values.additionalInfo}
                 margin="normal"
-                id="driversComment"
-                name="driversComment"
+                id="additionalInfo"
+                name="additionalInfo"
+                fullWidth
                 multiline
                 rows={4}
                 error={
-                  props.errors.driversComment && props.touched.driversComment
+                  props.errors.additionalInfo && props.touched.additionalInfo
                     ? true
                     : false
                 }
-                label={i18n.t("Driver's comment")}
+                label={i18n.t("Additional information")}
                 onChange={props.handleChange}
                 helperText={
-                  props.errors.driversComment &&
-                  props.touched.driversComment &&
-                  i18n.t(`form.errors.${props.errors.driversComment}`)
+                  props.errors.additionalInfo &&
+                  props.touched.additionalInfo &&
+                  i18n.t(`form.errors.${props.errors.additionalInfo}`)
                 }
               />
               <div className={"submitBtn"}>
