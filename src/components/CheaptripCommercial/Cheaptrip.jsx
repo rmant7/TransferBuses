@@ -9,13 +9,12 @@ export default function Cheaptrip() {
       <div className="partners">
         <h3>Our partners:</h3>
       </div>
-
       <div className="caption">
         <a href="https://cheaptrip.guru/">
           <img src={Logo_Cht} alt="CheapTrip Logo" />
         </a>
       </div>
-      <div className="title">{i18n.t("CheapTrip commercial")}</div>
+      <div className="description">{i18n.t("CheapTrip commercial")}</div>
     </div>
   );
 }
