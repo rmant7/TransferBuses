@@ -26,6 +26,10 @@ import { useSelector } from "react-redux";
 import { currencies } from "../../utils/currencies";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import TelegramIcon from "@material-ui/icons/Telegram";
+import vkIcon from "../DriverPage/vkIcon.svg";
+import viberIcon from "../DriverPage/viberIcon.svg";
+import telegramIcon from "../DriverPage/telegramIcon.svg";
+import whatsAppIcon from "../DriverPage/whatsAppIcon.svg";
 
 const phoneRegExp =
   /^(?!\+.*\(.*\).*\-\-.*$)(?!\+.*\(.*\).*\-$)(([0-9]{0,4})?(\+[0-9]{1,3})?(\([0-9]{1,3})?(\)[0-9]{1})?([-0-9]{0,8})?([0-9]{0,1})?)$/;
@@ -435,13 +439,17 @@ export default function DriverPage() {
                     }}
                   >
                     <MenuItem value="Telegram">
-                      <TelegramIcon>Telegram</TelegramIcon>
+                      <img src={telegramIcon} alt="Telegram" />
                     </MenuItem>
                     <MenuItem value="WhatsApp">
-                      <WhatsAppIcon>WhatsApp</WhatsAppIcon>
+                      <img src={whatsAppIcon} alt="WhatsApp" />
                     </MenuItem>
-                    <MenuItem value="VContacte">VContacte</MenuItem>
-                    <MenuItem value="Viber">Viber</MenuItem>
+                    <MenuItem value="VContacte">
+                      <img src={vkIcon} alt="VContakte" />
+                    </MenuItem>
+                    <MenuItem value="Viber">
+                      <img src={viberIcon} alt="Viber" />
+                    </MenuItem>
                   </Select>
                   {/*  */}
                 </Grid>
