@@ -23,6 +23,8 @@ import { useSelector } from "react-redux";
 import { currencies } from "../../utils/currencies";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import TelegramIcon from "@material-ui/icons/Telegram";
+import 'yup-phone-lite';
+import PhoneNumber from "awesome-phonenumber";
 
 const phoneRegExp =
   /^(?!\+.*\(.*\).*\-\-.*$)(?!\+.*\(.*\).*\-$)(([0-9]{0,4})?(\+[0-9]{1,3})?(\([0-9]{1,3})?(\)[0-9]{1})?([-0-9]{0,8})?([0-9]{0,1})?)$/;
@@ -39,6 +41,7 @@ const schema = yup.object().shape({
     .required("places.Required"),
   phoneNumber: yup
     .string()
+    .phone()
     .matches(phoneRegExp, "phoneNumber.Phone number is not valid")
     .required("phoneNumber.Required"),
   price: yup.string().required("price.Required"),
@@ -74,7 +77,7 @@ export default function DriverPage() {
       <Formik
         initialValues={{
           date: new Date().toJSON().slice(0, 10),
-          time: "",
+          // time: "",
           departureTime: "",
           phoneNumber: "",
           places: 1,
@@ -374,6 +377,7 @@ export default function DriverPage() {
                     id="phoneNumber"
                     name="phoneNumber"
                     label={i18n.t("Phone number")}
+                    placeholder={"+1234567890"}
                     margin="normal"
                     error={
                       props.errors.phoneNumber && props.touched.phoneNumber
