@@ -24,7 +24,6 @@ import { currencies } from "../../utils/currencies";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import TelegramIcon from "@material-ui/icons/Telegram";
 import 'yup-phone-lite';
-import PhoneNumber from "awesome-phonenumber";
 
 const phoneRegExp =
   /^(?!\+.*\(.*\).*\-\-.*$)(?!\+.*\(.*\).*\-$)(([0-9]{0,4})?(\+[0-9]{1,3})?(\([0-9]{1,3})?(\)[0-9]{1})?([-0-9]{0,8})?([0-9]{0,1})?)$/;
