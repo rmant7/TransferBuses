@@ -31,7 +31,8 @@
     "redux-thunk": "^2.3.0",
     "typeface-roboto": "^1.1.13",
     "web-vitals": "^1.1.2",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "yup-phone-lite": "^1.0.5"
   },
   "scripts": {
     "start": "react-scripts start",

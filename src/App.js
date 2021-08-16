@@ -4,7 +4,6 @@ import './App.css';
 import { AppRouter, Navbar } from './components';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
-
 import { theme } from './utils/useStyles';
 function App() {
   const { i18n } = useTranslation();
