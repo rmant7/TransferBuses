@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import { Formik } from "formik";
 import Button from "@material-ui/core/Button";
@@ -24,9 +24,12 @@ import cities_json from "../../cities.json";
 import i18n from "../../i18n";
 import { useSelector } from "react-redux";
 import { currencies } from "../../utils/currencies";
-import WhatsAppIcon from "@material-ui/icons/WhatsApp";
-import TelegramIcon from "@material-ui/icons/Telegram";
-import 'yup-phone-lite';
+import vkIcon from "../DriverPage/vkIcon.svg";
+import viberIcon from "../DriverPage/viberIcon.svg";
+import telegramIcon from "../DriverPage/telegramIcon.svg";
+import whatsAppIcon from "../DriverPage/whatsAppIcon.svg";
+import axios from "axios";
+import "yup-phone-lite";
 
 const phoneRegExp =
   /^(?!\+.*\(.*\).*\-\-.*$)(?!\+.*\(.*\).*\-$)(([0-9]{0,4})?(\+[0-9]{1,3})?(\([0-9]{1,3})?(\)[0-9]{1})?([-0-9]{0,8})?([0-9]{0,1})?)$/;
@@ -73,6 +76,22 @@ export default function DriverPage() {
       return option.title;
     },
   };
+
+  const getCity = (lat, long) => {
+    const URL = ` https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}&accept-language=en`;
+    axios.get(URL).then(response => console.log(response));
+  };
+
+  useEffect(() => {
+    let startPos;
+    const geoSuccess = function (position) {
+      startPos = position;
+      console.log("latitude", startPos.coords.latitude);
+      console.log("longitude", startPos.coords.longitude);
+      getCity(startPos.coords.latitude, startPos.coords.longitude);
+    };
+    navigator.geolocation.getCurrentPosition(geoSuccess);
+  }, []);
 
   return (
     <div className={"container"}>
@@ -438,13 +457,17 @@ export default function DriverPage() {
                     }}
                   >
                     <MenuItem value="Telegram">
-                      <TelegramIcon>Telegram</TelegramIcon>
+                      <img src={telegramIcon} alt="Telegram" />
                     </MenuItem>
                     <MenuItem value="WhatsApp">
-                      <WhatsAppIcon>WhatsApp</WhatsAppIcon>
+                      <img src={whatsAppIcon} alt="WhatsApp" />
                     </MenuItem>
-                    <MenuItem value="VContacte">VContacte</MenuItem>
-                    <MenuItem value="Viber">Viber</MenuItem>
+                    <MenuItem value="VContacte">
+                      <img src={vkIcon} alt="VContakte" />
+                    </MenuItem>
+                    <MenuItem value="Viber">
+                      <img src={viberIcon} alt="Viber" />
+                    </MenuItem>
                   </Select>
                   {/*  */}
                 </Grid>
