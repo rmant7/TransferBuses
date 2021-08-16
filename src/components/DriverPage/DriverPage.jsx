@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import { Formik } from "formik";
 import Button from "@material-ui/core/Button";
@@ -30,6 +30,7 @@ import vkIcon from "../DriverPage/vkIcon.svg";
 import viberIcon from "../DriverPage/viberIcon.svg";
 import telegramIcon from "../DriverPage/telegramIcon.svg";
 import whatsAppIcon from "../DriverPage/whatsAppIcon.svg";
+import axios from "axios";
 
 const phoneRegExp =
   /^(?!\+.*\(.*\).*\-\-.*$)(?!\+.*\(.*\).*\-$)(([0-9]{0,4})?(\+[0-9]{1,3})?(\([0-9]{1,3})?(\)[0-9]{1})?([-0-9]{0,8})?([0-9]{0,1})?)$/;
@@ -75,6 +76,22 @@ export default function DriverPage() {
       return option.title;
     },
   };
+
+  const getCity = (lat, long) => {
+    const URL = ` https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}&accept-language=en`;
+    axios.get(URL).then(response => console.log(response));
+  };
+
+  useEffect(() => {
+    let startPos;
+    const geoSuccess = function (position) {
+      startPos = position;
+      console.log("latitude", startPos.coords.latitude);
+      console.log("longitude", startPos.coords.longitude);
+      getCity(startPos.coords.latitude, startPos.coords.longitude);
+    };
+    navigator.geolocation.getCurrentPosition(geoSuccess);
+  }, []);
 
   return (
     <div className={"container"}>
