@@ -1,6 +1,6 @@
 .container {
   width: 300px;
-  margin: 50px auto 10px;
+  margin: 60px auto 10px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

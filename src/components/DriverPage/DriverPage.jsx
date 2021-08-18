@@ -56,6 +56,7 @@ export default function DriverPage() {
   const cur = useSelector(state => state.app.currency);
   const [rideCurrency, setRideCurrency] = useState(cur);
   const [messenger, setMessenger] = useState();
+  const [currentCity, setCurrentCity] = useState();
 
   console.log("cur: ", cur);
   console.log("rideCurrency: ", rideCurrency);
@@ -78,8 +79,8 @@ export default function DriverPage() {
   };
 
   const getCity = (lat, long) => {
-    const URL = ` https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}&accept-language=en`;
-    axios.get(URL).then(response => console.log(response));
+    const URL = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}&accept-language=en`;
+    axios.get(URL).then(response => console.log(response.data));
   };
 
   useEffect(() => {
@@ -179,14 +180,15 @@ export default function DriverPage() {
                 {...defaultProps}
                 id="from"
                 name={"from"}
+                defaultValue={currentCity}
                 value={props.values.from}
                 onChange={(e, v) => {
-                  props.setFieldValue("from", v?.id || "");
+                  props.setFieldValue("form", currentCity, v?.id || "");
                 }}
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label={i18n.t("From")}
+                    label={currentCity ? currentCity : i18n.t("From")}
                     margin="normal"
                     error={props.errors.from ? true : false}
                     helperText={

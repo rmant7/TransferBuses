@@ -10,7 +10,7 @@ export const useStyles = makeStyles(theme => ({
     width: "auto",
   },
   paper: {
-    background: "#ff5722",
+    background: "#536dfe",
   },
   icon: {
     fill: "white",
@@ -57,7 +57,7 @@ export const useStyles = makeStyles(theme => ({
   sidebarHeader: {
     position: "relative",
     // backgroundColor: "#536dfe",
-    backgroundColor: "#ff5722",
+    backgroundColor: "#536dfe",
     color: "#fff",
     padding: "1rem 1rem 1rem 1rem",
     display: "flex",
@@ -100,7 +100,7 @@ export const theme = createTheme({
     primary: {
       // main: "#536dfe",
       // main: "#ff5722",
-      main: "#448aff",
+      main: "#536dfe",
     },
     secondary: {
       main: "#607d8b",
