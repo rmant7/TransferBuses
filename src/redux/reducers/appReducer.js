@@ -4,8 +4,8 @@ const SET_CURRENCY = 'SET_CURRENCY';
 
 const defaultState = {
   sidebar: false,
-  lang: 'en',
-  currency: 'EUR',
+  lang: localStorage.getItem("locale") || "en",
+  currency: localStorage.getItem("currency") || 'EUR',
 };
 
 export default function appReducer(state = defaultState, action) {

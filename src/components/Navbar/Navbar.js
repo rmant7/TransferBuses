@@ -9,11 +9,22 @@ import { MAIN_ROUTE } from '../../utils/constants';
 import { Sidebar, LanguageSelector } from '..';
 import { setSidebar } from '../../redux/reducers/appReducer';
 import CurrenciesSelector from '../CurrenciesSelector/CurrenciesSelector';
+import {useTranslation} from "react-i18next";
 
-const Navbar = ({ changeLanguage }) => {
+// const Navbar = ({ changeLanguage }) => {
+const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
+
+
+  const { i18n } = useTranslation();
+  const changeLanguage = (language) => {
+    i18n
+      .changeLanguage(language)
+      .then()
+      .catch((err) => console.error(err));
+  };
 
   return (
     <AppBar position="fixed">
