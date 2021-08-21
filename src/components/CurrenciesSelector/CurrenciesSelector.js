@@ -23,7 +23,10 @@ const CurrenciesSelector = () => {
         disableUnderline>
         {currencies.map((item) => {
           return (
-            <MenuItem key={item.code} onClick={() => dispatch(setCurrency(item.code))}>
+            <MenuItem key={item.code} onClick={() => {
+              localStorage.setItem("currency", item.code);
+              dispatch(setCurrency(item.code))
+            }}>
               {item.code + `  ` + item.name}
             </MenuItem>
           );

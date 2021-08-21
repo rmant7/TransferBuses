@@ -11,7 +11,7 @@ export default function Cheaptrip() {
       </div>
       <div className="caption">
         <a href="https://cheaptrip.guru/">
-          <img src={Logo_Cht} alt="CheapTrip Logo" />
+          <img src={Logo_Cht} alt="CheapTrip Logo" width={"300px"} height={"300px"}/>
         </a>
       </div>
       <div className="description">{i18n.t("CheapTrip commercial")}</div>
