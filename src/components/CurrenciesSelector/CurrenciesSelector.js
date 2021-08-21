@@ -12,6 +12,7 @@ const CurrenciesSelector = () => {
   return (
     <FormControl>
       <Select
+        className={classes.currSelect}
         inputProps={{
           classes: {
             icon: classes.icon,

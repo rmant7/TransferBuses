@@ -3,15 +3,15 @@ import * as yup from "yup";
 import { Formik } from "formik";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
+// import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+// import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
 import { uploadTransfer } from "../../services/data-service";
 import { useHistory } from "react-router-dom";
 import {
   InputLabel,
-  FormGroup,
+  // FormGroup,
   Checkbox,
   FormControlLabel,
   Grid,
@@ -30,6 +30,7 @@ import telegramIcon from "../DriverPage/telegramIcon.svg";
 import whatsAppIcon from "../DriverPage/whatsAppIcon.svg";
 import axios from "axios";
 import "yup-phone-lite";
+import { useStyles } from "../../utils/useStyles";
 
 const phoneRegExp =
   /^(?!\+.*\(.*\).*\-\-.*$)(?!\+.*\(.*\).*\-$)(([0-9]{0,4})?(\+[0-9]{1,3})?(\([0-9]{1,3})?(\)[0-9]{1})?([-0-9]{0,8})?([0-9]{0,1})?)$/;

@@ -53,6 +53,14 @@ export const useStyles = makeStyles(theme => ({
     marginRight: "15px",
   },
 
+  currSelect: {
+    color: "white",
+  },
+
+  langSelect: {
+    color: "white",
+  },
+
   //sidebar
   sidebarHeader: {
     position: "relative",
