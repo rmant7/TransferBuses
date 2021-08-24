@@ -45,7 +45,7 @@
         "Required": "Required field"
       },
       "phoneNumber": {
-        "Phone number is not valid": "Phone number is not valid",
+        "isNotValid": "Phone number is not valid",
         "Required": "Required field"
       },
       "places": {

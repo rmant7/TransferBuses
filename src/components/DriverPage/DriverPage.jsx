@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import * as yup from "yup";
-import { Formik } from "formik";
+import {Formik} from "formik";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
-import { uploadTransfer } from "../../services/data-service";
-import { useHistory } from "react-router-dom";
-import {
-  InputLabel,
-  FormGroup,
-  Checkbox,
-  FormControlLabel,
-  Grid,
-  MenuItem,
-  Paper,
-  Select,
-  Tooltip,
-} from "@material-ui/core";
+import {uploadTransfer} from "../../services/data-service";
+import {useHistory} from "react-router-dom";
+import {Checkbox, FormControlLabel, Grid, InputLabel, MenuItem, Paper, Select, Tooltip,} from "@material-ui/core";
 import cities_json from "../../cities.json";
 import i18n from "../../i18n";
-import { useSelector } from "react-redux";
-import { currencies } from "../../utils/currencies";
+import {useSelector} from "react-redux";
+import {currencies} from "../../utils/currencies";
 import vkIcon from "../DriverPage/vkIcon.svg";
 import viberIcon from "../DriverPage/viberIcon.svg";
 import telegramIcon from "../DriverPage/telegramIcon.svg";
@@ -31,12 +19,10 @@ import whatsAppIcon from "../DriverPage/whatsAppIcon.svg";
 import axios from "axios";
 import "yup-phone-lite";
 
-const phoneRegExp =
-  /^(?!\+.*\(.*\).*\-\-.*$)(?!\+.*\(.*\).*\-$)(([0-9]{0,4})?(\+[0-9]{1,3})?(\([0-9]{1,3})?(\)[0-9]{1})?([-0-9]{0,8})?([0-9]{0,1})?)$/;
 const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
   to: yup.string().required("to.Required"),
-  // time: yup.string().required("time.Required"),
+  date: yup.date().required("date.Required"), //!!! date, departureTime, and duration are conditionally reassigned later;
   departureTime: yup.string().required("departureTime.Required"),
   duration: yup.string().required("duration.Required"),
   places: yup
@@ -46,9 +32,8 @@ const schema = yup.object().shape({
     .required("places.Required"),
   phoneNumber: yup
     .string()
-    .phone()
-    .matches(phoneRegExp, "phoneNumber.Phone number is not valid")
-    .required("phoneNumber.Required"),
+    .required("phoneNumber.Required")
+    .phone(undefined, "phoneNumber.isNotValid"),
   price: yup.string().required("price.Required"),
 });
 
@@ -62,8 +47,8 @@ export default function DriverPage() {
 
   const cities = cities_json
     .reduce((acc, val) => {
-      acc.push({ id: val.ID, title: val.name });
-      acc.push({ id: val.ID, title: val["name_ru"] });
+      acc.push({id: val.ID, title: val.name});
+      acc.push({id: val.ID, title: val["name_ru"]});
       return acc;
     }, [])
     .sort((a, b) => (a.title < b.title ? -1 : 1));
@@ -93,12 +78,12 @@ export default function DriverPage() {
     navigator.geolocation.getCurrentPosition(geoSuccess);
   }, []);
 
+
   return (
     <div className={"container"}>
       <Formik
         initialValues={{
           date: new Date().toJSON().slice(0, 10),
-          // time: "",
           departureTime: "",
           phoneNumber: "",
           places: 1,
@@ -149,13 +134,23 @@ export default function DriverPage() {
             })
             .catch(error => {
               console.log(error);
-              setState({ error: error });
+              setState({error: error});
             });
         }}
         validationSchema={schema}
       >
         {props => {
-          console.log(props);
+          console.log("Formik props: ", props);
+
+          if (props.values.regularTrips) {
+            schema.fields.date = null
+            schema.fields.duration = null
+            schema.fields.departureTime = null
+          } else {
+            schema.fields.date = yup.date().required("date.Required")
+            schema.fields.departureTime = yup.string().required("departureTime.Required")
+            schema.fields.duration = yup.string().required("duration.Required")
+          }
 
           const handleSelectAllDaysChange = event => {
             console.log(event.target);
@@ -165,7 +160,7 @@ export default function DriverPage() {
               weekDays[weekDay] = {
                 selected: event.target.checked,
                 departureTime:
-                  props.values.regularTripsDays[weekDay].departureTime,
+                props.values.regularTripsDays[weekDay].departureTime,
               };
             });
 
@@ -183,15 +178,18 @@ export default function DriverPage() {
                 onChange={(e, v) => {
                   props.setFieldValue("from", v?.id || "");
                 }}
+                onBlur={props.handleBlur}
                 renderInput={params => (
                   <TextField
                     {...params}
                     label={i18n.t("From")}
                     margin="normal"
-                    error={props.errors.from ? true : false}
+                    error={Boolean(props.errors.from) && props.touched.from}
                     helperText={
-                      props.errors.from &&
-                      i18n.t(`form.errors.${props.errors.from}`)
+                      Boolean(props.errors.from) &&
+                      props.touched.from ?
+                        i18n.t(`form.errors.${props.errors.from}`) :
+                        " "
                     }
                   />
                 )}
@@ -201,6 +199,7 @@ export default function DriverPage() {
                 id="to"
                 name={"to"}
                 value={props.values.to}
+                onBlur={props.handleBlur}
                 onChange={(e, v) => {
                   props.setFieldValue("to", v?.id || "");
                 }}
@@ -209,10 +208,12 @@ export default function DriverPage() {
                     {...params}
                     label={i18n.t("To")}
                     margin="normal"
-                    error={props.errors.to ? true : false}
+                    error={Boolean(props.errors.to) && props.touched.to}
                     helperText={
-                      props.errors.to &&
-                      i18n.t(`form.errors.${props.errors.to}`)
+                      Boolean(props.errors.to) &&
+                      props.touched.to ?
+                        i18n.t(`form.errors.${props.errors.to}`) :
+                        " "
                     }
                   />
                 )}
@@ -229,7 +230,7 @@ export default function DriverPage() {
                 label={i18n.t("Regular trips")}
               />
               {props.values.regularTrips && (
-                <Paper variant="outlined" style={{ padding: "8px" }}>
+                <Paper variant="outlined" style={{padding: "8px"}}>
                   <Grid container direction={"column"}>
                     <FormControlLabel
                       control={
@@ -259,7 +260,7 @@ export default function DriverPage() {
                         >
                           <Grid item xs={9}>
                             <FormControlLabel
-                              style={{ marginLeft: "10px" }}
+                              style={{marginLeft: "10px"}}
                               control={
                                 <Checkbox
                                   id={
@@ -281,7 +282,6 @@ export default function DriverPage() {
                           <Grid item xs={3}>
                             <Tooltip title={i18n.t("Time")} placement="top">
                               <TextField
-                                // id={"departureTime" + weekDay}
                                 id={
                                   "regularTripsDays." +
                                   weekDay +
@@ -321,7 +321,14 @@ export default function DriverPage() {
                       type="date"
                       margin="normal"
                       fullWidth
-                      error={!!(props.errors.date && props.touched.date)}
+                      onBlur={props.handleBlur}
+                      error={Boolean(props.errors.date) && props.touched.date}
+                      helperText={
+                        Boolean(props.errors.date) &&
+                        props.touched.date ?
+                          i18n.t(`form.errors.${props.errors.date}`) :
+                          " "
+                      }
                       value={props.values.date}
                       onChange={props.handleChange}
                       inputProps={{
@@ -330,11 +337,6 @@ export default function DriverPage() {
                       InputLabelProps={{
                         shrink: true,
                       }}
-                      helperText={
-                        props.errors.date &&
-                        props.touched.date &&
-                        i18n.t(`form.errors.${props.errors.date}`)
-                      }
                     />
                   </Grid>
                   <Grid item xs={3}>
@@ -344,11 +346,13 @@ export default function DriverPage() {
                       type="time"
                       margin="normal"
                       fullWidth
-                      error={
-                        !!(
-                          props.errors.departureTime &&
-                          props.touched.departureTime
-                        )
+                      onBlur={props.handleBlur}
+                      error={Boolean(props.errors.departureTime) && props.touched.departureTime}
+                      helperText={
+                        Boolean(props.errors.departureTime) &&
+                        props.touched.departureTime ?
+                          i18n.t(`form.errors.${props.errors.departureTime}`) :
+                          " "
                       }
                       value={props.values.departureTime}
                       onChange={props.handleChange}
@@ -358,11 +362,6 @@ export default function DriverPage() {
                       InputLabelProps={{
                         shrink: true,
                       }}
-                      helperText={
-                        props.errors.departureTime &&
-                        props.touched.departureTime &&
-                        i18n.t(`form.errors.${props.errors.departureTime}`)
-                      }
                     />
                   </Grid>
                   <Grid item xs={3}>
@@ -373,16 +372,18 @@ export default function DriverPage() {
                       margin="normal"
                       fullWidth
                       value={props.values.duration}
-                      error={props.errors.duration && props.touched.duration}
+                      onBlur={props.handleBlur}
+                      error={Boolean(props.errors.duration) && props.touched.duration}
+                      helperText={
+                        Boolean(props.errors.duration) &&
+                        props.touched.duration ?
+                          i18n.t(`form.errors.${props.errors.duration}`) :
+                          " "
+                      }
                       onChange={props.handleChange}
                       InputLabelProps={{
                         shrink: true,
                       }}
-                      helperText={
-                        props.errors.duration &&
-                        props.touched.duration &&
-                        i18n.t(`form.errors.${props.errors.duration}`)
-                      }
                     />
                   </Grid>
                 </Grid>
@@ -402,48 +403,19 @@ export default function DriverPage() {
                     label={i18n.t("Phone number")}
                     placeholder={"+1234567890"}
                     margin="normal"
-                    error={
-                      props.errors.phoneNumber && props.touched.phoneNumber
-                    }
                     value={props.values.phoneNumber}
-                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    error={Boolean(props.errors.phoneNumber) && props.touched.phoneNumber}
                     helperText={
-                      props.errors.phoneNumber &&
-                      props.touched.phoneNumber &&
-                      i18n.t(`form.errors.${props.errors.phoneNumber}`)
+                      Boolean(props.errors.phoneNumber) &&
+                      props.touched.phoneNumber ?
+                      i18n.t(`form.errors.${props.errors.phoneNumber}`) :
+                        " "
                     }
+                    onChange={props.handleChange}
                   />
                 </Grid>
-                {/* Messenger */}
                 <Grid item xs={4}>
-                  {/* Checkboxes */}
-                  {/* <FormGroup aria-label="position" row>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={state.checkedB}
-                          // onChange={}
-                          name="checkedB"
-                          color="primary"
-                        />
-                      }
-                      labelPlacement="top"
-                      label="Telegram"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={state.checkedB}
-                          // onChange={}
-                          name="checkedB"
-                          color="primary"
-                        />
-                      }
-                      labelPlacement="top"
-                      label="WhatsApp"
-                    />
-                  </FormGroup> */}
-                  {/* Select */}
                   <InputLabel id="messengers">{i18n.t("Messenger")}</InputLabel>
                   <Select
                     className="select"
@@ -452,24 +424,23 @@ export default function DriverPage() {
                     name={"messengers"}
                     margin="normal"
                     disableUnderline
-                    onChange={({ target: { value } }) => {
+                    onChange={({target: {value}}) => {
                       setMessenger(value);
                     }}
                   >
                     <MenuItem value="Telegram">
-                      <img src={telegramIcon} alt="Telegram" />
+                      <img src={telegramIcon} alt="Telegram"/>
                     </MenuItem>
                     <MenuItem value="WhatsApp">
-                      <img src={whatsAppIcon} alt="WhatsApp" />
+                      <img src={whatsAppIcon} alt="WhatsApp"/>
                     </MenuItem>
                     <MenuItem value="VContacte">
-                      <img src={vkIcon} alt="VContakte" />
+                      <img src={vkIcon} alt="VContakte"/>
                     </MenuItem>
                     <MenuItem value="Viber">
-                      <img src={viberIcon} alt="Viber" />
+                      <img src={viberIcon} alt="Viber"/>
                     </MenuItem>
                   </Select>
-                  {/*  */}
                 </Grid>
               </Grid>
               <Grid container justifyContent="space-between">
@@ -484,22 +455,22 @@ export default function DriverPage() {
                     <TextField
                       value={props.values.price}
                       margin="normal"
-                      error={
-                        props.errors.price && props.touched.price ? true : false
-                      }
                       id="price"
                       label={i18n.t("Price")}
                       onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      error={Boolean(props.errors.price) && props.touched.price}
+                      helperText={
+                        Boolean(props.errors.price) &&
+                        props.touched.price ?
+                        i18n.t(`form.errors.${props.errors.price}`) :
+                          " "
+                      }
                       inputProps={{
                         min: 0,
                         type: "price",
                         "aria-labelledby": "input-slider",
                       }}
-                      helperText={
-                        props.errors.price &&
-                        props.touched.price &&
-                        i18n.t(`form.errors.${props.errors.price}`)
-                      }
                     />
                   </Grid>
                   <Grid item xs={4}>
@@ -511,6 +482,7 @@ export default function DriverPage() {
                       margin="normal"
                       disableUnderline
                       onChange={props.handleChange}
+                      label="currency"
                     >
                       {currencies.map(item => {
                         return (
@@ -556,8 +528,9 @@ export default function DriverPage() {
                 onChange={props.handleChange}
                 helperText={
                   props.errors.additionalInfo &&
-                  props.touched.additionalInfo &&
-                  i18n.t(`form.errors.${props.errors.additionalInfo}`)
+                  props.touched.additionalInfo ?
+                  i18n.t(`form.errors.${props.errors.additionalInfo}`) :
+                    " "
                 }
               />
               <div className={"submitBtn"}>

@@ -19,12 +19,12 @@ const Navbar = () => {
 
 
   const { i18n } = useTranslation();
-  const changeLanguage = (language) => {
-    i18n
-      .changeLanguage(language)
-      .then()
-      .catch((err) => console.error(err));
-  };
+  // const changeLanguage = (language) => {
+  //   i18n
+  //     .changeLanguage(language)
+  //     .then()
+  //     .catch((err) => console.error(err));
+  // };
 
   return (
     <AppBar position="fixed">
