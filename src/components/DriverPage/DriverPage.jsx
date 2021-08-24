@@ -55,12 +55,17 @@ const schema = yup.object().shape({
 
 export default function DriverPage() {
   const cur = useSelector(state => state.app.currency);
+  const classes = useStyles();
   const [rideCurrency, setRideCurrency] = useState(cur);
   const [messenger, setMessenger] = useState();
-  const [currentCity, setCurrentCity] = useState();
+  const [nearesttCity, setNearestCity] = useState();
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
 
   console.log("cur: ", cur);
   console.log("rideCurrency: ", rideCurrency);
+  console.log("Current latitude", latitude);
+  console.log("Current longitude", longitude);
 
   const cities = cities_json
     .reduce((acc, val) => {
@@ -75,6 +80,7 @@ export default function DriverPage() {
   const defaultProps = {
     options: cities,
     getOptionLabel: option => {
+      console.log(option.title);
       return option.title;
     },
   };
@@ -84,16 +90,50 @@ export default function DriverPage() {
     axios.get(URL).then(response => console.log(response.data));
   };
 
+  // !! Compute Distance Between current city and nearest City in AutoComplete "From".
+  // const getDefaultCity = () => {
+  //   // debugger;
+  //   let results = [];
+  //   cities_json.forEach(element => {
+  //     // debugger;
+  //     let elementLat = Math.round(element.latitude);
+  //     let currentLat = Math.round(latitude);
+  //     if (elementLat === currentLat) {
+  //       results.push({
+  //         ID: element.ID,
+  //         longitude: element.longitude,
+  //         name: element.name,
+  //       });
+  //     }
+  //     let minLongitude = 0;
+  //     results.forEach(element => {
+  //       debugger;
+  //       let elementLong = Math.abs(element.longitude);
+  //       let currentLong = Math.abs(longitude);
+  //       if (minLongitude > Math.abs(currentLong - elementLong)) {
+  //         minLongitude = currentLong - elementLong;
+  //       }
+  //     });
+  //   });
+  //   results.forEach(element => {});
+  // };
+
   useEffect(() => {
     let startPos;
     const geoSuccess = function (position) {
       startPos = position;
-      console.log("latitude", startPos.coords.latitude);
-      console.log("longitude", startPos.coords.longitude);
+      setLatitude(startPos.coords.latitude);
+      setLongitude(startPos.coords.longitude);
       getCity(startPos.coords.latitude, startPos.coords.longitude);
     };
     navigator.geolocation.getCurrentPosition(geoSuccess);
   }, []);
+
+  useEffect(() => {
+    if (latitude && longitude) {
+      // getDefaultCity();
+    }
+  });
 
   return (
     <div className={"container"}>
@@ -102,6 +142,7 @@ export default function DriverPage() {
           date: new Date().toJSON().slice(0, 10),
           // time: "",
           departureTime: "",
+          // from: "",
           phoneNumber: "",
           places: 1,
           price: "",
@@ -157,7 +198,7 @@ export default function DriverPage() {
         validationSchema={schema}
       >
         {props => {
-          console.log(props);
+          console.log("props", props);
 
           const handleSelectAllDaysChange = event => {
             console.log(event.target);
@@ -181,15 +222,14 @@ export default function DriverPage() {
                 {...defaultProps}
                 id="from"
                 name={"from"}
-                defaultValue={currentCity}
                 value={props.values.from}
                 onChange={(e, v) => {
-                  props.setFieldValue("form", currentCity, v?.id || "");
+                  props.setFieldValue("from", v?.id || "");
                 }}
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label={currentCity ? currentCity : i18n.t("From")}
+                    label={i18n.t("From")}
                     margin="normal"
                     error={props.errors.from ? true : false}
                     helperText={
