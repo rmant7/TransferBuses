@@ -31,6 +31,7 @@ import whatsAppIcon from "../DriverPage/whatsAppIcon.svg";
 import axios from "axios";
 import "yup-phone-lite";
 import { useStyles } from "../../utils/useStyles";
+import { Container } from "@material-ui/core";
 
 const phoneRegExp =
   /^(?!\+.*\(.*\).*\-\-.*$)(?!\+.*\(.*\).*\-$)(([0-9]{0,4})?(\+[0-9]{1,3})?(\([0-9]{1,3})?(\)[0-9]{1})?([-0-9]{0,8})?([0-9]{0,1})?)$/;
@@ -91,32 +92,46 @@ export default function DriverPage() {
   };
 
   // !! Compute Distance Between current city and nearest City in AutoComplete "From".
-  // const getDefaultCity = () => {
-  //   // debugger;
-  //   let results = [];
-  //   cities_json.forEach(element => {
-  //     // debugger;
-  //     let elementLat = Math.round(element.latitude);
-  //     let currentLat = Math.round(latitude);
-  //     if (elementLat === currentLat) {
-  //       results.push({
-  //         ID: element.ID,
-  //         longitude: element.longitude,
-  //         name: element.name,
-  //       });
-  //     }
-  //     let minLongitude = 0;
-  //     results.forEach(element => {
-  //       debugger;
-  //       let elementLong = Math.abs(element.longitude);
-  //       let currentLong = Math.abs(longitude);
-  //       if (minLongitude > Math.abs(currentLong - elementLong)) {
-  //         minLongitude = currentLong - elementLong;
-  //       }
-  //     });
-  //   });
-  //   results.forEach(element => {});
-  // };
+  const getDefaultCity = () => {
+    // debugger;
+    const deg2rad = deg => {
+      return deg * (Math.PI / 180);
+    };
+    let results = [];
+    let radius = 6371; //!! Radius of the earth in km
+    cities_json.forEach(element => {
+      let dLat = deg2rad(latitude - element.latitude);
+      let dLng = deg2rad(longitude - element.longitude);
+      let a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(latitude)) *
+          Math.cos(deg2rad(element.latitude)) *
+          Math.sin(dLng / 2) *
+          Math.sin(dLng / 2);
+      let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      let d = radius * c;
+      results.push({
+        ID: element.ID,
+        name: element.name,
+        distance: d,
+      });
+    });
+    let nearestCity = {
+      ID: results[0].ID,
+      name: results[0].name,
+      distance: results[0].distance,
+    };
+    results.forEach(element => {
+      if (nearestCity.distance < element.distance) {
+        let nearestCity = {
+          ID: element.ID,
+          name: element.name,
+          distance: element.distance,
+        };
+      }
+    });
+    console.log("nearestCity", nearestCity);
+  };
 
   useEffect(() => {
     let startPos;
@@ -131,12 +146,12 @@ export default function DriverPage() {
 
   useEffect(() => {
     if (latitude && longitude) {
-      // getDefaultCity();
+      getDefaultCity();
     }
   });
 
   return (
-    <div className={"container"}>
+    <div className="container">
       <Formik
         initialValues={{
           date: new Date().toJSON().slice(0, 10),
@@ -273,7 +288,13 @@ export default function DriverPage() {
               />
               {props.values.regularTrips && (
                 <Paper variant="outlined" style={{ padding: "8px" }}>
-                  <Grid container direction={"column"}>
+                  <Grid
+                    container
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{ minHeight: "100vh" }}
+                  >
                     <FormControlLabel
                       control={
                         <Checkbox
@@ -487,7 +508,7 @@ export default function DriverPage() {
                     />
                   </FormGroup> */}
                   {/* Select */}
-                  <InputLabel id="messengers">{i18n.t("Messenger")}</InputLabel>
+                  {/* <InputLabel id="messengers">{i18n.t("Messenger")}</InputLabel>
                   <Select
                     className="select"
                     id="messengers"
@@ -505,13 +526,10 @@ export default function DriverPage() {
                     <MenuItem value="WhatsApp">
                       <img src={whatsAppIcon} alt="WhatsApp" />
                     </MenuItem>
-                    <MenuItem value="VContacte">
-                      <img src={vkIcon} alt="VContakte" />
-                    </MenuItem>
                     <MenuItem value="Viber">
                       <img src={viberIcon} alt="Viber" />
                     </MenuItem>
-                  </Select>
+                  </Select> */}
                   {/*  */}
                 </Grid>
               </Grid>
@@ -589,7 +607,7 @@ export default function DriverPage() {
                 name="additionalInfo"
                 fullWidth
                 multiline
-                rows={4}
+                rows={2}
                 error={
                   props.errors.additionalInfo && props.touched.additionalInfo
                     ? true

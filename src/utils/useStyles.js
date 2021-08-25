@@ -122,7 +122,10 @@ export const useStyles = makeStyles(theme => ({
   },
   //Contact page
   contacts: {
-    padding: "60px",
+    // minHeight: "100vh",
+    // display: "flex",
+
+    
   },
 }));
 

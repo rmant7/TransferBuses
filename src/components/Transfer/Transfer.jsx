@@ -11,53 +11,66 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import "./Transfer.css";
 import i18n from "i18next";
-import {WeekDayIcon} from "../WeekDayIcon/WeekDayIcon";
-import {useSelector} from "react-redux";
-import {currencies} from "../../utils/currencies";
-import {Tooltip} from "@material-ui/core";
+import { WeekDayIcon } from "../WeekDayIcon/WeekDayIcon";
+import { useSelector } from "react-redux";
+import { currencies } from "../../utils/currencies";
+import { Tooltip } from "@material-ui/core";
 import cities from "../../cities.json";
 
-export default function Transfer({transfer}) {
-  const globalCurrencyCode = useSelector(state => state.app.currency)
-  const lang = useSelector(state => state.app.lang)
-  const cityFrom = cities.find(city => city.ID === transfer.from)
-  const cityTo = cities.find(city => city.ID === transfer.to)
-  let priceNum
-  let priceToDisplay
-
+export default function Transfer({ transfer }) {
+  const globalCurrencyCode = useSelector(state => state.app.currency);
+  const lang = useSelector(state => state.app.lang);
+  const cityFrom = cities.find(city => city.ID === transfer.from);
+  const cityTo = cities.find(city => city.ID === transfer.to);
+  let priceNum;
+  let priceToDisplay;
 
   // check if currency selected in app (globalCurrency)
-  const globalCurrency = currencies.find(cur => cur.code === globalCurrencyCode);
-  const transferCurrency = currencies.find(cur => cur.code === transfer.currency) ||
+  const globalCurrency = currencies.find(
+    cur => cur.code === globalCurrencyCode
+  );
+  const transferCurrency =
+    currencies.find(cur => cur.code === transfer.currency) ||
     currencies.find(cur => cur.code === "EUR");
 
-  if (currencies.map(cur => cur.code).includes(transfer.currency)) {  // IF transfer.currency IS IN THE currencies ARRAY
+  if (currencies.map(cur => cur.code).includes(transfer.currency)) {
+    // IF transfer.currency IS IN THE currencies ARRAY
 
-    if (transfer.currency === globalCurrencyCode) {  // NO NEED TO RECALCULATE IF CURRENCIES ARE EQUAL
-      priceNum = transfer.price
+    if (transfer.currency === globalCurrencyCode) {
+      // NO NEED TO RECALCULATE IF CURRENCIES ARE EQUAL
+      priceNum = transfer.price;
     } else {
-      priceNum = Math.round(
-        (transfer.price * globalCurrency.oneEuroRate / transferCurrency.oneEuroRate + Number.EPSILON) * 100) / 100;
+      priceNum =
+        Math.round(
+          ((transfer.price * globalCurrency.oneEuroRate) /
+            transferCurrency.oneEuroRate +
+            Number.EPSILON) *
+            100
+        ) / 100;
     }
-  } else { // IF transfer.currency IS not IN THE currencies ARRAY, ASSUME IT IS EURO
-    if (globalCurrencyCode === 'EUR') {
-      priceNum = transfer.price
+  } else {
+    // IF transfer.currency IS not IN THE currencies ARRAY, ASSUME IT IS EURO
+    if (globalCurrencyCode === "EUR") {
+      priceNum = transfer.price;
     } else {
-      priceNum = Math.round((transfer.price * globalCurrency.oneEuroRate + Number.EPSILON) * 100) / 100;
+      priceNum =
+        Math.round(
+          (transfer.price * globalCurrency.oneEuroRate + Number.EPSILON) * 100
+        ) / 100;
     }
   }
 
-  if (globalCurrencyCode === 'USD') {
-    priceToDisplay = globalCurrency.r2rSymbol + priceNum
+  if (globalCurrencyCode === "USD") {
+    priceToDisplay = globalCurrency.r2rSymbol + priceNum;
   } else {
-    priceToDisplay = priceNum + ' ' + globalCurrency.r2rSymbol
+    priceToDisplay = priceNum + " " + globalCurrency.r2rSymbol;
   }
 
   return (
     <div className="transfer">
       <Accordion>
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon/>}
+          expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
@@ -70,9 +83,9 @@ export default function Transfer({transfer}) {
               justifyContent="flex-start"
             >
               <Paper className={"paper"}>
-                {cityFrom["name" + (lang === "ru" ? "_ru": "" )]}
-                <ArrowForwardSharpIcon style={{marginBottom: "-6px"}}/>
-                {cityTo["name" + (lang === "ru" ? "_ru": "" )]}
+                {cityFrom["name" + (lang === "ru" ? "_ru" : "")]}
+                <ArrowForwardSharpIcon style={{ marginBottom: "-6px" }} />
+                {cityTo["name" + (lang === "ru" ? "_ru" : "")]}
               </Paper>
             </Grid>
 
@@ -96,7 +109,12 @@ export default function Transfer({transfer}) {
               justifyContent="flex-end"
             >
               <Tooltip
-                title={"Price in carrier's currency: " + transfer.price + " " + transfer.currency}
+                title={
+                  "Price in carrier's currency: " +
+                  transfer.price +
+                  " " +
+                  transfer.currency
+                }
                 placement="top"
                 arrow
               >
@@ -109,8 +127,7 @@ export default function Transfer({transfer}) {
           </Grid>
         </AccordionSummary>
         <AccordionDetails>
-
-          <hr/>
+          <hr />
           <Grid container spacing={2} justifyContent="space-around">
             {!transfer.regularTrips && (
               <Grid
@@ -137,13 +154,13 @@ export default function Transfer({transfer}) {
                 justifyContent="flex-start"
               >
                 <Paper className={"paper"}>
-                  <div style={{marginBottom: "8px"}}>
+                  <div style={{ marginBottom: "8px" }}>
                     {i18n.t("Regular trips")}
                   </div>
                   <Grid container spacing="0">
                     {Object.keys(transfer.regularTripsDays)
                       .sort()
-                      .map((weekDay) => {
+                      .map(weekDay => {
                         return (
                           <WeekDayIcon
                             name={weekDay}
@@ -165,21 +182,20 @@ export default function Transfer({transfer}) {
             >
               <Paper className={"paper"}>
                 {i18n.t("Driver's phone number")}: {transfer.phoneNumber}{" "}
-                <RingVolumeIcon fontSize="small"/>
+                <RingVolumeIcon fontSize="small" />
               </Paper>
             </Grid>
             <Grid
               container
               item
               xs={12}
-
               justifyContent="flex-start"
               alignItems="center"
             >
-              <Paper className={"paper"}>
+              {/* <Paper className={"paper"}>
                 {i18n.t("Places")}: {transfer.places}
                 <AirlineSeatReclineNormalIcon fontSize="small"/>
-              </Paper>
+              </Paper> */}
 
               <Paper className={"paper"}>
                 {i18n.t("A parcel delivery")}:{" "}

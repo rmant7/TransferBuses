@@ -1,8 +1,9 @@
 .container {
   width: 300px;
+
   margin: 60px auto 10px;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   flex-direction: column;
   justify-content: space-around;
   padding: 5px;
@@ -16,8 +17,4 @@
 
 .hidden {
   display: none;
-}
-
-.select {
-  color: black !important;
 }
