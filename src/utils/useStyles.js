@@ -1,8 +1,12 @@
 import { makeStyles } from '@material-ui/core';
 import { createTheme } from '@material-ui/core';
 
+// ! Color of Nav header and Nav Sidebar
+const mainColor = "#536dfe";
+
 export const useStyles = makeStyles(theme => ({
   ///Material ui default classes
+
   list: {
     width: 250,
   },
@@ -10,7 +14,7 @@ export const useStyles = makeStyles(theme => ({
     width: "auto",
   },
   paper: {
-    background: "#536dfe",
+    background: `${mainColor}`,
   },
   icon: {
     fill: "white",
@@ -75,12 +79,12 @@ export const useStyles = makeStyles(theme => ({
     color: "rgb(255 87 34)",
     textAlign: "center",
   },
-  caption__wrapper:{
+  caption__wrapper: {
     width: "50vvw",
     margin: "50vx",
-    borderRadius: "50px"
+    borderRadius: "50px",
   },
-  caption :{
+  caption: {
     // textAlign: "center",
   },
   caption__img: {
@@ -101,7 +105,7 @@ export const useStyles = makeStyles(theme => ({
   sidebarHeader: {
     position: "relative",
     // BackgroundColor: "#536dfe",
-    backgroundColor: "#536dfe",
+    backgroundColor: `${mainColor}`,
     color: "#fff",
     padding: "1rem 1rem 1rem 1rem",
     display: "flex",
@@ -124,8 +128,6 @@ export const useStyles = makeStyles(theme => ({
   contacts: {
     // minHeight: "100vh",
     // display: "flex",
-
-    
   },
 }));
 
@@ -147,7 +149,7 @@ export const theme = createTheme({
     primary: {
       // main: "#536dfe",
       // main: "#ff5722",
-      main: "#536dfe",
+      main: `${mainColor}`,
     },
     secondary: {
       main: "#607d8b",
