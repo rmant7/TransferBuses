@@ -11,7 +11,7 @@ const Contacts = () => {
       direction="column"
       alignItems="center"
       justify="center"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "100vh", padding: "0" }}
     >
       <Grid item xs={12}>
         <Typography component="h3">Contacts:</Typography>

@@ -1,33 +1,48 @@
-import Cheaptrip from "../../components/CheaptripCommercial/Cheaptrip";
-import "./MainPage.css";
-import { useHistory } from "react-router-dom";
 import i18n from "../../i18n";
-import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
+import { Button, Grid, Container } from "@material-ui/core";
 import { useStyles } from "../../utils/useStyles";
+import Cheaptrip from "../../components/CheaptripCommercial/Cheaptrip";
 
 export default function MainPage() {
   const classes = useStyles();
   const history = useHistory();
   return (
-    <div className="MainPage">
-      <Button
-        color="secondary"
-        variant="contained"
-        fullWidth
-        onClick={() => history.push("/viewRoutes")}
+    <Container maxWidth="xl">
+      <Grid
+        container
+        spacing={3}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        className={classes.mainPage}
       >
-        {i18n.t("I'm a passenger")}
-      </Button>
-      <Button
-        color="secondary"
-        variant="contained"
-        fullWidth
-        onClick={() => history.push("/addTransfer")}
-      >
-        {i18n.t("I'm a driver")}
-      </Button>
-      {/* <CheapTripCard /> */}
-      <Cheaptrip />
-    </div>
+        <Grid item xs={12}>
+          <Button
+            className={classes.mainPage__btn}
+            color="secondary"
+            variant="contained"
+            fullWidth
+            onClick={() => history.push("/viewRoutes")}
+          >
+            {i18n.t("I'm a passenger")}
+          </Button>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Button
+            className={classes.mainPage__btn}
+            color="secondary"
+            variant="contained"
+            fullWidth
+            onClick={() => history.push("/addTransfer")}
+          >
+            {i18n.t("I'm a driver")}
+          </Button>
+        </Grid>
+
+        <Cheaptrip />
+      </Grid>
+    </Container>
   );
 }

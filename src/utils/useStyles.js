@@ -5,7 +5,12 @@ import { createTheme } from '@material-ui/core';
 const mainColor = "#536dfe";
 
 export const useStyles = makeStyles(theme => ({
-  ///Material ui default classes
+  //!! Material ui default classes
+  
+  // !! Top padding modifier.
+  topPadding: {
+    paddingTop: "56px",
+  },
 
   list: {
     width: 250,
@@ -19,7 +24,18 @@ export const useStyles = makeStyles(theme => ({
   icon: {
     fill: "white",
   },
-  /// Navbar
+
+  // !! MainPage
+
+  mainPage: {
+    paddingTop: "56px",
+    minHeight: "100vh",
+  },
+  mainPage__btn: {
+    minWidth: "280px",
+  },
+
+  //!! Navbar
   nav: {
     display: "flex",
     alignItems: "center",
@@ -58,35 +74,26 @@ export const useStyles = makeStyles(theme => ({
   },
 
   currSelect: {
-    color: "white",
+    color: "#ffffff",
   },
 
   langSelect: {
-    color: "white",
+    color: "#ffffff",
   },
 
-  //Cheaptrip commercial.
-  cheaptrip: {
-    // display: "flex",
-    // flexDirection: "column",
-    // alignItems: "center",
-    display: "grid",
-    // gridTemplateRows: "4vh 40vh 5vh",
-    gap: "1vh",
-    alignItems: "center",
-  },
+  // !! Cheaptrip commercial.
+  cheaptrip: {},
   header: {
+    fontSize: "28px",
     color: "rgb(255 87 34)",
     textAlign: "center",
   },
   caption__wrapper: {
-    width: "50vvw",
+    width: "50vw",
     margin: "50vx",
     borderRadius: "50px",
   },
-  caption: {
-    // textAlign: "center",
-  },
+
   caption__img: {
     margin: "0 auto",
     width: "70%",
@@ -97,14 +104,12 @@ export const useStyles = makeStyles(theme => ({
     fontSize: "calc(16px + 16 * (100vw / 1920))",
     backgroundColor: "rgb(255 87 34)",
     color: "white",
-    // fontStyle: "roboto",
     padding: "0.5rem",
   },
 
-  //Sidebar
+  //!! Sidebar
   sidebarHeader: {
     position: "relative",
-    // BackgroundColor: "#536dfe",
     backgroundColor: `${mainColor}`,
     color: "#fff",
     padding: "1rem 1rem 1rem 1rem",
@@ -124,11 +129,8 @@ export const useStyles = makeStyles(theme => ({
     color: "#fff",
     width: "200px",
   },
-  //Contact page
-  contacts: {
-    // minHeight: "100vh",
-    // display: "flex",
-  },
+  //!! Contact page
+  contacts: {},
 }));
 
 export const theme = createTheme({
