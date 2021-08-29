@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { getTransfers } from "../../services/data-service";
 import TransfersList from "../TransfersList/TransfersList";
-import "./PassengerPage.css";
+import { Grid, Container } from "@material-ui/core";
+import { useStyles } from "../../utils/useStyles";
+// import "./PassengerPage.css";
 
 export default function PassengerPage() {
+  const classes = useStyles();
   const [transfers, setTransfers] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -15,9 +18,9 @@ export default function PassengerPage() {
   }, []);
 
   return (
-    <div className="PassengerPage">
+    <Container maxWidth="xl" className={classes.topPadding}>
       {loading && <h2>Loading...</h2>}
       {!loading && <TransfersList transfers={transfers} />}
-    </div>
+    </Container>
   );
 }

@@ -24,6 +24,7 @@ const LanguageSelector = () => {
   return (
     <FormControl>
       <Select
+        className={classes.langSelect}
         inputProps={{
           classes: {
             icon: classes.icon,

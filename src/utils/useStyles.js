@@ -1,8 +1,17 @@
 import { makeStyles } from '@material-ui/core';
 import { createTheme } from '@material-ui/core';
 
+// ! Color of Nav header and Nav Sidebar
+const mainColor = "#536dfe";
+
 export const useStyles = makeStyles(theme => ({
-  ///material ui default classes
+  //!! Material ui default classes
+  
+  // !! Top padding modifier.
+  topPadding: {
+    paddingTop: "56px",
+  },
+
   list: {
     width: 250,
   },
@@ -10,12 +19,23 @@ export const useStyles = makeStyles(theme => ({
     width: "auto",
   },
   paper: {
-    background: "#ff5722",
+    background: `${mainColor}`,
   },
   icon: {
     fill: "white",
   },
-  /// header
+
+  // !! MainPage
+
+  mainPage: {
+    paddingTop: "56px",
+    minHeight: "100vh",
+  },
+  mainPage__btn: {
+    minWidth: "280px",
+  },
+
+  //!! Navbar
   nav: {
     display: "flex",
     alignItems: "center",
@@ -53,11 +73,44 @@ export const useStyles = makeStyles(theme => ({
     marginRight: "15px",
   },
 
-  //sidebar
+  currSelect: {
+    color: "#ffffff",
+  },
+
+  langSelect: {
+    color: "#ffffff",
+  },
+
+  // !! Cheaptrip commercial.
+  cheaptrip: {},
+  header: {
+    fontSize: "28px",
+    color: "rgb(255 87 34)",
+    textAlign: "center",
+  },
+  caption__wrapper: {
+    width: "50vw",
+    margin: "50vx",
+    borderRadius: "50px",
+  },
+
+  caption__img: {
+    margin: "0 auto",
+    width: "70%",
+    display: "block",
+  },
+  description: {
+    textAlign: "center",
+    fontSize: "calc(16px + 16 * (100vw / 1920))",
+    backgroundColor: "rgb(255 87 34)",
+    color: "white",
+    padding: "0.5rem",
+  },
+
+  //!! Sidebar
   sidebarHeader: {
     position: "relative",
-    // backgroundColor: "#536dfe",
-    backgroundColor: "#ff5722",
+    backgroundColor: `${mainColor}`,
     color: "#fff",
     padding: "1rem 1rem 1rem 1rem",
     display: "flex",
@@ -76,10 +129,8 @@ export const useStyles = makeStyles(theme => ({
     color: "#fff",
     width: "200px",
   },
-  //contact page
-  contacts: {
-    padding: "60px",
-  },
+  //!! Contact page
+  contacts: {},
 }));
 
 export const theme = createTheme({
@@ -100,7 +151,7 @@ export const theme = createTheme({
     primary: {
       // main: "#536dfe",
       // main: "#ff5722",
-      main: "#448aff",
+      main: `${mainColor}`,
     },
     secondary: {
       main: "#607d8b",

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import './App.css';
+// import './App.css';
 import { AppRouter, Navbar } from './components';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';

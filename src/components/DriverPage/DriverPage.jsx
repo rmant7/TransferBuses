@@ -1,23 +1,37 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import * as yup from "yup";
-import {Formik} from "formik";
+import { Formik } from "formik";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+// import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+// import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
-import {uploadTransfer} from "../../services/data-service";
-import {useHistory} from "react-router-dom";
-import {Checkbox, FormControlLabel, Grid, InputLabel, MenuItem, Paper, Select, Tooltip,} from "@material-ui/core";
+import { uploadTransfer } from "../../services/data-service";
+import { useHistory } from "react-router-dom";
+import {
+  InputLabel,
+  // FormGroup,
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  MenuItem,
+  Paper,
+  Select,
+  Tooltip,
+} from "@material-ui/core";
 import cities_json from "../../cities.json";
 import i18n from "../../i18n";
-import {useSelector} from "react-redux";
-import {currencies} from "../../utils/currencies";
+import { useSelector } from "react-redux";
+import { currencies } from "../../utils/currencies";
 import vkIcon from "../DriverPage/vkIcon.svg";
 import viberIcon from "../DriverPage/viberIcon.svg";
 import telegramIcon from "../DriverPage/telegramIcon.svg";
 import whatsAppIcon from "../DriverPage/whatsAppIcon.svg";
 import axios from "axios";
 import "yup-phone-lite";
+import { useStyles } from "../../utils/useStyles";
+import { Container } from "@material-ui/core";
 
 const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
@@ -39,16 +53,22 @@ const schema = yup.object().shape({
 
 export default function DriverPage() {
   const cur = useSelector(state => state.app.currency);
+  const classes = useStyles();
   const [rideCurrency, setRideCurrency] = useState(cur);
   const [messenger, setMessenger] = useState();
+  const [nearesttCity, setNearestCity] = useState();
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
 
   console.log("cur: ", cur);
   console.log("rideCurrency: ", rideCurrency);
+  console.log("Current latitude", latitude);
+  console.log("Current longitude", longitude);
 
   const cities = cities_json
     .reduce((acc, val) => {
-      acc.push({id: val.ID, title: val.name});
-      acc.push({id: val.ID, title: val["name_ru"]});
+      acc.push({ id: val.ID, title: val.name });
+      acc.push({ id: val.ID, title: val["name_ru"] });
       return acc;
     }, [])
     .sort((a, b) => (a.title < b.title ? -1 : 1));
@@ -58,29 +78,77 @@ export default function DriverPage() {
   const defaultProps = {
     options: cities,
     getOptionLabel: option => {
+      console.log(option.title);
       return option.title;
     },
   };
 
   const getCity = (lat, long) => {
-    const URL = ` https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}&accept-language=en`;
-    axios.get(URL).then(response => console.log(response));
+    const URL = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}&accept-language=en`;
+    axios.get(URL).then(response => console.log(response.data));
+  };
+
+  // !! Compute Distance Between current city and nearest City in AutoComplete "From".
+  const getDefaultCity = () => {
+    // debugger;
+    const deg2rad = deg => {
+      return deg * (Math.PI / 180);
+    };
+    let results = [];
+    let radius = 6371; //!! Radius of the earth in km
+    cities_json.forEach(element => {
+      let dLat = deg2rad(latitude - element.latitude);
+      let dLng = deg2rad(longitude - element.longitude);
+      let a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(latitude)) *
+          Math.cos(deg2rad(element.latitude)) *
+          Math.sin(dLng / 2) *
+          Math.sin(dLng / 2);
+      let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      let d = radius * c;
+      results.push({
+        ID: element.ID,
+        name: element.name,
+        distance: d,
+      });
+    });
+    let nearestCity = {
+      ID: results[0].ID,
+      name: results[0].name,
+      distance: results[0].distance,
+    };
+    results.forEach(element => {
+      if (nearestCity.distance < element.distance) {
+        let nearestCity = {
+          ID: element.ID,
+          name: element.name,
+          distance: element.distance,
+        };
+      }
+    });
+    console.log("nearestCity", nearestCity);
   };
 
   useEffect(() => {
     let startPos;
     const geoSuccess = function (position) {
       startPos = position;
-      console.log("latitude", startPos.coords.latitude);
-      console.log("longitude", startPos.coords.longitude);
+      setLatitude(startPos.coords.latitude);
+      setLongitude(startPos.coords.longitude);
       getCity(startPos.coords.latitude, startPos.coords.longitude);
     };
     navigator.geolocation.getCurrentPosition(geoSuccess);
   }, []);
 
+  useEffect(() => {
+    if (latitude && longitude) {
+      getDefaultCity();
+    }
+  });
 
   return (
-    <div className={"container"}>
+    <div className="container">
       <Formik
         initialValues={{
           date: new Date().toJSON().slice(0, 10),
@@ -134,7 +202,7 @@ export default function DriverPage() {
             })
             .catch(error => {
               console.log(error);
-              setState({error: error});
+              setState({ error: error });
             });
         }}
         validationSchema={schema}
@@ -160,7 +228,7 @@ export default function DriverPage() {
               weekDays[weekDay] = {
                 selected: event.target.checked,
                 departureTime:
-                props.values.regularTripsDays[weekDay].departureTime,
+                  props.values.regularTripsDays[weekDay].departureTime,
               };
             });
 
@@ -230,8 +298,14 @@ export default function DriverPage() {
                 label={i18n.t("Regular trips")}
               />
               {props.values.regularTrips && (
-                <Paper variant="outlined" style={{padding: "8px"}}>
-                  <Grid container direction={"column"}>
+                <Paper variant="outlined" style={{ padding: "8px" }}>
+                  <Grid
+                    container
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{ minHeight: "100vh" }}
+                  >
                     <FormControlLabel
                       control={
                         <Checkbox
@@ -260,7 +334,7 @@ export default function DriverPage() {
                         >
                           <Grid item xs={9}>
                             <FormControlLabel
-                              style={{marginLeft: "10px"}}
+                              style={{ marginLeft: "10px" }}
                               control={
                                 <Checkbox
                                   id={
@@ -415,8 +489,37 @@ export default function DriverPage() {
                     onChange={props.handleChange}
                   />
                 </Grid>
+                {/* Messenger */}
                 <Grid item xs={4}>
-                  <InputLabel id="messengers">{i18n.t("Messenger")}</InputLabel>
+                  {/* Checkboxes */}
+                  {/* <FormGroup aria-label="position" row>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={state.checkedB}
+                          // onChange={}
+                          name="checkedB"
+                          color="primary"
+                        />
+                      }
+                      labelPlacement="top"
+                      label="Telegram"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={state.checkedB}
+                          // onChange={}
+                          name="checkedB"
+                          color="primary"
+                        />
+                      }
+                      labelPlacement="top"
+                      label="WhatsApp"
+                    />
+                  </FormGroup> */}
+                  {/* Select */}
+                  {/* <InputLabel id="messengers">{i18n.t("Messenger")}</InputLabel>
                   <Select
                     className="select"
                     id="messengers"
@@ -424,23 +527,21 @@ export default function DriverPage() {
                     name={"messengers"}
                     margin="normal"
                     disableUnderline
-                    onChange={({target: {value}}) => {
+                    onChange={({ target: { value } }) => {
                       setMessenger(value);
                     }}
                   >
                     <MenuItem value="Telegram">
-                      <img src={telegramIcon} alt="Telegram"/>
+                      <img src={telegramIcon} alt="Telegram" />
                     </MenuItem>
                     <MenuItem value="WhatsApp">
-                      <img src={whatsAppIcon} alt="WhatsApp"/>
-                    </MenuItem>
-                    <MenuItem value="VContacte">
-                      <img src={vkIcon} alt="VContakte"/>
+                      <img src={whatsAppIcon} alt="WhatsApp" />
                     </MenuItem>
                     <MenuItem value="Viber">
-                      <img src={viberIcon} alt="Viber"/>
+                      <img src={viberIcon} alt="Viber" />
                     </MenuItem>
-                  </Select>
+                  </Select> */}
+                  {/*  */}
                 </Grid>
               </Grid>
               <Grid container justifyContent="space-between">
@@ -518,7 +619,7 @@ export default function DriverPage() {
                 name="additionalInfo"
                 fullWidth
                 multiline
-                rows={4}
+                rows={2}
                 error={
                   props.errors.additionalInfo && props.touched.additionalInfo
                     ? true
