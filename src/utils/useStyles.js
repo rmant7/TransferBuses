@@ -6,10 +6,10 @@ const mainColor = "#536dfe";
 
 export const useStyles = makeStyles(theme => ({
   //!! Material ui default classes
-  
+
   // !! Top padding modifier.
   topPadding: {
-    paddingTop: "56px",
+    paddingTop: "80px",
   },
 
   list: {
@@ -25,10 +25,16 @@ export const useStyles = makeStyles(theme => ({
     fill: "white",
   },
 
+  // !! DrivePage
+
+  drivePage: {
+    maxWidth: "300px",
+    paddingTop: "80px",
+  },
+
   // !! MainPage
 
   mainPage: {
-    paddingTop: "56px",
     minHeight: "100vh",
   },
   mainPage__btn: {
@@ -82,29 +88,14 @@ export const useStyles = makeStyles(theme => ({
   },
 
   // !! Cheaptrip commercial.
-  cheaptrip: {},
-  header: {
-    fontSize: "28px",
-    color: "rgb(255 87 34)",
-    textAlign: "center",
-  },
-  caption__wrapper: {
-    width: "50vw",
-    margin: "50vx",
-    borderRadius: "50px",
-  },
 
-  caption__img: {
-    margin: "0 auto",
-    width: "70%",
-    display: "block",
-  },
-  description: {
-    textAlign: "center",
-    fontSize: "calc(16px + 16 * (100vw / 1920))",
+  ctDescription: {
+    padding: "0.5rem",
+    maxWidth: "270px",
+    borderRadius: "1rem",
+    fontSize: "calc(18px + 14 * (100vw / 1920))",
     backgroundColor: "rgb(255 87 34)",
     color: "white",
-    padding: "0.5rem",
   },
 
   //!! Sidebar

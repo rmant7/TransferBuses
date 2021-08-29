@@ -88,46 +88,66 @@ export default function DriverPage() {
     axios.get(URL).then(response => console.log(response.data));
   };
 
-  // !! Compute Distance Between current city and nearest City in AutoComplete "From".
+  // !! Compute Distance Between current city and nearest City in AutoComplete "Form".
   const getDefaultCity = () => {
-    // debugger;
-    const deg2rad = deg => {
-      return deg * (Math.PI / 180);
-    };
-    let results = [];
-    let radius = 6371; //!! Radius of the earth in km
     cities_json.forEach(element => {
-      let dLat = deg2rad(latitude - element.latitude);
-      let dLng = deg2rad(longitude - element.longitude);
-      let a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(deg2rad(latitude)) *
-          Math.cos(deg2rad(element.latitude)) *
-          Math.sin(dLng / 2) *
-          Math.sin(dLng / 2);
-      let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      let d = radius * c;
-      results.push({
-        ID: element.ID,
-        name: element.name,
-        distance: d,
-      });
-    });
-    let nearestCity = {
-      ID: results[0].ID,
-      name: results[0].name,
-      distance: results[0].distance,
-    };
-    results.forEach(element => {
-      if (nearestCity.distance < element.distance) {
-        let nearestCity = {
-          ID: element.ID,
-          name: element.name,
-          distance: element.distance,
+      // debugger;
+      let absLat = Math.round(latitude);
+      let elementAbsLat = Math.round(element.latitude);
+      let absLng = Math.round(longitude);
+      let elementAbsLng = Math.round(element.longitude);
+      if (absLat === elementAbsLat && absLng === elementAbsLng) {
+        console.log("est");
+      } else {
+        const getDistance = (cityLat, cityLng) => {
+          const R = 6371e3;
+          const φ1 = (latitude * Math.PI) / 180; // φ, λ in radians
+          const φ2 = (cityLat * Math.PI) / 180;
+          const Δφ = ((cityLat - latitude) * Math.PI) / 180;
+          const Δλ = ((cityLng - longitude) * Math.PI) / 180;
+          const a =
+            Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+            Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+          const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          const d = R * c; // in metres
+          return d;
         };
+        const getNearestCity = arr => {
+          let lowest = {};
+          let temp;
+          arr.forEach(element => {
+            if (
+              Object.keys(lowest).length === 0 &&
+              lowest.constructor === Object
+            ) {
+              lowest = {
+                id: element.id,
+                Name: element.Name,
+                distanceBetween: element.distanceBetween,
+              };
+            } else {
+              temp = element.distanceBetween;
+              if (temp < lowest)
+                lowest = {
+                  id: element.id,
+                  Name: element.Name,
+                  distanceBetween: element.distanceBetween,
+                };
+            }
+          });
+          return lowest;
+        };
+        let intervals = cities_json.map(element => {
+          return {
+            id: element.ID,
+            Name: element.name,
+            distanceBetween: getDistance(element.latitude, element.longitude),
+          };
+        });
+        console.log(intervals);
       }
     });
-    console.log("nearestCity", nearestCity);
+    // console.log("Nearest City", getNearestCity(intervals));
   };
 
   useEffect(() => {
@@ -148,7 +168,7 @@ export default function DriverPage() {
   });
 
   return (
-    <div className="container">
+    <Container maxWidth="xl" className={classes.drivePage}>
       <Formik
         initialValues={{
           date: new Date().toJSON().slice(0, 10),
@@ -211,13 +231,15 @@ export default function DriverPage() {
           console.log("Formik props: ", props);
 
           if (props.values.regularTrips) {
-            schema.fields.date = null
-            schema.fields.duration = null
-            schema.fields.departureTime = null
+            schema.fields.date = null;
+            schema.fields.duration = null;
+            schema.fields.departureTime = null;
           } else {
-            schema.fields.date = yup.date().required("date.Required")
-            schema.fields.departureTime = yup.string().required("departureTime.Required")
-            schema.fields.duration = yup.string().required("duration.Required")
+            schema.fields.date = yup.date().required("date.Required");
+            schema.fields.departureTime = yup
+              .string()
+              .required("departureTime.Required");
+            schema.fields.duration = yup.string().required("duration.Required");
           }
 
           const handleSelectAllDaysChange = event => {
@@ -254,10 +276,9 @@ export default function DriverPage() {
                     margin="normal"
                     error={Boolean(props.errors.from) && props.touched.from}
                     helperText={
-                      Boolean(props.errors.from) &&
-                      props.touched.from ?
-                        i18n.t(`form.errors.${props.errors.from}`) :
-                        " "
+                      Boolean(props.errors.from) && props.touched.from
+                        ? i18n.t(`form.errors.${props.errors.from}`)
+                        : " "
                     }
                   />
                 )}
@@ -278,10 +299,9 @@ export default function DriverPage() {
                     margin="normal"
                     error={Boolean(props.errors.to) && props.touched.to}
                     helperText={
-                      Boolean(props.errors.to) &&
-                      props.touched.to ?
-                        i18n.t(`form.errors.${props.errors.to}`) :
-                        " "
+                      Boolean(props.errors.to) && props.touched.to
+                        ? i18n.t(`form.errors.${props.errors.to}`)
+                        : " "
                     }
                   />
                 )}
@@ -398,10 +418,9 @@ export default function DriverPage() {
                       onBlur={props.handleBlur}
                       error={Boolean(props.errors.date) && props.touched.date}
                       helperText={
-                        Boolean(props.errors.date) &&
-                        props.touched.date ?
-                          i18n.t(`form.errors.${props.errors.date}`) :
-                          " "
+                        Boolean(props.errors.date) && props.touched.date
+                          ? i18n.t(`form.errors.${props.errors.date}`)
+                          : " "
                       }
                       value={props.values.date}
                       onChange={props.handleChange}
@@ -421,12 +440,15 @@ export default function DriverPage() {
                       margin="normal"
                       fullWidth
                       onBlur={props.handleBlur}
-                      error={Boolean(props.errors.departureTime) && props.touched.departureTime}
+                      error={
+                        Boolean(props.errors.departureTime) &&
+                        props.touched.departureTime
+                      }
                       helperText={
                         Boolean(props.errors.departureTime) &&
-                        props.touched.departureTime ?
-                          i18n.t(`form.errors.${props.errors.departureTime}`) :
-                          " "
+                        props.touched.departureTime
+                          ? i18n.t(`form.errors.${props.errors.departureTime}`)
+                          : " "
                       }
                       value={props.values.departureTime}
                       onChange={props.handleChange}
@@ -447,12 +469,13 @@ export default function DriverPage() {
                       fullWidth
                       value={props.values.duration}
                       onBlur={props.handleBlur}
-                      error={Boolean(props.errors.duration) && props.touched.duration}
+                      error={
+                        Boolean(props.errors.duration) && props.touched.duration
+                      }
                       helperText={
-                        Boolean(props.errors.duration) &&
-                        props.touched.duration ?
-                          i18n.t(`form.errors.${props.errors.duration}`) :
-                          " "
+                        Boolean(props.errors.duration) && props.touched.duration
+                          ? i18n.t(`form.errors.${props.errors.duration}`)
+                          : " "
                       }
                       onChange={props.handleChange}
                       InputLabelProps={{
@@ -479,12 +502,15 @@ export default function DriverPage() {
                     margin="normal"
                     value={props.values.phoneNumber}
                     onBlur={props.handleBlur}
-                    error={Boolean(props.errors.phoneNumber) && props.touched.phoneNumber}
+                    error={
+                      Boolean(props.errors.phoneNumber) &&
+                      props.touched.phoneNumber
+                    }
                     helperText={
                       Boolean(props.errors.phoneNumber) &&
-                      props.touched.phoneNumber ?
-                      i18n.t(`form.errors.${props.errors.phoneNumber}`) :
-                        " "
+                      props.touched.phoneNumber
+                        ? i18n.t(`form.errors.${props.errors.phoneNumber}`)
+                        : " "
                     }
                     onChange={props.handleChange}
                   />
@@ -562,10 +588,9 @@ export default function DriverPage() {
                       onBlur={props.handleBlur}
                       error={Boolean(props.errors.price) && props.touched.price}
                       helperText={
-                        Boolean(props.errors.price) &&
-                        props.touched.price ?
-                        i18n.t(`form.errors.${props.errors.price}`) :
-                          " "
+                        Boolean(props.errors.price) && props.touched.price
+                          ? i18n.t(`form.errors.${props.errors.price}`)
+                          : " "
                       }
                       inputProps={{
                         min: 0,
@@ -628,10 +653,9 @@ export default function DriverPage() {
                 label={i18n.t("Additional information")}
                 onChange={props.handleChange}
                 helperText={
-                  props.errors.additionalInfo &&
-                  props.touched.additionalInfo ?
-                  i18n.t(`form.errors.${props.errors.additionalInfo}`) :
-                    " "
+                  props.errors.additionalInfo && props.touched.additionalInfo
+                    ? i18n.t(`form.errors.${props.errors.additionalInfo}`)
+                    : " "
                 }
               />
               <div className={"submitBtn"}>
@@ -648,6 +672,6 @@ export default function DriverPage() {
           );
         }}
       </Formik>
-    </div>
+    </Container>
   );
 }
