@@ -144,8 +144,8 @@ export default function DriverPage() {
             distanceBetween: getDistance(element.latitude, element.longitude),
           };
         });
-        console.log(intervals);
       }
+      // console.log(intervals);
     });
     // console.log("Nearest City", getNearestCity(intervals));
   };
