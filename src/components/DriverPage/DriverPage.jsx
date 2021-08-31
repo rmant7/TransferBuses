@@ -1,37 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import * as yup from "yup";
-import { Formik } from "formik";
+import {Formik} from "formik";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 // import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 // import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
-import { uploadTransfer } from "../../services/data-service";
-import { useHistory } from "react-router-dom";
-import {
-  InputLabel,
-  // FormGroup,
-  Checkbox,
-  FormControlLabel,
-  Grid,
-  MenuItem,
-  Paper,
-  Select,
-  Tooltip,
-} from "@material-ui/core";
+import {uploadTransfer} from "../../services/data-service";
+import {useHistory} from "react-router-dom";
+import {Checkbox, FormControlLabel, Grid, MenuItem, Paper, Select, Tooltip,} from "@material-ui/core";
 import cities_json from "../../cities.json";
 import i18n from "../../i18n";
-import { useSelector } from "react-redux";
-import { currencies } from "../../utils/currencies";
-import vkIcon from "../DriverPage/vkIcon.svg";
-import viberIcon from "../DriverPage/viberIcon.svg";
-import telegramIcon from "../DriverPage/telegramIcon.svg";
-import whatsAppIcon from "../DriverPage/whatsAppIcon.svg";
+import {useSelector} from "react-redux";
+import {currencies} from "../../utils/currencies";
 import axios from "axios";
 import "yup-phone-lite";
-import { useStyles } from "../../utils/useStyles";
-import { Container } from "@material-ui/core";
+import {useStyles} from "../../utils/useStyles";
 
 const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
@@ -67,8 +52,8 @@ export default function DriverPage() {
 
   const cities = cities_json
     .reduce((acc, val) => {
-      acc.push({ id: val.ID, title: val.name });
-      acc.push({ id: val.ID, title: val["name_ru"] });
+      acc.push({id: val.ID, title: val.name});
+      acc.push({id: val.ID, title: val["name_ru"]});
       return acc;
     }, [])
     .sort((a, b) => (a.title < b.title ? -1 : 1));
@@ -102,9 +87,9 @@ export default function DriverPage() {
       let a =
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
         Math.cos(deg2rad(latitude)) *
-          Math.cos(deg2rad(element.latitude)) *
-          Math.sin(dLng / 2) *
-          Math.sin(dLng / 2);
+        Math.cos(deg2rad(element.latitude)) *
+        Math.sin(dLng / 2) *
+        Math.sin(dLng / 2);
       let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       let d = radius * c;
       results.push({
@@ -202,7 +187,7 @@ export default function DriverPage() {
             })
             .catch(error => {
               console.log(error);
-              setState({ error: error });
+              setState({error: error});
             });
         }}
         validationSchema={schema}
@@ -228,7 +213,7 @@ export default function DriverPage() {
               weekDays[weekDay] = {
                 selected: event.target.checked,
                 departureTime:
-                  props.values.regularTripsDays[weekDay].departureTime,
+                props.values.regularTripsDays[weekDay].departureTime,
               };
             });
 
@@ -261,7 +246,7 @@ export default function DriverPage() {
                     }
                   />
                 )}
-                ListboxProps={{ style: { maxHeight: "6rem" } }}
+                ListboxProps={{style: {maxHeight: "7rem"}}}
               />
               <Autocomplete
                 {...defaultProps}
@@ -286,7 +271,7 @@ export default function DriverPage() {
                     }
                   />
                 )}
-                ListboxProps={{ style: { maxHeight: "6rem" } }}
+                ListboxProps={{style: {maxHeight: "7rem"}}}
               />
               <FormControlLabel
                 control={
@@ -300,13 +285,13 @@ export default function DriverPage() {
                 label={i18n.t("Regular trips")}
               />
               {props.values.regularTrips && (
-                <Paper variant="outlined" style={{ padding: "8px" }}>
+                <Paper variant="outlined" style={{padding: "8px"}}>
                   <Grid
                     container
                     direction="column"
                     alignItems="center"
                     justify="center"
-                    style={{ minHeight: "100vh" }}
+                    style={{minHeight: "100vh"}}
                   >
                     <FormControlLabel
                       control={
@@ -336,7 +321,7 @@ export default function DriverPage() {
                         >
                           <Grid item xs={9}>
                             <FormControlLabel
-                              style={{ marginLeft: "10px" }}
+                              style={{marginLeft: "10px"}}
                               control={
                                 <Checkbox
                                   id={
@@ -485,7 +470,7 @@ export default function DriverPage() {
                     helperText={
                       Boolean(props.errors.phoneNumber) &&
                       props.touched.phoneNumber ?
-                      i18n.t(`form.errors.${props.errors.phoneNumber}`) :
+                        i18n.t(`form.errors.${props.errors.phoneNumber}`) :
                         " "
                     }
                     onChange={props.handleChange}
@@ -546,62 +531,64 @@ export default function DriverPage() {
                   {/*  */}
                 </Grid>
               </Grid>
-              <Grid container justifyContent="space-between">
-                <Grid
-                  item
-                  xs={12}
-                  container
-                  justifyContent="space-between"
-                  alignItems="flex-end"
-                >
-                  <Grid item xs={8}>
-                    <TextField
-                      value={props.values.price}
-                      margin="normal"
-                      id="price"
-                      label={i18n.t("Price")}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      error={Boolean(props.errors.price) && props.touched.price}
-                      helperText={
-                        Boolean(props.errors.price) &&
-                        props.touched.price ?
+              {/*<Grid container >*/}
+              <Grid
+                item
+                xs={12}
+                container
+
+                alignItems="flex-end"
+                style={{display: "flex", alignItems: "center"}}
+              >
+                <Grid item xs={8}>
+                  <TextField
+                    value={props.values.price}
+                    margin="normal"
+                    id="price"
+                    label={i18n.t("Price")}
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    error={Boolean(props.errors.price) && props.touched.price}
+                    helperText={
+                      Boolean(props.errors.price) &&
+                      props.touched.price ?
                         i18n.t(`form.errors.${props.errors.price}`) :
-                          " "
-                      }
-                      inputProps={{
-                        min: 0,
-                        type: "price",
-                        "aria-labelledby": "input-slider",
-                      }}
-                    />
-                  </Grid>
-                  <Grid item xs={4}>
-                    <Select
-                      id="currency"
-                      name={"currency"}
-                      value={rideCurrency}
-                      renderValue={value => `${value.toUpperCase()}`}
-                      margin="normal"
-                      disableUnderline
-                      onChange={props.handleChange}
-                      label="currency"
-                    >
-                      {currencies.map(item => {
-                        return (
-                          <MenuItem
-                            key={item.code}
-                            value={item.code}
-                            onClick={() => setRideCurrency(item.code)}
-                          >
-                            {item.code + `  ` + item.name}
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                  </Grid>
+                        " "
+                    }
+                    inputProps={{
+                      min: 0,
+                      type: "price",
+                      "aria-labelledby": "input-slider",
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  <Select
+                    id="currency"
+                    name={"currency"}
+                    value={rideCurrency}
+                    renderValue={value => `${value.toUpperCase()}`}
+                    margin="normal"
+                    disableUnderline
+                    onChange={props.handleChange}
+                    label="currency"
+                    style={{paddingTop: "8px"}}
+                  >
+                    {currencies.map(item => {
+                      return (
+                        <MenuItem
+                          key={item.code}
+                          value={item.code}
+                          onClick={() => setRideCurrency(item.code)}
+                        >
+                          {item.code + `  ` + item.name}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
                 </Grid>
               </Grid>
+              {/*</Grid>*/}
               <FormControlLabel
                 control={
                   <Checkbox
@@ -632,7 +619,7 @@ export default function DriverPage() {
                 helperText={
                   props.errors.additionalInfo &&
                   props.touched.additionalInfo ?
-                  i18n.t(`form.errors.${props.errors.additionalInfo}`) :
+                    i18n.t(`form.errors.${props.errors.additionalInfo}`) :
                     " "
                 }
               />
