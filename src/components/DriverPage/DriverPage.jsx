@@ -261,6 +261,7 @@ export default function DriverPage() {
                     }
                   />
                 )}
+                ListboxProps={{ style: { maxHeight: "6rem" } }}
               />
               <Autocomplete
                 {...defaultProps}
@@ -285,6 +286,7 @@ export default function DriverPage() {
                     }
                   />
                 )}
+                ListboxProps={{ style: { maxHeight: "6rem" } }}
               />
               <FormControlLabel
                 control={
