@@ -7,6 +7,7 @@ import { menuData } from '../../../utils/menuData';
 import { useStyles } from '../../../utils/useStyles';
 import { setSidebar } from '../../../redux/reducers/appReducer';
 
+
 const Sidebar = () => {
   const dispatch = useDispatch();
   const sidebar = useSelector((state) => state.app.sidebar);

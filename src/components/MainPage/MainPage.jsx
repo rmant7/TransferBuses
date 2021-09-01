@@ -1,6 +1,6 @@
 import i18n from "../../i18n";
 import { useHistory } from "react-router-dom";
-import { Button, Grid, Container } from "@material-ui/core";
+import { Button, Grid, Container, Typography } from "@material-ui/core";
 import { useStyles } from "../../utils/useStyles";
 import Cheaptrip from "../../components/CheaptripCommercial/Cheaptrip";
 
@@ -15,7 +15,7 @@ export default function MainPage() {
         direction="column"
         alignItems="center"
         justify="center"
-        className={classes.mainPage}
+        className={(classes.mainPage, classes.topPadding)}
       >
         <Grid item xs={12}>
           <Button
@@ -40,8 +40,37 @@ export default function MainPage() {
             {i18n.t("I'm a driver")}
           </Button>
         </Grid>
-
-        <Cheaptrip />
+        <Grid item xs={12} lg={4} md={6}>
+          <Typography
+            style={{ paddingTop: "2rem" }}
+            align="center"
+            gutterBottom
+          >
+            {i18n.t("Our partners")}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            className={classes.mainPage__btn}
+            color="secondary"
+            variant="contained"
+            fullWidth
+            href="https://cheaptrip.guru/"
+          >
+            CheapTrip
+          </Button>
+        </Grid>
+        <Grid item xs={10} lg={6} md={6}>
+          <Typography
+            variant="h5"
+            align="center"
+            component="p"
+            className={classes.ctDescription}
+          >
+            {i18n.t("CheapTrip commercial")}
+          </Typography>
+        </Grid>
+        {/* <Cheaptrip /> */}
       </Grid>
     </Container>
   );
