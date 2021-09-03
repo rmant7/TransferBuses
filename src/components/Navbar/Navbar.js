@@ -9,16 +9,15 @@ import { MAIN_ROUTE } from '../../utils/constants';
 import { Sidebar, LanguageSelector } from '..';
 import { setSidebar } from '../../redux/reducers/appReducer';
 import CurrenciesSelector from '../CurrenciesSelector/CurrenciesSelector';
-import {useTranslation} from "react-i18next";
+// import {useTranslation} from "react-i18next";
 
 // const Navbar = ({ changeLanguage }) => {
 const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
-
-
-  const { i18n } = useTranslation();
+  
+  // const { i18n } = useTranslation();
   // const changeLanguage = (language) => {
   //   i18n
   //     .changeLanguage(language)
@@ -34,7 +33,9 @@ const Navbar = () => {
             variant="h6"
             className={classes.title}
             onClick={() => history.push(MAIN_ROUTE)}>
-            <span className={classes.titleName}>TransferBuses</span>
+            <span className={classes.title}
+                  style={{marginLeft:"-16px", paddingRight:"16px", paddingBottom:"4px"}}
+            >TransferBuses</span>
           </Typography>
           <nav className={classes.nav}>
             <LanguageSelector />
