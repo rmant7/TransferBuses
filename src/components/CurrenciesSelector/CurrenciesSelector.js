@@ -12,21 +12,25 @@ const CurrenciesSelector = () => {
   return (
     <FormControl>
       <Select
-        className={classes.currSelect}
+        className={classes.whiteSelect}
         inputProps={{
           classes: {
             icon: classes.icon,
           },
         }}
         value={cur}
-        renderValue={(value) => `${value.toUpperCase()}`}
-        disableUnderline>
-        {currencies.map((item) => {
+        renderValue={value => `${value.toUpperCase()}`}
+        disableUnderline
+      >
+        {currencies.map(item => {
           return (
-            <MenuItem key={item.code} onClick={() => {
-              localStorage.setItem("currency", item.code);
-              dispatch(setCurrency(item.code))
-            }}>
+            <MenuItem
+              key={item.code}
+              onClick={() => {
+                localStorage.setItem("currency", item.code);
+                dispatch(setCurrency(item.code));
+              }}
+            >
               {item.code + `  ` + item.name}
             </MenuItem>
           );
