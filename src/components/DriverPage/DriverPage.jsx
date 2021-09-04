@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import * as yup from "yup";
-import { Formik } from "formik";
-import Button from "@material-ui/core/Button";
+import {Formik} from "formik";
 import TextField from "@material-ui/core/TextField";
 // import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 // import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
-import { uploadTransfer } from "../../services/data-service";
-import { useHistory } from "react-router-dom";
+import {uploadTransfer} from "../../services/data-service";
+import {useHistory} from "react-router-dom";
 import {
-  InputLabel,
-  // FormGroup,
   Checkbox,
+  Container,
+  FormControl,
   FormControlLabel,
   Grid,
+  InputLabel,
   MenuItem,
   Paper,
   Select,
@@ -22,23 +22,19 @@ import {
 } from "@material-ui/core";
 import cities_json from "../../cities.json";
 import i18n from "../../i18n";
-import { useSelector } from "react-redux";
-import { currencies } from "../../utils/currencies";
-import vkIcon from "../DriverPage/vkIcon.svg";
-import viberIcon from "../DriverPage/viberIcon.svg";
-import telegramIcon from "../DriverPage/telegramIcon.svg";
-import whatsAppIcon from "../DriverPage/whatsAppIcon.svg";
+import {useSelector} from "react-redux";
 import axios from "axios";
 import "yup-phone-lite";
-import { useStyles } from "../../utils/useStyles";
-import { Container } from "@material-ui/core";
+import {useStyles} from "../../utils/useStyles";
+import {currencies} from "../../utils/currencies";
+import Button from "@material-ui/core/Button";
 
 const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
   to: yup.string().required("to.Required"),
   date: yup.date().required("date.Required"), //!!! date, departureTime, and duration are conditionally reassigned later;
   departureTime: yup.string().required("departureTime.Required"),
-  duration: yup.string().required("duration.Required"),
+  // duration: yup.string().required("duration.Required"),
   places: yup
     .number()
     .min(1, "Available places must be more or equal to 1")
@@ -60,25 +56,33 @@ export default function DriverPage() {
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
 
-  console.log("cur: ", cur);
-  console.log("rideCurrency: ", rideCurrency);
+  // console.log("cur: ", cur);
+  // console.log("rideCurrency: ", rideCurrency);
   console.log("Current latitude", latitude);
   console.log("Current longitude", longitude);
 
   const cities = cities_json
     .reduce((acc, val) => {
-      acc.push({ id: val.ID, title: val.name });
-      acc.push({ id: val.ID, title: val["name_ru"] });
+      acc.push({id: val.ID, title: val.name});
+      acc.push({id: val.ID, title: val["name_ru"]});
       return acc;
     }, [])
     .sort((a, b) => (a.title < b.title ? -1 : 1));
+
+  const durations = [" ", "0:30",]
+  for(let i=1; i<=12;i++){
+    durations.push(i+":00")
+    durations.push(i+":30")
+  }
+  durations.pop()
+  durations.push("12:00 +")
 
   const [state, setState] = useState({});
   const history = useHistory();
   const defaultProps = {
     options: cities,
     getOptionLabel: option => {
-      console.log(option.title);
+      // console.log(option.title);
       return option.title;
     },
   };
@@ -144,7 +148,7 @@ export default function DriverPage() {
             distanceBetween: getDistance(element.latitude, element.longitude),
           };
         });
-        console.log(intervals);
+        //console.log(intervals);
       }
     });
     // console.log("Nearest City", getNearestCity(intervals));
@@ -167,6 +171,7 @@ export default function DriverPage() {
     }
   });
 
+  //console.log('classes:', classes)
   return (
     <Container maxWidth="xl" className={classes.drivePage}>
       <Formik
@@ -222,13 +227,13 @@ export default function DriverPage() {
             })
             .catch(error => {
               console.log(error);
-              setState({ error: error });
+              setState({error: error});
             });
         }}
         validationSchema={schema}
       >
         {props => {
-          console.log("Formik props: ", props);
+          // console.log("Formik props: ", props);
 
           if (props.values.regularTrips) {
             schema.fields.date = null;
@@ -239,22 +244,22 @@ export default function DriverPage() {
             schema.fields.departureTime = yup
               .string()
               .required("departureTime.Required");
-            schema.fields.duration = yup.string().required("duration.Required");
+            // schema.fields.duration = yup.string().required("duration.Required");
           }
 
           const handleSelectAllDaysChange = event => {
-            console.log(event.target);
-            console.log(event.target.checked);
+            // console.log(event.target);
+            // console.log(event.target.checked);
             const weekDays = {};
             Object.keys(props.values.regularTripsDays).map(weekDay => {
               weekDays[weekDay] = {
                 selected: event.target.checked,
                 departureTime:
-                  props.values.regularTripsDays[weekDay].departureTime,
+                props.values.regularTripsDays[weekDay].departureTime,
               };
             });
 
-            console.log("weekdays: ", weekDays);
+            // console.log("weekdays: ", weekDays);
             props.setFieldValue("regularTripsDays", weekDays);
           };
 
@@ -320,13 +325,13 @@ export default function DriverPage() {
                 label={i18n.t("Regular trips")}
               />
               {props.values.regularTrips && (
-                <Paper variant="outlined" style={{ padding: "8px" }}>
+                <Paper variant="outlined" style={{padding: "8px"}}>
                   <Grid
                     container
                     direction="column"
                     alignItems="center"
                     justify="center"
-                    style={{ minHeight: "100vh" }}
+                    style={{minHeight: "100vh"}}
                   >
                     <FormControlLabel
                       control={
@@ -356,7 +361,7 @@ export default function DriverPage() {
                         >
                           <Grid item xs={9}>
                             <FormControlLabel
-                              style={{ marginLeft: "10px" }}
+                              style={{marginLeft: "10px"}}
                               control={
                                 <Checkbox
                                   id={
@@ -409,83 +414,98 @@ export default function DriverPage() {
                 </Paper>
               )}
               {!props.values.regularTrips && (
-                <Grid container justifyContent="space-between">
-                  <Grid item xs={5}>
-                    <TextField
-                      id="date"
-                      label={i18n.t("Date")}
-                      type="date"
-                      margin="normal"
-                      fullWidth
-                      onBlur={props.handleBlur}
-                      error={Boolean(props.errors.date) && props.touched.date}
-                      helperText={
-                        Boolean(props.errors.date) && props.touched.date
-                          ? i18n.t(`form.errors.${props.errors.date}`)
-                          : " "
-                      }
-                      value={props.values.date}
-                      onChange={props.handleChange}
-                      inputProps={{
-                        min: new Date().toISOString().slice(0, 10),
-                      }}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
+                <>
+                  <Grid container justifyContent="space-between">
+                    <Grid item xs={6}>
+                      <TextField
+                        id="date"
+                        label={i18n.t("Date")}
+                        type="date"
+                        margin="normal"
+                        fullWidth
+                        onBlur={props.handleBlur}
+                        error={Boolean(props.errors.date) && props.touched.date}
+                        // size={"small"}
+                        helperText={
+                          Boolean(props.errors.date) && props.touched.date
+                            ? i18n.t(`form.errors.${props.errors.date}`)
+                            : " "
+                        }
+                        value={props.values.date}
+                        onChange={props.handleChange}
+                        inputProps={{
+                          min: new Date().toISOString().slice(0, 10),
+                        }}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </Grid>
+                    <Grid item xs={5}>
+                      <TextField
+                        id="departureTime"
+                        label={i18n.t("Time")}
+                        type="time"
+                        margin="normal"
+                        fullWidth
+                        onBlur={props.handleBlur}
+                        error={
+                          Boolean(props.errors.departureTime) &&
+                          props.touched.departureTime
+                        }
+                        helperText={
+                          Boolean(props.errors.departureTime) &&
+                          props.touched.departureTime
+                            ? i18n.t(`form.errors.${props.errors.departureTime}`)
+                            : " "
+                        }
+                        value={props.values.departureTime}
+                        onChange={props.handleChange}
+                        inputProps={{
+                          min: new Date().toISOString().slice(0, 16),
+                        }}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </Grid>
                   </Grid>
-                  <Grid item xs={3}>
-                    <TextField
-                      id="departureTime"
-                      label={i18n.t("Time")}
-                      type="time"
-                      margin="normal"
-                      fullWidth
-                      onBlur={props.handleBlur}
-                      error={
-                        Boolean(props.errors.departureTime) &&
-                        props.touched.departureTime
-                      }
-                      helperText={
-                        Boolean(props.errors.departureTime) &&
-                        props.touched.departureTime
-                          ? i18n.t(`form.errors.${props.errors.departureTime}`)
-                          : " "
-                      }
-                      value={props.values.departureTime}
-                      onChange={props.handleChange}
-                      inputProps={{
-                        min: new Date().toISOString().slice(0, 16),
-                      }}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
+
+                  <Grid container justifyContent="space-between">
+                    <Grid item xs={5}>
+                      <FormControl fullWidth>
+                        <InputLabel shrink id="duration-label">
+                          {i18n.t("Travel time")}
+                        </InputLabel>
+                        <Select
+                          labelId="duration-label"
+                          id="duration"
+                          name={"duration"}
+                          value={props.values.duration}
+                          renderValue={value => `${value}`}
+                          margin="normal"
+                          // disableUnderline
+                          onChange={props.handleChange}
+                          label="duration"
+                          //style={{paddingTop: "9px"}}
+                        >
+                          {
+                            durations.map(item => {
+                            return (
+                              <MenuItem
+                                key={item}
+                                value={item}
+                                // onClick={() => setRideCurrency(item.code)}
+                              >
+                                {item}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                      </FormControl>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={3}>
-                    <TextField
-                      id="duration"
-                      label={i18n.t("Travel time")}
-                      type="Time"
-                      margin="normal"
-                      fullWidth
-                      value={props.values.duration}
-                      onBlur={props.handleBlur}
-                      error={
-                        Boolean(props.errors.duration) && props.touched.duration
-                      }
-                      helperText={
-                        Boolean(props.errors.duration) && props.touched.duration
-                          ? i18n.t(`form.errors.${props.errors.duration}`)
-                          : " "
-                      }
-                      onChange={props.handleChange}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </Grid>
-                </Grid>
+                </>
               )}
               {/* Phone number block */}
               <Grid

@@ -6,7 +6,7 @@ import { Grid, Typography } from "@material-ui/core";
 
 export default function Cheaptrip() {
   const classes = useStyles();
-  console.log("styles", classes);
+  //console.log("styles", classes);
   return (
     <Grid
       container

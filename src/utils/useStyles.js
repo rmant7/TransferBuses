@@ -28,7 +28,7 @@ export const useStyles = makeStyles(theme => ({
   // !! DrivePage
 
   drivePage: {
-    maxWidth: "300px",
+    maxWidth: "360px",
     paddingTop: "80px",
   },
 
