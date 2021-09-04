@@ -56,6 +56,7 @@ export default function MainPage() {
             variant="contained"
             fullWidth
             href="https://cheaptrip.guru/"
+            target="_blank"
           >
             CheapTrip
           </Button>
