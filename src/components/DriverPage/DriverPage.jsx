@@ -329,9 +329,9 @@ export default function DriverPage() {
                   <Grid
                     container
                     direction="column"
-                    alignItems="center"
-                    justify="center"
-                    style={{minHeight: "100vh"}}
+                    // alignItems="center"
+                    // justify="center"
+                    // style={{minHeight: "100vh"}}
                   >
                     <FormControlLabel
                       control={
