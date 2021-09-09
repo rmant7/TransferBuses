@@ -270,6 +270,7 @@ export default function DriverPage() {
                 id="from"
                 name={"from"}
                 value={props.values.from}
+                margin="dense"
                 onChange={(e, v) => {
                   props.setFieldValue("from", v?.id || "");
                 }}
@@ -302,7 +303,7 @@ export default function DriverPage() {
                   <TextField
                     {...params}
                     label={i18n.t("To")}
-                    margin="normal"
+                    margin="dense"
                     error={Boolean(props.errors.to) && props.touched.to}
                     helperText={
                       Boolean(props.errors.to) && props.touched.to
@@ -483,7 +484,7 @@ export default function DriverPage() {
                           name={"duration"}
                           value={props.values.duration}
                           renderValue={value => `${value}`}
-                          margin="normal"
+                          margin="dense"
                           // disableUnderline
                           onChange={props.handleChange}
                           label="duration"
@@ -604,7 +605,7 @@ export default function DriverPage() {
                 <Grid item xs={8}>
                   <TextField
                     value={props.values.price}
-                    margin="normal"
+                    margin="dense"
                     id="price"
                     label={i18n.t("Price")}
                     onChange={props.handleChange}
@@ -629,7 +630,7 @@ export default function DriverPage() {
                     name={"currency"}
                     value={rideCurrency}
                     renderValue={value => `${value.toUpperCase()}`}
-                    margin="normal"
+                    margin="dense"
                     disableUnderline
                     onChange={props.handleChange}
                     label="currency"
