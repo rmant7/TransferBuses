@@ -1,6 +1,5 @@
 import React from "react";
 import ArrowForwardSharpIcon from "@material-ui/icons/ArrowForwardSharp";
-import AirlineSeatReclineNormalIcon from "@material-ui/icons/AirlineSeatReclineNormal";
 import RingVolumeIcon from "@material-ui/icons/RingVolume";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
@@ -11,13 +10,12 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import "./Transfer.css";
 import i18n from "i18next";
-import { WeekDayIcon } from "../WeekDayIcon/WeekDayIcon";
-import { useSelector } from "react-redux";
-import { currencies } from "../../utils/currencies";
-import { Tooltip } from "@material-ui/core";
+import {useSelector} from "react-redux";
+import {currencies} from "../../utils/currencies";
+import {Tooltip} from "@material-ui/core";
 import cities from "../../cities.json";
 
-export default function Transfer({ transfer }) {
+export default function Transfer({transfer}) {
   const globalCurrencyCode = useSelector(state => state.app.currency);
   const lang = useSelector(state => state.app.lang);
   const cityFrom = cities.find(city => city.ID === transfer.from);
@@ -45,7 +43,7 @@ export default function Transfer({ transfer }) {
           ((transfer.price * globalCurrency.oneEuroRate) /
             transferCurrency.oneEuroRate +
             Number.EPSILON) *
-            100
+          100
         ) / 100;
     }
   } else {
@@ -66,11 +64,13 @@ export default function Transfer({ transfer }) {
     priceToDisplay = priceNum + " " + globalCurrency.r2rSymbol;
   }
 
+  console.log('transfer.regularTripsDays: ', transfer.regularTripsDays)
+
   return (
     <div className="transfer">
       <Accordion>
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMoreIcon/>}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
@@ -84,7 +84,7 @@ export default function Transfer({ transfer }) {
             >
               <Paper className={"paper"}>
                 {cityFrom["name" + (lang === "ru" ? "_ru" : "")]}
-                <ArrowForwardSharpIcon style={{ marginBottom: "-6px" }} />
+                <ArrowForwardSharpIcon style={{marginBottom: "-6px"}}/>
                 {cityTo["name" + (lang === "ru" ? "_ru" : "")]}
               </Paper>
             </Grid>
@@ -127,7 +127,7 @@ export default function Transfer({ transfer }) {
           </Grid>
         </AccordionSummary>
         <AccordionDetails>
-          <hr />
+          <hr/>
           <Grid container spacing={2} justifyContent="space-around">
             {!transfer.regularTrips && (
               <Grid
@@ -145,32 +145,51 @@ export default function Transfer({ transfer }) {
               </Grid>
             )}
 
+
             {transfer.regularTrips && (
-              <Grid
-                container
-                item
-                xs={12}
-                alignItems="center"
-                justifyContent="flex-start"
-              >
-                <Paper className={"paper"}>
-                  <div style={{ marginBottom: "8px" }}>
-                    {i18n.t("Regular trips")}
-                  </div>
-                  <Grid container spacing="0">
-                    {Object.keys(transfer.regularTripsDays)
-                      .sort()
-                      .map(weekDay => {
-                        return (
-                          <WeekDayIcon
-                            name={weekDay}
-                            value={transfer.regularTripsDays[weekDay]}
-                          />
-                        );
-                      })}
-                  </Grid>
-                </Paper>
-              </Grid>
+              <>
+                <Grid
+                  container
+                  item
+                  xs={12}
+                  alignItems="center"
+                  justifyContent="flex-start"
+                >
+                  <Paper className={"paper"}>
+                    <div style={{margin: "8px", minWidth: "190px", textAlign:"center"}}>
+                      {i18n.t("Regular trips")}
+                    </div>
+                    <Grid container
+                          direction={'column'}
+                          xs={12}
+                          style={{margin: "4px"}}
+                    >
+                      {Object.keys(transfer.regularTripsDays)
+                        .sort()
+                        .map(weekDay => {
+                          console.log("weekDay: ", weekDay, transfer.regularTripsDays[weekDay])
+                          return (
+                            <>
+                              <Grid container item justifyContent={"space-between"}>
+                                <Grid xs={7}>{i18n.t(weekDay)} </Grid>
+                                <Grid xs={3}>
+                                  {transfer.regularTripsDays[weekDay].selected ?
+                                    transfer.regularTripsDays[weekDay].departureTime :
+                                    "-- : --"
+                                  }
+                                </Grid>
+                              </Grid>
+                              {/*<WeekDayIcon*/}
+                              {/*  name={weekDay}*/}
+                              {/*  value={transfer.regularTripsDays[weekDay]}*/}
+                              {/*/>*/}
+                            </>
+                          );
+                        })}
+                    </Grid>
+                  </Paper>
+                </Grid>
+              </>
             )}
 
             <Grid
@@ -180,9 +199,9 @@ export default function Transfer({ transfer }) {
               alignItems="center"
               justifyContent="flex-start"
             >
-              <Paper className={"paper"}>
+              <Paper className={"paper"} >
                 {i18n.t("Driver's phone number")}: {transfer.phoneNumber}{" "}
-                <RingVolumeIcon fontSize="small" />
+                <RingVolumeIcon fontSize="small"/>
               </Paper>
             </Grid>
             <Grid
