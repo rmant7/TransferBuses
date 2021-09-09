@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import * as yup from "yup";
-import {Formik} from "formik";
+import { Formik } from "formik";
+import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 // import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 // import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
-import {uploadTransfer} from "../../services/data-service";
-import {useHistory} from "react-router-dom";
+import { uploadTransfer } from "../../services/data-service";
+import { useHistory } from "react-router-dom";
 import {
   Checkbox,
   Container,
@@ -22,12 +23,15 @@ import {
 } from "@material-ui/core";
 import cities_json from "../../cities.json";
 import i18n from "../../i18n";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+import { currencies } from "../../utils/currencies";
+import vkIcon from "../DriverPage/vkIcon.svg";
+import viberIcon from "../DriverPage/viberIcon.svg";
+import telegramIcon from "../DriverPage/telegramIcon.svg";
+import whatsAppIcon from "../DriverPage/whatsAppIcon.svg";
 import axios from "axios";
 import "yup-phone-lite";
 import {useStyles} from "../../utils/useStyles";
-import {currencies} from "../../utils/currencies";
-import Button from "@material-ui/core/Button";
 
 const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
@@ -63,8 +67,8 @@ export default function DriverPage() {
 
   const cities = cities_json
     .reduce((acc, val) => {
-      acc.push({id: val.ID, title: val.name});
-      acc.push({id: val.ID, title: val["name_ru"]});
+      acc.push({ id: val.ID, title: val.name });
+      acc.push({ id: val.ID, title: val["name_ru"] });
       return acc;
     }, [])
     .sort((a, b) => (a.title < b.title ? -1 : 1));
@@ -150,6 +154,7 @@ export default function DriverPage() {
         });
         //console.log(intervals);
       }
+      // console.log(intervals);
     });
     // console.log("Nearest City", getNearestCity(intervals));
   };
@@ -171,7 +176,6 @@ export default function DriverPage() {
     }
   });
 
-  //console.log('classes:', classes)
   return (
     <Container maxWidth="xl" className={classes.drivePage}>
       <Formik
@@ -227,7 +231,7 @@ export default function DriverPage() {
             })
             .catch(error => {
               console.log(error);
-              setState({error: error});
+              setState({ error: error });
             });
         }}
         validationSchema={schema}
@@ -326,7 +330,7 @@ export default function DriverPage() {
                 label={i18n.t("Regular trips")}
               />
               {props.values.regularTrips && (
-                <Paper variant="outlined" style={{padding: "8px"}}>
+                <Paper variant="outlined" style={{ padding: "8px" }}>
                   <Grid
                     container
                     direction="column"
@@ -362,7 +366,7 @@ export default function DriverPage() {
                         >
                           <Grid item xs={9}>
                             <FormControlLabel
-                              style={{marginLeft: "10px"}}
+                              style={{ marginLeft: "10px" }}
                               control={
                                 <Checkbox
                                   id={

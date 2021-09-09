@@ -6,7 +6,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { menuData } from '../../../utils/menuData';
 import { useStyles } from '../../../utils/useStyles';
 import { setSidebar } from '../../../redux/reducers/appReducer';
-
+import i18n from "../../../i18n";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const Sidebar = () => {
         {menuData.map(item => (
           <ListItem button key={item.path}>
             <ListItemText
-              primary={item.title}
+              primary={i18n.t(item.title)}
               onClick={() => closeHandler(item.path)}
             />
           </ListItem>

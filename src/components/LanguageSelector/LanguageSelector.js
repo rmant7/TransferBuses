@@ -24,22 +24,26 @@ const LanguageSelector = () => {
   return (
     <FormControl>
       <Select
-        className={classes.langSelect}
+        className={classes.whiteSelect}
         inputProps={{
           classes: {
             icon: classes.icon,
           },
         }}
         value={lang}
-        renderValue={(value) => `${value.toUpperCase()}`}
-        disableUnderline>
-        {languages.map((lng) => {
+        renderValue={value => `${value.toUpperCase()}`}
+        disableUnderline
+      >
+        {languages.map(lng => {
           return (
-            <MenuItem key={lng.locale} onClick={() => {
-              localStorage.setItem("locale", lng.locale);
-              changeLanguage(lng.locale);
-              dispatch(setLanguage(lng.locale))
-            }}>
+            <MenuItem
+              key={lng.locale}
+              onClick={() => {
+                localStorage.setItem("locale", lng.locale);
+                changeLanguage(lng.locale);
+                dispatch(setLanguage(lng.locale));
+              }}
+            >
               <img className={classes.flag} src={lng.icon} alt={lng.label} />
               {lng.label}
             </MenuItem>

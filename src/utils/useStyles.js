@@ -9,7 +9,7 @@ export const useStyles = makeStyles(theme => ({
 
   // !! Top padding modifier.
   topPadding: {
-    paddingTop: "80px",
+    paddingTop: "120px",
   },
 
   list: {
@@ -79,14 +79,11 @@ export const useStyles = makeStyles(theme => ({
     marginRight: "15px",
   },
 
-  currSelect: {
+  whiteSelect: {
     color: "#ffffff",
   },
 
-  langSelect: {
-    color: "#ffffff",
-  },
-
+ 
   // !! Cheaptrip commercial.
 
   ctDescription: {

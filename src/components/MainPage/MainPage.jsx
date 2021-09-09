@@ -17,7 +17,7 @@ export default function MainPage() {
         justify="center"
         className={(classes.mainPage, classes.topPadding)}
       >
-        <Grid item xs={12}>
+        <Grid item xs={12} lg={4} md={6}>
           <Button
             className={classes.mainPage__btn}
             color="secondary"
@@ -29,7 +29,7 @@ export default function MainPage() {
           </Button>
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item xs={12} lg={4} md={6}>
           <Button
             className={classes.mainPage__btn}
             color="secondary"
@@ -56,6 +56,7 @@ export default function MainPage() {
             variant="contained"
             fullWidth
             href="https://cheaptrip.guru/"
+            target="_blank"
           >
             CheapTrip
           </Button>
