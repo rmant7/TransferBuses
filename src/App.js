@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { AppRouter, Navbar } from './components';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
-import { theme } from './utils/useStyles';
+import {theme, useStyles} from './utils/useStyles';
+import {StylesProvider} from "@material-ui/core";
 function App() {
   const { i18n } = useTranslation();
   const changeLanguage = (language) => {
@@ -21,8 +22,10 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
-      <AppRouter />
+      <StylesProvider>
+        <Navbar/>
+        <AppRouter/>
+      </StylesProvider>
     </ThemeProvider>
   );
 }

@@ -38,7 +38,7 @@ export const useStyles = makeStyles(theme => ({
     minHeight: "100vh",
   },
   mainPage__btn: {
-    minWidth: "280px",
+    minWidth: "280px !important",
   },
 
   //!! Navbar
@@ -80,7 +80,7 @@ export const useStyles = makeStyles(theme => ({
   },
 
   whiteSelect: {
-    color: "#ffffff",
+    color: "#fffffe !important",
   },
 
  

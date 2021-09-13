@@ -4,11 +4,12 @@ import { AppBar, Container, IconButton, Typography, Toolbar } from '@material-ui
 import { useDispatch } from 'react-redux';
 
 import MenuIcon from '@material-ui/icons/Menu';
-import { useStyles } from '../../utils/useStyles';
+
 import { MAIN_ROUTE } from '../../utils/constants';
 import { Sidebar, LanguageSelector } from '..';
 import { setSidebar } from '../../redux/reducers/appReducer';
 import CurrenciesSelector from '../CurrenciesSelector/CurrenciesSelector';
+import { useStyles } from '../../utils/useStyles';
 // import {useTranslation} from "react-i18next";
 
 // const Navbar = ({ changeLanguage }) => {
