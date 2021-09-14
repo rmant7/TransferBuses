@@ -167,7 +167,8 @@ export default function DriverPage() {
       setLongitude(startPos.coords.longitude);
       getCity(startPos.coords.latitude, startPos.coords.longitude);
     };
-    navigator.geolocation.getCurrentPosition(geoSuccess);
+    // geolocation determination is temporary commented out. To turn it on, uncomment the line bellow
+    // navigator.geolocation.getCurrentPosition(geoSuccess);
   }, []);
 
   useEffect(() => {
