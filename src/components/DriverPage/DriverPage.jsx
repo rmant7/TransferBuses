@@ -21,7 +21,7 @@ import {
   Select,
   Tooltip,
 } from "@material-ui/core";
-import cities_json from "../../cities.json";
+import cities_json from "../../utils/cities.json";
 import i18n from "../../i18n";
 import { useSelector } from "react-redux";
 import { currencies } from "../../utils/currencies";

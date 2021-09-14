@@ -13,7 +13,7 @@ import i18n from "i18next";
 import {useSelector} from "react-redux";
 import {currencies} from "../../utils/currencies";
 import {Tooltip} from "@material-ui/core";
-import cities from "../../cities.json";
+import cities from "../../utils/cities.json";
 
 export default function Transfer({transfer}) {
   const globalCurrencyCode = useSelector(state => state.app.currency);
