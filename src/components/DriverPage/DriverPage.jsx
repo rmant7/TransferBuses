@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import * as yup from "yup";
-import { Formik } from "formik";
+import {Formik} from "formik";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 // import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 // import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./DriverPage.css";
-import { uploadTransfer } from "../../services/data-service";
-import { useHistory } from "react-router-dom";
+import {uploadTransfer} from "../../services/data-service";
+import {useHistory} from "react-router-dom";
 import {
   Checkbox,
   Container,
@@ -23,12 +23,8 @@ import {
 } from "@material-ui/core";
 import cities_json from "../../utils/cities.json";
 import i18n from "../../i18n";
-import { useSelector } from "react-redux";
-import { currencies } from "../../utils/currencies";
-import vkIcon from "../DriverPage/vkIcon.svg";
-import viberIcon from "../DriverPage/viberIcon.svg";
-import telegramIcon from "../DriverPage/telegramIcon.svg";
-import whatsAppIcon from "../DriverPage/whatsAppIcon.svg";
+import {useSelector} from "react-redux";
+import {currencies} from "../../utils/currencies";
 import axios from "axios";
 import "yup-phone-lite";
 import {useStyles} from "../../utils/useStyles";
@@ -53,6 +49,7 @@ const schema = yup.object().shape({
 
 export default function DriverPage() {
   const cur = useSelector(state => state.app.currency);
+  const lang = useSelector((state) => state.app.lang);
   const classes = useStyles();
   const [rideCurrency, setRideCurrency] = useState(cur);
   const [messenger, setMessenger] = useState();
@@ -64,22 +61,43 @@ export default function DriverPage() {
   // console.log("rideCurrency: ", rideCurrency);
   console.log("Current latitude", latitude);
   console.log("Current longitude", longitude);
+  console.log(lang)
 
-  const cities = cities_json
-    .reduce((acc, val) => {
-      acc.push({ id: val.ID, title: val.name });
-      acc.push({ id: val.ID, title: val["name_ru"] });
-      return acc;
-    }, [])
-    .sort((a, b) => (a.title < b.title ? -1 : 1));
+  const cities = lang === 'ru'
+    ? [... cities_json
+      .reduce((acc, val) => {
+        acc.push({id: val.ID, title: val["name_ru"]});
+        return acc;
+      }, [])
+      .sort((a, b) => (a.title < b.title ? -1 : 1)) ,
+      ... cities_json
+      .reduce((acc, val) => {
+        acc.push({id: val.ID, title: val.name});
+        return acc;
+      }, [])
+      .sort((a, b) => (a.title < b.title ? -1 : 1))]
+    :
+    cities_json
+      .reduce((acc, val) => {
+        acc.push({id: val.ID, title: val.name});
+        acc.push({id: val.ID, title: val["name_ru"]});
+        return acc;
+      }, [])
+      .sort((a, b) => (a.title < b.title ? -1 : 1));
 
-  const durations = [" ", "0:30",]
-  for(let i=1; i<=12;i++){
-    durations.push(i+":00")
-    durations.push(i+":30")
+  // const durations = [" ", "0:30",]
+  // for(let i=1; i<=12;i++){
+  //   durations.push(i+":00")
+  //   durations.push(i+":30")
+  // }
+
+  const durations = [" ",]
+  for (let i = 1; i < 24; i++) {
+    durations.push(i + ":00")
+    // durations.push(i+":30")
   }
-  durations.pop()
-  durations.push("12:00 +")
+  // durations.pop()
+  durations.push("24:00 +")
 
   const [state, setState] = useState({});
   const history = useHistory();
@@ -232,7 +250,7 @@ export default function DriverPage() {
             })
             .catch(error => {
               console.log(error);
-              setState({ error: error });
+              setState({error: error});
             });
         }}
         validationSchema={schema}
@@ -331,7 +349,7 @@ export default function DriverPage() {
                 label={i18n.t("Regular trips")}
               />
               {props.values.regularTrips && (
-                <Paper variant="outlined" style={{ padding: "8px" }}>
+                <Paper variant="outlined" style={{padding: "8px"}}>
                   <Grid
                     container
                     direction="column"
@@ -367,7 +385,7 @@ export default function DriverPage() {
                         >
                           <Grid item xs={9}>
                             <FormControlLabel
-                              style={{ marginLeft: "10px" }}
+                              style={{marginLeft: "10px"}}
                               control={
                                 <Checkbox
                                   id={
@@ -497,16 +515,16 @@ export default function DriverPage() {
                         >
                           {
                             durations.map(item => {
-                            return (
-                              <MenuItem
-                                key={item}
-                                value={item}
-                                // onClick={() => setRideCurrency(item.code)}
-                              >
-                                {item}
-                              </MenuItem>
-                            );
-                          })}
+                              return (
+                                <MenuItem
+                                  key={item}
+                                  value={item}
+                                  // onClick={() => setRideCurrency(item.code)}
+                                >
+                                  {item}
+                                </MenuItem>
+                              );
+                            })}
                         </Select>
                       </FormControl>
                     </Grid>
