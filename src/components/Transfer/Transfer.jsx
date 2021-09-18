@@ -19,7 +19,7 @@ export default function Transfer({transfer}) {
   const globalCurrencyCode = useSelector(state => state.app.currency);
   const lang = useSelector(state => state.app.lang);
   const cityFrom = cities.find(city => city.ID === transfer.from);
-  console.log('cityFrom: ', cityFrom, cityFrom?.name_ru)
+  // console.log('cityFrom: ', cityFrom, cityFrom?.name_ru)
   const cityTo = cities.find(city => city.ID === transfer.to);
   let priceNum;
   let priceToDisplay;
@@ -75,7 +75,7 @@ export default function Transfer({transfer}) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Grid container spacing={4}>
+          <Grid container spacing={2}>
             <Grid
               container
               item
@@ -89,25 +89,12 @@ export default function Transfer({transfer}) {
                 {cityTo && cityTo["name" + (lang === "ru" ? "_ru" : "")] || "---"}
               </Paper>
             </Grid>
-
             <Grid
               container
               item
-              xs={4}
+              xs={12}
               alignItems="stretch"
               justifyContent="flex-start"
-            >
-              <Button>
-                {/* {i18n.t("Duration of ride")}:*/} {transfer.duration}
-              </Button>
-            </Grid>
-
-            <Grid
-              container
-              item
-              xs={8}
-              alignItems="stretch"
-              justifyContent="flex-end"
             >
               <Tooltip
                 title={
@@ -125,6 +112,39 @@ export default function Transfer({transfer}) {
                 </Button>
               </Tooltip>
             </Grid>
+
+
+            {transfer.regularTrips ? i18n.t("Regular trips") : (
+              <Grid container item direction={'column'} xs={12}>
+                <Grid
+                  container
+                  item
+                  // sm={5}
+                  xs={7}
+                  // alignItems="stretch"
+                  justifyContent="flex-start"
+                >
+                  <Button>
+                    {/* {i18n.t("Duration of ride")}:*/} {transfer.date}
+                  </Button>
+                </Grid>
+                <Grid
+                  container
+                  item
+                  // sm={4}
+                  xs={4}
+                  // alignItems="stretch"
+                  justifyContent="flex-end"
+                >
+                  <Button>
+                    {/* {i18n.t("Duration of ride")}:*/} {transfer.departureTime}
+                  </Button>
+                </Grid>
+              </Grid>
+            )
+            }
+
+
           </Grid>
         </AccordionSummary>
         <AccordionDetails>
@@ -157,13 +177,17 @@ export default function Transfer({transfer}) {
                   justifyContent="flex-start"
                 >
                   <Paper className={"paper"}>
-                    <div style={{margin: "8px", minWidth: "190px", textAlign:"center"}}>
-                      {i18n.t("Regular trips")}
+                    {/*<div style={{margin: "8px", minWidth: "190px", textAlign: "center"}}>*/}
+                    {/*  {i18n.t("Regular trips")}*/}
+                    {/*</div>*/}
+                    <div style={{margin: "8px", minWidth: "190px", textAlign: "center"}}>
+                      {/*{i18n.t("Regular trips")}*/}
                     </div>
                     <Grid container
                           direction={'column'}
                           xs={12}
                           style={{margin: "4px"}}
+
                     >
                       {Object.keys(transfer.regularTripsDays)
                         .sort()
@@ -190,6 +214,17 @@ export default function Transfer({transfer}) {
                     </Grid>
                   </Paper>
                 </Grid>
+                <Grid
+                  container
+                  item
+                  xs={4}
+                  alignItems="stretch"
+                  justifyContent="flex-start"
+                >
+                  <Button>
+                    {/* {i18n.t("Duration of ride")}:*/} {transfer.duration}
+                  </Button>
+                </Grid>
               </>
             )}
 
@@ -200,7 +235,7 @@ export default function Transfer({transfer}) {
               alignItems="center"
               justifyContent="flex-start"
             >
-              <Paper className={"paper"} >
+              <Paper className={"paper"}>
                 {i18n.t("Driver's phone number")}: {transfer.phoneNumber}{" "}
                 <RingVolumeIcon fontSize="small"/>
               </Paper>
