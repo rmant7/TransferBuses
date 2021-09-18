@@ -21,7 +21,9 @@ const Navbar = () => {
   return (
     <AppBar position="fixed">
       {/*<Container maxWidth="lg" fixed >*/}
-      <Container maxWidth={false}>
+      {/*<Container maxWidth={'false !important'}>*/}
+      {/*<Container className={classes.toolbarContainer}>*/}
+      <Container style={{maxWidth: '100% !important'}}>
         <Toolbar className={classes.toolbar}>
           <Typography
             variant="h6"
