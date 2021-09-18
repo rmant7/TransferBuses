@@ -5,7 +5,9 @@ import { createTheme } from '@material-ui/core';
 const mainColor = "#536dfe";
 
 export const useStyles = makeStyles(theme => ({
-  //!! Material ui default classes
+
+
+        //!! Material ui default classes
 
   // !! Top padding modifier.
   topPadding: {
@@ -50,7 +52,7 @@ export const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1),
   },
   toolbarContainer: {
-    maxWidth: '1980px',
+    maxWidth: '5000px !important',
 
   },
   toolbar: {
@@ -139,6 +141,7 @@ export const theme = createTheme({
         lineHeight: 1.75,
         letterSpacing: "0.02857em",
         textTransform: "uppercase",
+        maxWidth: "100% !important"
       },
     },
   },
