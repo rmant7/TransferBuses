@@ -49,6 +49,13 @@ export const useStyles = makeStyles(theme => ({
   menuButton: {
     marginLeft: theme.spacing(1),
   },
+  toolbarContainer: {
+    maxWidth: '1980px',
+
+  },
+  toolbar: {
+    // maxWidth: '1980px',
+  },
   title: {
     flexGrow: 1,
     cursor: "pointer",
