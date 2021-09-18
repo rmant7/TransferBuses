@@ -17,18 +17,11 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
-  
-  // const { i18n } = useTranslation();
-  // const changeLanguage = (language) => {
-  //   i18n
-  //     .changeLanguage(language)
-  //     .then()
-  //     .catch((err) => console.error(err));
-  // };
 
   return (
     <AppBar position="fixed">
-      <Container maxWidth="lg" fixed>
+      {/*<Container maxWidth="lg" fixed >*/}
+      <Container >
         <Toolbar>
           <Typography
             variant="h6"
