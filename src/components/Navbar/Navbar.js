@@ -10,6 +10,7 @@ import { Sidebar, LanguageSelector } from '..';
 import { setSidebar } from '../../redux/reducers/appReducer';
 import CurrenciesSelector from '../CurrenciesSelector/CurrenciesSelector';
 import { useStyles } from '../../utils/useStyles';
+import css from './Navbar.module.css';
 // import {useTranslation} from "react-i18next";
 
 // const Navbar = ({ changeLanguage }) => {
@@ -27,13 +28,12 @@ const Navbar = () => {
         <Toolbar className={classes.toolbar}>
           <Typography
             variant="h6"
-            className={classes.title}
             onClick={() => history.push(MAIN_ROUTE)}>
             <span className={classes.title}
                   style={{marginLeft:"-16px", paddingRight:"16px", paddingBottom:"4px"}}
             >TransferBuses</span>
           </Typography>
-          <nav className={classes.nav}>
+          <nav className={classes.nav + " " + css.option_block}>
             <LanguageSelector />
             <CurrenciesSelector />
             <IconButton
