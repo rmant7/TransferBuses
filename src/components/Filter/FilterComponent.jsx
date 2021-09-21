@@ -2,16 +2,9 @@ import React, { useEffect, useState } from "react";
 import classes from "./FilterComponent.module.css";
 import { TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
-import { getCityById } from "../../utils/cities";
-import { useSelector } from "react-redux";
 
-export default function FilterComponent({ name, handler, array }) {
-    const lang = useSelector((state) => state.app.lang);
+export default function FilterComponent({ name, handler, items }) {
     const [inputValue, setInputValue] = useState("");
-    const items = Array.from(new Set(array.map((item) => {
-        const city = getCityById(item.from);
-        return lang.includes("ru") ? city.name_ru : city.name;
-    })));
 
     const inputValueHandler = (e) => {
         setInputValue(e.target.textContent);
