@@ -14,7 +14,6 @@ export default function FilterComponent({ name, handler, array }) {
     })));
 
     const inputValueHandler = (e) => {
-        console.log(e.target.textContent);
         setInputValue(e.target.textContent);
     };
 
@@ -33,7 +32,6 @@ export default function FilterComponent({ name, handler, array }) {
                 onChange={inputValueHandler}
                 renderInput={(params) => (
                     <TextField
-                        style={{ width: "250%" }}
                         variant="outlined"
                         {...params}
                         label={name}
