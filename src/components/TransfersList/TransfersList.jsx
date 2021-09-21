@@ -27,6 +27,7 @@ export default function TransfersList({ transfers }) {
                 <FilterComponent
                     name={filters[0].category}
                     handler={applyFilterFromCityHandler}
+                    array={transfers}
                 />
             </div>
             {filteredTransfers.lenth === 0

@@ -6,14 +6,18 @@ import './index.css';
 import 'typeface-roboto';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { LinearProgress } from '@material-ui/core';
+import { Box, LinearProgress } from '@material-ui/core';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         {/* <Suspense fallback={<div>loading...</div>}> */}
-        <Suspense fallback={<LinearProgress color="inherit" />}>
+        <Suspense fallback={
+          <Box sx={{ width: "100%" }}>
+            <LinearProgress />
+          </Box>
+        }>
           <App />
         </Suspense>
       </BrowserRouter>
