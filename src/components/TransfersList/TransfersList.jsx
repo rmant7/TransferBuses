@@ -4,7 +4,7 @@ import Transfer from "../Transfer/Transfer";
 import { useSelector } from "react-redux";
 import { getCityById } from "../../utils/cities";
 import FilterComponent from "../Filter/FilterComponent";
-import { Typography } from "@material-ui/core";
+import { Chip, Divider, Typography } from "@material-ui/core";
 import i18n from "i18next";
 
 export default function TransfersList({ transfers }) {
@@ -22,7 +22,7 @@ export default function TransfersList({ transfers }) {
 
     // console.log("transfers: ", transfers);
     return (
-        <div className="transfers">
+        <>
             <div className="filters">
                 <Typography variant="button" display="block" gutterBottom>
                     {i18n.t("Filter By")}
@@ -33,13 +33,15 @@ export default function TransfersList({ transfers }) {
                     array={transfers}
                 />
             </div>
-            {filteredTransfers.lenth === 0
-                ? transfers.map((transfer) => (
-                      <Transfer key={transfer.id} transfer={transfer} />
-                  ))
-                : filteredTransfers.map((transfer) => (
-                      <Transfer key={transfer.id} transfer={transfer} />
-                  ))}
-        </div>
+            <div className="transfers">
+                {filteredTransfers.lenth === 0
+                    ? transfers.map((transfer) => (
+                          <Transfer key={transfer.id} transfer={transfer} />
+                      ))
+                    : filteredTransfers.map((transfer) => (
+                          <Transfer key={transfer.id} transfer={transfer} />
+                      ))}
+            </div>
+        </>
     );
 }
