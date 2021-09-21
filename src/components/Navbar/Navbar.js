@@ -33,7 +33,7 @@ const Navbar = () => {
                   style={{marginLeft:"-16px", paddingRight:"16px", paddingBottom:"4px"}}
             >TransferBuses</span>
           </Typography>
-          <nav className={classes.nav + " " + css.option_block}>
+          <nav className={`${classes.nav} ${css.option_block}`}>
             <LanguageSelector />
             <CurrenciesSelector />
             <IconButton
