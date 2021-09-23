@@ -24,13 +24,15 @@ const Navbar = () => {
       {/*<Container maxWidth="lg" fixed >*/}
       {/*<Container maxWidth={'false !important'}>*/}
       {/*<Container className={classes.toolbarContainer}>*/}
-      <Container style={{maxWidth: '100% !important'}}>
+      {/*<Container style={{maxWidth: '100% !important', width: '100% !important'}}>*/}
+      <Container className={classes.toolbarContainer} style={{maxWidth: '100% !important', width: '100% !important'}}>
         <Toolbar className={classes.toolbar}>
           <Typography
             variant="h6"
+            className={classes.title}
             onClick={() => history.push(MAIN_ROUTE)}>
             <span className={classes.title}
-                  style={{marginLeft:"-16px", paddingRight:"16px", paddingBottom:"4px"}}
+                  style={{marginLeft: "-16px", paddingRight: "16px", paddingBottom: "4px"}}
             >TransferBuses</span>
           </Typography>
           <nav className={`${classes.nav} ${css.option_block}`}>
