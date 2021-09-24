@@ -1,11 +1,29 @@
 import { fb } from "../config/firebase-config";
 
+const getTransfersCollectionFromFB = () => {
+  return fb.firestore().collection("transfers");
+};
+
+export async function getTransfersByFromCityId(fromCityId) {
+  try {
+    const collection = await getTransfersCollectionFromFB()
+      .where("from", "==", fromCityId)
+      .get();
+    const response = collection.docs.map(v => {
+      return { ...v.data(), id: v.id };
+    });
+    return response;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+}
+
 export async function uploadTransfer(
   transfer
 ) {
 
-  if(!transfer.regularTrips){
-    delete(transfer.regularTripsDays)
+  if (!transfer.regularTrips) {
+    delete (transfer.regularTripsDays)
   }
   try {
     const collection = fb.firestore().collection("transfers");

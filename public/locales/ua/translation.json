@@ -8,9 +8,6 @@
   "Driver\u0027s phone number": "Номер телефону перевізника",
   "Duration of ride": "Тривалість їзди",
   "From": "Звiдки",
-  "From City": "З міста",
-  "To City": "До міста",
-  "Filter By": "Відфільтрувати:",
   "I\u0027m a driver": "Я перевізник",
   "I\u0027m a passenger": "Я пасажир",
   "Our partners": "Наші партнери:",
@@ -64,5 +61,12 @@
         "Required": "Обов\u0027язкове поле"
       }
     }
-  }
+  },
+  "From City": "З міста",
+  "To City": "До міста",
+  "Filter": "Фільтр:",
+  "Apply Filter": "Відфільтрувати",
+  "Clear Filter": "Очистити фільтри",
+  "Cancel": "Відміна",
+  "Apply": "Застосувати"
 }

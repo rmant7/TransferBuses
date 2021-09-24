@@ -1,5 +1,17 @@
-.filter_root {
+.filters_sector {
+    margin: auto;
+    width: 85%;
+}
+
+.filters {
     display: inline-block;
-    width: 15%;
-    margin: 10px 0 10px;
+}
+
+.filter_buttons {
+    display: inline-block;
+}
+
+.filter {
+    display: inline-block;
+    min-width: 200px;
 }
