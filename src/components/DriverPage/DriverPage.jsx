@@ -53,9 +53,10 @@ export default function DriverPage() {
   const classes = useStyles();
   const [rideCurrency, setRideCurrency] = useState(cur);
   const [messenger, setMessenger] = useState();
-  const [nearesttCity, setNearestCity] = useState();
+  const [nearestCity, setNearestCity] = useState();
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
+  const [timeZones, setTimeZones] = useState(['London GMT 0', 'Moscow GMT +3']);
 
   // console.log("cur: ", cur);
   // console.log("rideCurrency: ", rideCurrency);
@@ -64,18 +65,18 @@ export default function DriverPage() {
   console.log(lang)
 
   const cities = lang === 'ru'
-    ? [... cities_json
+    ? [...cities_json
       .reduce((acc, val) => {
         acc.push({id: val.ID, title: val["name_ru"]});
         return acc;
       }, [])
-      .sort((a, b) => (a.title < b.title ? -1 : 1)) ,
-      ... cities_json
-      .reduce((acc, val) => {
-        acc.push({id: val.ID, title: val.name});
-        return acc;
-      }, [])
-      .sort((a, b) => (a.title < b.title ? -1 : 1))]
+      .sort((a, b) => (a.title < b.title ? -1 : 1)),
+      ...cities_json
+        .reduce((acc, val) => {
+          acc.push({id: val.ID, title: val.name});
+          return acc;
+        }, [])
+        .sort((a, b) => (a.title < b.title ? -1 : 1))]
     :
     cities_json
       .reduce((acc, val) => {
@@ -98,7 +99,7 @@ export default function DriverPage() {
     // durations.push(i+":30")
   }
   // durations.pop()
-  durations.push(maxDurationHour+":00 +")
+  durations.push(maxDurationHour + ":00 +")
 
   const [state, setState] = useState({});
   const history = useHistory();
@@ -466,6 +467,10 @@ export default function DriverPage() {
                         }}
                       />
                     </Grid>
+
+                  </Grid>
+                  {/**** DEPARTURE TIME ****/}
+                  <Grid container justifyContent="space-between">
                     <Grid item xs={5}>
                       <TextField
                         id="departureTime"
@@ -494,8 +499,46 @@ export default function DriverPage() {
                         }}
                       />
                     </Grid>
-                  </Grid>
+                    {/*^^^ DEPARTURE TIME ^^^*/}
 
+                    {/*VVV DEPARTURE TIMEZONE VVV*/}
+                    <Grid item xs={6}>
+                      <FormControl fullWidth style ={{paddingTop:'0px', marginTop: '9px'}}>
+                        <InputLabel shrink id="timeZone-label" style ={{marginTop: '8px'}}>
+                          {i18n.t("Timezone")}
+                        </InputLabel>
+                        <Select
+                          labelId="timeZone-label"
+                          id="timeZone"
+                          label="timeZone"
+                          margin="normal"
+                          name={"timeZone"}
+                          value={props.values.timeZone}
+                          renderValue={value => `${value}`}
+                          // disableUnderline
+                          onChange={props.handleChange}
+                          // style={{paddingTop: "9px", paddingBottom: '4px'}}
+                          style={{textTransform: "none"}}
+                          helperText={" 123"}
+                          // style={{marginTop: "25px"}}
+                        >
+                          {
+                            timeZones.map(item => {
+                              return (
+                                <MenuItem
+                                  key={item}
+                                  value={item}
+                                  // onClick={() => setRideCurrency(item.code)}
+                                >
+                                  {item}
+                                </MenuItem>
+                              );
+                            })}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    {/*^^^ DEPARTURE TIMEZONE ^^^*/}
+                  </Grid>
                   <Grid container justifyContent="space-between">
                     <Grid item xs={5}>
                       <FormControl fullWidth>
@@ -648,6 +691,8 @@ export default function DriverPage() {
                     }}
                   />
                 </Grid>
+
+                {/*CURRENCY v*/}
                 <Grid item xs={4}>
                   <Select
                     id="currency"
@@ -673,6 +718,7 @@ export default function DriverPage() {
                     })}
                   </Select>
                 </Grid>
+                {/*CURRENCY ^*/}
               </Grid>
               {/*</Grid>*/}
               <FormControlLabel
