@@ -148,7 +148,6 @@ export const theme = createTheme({
         lineHeight: 1.75,
         letterSpacing: "0.02857em",
         textTransform: "uppercase",
-        maxWidth: "100% !important"
       },
     },
   },
