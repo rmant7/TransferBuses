@@ -28,6 +28,8 @@ import {currencies} from "../../utils/currencies";
 import axios from "axios";
 import "yup-phone-lite";
 import {useStyles} from "../../utils/useStyles";
+import {timeZones} from "../../utils/timezones";
+
 
 const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
@@ -56,13 +58,20 @@ export default function DriverPage() {
   const [nearestCity, setNearestCity] = useState();
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
-  const [timeZones, setTimeZones] = useState(['London GMT 0', 'Moscow GMT +3']);
+  const [userTimeZone, setUserTimeZone] = useState(()=>{
+    const timeZone = timeZones.find( tz =>  tz.shift === '' + new Date()
+      .getTimezoneOffset()/(-60))
+    console.log('timeZone detect:', timeZone)
+    return timeZone || timeZones[0]
+  });
 
   // console.log("cur: ", cur);
   // console.log("rideCurrency: ", rideCurrency);
   console.log("Current latitude", latitude);
   console.log("Current longitude", longitude);
   console.log(lang)
+
+  console.log('user time zone', userTimeZone)
 
   const cities = lang === 'ru'
     ? [...cities_json
@@ -203,6 +212,7 @@ export default function DriverPage() {
         initialValues={{
           date: new Date().toJSON().slice(0, 10),
           departureTime: "",
+          timeZone: userTimeZone.shift,
           phoneNumber: "",
           places: 1,
           price: "",
@@ -513,8 +523,9 @@ export default function DriverPage() {
                           label="timeZone"
                           margin="normal"
                           name={"timeZone"}
-                          value={props.values.timeZone}
-                          renderValue={value => `${value}`}
+                          value={userTimeZone.shift}
+                          // renderValue={userTimeZone.shift}
+                          // renderValue={value => `${value}`}
                           // disableUnderline
                           onChange={props.handleChange}
                           // style={{paddingTop: "9px", paddingBottom: '4px'}}
@@ -524,13 +535,19 @@ export default function DriverPage() {
                         >
                           {
                             timeZones.map(item => {
+                              // console.log(item.shift, item.name)
                               return (
                                 <MenuItem
-                                  key={item}
-                                  value={item}
-                                  // onClick={() => setRideCurrency(item.code)}
+                                  key={item.shift}
+                                  value={item.shift}
+                                  onClick={() => {
+                                    // console.log('userTimeZone',userTimeZone);
+                                    setUserTimeZone(item)
+                                    // console.log('userTimeZone after click',userTimeZone);
+
+                                  }}
                                 >
-                                  {item}
+                                  {item.name}
                                 </MenuItem>
                               );
                             })}

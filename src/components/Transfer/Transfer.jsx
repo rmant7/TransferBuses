@@ -14,6 +14,7 @@ import {useSelector} from "react-redux";
 import {currencies} from "../../utils/currencies";
 import {Tooltip} from "@material-ui/core";
 import cities from "../../utils/cities.json";
+import {timeZones} from "../../utils/timezones";
 
 export default function Transfer({transfer}) {
   const globalCurrencyCode = useSelector(state => state.app.currency);
@@ -31,6 +32,8 @@ export default function Transfer({transfer}) {
   const transferCurrency =
     currencies.find(cur => cur.code === transfer.currency) ||
     currencies.find(cur => cur.code === "EUR");
+
+  const timeZoneName = timeZones.find(tz => tz.shift === transfer.timeZone)?.name
 
   if (currencies.map(cur => cur.code).includes(transfer.currency)) {
     // IF transfer.currency IS IN THE currencies ARRAY
@@ -137,7 +140,8 @@ export default function Transfer({transfer}) {
                   justifyContent="flex-end"
                 >
                   <Button>
-                    {/* {i18n.t("Duration of ride")}:*/} {transfer.departureTime}
+                    {/* {i18n.t("Duration of ride")}:*/}
+                    {transfer.departureTime} {timeZoneName ? '(' + timeZoneName + ')':""}
                   </Button>
                 </Grid>
               </Grid>
