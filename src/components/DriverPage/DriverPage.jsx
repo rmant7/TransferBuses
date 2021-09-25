@@ -254,6 +254,9 @@ export default function DriverPage() {
         }}
         onSubmit={values => {
           console.log("SUBMITTING");
+          const departureTimeGMT = values.departureTime.split(":")
+          departureTimeGMT[0] -= values.timeZone
+          values.departureTime = departureTimeGMT.join(':')
 
           uploadTransfer(values)
             .then(response => {
