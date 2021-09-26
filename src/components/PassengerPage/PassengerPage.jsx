@@ -7,22 +7,22 @@ import filtersClasses from "../Filter/FilterComponent.module.css";
 import FiltersCitiesFrom from "../FiltersCitysFrom/FiltersCitiesFrom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { receiveTransfersAction } from "../../redux/actions/transfersActions";
-import { selectFilter, transfersData } from "../../redux/selectors";
+import { getTransfersAction } from "../../redux/actions/transfersActions";
+import { getTransfersData, selectFilter } from "../../redux/selectors";
 // import "./PassengerPage.css";
 
 export default function PassengerPage() {
     const classes = useStyles();
     const dispatch = useDispatch();
     // const [transfers, setTransfers] = useState([]);
-    const data = useSelector(transfersData);
-    const selectedCityId = useSelector(selectFilter);
     // const [loading, setLoading] = useState();
+    const data = useSelector(getTransfersData);
+    const selectedCityId = useSelector(selectFilter);
 
     console.log(data, selectedCityId);
 
     useEffect(() => {
-        dispatch(receiveTransfersAction());
+        dispatch(getTransfersAction());
     }, [dispatch]);
 
     return (
