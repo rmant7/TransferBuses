@@ -8,9 +8,6 @@
   "Driver\u0027s phone number": "Номер телефона перевозчика",
   "Duration of ride": "Продолжительность поездки",
   "From": "Откуда",
-  "From City": "Из города",
-  "To City": "В город",
-  "Filter By": "Применить фильтр:",
   "I\u0027m a driver": "Я перевозчик",
   "I\u0027m a passenger": "Я пассажир",
   "Our partners": "Наши партнеры:",
@@ -64,5 +61,12 @@
         "Required": "Обязательное поле"
       }
     }
-  }
+  },
+  "From City": "Из города",
+  "To City": "В город",
+  "Filter": "Фильтр:",
+  "Apply Filter": "Отфильтровать",
+  "Clear Filter": "Очистить фильтры",
+  "Cancel": "Отмена",
+  "Apply": "Применить"
 }

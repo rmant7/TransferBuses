@@ -8,9 +8,6 @@
   "Driver\u0027s phone number": "Carrier\u0027s phone number",
   "Duration of ride": "Duration of ride",
   "From": "From",
-  "From City": "From City",
-  "To City": "To City",
-  "Filter By": "Filter By:",
   "I\u0027m a driver": "I\u0027m a carrier",
   "I\u0027m a passenger": "I\u0027m a passenger",
   "Our partners": "Our partners:",
@@ -64,5 +61,12 @@
         "Required": "Required field"
       }
     }
-  }
+  },
+  "From City": "From City",
+  "To City": "To City",
+  "Filter": "Filter By:",
+  "Apply Filter": "Apply Filter",
+  "Clear Filter": "Clear Filter",
+  "Cancel": "Cancel",
+  "Apply": "Apply"
 }
