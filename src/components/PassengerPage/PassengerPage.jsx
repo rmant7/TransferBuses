@@ -8,7 +8,7 @@ import FiltersCitiesFrom from "../FiltersCitysFrom/FiltersCitiesFrom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getTransfersAction } from "../../redux/actions/transfersActions";
-import { getTransfersData, selectFilter } from "../../redux/selectors";
+import { getTransfersData, loading, selectFilter } from "../../redux/selectors";
 // import "./PassengerPage.css";
 
 export default function PassengerPage() {
@@ -17,9 +17,9 @@ export default function PassengerPage() {
     // const [transfers, setTransfers] = useState([]);
     // const [loading, setLoading] = useState();
     const data = useSelector(getTransfersData);
-    const selectedCityId = useSelector(selectFilter);
+    const loadingTransfers = useSelector(loading).isLoadingTransfers;
 
-    console.log(data, selectedCityId);
+    console.log(data);
 
     useEffect(() => {
         dispatch(getTransfersAction());
@@ -35,7 +35,7 @@ export default function PassengerPage() {
             </div>
             {/* {loading && <h2>Loading...</h2>} */}
             {/* {!loading && <TransfersList transfers={transfers} />} */}
-            {!data.isReceived ? (
+            {loadingTransfers ? (
                 <Box sx={{ width: "100%" }}>
                     <LinearProgress />
                 </Box>
