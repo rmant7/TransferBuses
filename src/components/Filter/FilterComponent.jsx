@@ -5,16 +5,19 @@ import { Autocomplete } from "@material-ui/lab";
 import { useDispatch } from "react-redux";
 import { selectFilterAction } from "../../redux/actions/filtersActions";
 import { useSelector } from "react-redux";
-import { getFilters } from "../../redux/selectors";
+import { getFilters, selectFilter } from "../../redux/selectors";
 import { getCityById } from "../../utils/cities";
 
 export default function FilterComponent({ name, items }) {
     const dispatch = useDispatch();
     const filters = useSelector(getFilters);
+    const selected = useSelector(selectFilter);
+
+    console.log(selected);
 
     const inputValueHandler = (e) => {
         const city = getCityById(filters[e.target.dataset.optionIndex]);
-        dispatch(selectFilterAction(city ? city.ID : -1));
+        dispatch(selectFilterAction(city));
     };
 
     return (
@@ -23,15 +26,12 @@ export default function FilterComponent({ name, items }) {
                 variant="outlined"
                 disablePortal
                 id="combo-box-demo"
+                value={selected.name}
                 options={items}
                 sx={{ width: 300 }}
                 onChange={inputValueHandler}
                 renderInput={(params) => (
-                    <TextField
-                        variant="outlined"
-                        {...params}
-                        label={name}
-                    />
+                    <TextField variant="outlined" {...params} label={name} />
                 )}
             />
         </div>

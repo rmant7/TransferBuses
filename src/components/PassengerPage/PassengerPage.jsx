@@ -19,7 +19,7 @@ export default function PassengerPage() {
     const selectedCityId = useSelector(selectFilter);
     // const [loading, setLoading] = useState();
 
-console.log(selectedCityId);
+    console.log(data, selectedCityId);
 
     useEffect(() => {
         dispatch(receiveTransfersAction());
@@ -27,6 +27,12 @@ console.log(selectedCityId);
 
     return (
         <Container maxWidth="xl" className={classes.topPadding}>
+            <div className={filtersClasses.filters_sector}>
+                <Typography variant="button" display="block" gutterBottom>
+                    {i18next.t("Filter")}
+                </Typography>
+                <FiltersCitiesFrom name={i18next.t("From City")} />
+            </div>
             {/* {loading && <h2>Loading...</h2>} */}
             {/* {!loading && <TransfersList transfers={transfers} />} */}
             {!data.isReceived ? (
@@ -34,19 +40,7 @@ console.log(selectedCityId);
                     <LinearProgress />
                 </Box>
             ) : (
-                <>
-                    <div className={filtersClasses.filters_sector}>
-                        <Typography
-                            variant="button"
-                            display="block"
-                            gutterBottom
-                        >
-                            {i18next.t("Filter")}
-                        </Typography>
-                        <FiltersCitiesFrom name={i18next.t("From City")} />
-                    </div>
-                    <TransfersList transfers={data.transfers} />
-                </>
+                <TransfersList transfers={data.transfers} />
             )}
         </Container>
     );

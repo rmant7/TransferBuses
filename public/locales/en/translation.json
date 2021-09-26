@@ -65,8 +65,7 @@
   "From City": "From City",
   "To City": "To City",
   "Filter": "Filter By:",
-  "Apply Filter": "Apply Filter",
-  "Clear Filter": "Clear Filter",
-  "Cancel": "Cancel",
-  "Apply": "Apply"
+  "Apply": "Apply",
+  "Clear": "Clear",
+  "Cancel": "Cancel"
 }
