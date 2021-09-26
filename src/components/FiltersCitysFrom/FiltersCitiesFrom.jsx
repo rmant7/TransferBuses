@@ -4,17 +4,19 @@ import { getCityById } from "../../utils/cities";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
 import FilterComponent from "../Filter/FilterComponent";
-import FilterIcon from "../../assets/filter-filled-tool-symbol.png";
-import ClearFilterIcon from "../../assets/clear-filter.png";
-import { applyFilterFromCityIdAction, selectFilterAction } from "../../redux/actions/filtersActions";
-import { getFilters, selectFilter } from "../../redux/selectors";
+import { getFilters, inputFromToCity } from "../../redux/selectors";
+import i18next from "i18next";
+import {
+    inputFromCityAction,
+    inputToCityAction,
+} from "../../redux/actions/inputFromToCityActions";
 
 export default function FiltersCitiesFrom({ name }) {
     const dispatch = useDispatch();
     const filters = useSelector(getFilters);
-    const selectedCity = useSelector(selectFilter);
+    const inputFromTo = useSelector(inputFromToCity);
 
-    console.log(filters);
+    console.log(inputFromTo);
 
     const getCitiesForOption = () => {
         const tmp = [];
@@ -27,22 +29,32 @@ export default function FiltersCitiesFrom({ name }) {
     };
 
     const handleApplyFilter = () => {
-        dispatch(applyFilterFromCityIdAction(selectedCity.ID));
+        console.log(inputFromTo);
     };
 
-    const handleClearFilter = () => {
-        dispatch(selectFilterAction(""));
+    const handleInputFrom = (e, v) => {
+        dispatch(inputFromCityAction(v));
+    };
+
+    const handleClearFields = () => {
+        dispatch(inputFromCityAction(""));
+        dispatch(inputToCityAction(""));
     };
 
     return (
         <div className={classes.filters}>
-            <FilterComponent name={name} items={getCitiesForOption()} />
+            <FilterComponent
+                label={name}
+                options={getCitiesForOption()}
+                handler={handleInputFrom}
+                inputValue={inputFromTo.inputFromCity}
+            />
             <div className={classes.filter_buttons}>
                 <Button onClick={handleApplyFilter}>
-                    <img src={FilterIcon} alt="Apply" />
+                    {i18next.t("Apply")}
                 </Button>
-                <Button onClick={handleClearFilter}>
-                    <img src={ClearFilterIcon} alt="Clear" />
+                <Button onClick={handleClearFields}>
+                    {i18next.t("Clear")}
                 </Button>
             </div>
         </div>

@@ -4,14 +4,17 @@
 }
 
 .filters {
+    text-align: center;
     display: inline-block;
+    width: 100%;
 }
 
 .filter_buttons {
-    display: inline-block;
+    width: 100%;
+    text-align: center;
 }
 
 .filter {
     display: inline-block;
-    min-width: 200px;
+    width: 80%;
 }
