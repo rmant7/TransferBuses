@@ -5,13 +5,15 @@ import { useStyles } from '../../utils/useStyles';
 import { languages } from '../../utils/languages';
 import { setLanguage } from '../../redux/reducers/appReducer';
 import {useTranslation} from "react-i18next";
+import { getLanguage } from '../../redux/selectors';
+import { setLanguageAction } from '../../redux/actions/appActions';
 
 
 
 const LanguageSelector = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const lang = useSelector((state) => state.app.lang);
+  const lang = useSelector(getLanguage);
 
   const { i18n } = useTranslation();
   const changeLanguage = (language) => {
@@ -41,7 +43,7 @@ const LanguageSelector = () => {
               onClick={() => {
                 localStorage.setItem("locale", lng.locale);
                 changeLanguage(lng.locale);
-                dispatch(setLanguage(lng.locale));
+                dispatch(setLanguageAction(lng.locale));
               }}
             >
               <img className={classes.flag} src={lng.icon} alt={lng.label} />

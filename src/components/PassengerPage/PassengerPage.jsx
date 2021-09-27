@@ -8,7 +8,8 @@ import FiltersCitiesFrom from "../FiltersCitysFrom/FiltersCitiesFrom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getTransfersAction } from "../../redux/actions/transfersActions";
-import { getTransfersData, loading, selectFilter } from "../../redux/selectors";
+import { getTransfersData, loading } from "../../redux/selectors";
+import Transfer from "../Transfer/Transfer";
 // import "./PassengerPage.css";
 
 export default function PassengerPage() {
@@ -31,16 +32,21 @@ export default function PassengerPage() {
                 <Typography variant="button" display="block" gutterBottom>
                     {i18next.t("Filter")}
                 </Typography>
-                <FiltersCitiesFrom name={i18next.t("From City")} />
+                <FiltersCitiesFrom />
             </div>
             {/* {loading && <h2>Loading...</h2>} */}
             {/* {!loading && <TransfersList transfers={transfers} />} */}
-            {loadingTransfers ? (
+            {loadingTransfers && !data.isReceived ? (
                 <Box sx={{ width: "100%" }}>
                     <LinearProgress />
                 </Box>
             ) : (
-                <TransfersList transfers={data.transfers} />
+                // <TransfersList transfers={data.transfers} />
+                <div className="transfers">
+                    {data.transfers.map((transfer) => (
+                        <Transfer key={transfer.id} transfer={transfer} />
+                    ))}
+                </div>
             )}
         </Container>
     );

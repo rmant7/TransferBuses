@@ -1,39 +1,42 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { Drawer, ListItem, List, ListItemText, Container } from '@material-ui/core';
+import { Drawer, ListItem, List, ListItemText, Container, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { menuData } from '../../../utils/menuData';
 import { useStyles } from '../../../utils/useStyles';
-import { setSidebar } from '../../../redux/reducers/appReducer';
 import i18n from "../../../i18n";
+import { getSidebar } from '../../../redux/selectors';
+import { setSidebarAction } from '../../../redux/actions/appActions';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const sidebar = useSelector((state) => state.app.sidebar);
+  const sidebar = useSelector(getSidebar);
   const classes = useStyles();
   const history = useHistory();
 
+  console.log(sidebar);
+
   const closeHandler = (path) => {
     history.push(path);
-    dispatch(setSidebar(false));
+    dispatch(setSidebarAction(false));
   };
   return (
     <Drawer
       anchor="right"
       classes={{ paper: classes.paper }}
       open={sidebar}
-      onClose={() => dispatch(setSidebar(false))}
+      onClose={() => dispatch(setSidebarAction(false))}
     >
       <Container fluid className={classes.sidebarHeader}>
         <Container className={classes.sidebarHeaderInfo}>
-          <CloseIcon onClick={() => dispatch(setSidebar(false))} />
+          <CloseIcon style={{cursor: "pointer"}} onClick={() => dispatch(setSidebarAction(false))} />
           TransferBuses
         </Container>
       </Container>
 
       <List
-        onClick={() => dispatch(setSidebar(false))}
+        onClick={() => dispatch(setSidebarAction(false))}
         className={classes.sidebarList}
       >
         {menuData.map(item => (

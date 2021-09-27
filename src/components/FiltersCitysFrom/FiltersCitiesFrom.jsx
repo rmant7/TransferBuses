@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "../Filter/FilterComponent.module.css";
-import { getCityById } from "../../utils/cities";
+import { getCityByName } from "../../utils/cities";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
 import FilterComponent from "../Filter/FilterComponent";
@@ -10,26 +10,20 @@ import {
     inputFromCityAction,
     inputToCityAction,
 } from "../../redux/actions/inputFromToCityActions";
+import { applyFilterFromCityIdAction } from "../../redux/actions/filtersActions";
 
-export default function FiltersCitiesFrom({ name }) {
+export default function FiltersCitiesFrom() {
     const dispatch = useDispatch();
     const filters = useSelector(getFilters);
     const inputFromTo = useSelector(inputFromToCity);
 
-    console.log(inputFromTo);
-
-    const getCitiesForOption = () => {
-        const tmp = [];
-        filters.lentch &&
-            filters.forEach((element) => {
-                tmp.push(getCityById(element.from).name);
-                tmp.push(getCityById(element.from).name_ru);
-            });
-        return tmp;
-    };
-
     const handleApplyFilter = () => {
-        console.log(inputFromTo);
+        const city = getCityByName(inputFromTo.inputFromCity);
+        if (city) {
+            dispatch(applyFilterFromCityIdAction(city.ID));
+        } else {
+            alert("Please input city");
+        }
     };
 
     const handleInputFrom = (e, v) => {
@@ -44,16 +38,25 @@ export default function FiltersCitiesFrom({ name }) {
     return (
         <div className={classes.filters}>
             <FilterComponent
-                label={name}
-                options={getCitiesForOption()}
+                label={i18next.t("From City")}
+                options={filters}
                 handler={handleInputFrom}
                 inputValue={inputFromTo.inputFromCity}
+                getOptionLabel={(o) => o.name}
             />
             <div className={classes.filter_buttons}>
-                <Button onClick={handleApplyFilter}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleApplyFilter}
+                >
                     {i18next.t("Apply")}
                 </Button>
-                <Button onClick={handleClearFields}>
+                <Button
+                    variant="outlined"
+                    onClick={handleClearFields}
+                    style={{ marginLeft: "10px" }}
+                >
                     {i18next.t("Clear")}
                 </Button>
             </div>

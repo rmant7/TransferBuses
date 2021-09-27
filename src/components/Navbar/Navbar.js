@@ -1,23 +1,21 @@
 import React from 'react';
-import { useHistory } from 'react-router';
-import { AppBar, Container, IconButton, Typography, Toolbar } from '@material-ui/core';
+import { AppBar, Container, IconButton, Toolbar } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 import MenuIcon from '@material-ui/icons/Menu';
 
 import { MAIN_ROUTE } from '../../utils/constants';
 import { Sidebar, LanguageSelector } from '..';
-import { setSidebar } from '../../redux/reducers/appReducer';
 import CurrenciesSelector from '../CurrenciesSelector/CurrenciesSelector';
 import { useStyles } from '../../utils/useStyles';
 import css from './Navbar.module.css';
+import { setSidebarAction } from '../../redux/actions/appActions';
 // import {useTranslation} from "react-i18next";
 
 // const Navbar = ({ changeLanguage }) => {
 const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const history = useHistory();
 
   return (
     <AppBar position="fixed">
@@ -32,7 +30,7 @@ const Navbar = () => {
             <LanguageSelector />
             <CurrenciesSelector />
             <IconButton
-              onClick={() => dispatch(setSidebar(true))}
+              onClick={() => dispatch(setSidebarAction(true))}
               edge="end"
               color="inherit"
               aria-label="menu"

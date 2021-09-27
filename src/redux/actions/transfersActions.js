@@ -1,4 +1,6 @@
 import { getTransfers, uploadTransfer } from "../../services/data-service";
+import { getCityById } from "../../utils/cities";
+import { setFiltersAction } from "./filtersActions";
 import { loadingTransfersAction } from "./loadingActions";
 
 export const SET_ADD_NEW_TRANSFER = 'set-add-new-transfer';
@@ -11,6 +13,7 @@ export function getTransfersAction() {
             dispatch({ type: SET_TRANSFERS, payload: { isReceived: false } });
             const transfers = await getTransfers();
             dispatch({ type: SET_TRANSFERS, payload: { isReceived: true, transfers } });
+            dispatch(setFiltersAction(Array.from(new Set(transfers.map(t => getCityById(t.from))))));
             dispatch(loadingTransfersAction(false));
         } catch (e) {
             dispatch({ type: SET_TRANSFERS, payload: { isReceived: false, transfers: [] } });

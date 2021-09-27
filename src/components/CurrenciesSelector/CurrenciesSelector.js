@@ -4,11 +4,13 @@ import { useStyles } from '../../utils/useStyles';
 import { FormControl, Select, MenuItem } from '@material-ui/core';
 import { currencies } from '../../utils/currencies';
 import { setCurrency } from '../../redux/reducers/appReducer';
+import { getCurrency } from '../../redux/selectors';
+import { setCurrencyAction } from '../../redux/actions/appActions';
 
 const CurrenciesSelector = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const cur = useSelector((state) => state.app.currency);
+  const cur = useSelector(getCurrency);
   return (
     <FormControl>
       <Select
@@ -28,7 +30,7 @@ const CurrenciesSelector = () => {
               key={item.code}
               onClick={() => {
                 localStorage.setItem("currency", item.code);
-                dispatch(setCurrency(item.code));
+                dispatch(setCurrencyAction(item.code));
               }}
             >
               {item.code + `  ` + item.name}

@@ -1,6 +1,6 @@
-const SET_SIDEBAR = 'SHOW_SIDEBAR';
-const SET_LANGUAGE = 'SET_LANGUAGE';
-const SET_CURRENCY = 'SET_CURRENCY';
+export const SET_SIDEBAR = 'SHOW_SIDEBAR';
+export const SET_LANGUAGE = 'SET_LANGUAGE';
+export const SET_CURRENCY = 'SET_CURRENCY';
 
 const defaultState = {
   sidebar: false,
@@ -21,7 +21,3 @@ export default function appReducer(state = defaultState, action) {
       return state;
   }
 }
-
-export const setSidebar = (payload) => ({ type: SET_SIDEBAR, payload: payload });
-export const setLanguage = (payload) => ({ type: SET_LANGUAGE, payload });
-export const setCurrency = (payload) => ({ type: SET_CURRENCY, payload });
