@@ -36,18 +36,18 @@ export default function PassengerPage() {
             </div>
             {/* {loading && <h2>Loading...</h2>} */}
             {/* {!loading && <TransfersList transfers={transfers} />} */}
-            {loadingTransfers && !data.isReceived ? (
-                <Box sx={{ width: "100%" }}>
-                    <LinearProgress />
-                </Box>
-            ) : (
-                // <TransfersList transfers={data.transfers} />
-                <div className="transfers">
-                    {data.transfers.map((transfer) => (
+            <div className="transfers">
+                {loadingTransfers && !data.isReceived ? (
+                    <Box sx={{ width: "100%" }}>
+                        <LinearProgress />
+                    </Box>
+                ) : (
+                    // <TransfersList transfers={data.transfers} />
+                    data.transfers.map((transfer) => (
                         <Transfer key={transfer.id} transfer={transfer} />
-                    ))}
-                </div>
-            )}
+                    ))
+                )}
+            </div>
         </Container>
     );
 }

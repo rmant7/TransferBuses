@@ -22,7 +22,7 @@ export default function FiltersCitiesFrom() {
         if (city) {
             dispatch(applyFilterFromCityIdAction(city.ID));
         } else {
-            alert("Please input city");
+            alert(`No such city found: ${inputFromTo.inputFromCity}`);
         }
     };
 
