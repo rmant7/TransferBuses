@@ -1,4 +1,4 @@
-import { SET_CURRENCY, SET_LANGUAGE, SET_SIDEBAR } from "../reducers/appReducer";
+import { SET_CURRENCY, SET_LANGUAGE, SET_SIDEBAR } from "../reducers/app-reducer";
 
 export function setSidebarAction(isSidebar) {
     return (dispatch) => dispatch({ type: SET_SIDEBAR, payload: isSidebar });

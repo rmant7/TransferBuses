@@ -4,18 +4,18 @@ import { getCityByName } from "../../utils/cities";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
 import FilterComponent from "../Filter/FilterComponent";
-import { getFilters, inputFromToCity } from "../../redux/selectors";
+import { getFilters, getInputFromToCity } from "../../redux/selectors";
 import i18next from "i18next";
 import {
     inputFromCityAction,
     inputToCityAction,
-} from "../../redux/actions/inputFromToCityActions";
-import { applyFilterFromCityIdAction } from "../../redux/actions/filtersActions";
+} from "../../redux/actions/inputs-actions";
+import { applyFilterFromCityIdAction } from "../../redux/actions/filters-actions";
 
 export default function FiltersCitiesFrom() {
     const dispatch = useDispatch();
     const filters = useSelector(getFilters);
-    const inputFromTo = useSelector(inputFromToCity);
+    const inputFromTo = useSelector(getInputFromToCity);
 
     const handleApplyFilter = () => {
         const city = getCityByName(inputFromTo.inputFromCity);

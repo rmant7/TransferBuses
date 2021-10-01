@@ -1,4 +1,4 @@
-import { SET_ADD_NEW_TRANSFER, SET_TRANSFERS } from "../actions/transfersActions";
+import { SET_SAVE_NEW_TRANSFER, SET_TRANSFERS } from "../actions/transfers-actions";
 
 const receiveTransfersState = {
     isReceived: false,
@@ -14,9 +14,10 @@ export function fromCityTransfersReducer(state = receiveTransfersState, action) 
 }
 
 const newTransferState = {
-    isAdded: false
+    isAdded: false,
+    transfer: {}
 };
 
-export function addNewTransferReducer(state = newTransferState, action) {
-    return action.type === SET_ADD_NEW_TRANSFER ? action.payload : state;
+export function saveNewTransferReducer(state = newTransferState, action) {
+    return action.type === SET_SAVE_NEW_TRANSFER ? action.payload : state;
 }

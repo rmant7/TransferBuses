@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FormControl, Select, MenuItem } from '@material-ui/core';
 import { useStyles } from '../../utils/useStyles';
 import { languages } from '../../utils/languages';
-import { setLanguage } from '../../redux/reducers/appReducer';
 import {useTranslation} from "react-i18next";
 import { getLanguage } from '../../redux/selectors';
-import { setLanguageAction } from '../../redux/actions/appActions';
+import { setLanguageAction } from '../../redux/actions/app-actions';
 
 
 

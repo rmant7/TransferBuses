@@ -7,7 +7,7 @@ import { menuData } from '../../../utils/menuData';
 import { useStyles } from '../../../utils/useStyles';
 import i18n from "../../../i18n";
 import { getSidebar } from '../../../redux/selectors';
-import { setSidebarAction } from '../../../redux/actions/appActions';
+import { setSidebarAction } from '../../../redux/actions/app-actions';
 
 const Sidebar = () => {
   const dispatch = useDispatch();

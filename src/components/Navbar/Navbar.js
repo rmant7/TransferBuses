@@ -9,7 +9,7 @@ import { Sidebar, LanguageSelector } from '..';
 import CurrenciesSelector from '../CurrenciesSelector/CurrenciesSelector';
 import { useStyles } from '../../utils/useStyles';
 import css from './Navbar.module.css';
-import { setSidebarAction } from '../../redux/actions/appActions';
+import { setSidebarAction } from '../../redux/actions/app-actions';
 // import {useTranslation} from "react-i18next";
 
 // const Navbar = ({ changeLanguage }) => {

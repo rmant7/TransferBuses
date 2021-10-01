@@ -1,8 +1,9 @@
-import { SET_LOADING, SET_LOADING_TRANSFERS } from "../actions/loadingActions";
+import { SET_LOADING, SET_LOADING_TRANSFERS, SET_LOADING_UPLOAD_TRANSFER } from "../actions/loading-actions";
 
 const defaultLoadingState = {
-    isLoading: true,
-    isLoadingTransfers: true
+    isLoading: false,
+    isLoadingTransfers: false,
+    isLoadingNewTransfer: false
 };
 
 export function loadingReducer(state = defaultLoadingState, action) {
@@ -11,6 +12,8 @@ export function loadingReducer(state = defaultLoadingState, action) {
             return { ...state, isLoading: action.payload };
         case SET_LOADING_TRANSFERS:
             return { ...state, isLoadingTransfers: action.payload };
+        case SET_LOADING_UPLOAD_TRANSFER:
+            return { ...state, isLoadingNewTransfer: action.payload };
         default:
             return state;
     }
