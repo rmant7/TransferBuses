@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Container, IconButton, Toolbar } from '@material-ui/core';
+import { AppBar, IconButton, Toolbar } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -23,7 +23,6 @@ const Navbar = () => {
       {/*<Container maxWidth={'false !important'}>*/}
       {/*<Container className={classes.toolbarContainer}>*/}
       {/*<Container style={{maxWidth: '100% !important', width: '100% !important'}}>*/}
-      <Container className={classes.toolbarContainer} style={{ maxWidth: '100% !important', width: '100% !important' }}>
         <Toolbar className={classes.toolbar}>
           <a className={css.logo} href={MAIN_ROUTE}>TransferBuses</a>
           <nav className={`${classes.nav} ${css.option_block}`}>
@@ -39,7 +38,6 @@ const Navbar = () => {
             </IconButton>
           </nav>
         </Toolbar>
-      </Container>
       <Sidebar />
     </AppBar>
   );
