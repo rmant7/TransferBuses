@@ -1,25 +1,53 @@
-import {useEffect, useState} from "react";
-import {getTransfers} from "../../services/data-service";
+import { useEffect } from "react";
 import TransfersList from "../TransfersList/TransfersList";
+import { Box, Container, LinearProgress, Typography } from "@material-ui/core";
+import { useStyles } from "../../utils/useStyles";
+import i18next from "i18next";
+import filtersClasses from "../Filter/FilterComponent.module.css";
+import FiltersCitiesFrom from "../FiltersCitysFrom/FiltersCitiesFrom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getTransfersAction } from "../../redux/actions/transfersActions";
+import { getTransfersData, loading } from "../../redux/selectors";
+import Transfer from "../Transfer/Transfer";
+// import "./PassengerPage.css";
 
 export default function PassengerPage() {
+    const classes = useStyles();
+    const dispatch = useDispatch();
+    // const [transfers, setTransfers] = useState([]);
+    // const [loading, setLoading] = useState();
+    const data = useSelector(getTransfersData);
+    const loadingTransfers = useSelector(loading).isLoadingTransfers;
 
-  const [transfers, setTransfers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    setLoading(true);
-    getTransfers().then((response) => {
-      setTransfers(response);
-    });
-    setLoading(false);
-  }, []);
+    console.log(data);
 
-  return (
-    <div className="PassengerPage">
-      {loading && <h2>Loading...</h2>}
-      {!loading && <TransfersList transfers={transfers}/>}
+    useEffect(() => {
+        dispatch(getTransfersAction());
+    }, [dispatch]);
 
-    </div>
-  );
+    return (
+        <Container maxWidth="xl" className={classes.topPadding}>
+            <div className={filtersClasses.filters_sector}>
+                <Typography variant="button" display="block" gutterBottom>
+                    {i18next.t("Filter")}
+                </Typography>
+                <FiltersCitiesFrom />
+            </div>
+            {/* {loading && <h2>Loading...</h2>} */}
+            {/* {!loading && <TransfersList transfers={transfers} />} */}
+            <div className="transfers">
+                {loadingTransfers && !data.isReceived ? (
+                    <Box sx={{ width: "100%" }}>
+                        <LinearProgress />
+                    </Box>
+                ) : (
+                    // <TransfersList transfers={data.transfers} />
+                    data.transfers.map((transfer) => (
+                        <Transfer key={transfer.id} transfer={transfer} />
+                    ))
+                )}
+            </div>
+        </Container>
+    );
 }
-

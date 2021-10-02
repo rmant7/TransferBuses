@@ -1,17 +1,21 @@
 {
+  "Home": "На главную",
+  "Contacts": "Контакти",
   "A parcel delivery": "Передача посилки",
   "Date": "Дата",
   "Date of travel": "Дата подорожі",
-  "Driver\u0027s comment": "Коментар водія",
-  "Driver\u0027s phone number": "Номер телефону водія",
+  "Additional information": "Додаткова інформація",
+  "Driver\u0027s phone number": "Номер телефону перевізника",
   "Duration of ride": "Тривалість їзди",
   "From": "Звiдки",
-  "I\u0027m a driver": "Я водій",
+  "I\u0027m a driver": "Я перевізник",
   "I\u0027m a passenger": "Я пасажир",
+  "Our partners": "Наші партнери:",
   "CheapTrip commercial": "Знайдіть найдешевший спосіб дістатися з міста в місто, поєднуючи літак, потяг, автобус і спільні поїздки на автомобілі",
   "No": "Ні",
   "Pass a parcel": "Передам посилку",
   "Phone number": "Телефон",
+  "Messenger": "Мессенджер",
   "Places": "Доступно місць",
   "Price": "Ціна",
   "Publish a ride": "Опублікувати поїздку",
@@ -57,5 +61,12 @@
         "Required": "Обов\u0027язкове поле"
       }
     }
-  }
+  },
+  "From City": "З міста",
+  "To City": "До міста",
+  "Filter": "Фільтр:",
+  "Apply Filter": "Відфільтрувати",
+  "Clear Filter": "Очистити фільтри",
+  "Cancel": "Відміна",
+  "Apply": "Застосувати"
 }
