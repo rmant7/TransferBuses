@@ -1,0 +1,21 @@
+.filters_sector {
+    margin: 10px auto;
+    width: 85%;
+}
+
+.filters {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+}
+
+.filter_buttons {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.filter {
+    display: inline-block;
+    width: 80%;
+}

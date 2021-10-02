@@ -1,47 +1,32 @@
-import {Route, Switch} from "react-router-dom";
-import "./App.css";
-import MainPage from "./components/MainPage/MainPage";
-import BusPage from "./components/BusPage/BusPage";
-import PassengerPage from "./components/PassengerPage/PassengerPage";
-import DriverPage from "./components/DriverPage/DriverPage";
-import TransferPage from "./components/TransferPage/TransferPage";
-import Header from "./components/Header/Header";
-import {useTranslation} from "react-i18next"
-import {useEffect} from "react";
-
-
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+// import './App.css';
+import { AppRouter, Navbar } from './components';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
+import {theme, useStyles} from './utils/useStyles';
+import {StylesProvider} from "@material-ui/core";
 function App() {
-  const {i18n} = useTranslation();
+  const { i18n } = useTranslation();
   const changeLanguage = (language) => {
-    i18n.changeLanguage(language)
-      .then(
-      )
-      .catch(err => console.error(err))
-  }
-
-  i18n.reloadResources()
-    .then(
-    )
-
+    i18n
+      .changeLanguage(language)
+      .then()
+      .catch((err) => console.error(err));
+  };
+  i18n.reloadResources().then();
+  const lang = useSelector((state) => state.app.lang);
   useEffect(() => {
-    changeLanguage(localStorage.getItem('locale') || 'en')
-  }, []);
+    changeLanguage(lang);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div>
-      <Route path="/"
-             render={() => (
-               <Header changeLanguage={changeLanguage}/>
-             )}/>
-      <Switch>
-        <Route path="/" exact component={MainPage}/>
-        <Route path="/viewRoutes" component={PassengerPage}/>
-        <Route path="/addRoute" component={BusPage}/>
-        <Route path="/addTransfer" component={DriverPage}/>
-        <Route path="/transfer" component={TransferPage}/>
-      </Switch>
-
-    </div>
+    <ThemeProvider theme={theme}>
+      <StylesProvider>
+        <Navbar/>
+        <AppRouter/>
+      </StylesProvider>
+    </ThemeProvider>
   );
 }
 
