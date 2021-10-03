@@ -6,10 +6,7 @@ import { Button } from "@material-ui/core";
 import FilterComponent from "../Filter/FilterComponent";
 import { getFilters, getInputFromToCity } from "../../redux/selectors";
 import i18next from "i18next";
-import {
-    inputFromCityAction,
-    inputToCityAction,
-} from "../../redux/actions/inputs-actions";
+import { inputFromCityAction, inputToCityAction } from "../../redux/actions/inputs-actions";
 import { applyFilterFromCityIdAction } from "../../redux/actions/filters-actions";
 
 export default function FiltersCitiesFrom() {
@@ -45,11 +42,7 @@ export default function FiltersCitiesFrom() {
                 getOptionLabel={(o) => o.name}
             />
             <div className={classes.filter_buttons}>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleApplyFilter}
-                >
+                <Button variant="contained" color="primary" onClick={handleApplyFilter}>
                     {i18next.t("Apply")}
                 </Button>
                 <Button

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import TransfersList from "../TransfersList/TransfersList";
-import { Box, Container, LinearProgress, Typography } from "@material-ui/core";
+import { Box, Container, LinearProgress, Typography, Divider } from "@material-ui/core";
 import { useStyles } from "../../utils/useStyles";
 import i18next from "i18next";
 import filtersClasses from "../Filter/FilterComponent.module.css";
@@ -27,13 +27,14 @@ export default function PassengerPage() {
     }, [dispatch]);
 
     return (
-        <Container maxWidth="xl" className={classes.topPadding}>
+        <Container maxWidth="xl" className={filtersClasses.top_padding}>
             <div className={filtersClasses.filters_sector}>
                 <Typography variant="button" display="block" gutterBottom>
                     {i18next.t("Filter")}
                 </Typography>
                 <FiltersCitiesFrom />
             </div>
+            {/* <Divider style={{margin: "10px"}}/> */}
             {/* {loading && <h2>Loading...</h2>} */}
             {/* {!loading && <TransfersList transfers={transfers} />} */}
             <div className="transfers">
@@ -43,9 +44,7 @@ export default function PassengerPage() {
                     </Box>
                 ) : (
                     // <TransfersList transfers={data.transfers} />
-                    data.transfers.map((transfer) => (
-                        <Transfer key={transfer.id} transfer={transfer} />
-                    ))
+                    data.transfers.map((transfer) => <Transfer key={transfer.id} transfer={transfer} />)
                 )}
             </div>
         </Container>
