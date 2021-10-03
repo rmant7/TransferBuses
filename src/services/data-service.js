@@ -1,7 +1,9 @@
 import { fb } from "../config/firebase-config";
 
+
+const fireBaseCollection = process.env.REACT_APP_BUILD_MODE === 'prod' ? "transfers" : "dev-transfers"
 const getTransfersCollectionFromFB = () => {
-  return fb.firestore().collection("transfers");
+  return fb.firestore().collection(fireBaseCollection);
 };
 
 export async function getTransfersByFromCityId(fromCityId) {
@@ -26,7 +28,7 @@ export async function uploadTransfer(
     delete (transfer.regularTripsDays)
   }
   try {
-    const collection = fb.firestore().collection("transfers");
+    const collection = fb.firestore().collection(fireBaseCollection);
     const response = await collection.add(
       transfer
     );
@@ -39,7 +41,7 @@ export async function uploadTransfer(
 
 export async function getTransfers() {
   try {
-    const collection = await fb.firestore().collection("transfers").get();
+    const collection = await fb.firestore().collection(fireBaseCollection).get();
     const transfers = collection.docs.map((doc) => {
       return { ...doc.data(), id: doc.id };
     });
