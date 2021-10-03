@@ -1,29 +1,34 @@
 import React from 'react';
-import { useStyles } from '../utils/useStyles';
-import { Grid, Paper, Typography } from "@material-ui/core";
+// import { useStyles } from '../utils/useStyles';
+import { Grid,  Typography } from "@material-ui/core";
+import SocialButtons from '../components/SocialButtons/SocialButtons';
+import i18n from "../i18n";
 
 const Contacts = () => {
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
+    <div>
     <Grid
       container
       spacing={3}
       direction="column"
       alignItems="center"
-      justify="center"
-      style={{ minHeight: "100vh", padding: "0" }}
+      justifyContent="center"
+      style={{ minHeight: "80vh", padding: "0", width: "95%" }}
     >
       <Grid item xs={12}>
-        <Typography component="h3">Contacts:</Typography>
+          <Typography component="h3">
+            {i18n.t("Contacts")}:
+          </Typography>
       </Grid>
       <Grid item xs={12}>
         <Typography variant="button" display="block" gutterBottom>
-          Roman Mantelmakher
+        {i18n.t("Name")}
         </Typography>
       </Grid>
       <Grid item xs={12}>
         <Typography variant="button" display="block" gutterBottom>
-          Founder and Ceo
+        {i18n.t("Founder and Ceo")} 
         </Typography>
       </Grid>
       <Grid item xs={12}>
@@ -33,10 +38,19 @@ const Contacts = () => {
       </Grid>
       <Grid item xs={12}>
         <Typography variant="button" display="block" gutterBottom>
-          <a href="mailto:your@email.com">roman.mantelmakher@gmail.com</a>
+          <a href="mailto:roman.mantelmakher@gmail.com" rel="noreferrer" target='_blank'>roman.mantelmakher@gmail.com</a>
         </Typography>
       </Grid>
-    </Grid>
+            <h3>
+              You can chat or call me
+        </h3>
+        <h3>
+              Click one of the buttons below
+            </h3>
+      </Grid>
+ 
+      <SocialButtons />
+      </div>
   );
 };
 

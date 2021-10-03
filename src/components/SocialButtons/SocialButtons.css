@@ -1,0 +1,56 @@
+.social-wrapper{
+    margin: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+.whatsapp{
+    color: green;
+    width: 40px;
+    height: auto;
+}
+.phone{
+    margin-top: 5px;
+    width: 30px;
+    height: auto;
+    color: black;
+}
+.telegram{
+    width: 40px;
+    height: auto;
+    color: rgb(64, 140, 232)
+}
+.viber{
+    width: 40px;
+    height: auto;
+    color: rgb(71, 23, 147);
+}
+.viber-mb{
+    width: 40px;
+    height: auto;
+    color: rgb(71, 23, 147);
+    margin-left: -10vw; 
+    display: none;
+}
+.facebook{
+    width: 40px;
+    height: auto;
+    color: rgb(25, 16, 194)
+}
+
+@media (max-width: 1024px) {
+    .viber{
+        display: none;
+    }
+    .viber-mb{
+        display: block;
+    }
+}
+@media (max-width: 480px) {
+    .viber{
+        display: none;
+    }
+    .viber-mb{
+        display: block;
+        margin-left: -7vw; 
+    }
+}
