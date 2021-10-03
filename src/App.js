@@ -20,6 +20,8 @@ function App() {
     changeLanguage(lang);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  console.log('process.env.REACT_APP_BUILD_MODE = ', process.env.REACT_APP_BUILD_MODE)
+
   return (
     <ThemeProvider theme={theme}>
       <StylesProvider>
