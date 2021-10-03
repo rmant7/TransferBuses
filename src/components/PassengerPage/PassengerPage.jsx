@@ -1,19 +1,19 @@
 import { useEffect } from "react";
-import TransfersList from "../TransfersList/TransfersList";
-import { Box, Container, LinearProgress, Typography, Divider } from "@material-ui/core";
-import { useStyles } from "../../utils/useStyles";
+import { Box, Container, LinearProgress, Typography} from "@material-ui/core";
 import i18next from "i18next";
-import filtersClasses from "../Filter/FilterComponent.module.css";
 import FiltersCitiesFrom from "../FiltersCitysFrom/FiltersCitiesFrom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getTransfersAction } from "../../redux/actions/transfers-actions";
 import { getLoading, getTransfersData } from "../../redux/selectors";
 import Transfer from "../Transfer/Transfer";
+import filtersClasses from "../Filter/FilterComponent.module.css";
+// import { useStyles } from "../../utils/useStyles";
+// import TransfersList from "../TransfersList/TransfersList";
 // import "./PassengerPage.css";
 
 export default function PassengerPage() {
-    const classes = useStyles();
+    // const classes = useStyles();
     const dispatch = useDispatch();
     // const [transfers, setTransfers] = useState([]);
     // const [loading, setLoading] = useState();
