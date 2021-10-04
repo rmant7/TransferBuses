@@ -1,56 +1,76 @@
 .social-wrapper{
     margin: 50px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 .whatsapp{
-    color: green;
+    margin-top: 10px;
+    color: rgb(255, 255, 255);
     width: 40px;
     height: auto;
 }
 .phone{
-    margin-top: 5px;
+    margin-top: 14px;
     width: 30px;
     height: auto;
-    color: black;
+    color: rgb(255, 255, 255);
 }
 .telegram{
+    margin-top: 10px;
+    margin-right: 3px;
     width: 40px;
     height: auto;
-    color: rgb(64, 140, 232)
+    color: rgb(255, 255, 255);
 }
-.viber{
+/* .viber{
     width: 40px;
     height: auto;
     color: rgb(71, 23, 147);
-}
-.viber-mb{
+} */
+.viber-mb{ 
     width: 40px;
     height: auto;
-    color: rgb(71, 23, 147);
-    margin-left: -10vw; 
+    margin-top: 10px;
+    margin-left: 10px;
+    color: rgb(255, 255, 255);
+    /* margin-left: -10vw;  */
     display: none;
 }
-.facebook{
+/* .facebook{
     width: 40px;
     height: auto;
     color: rgb(25, 16, 194)
+} */
+
+.social-button {
+    background-color: rgb(37 211 102);
+    width: 60px;
+    height: 60px;
+    align-items: center;
+    border-radius: 28%;
+    text-align: center;
+    position: relative;
+  }
+ .social-button.teleg-but{
+    background-color: rgb(0, 136, 204) !important
+ }
+.social-button.viber-but{
+    background-color: rgb(143, 93, 183) !important
 }
 
 @media (max-width: 1024px) {
-    .viber{
+    /* .viber{
         display: none;
-    }
+    } */
     .viber-mb{
         display: block;
     }
 }
-@media (max-width: 480px) {
-    .viber{
+@media (min-width: 1024px) {
+    .social-button.viber-but{
         display: none;
     }
-    .viber-mb{
-        display: block;
-        margin-left: -7vw; 
+    .social-button .viber-but{
+       margin-left: 15vw !important 
     }
 }

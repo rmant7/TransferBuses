@@ -8,7 +8,7 @@ import {theme, useStyles} from './utils/useStyles';
 import {StylesProvider} from "@material-ui/core";
 function App() {
   const { i18n } = useTranslation();
-  const changeLanguage = (language) => {
+  const changeLanguage = (language) =>  {
     i18n
       .changeLanguage(language)
       .then()
@@ -18,7 +18,7 @@ function App() {
   const lang = useSelector((state) => state.app.lang);
   useEffect(() => {
     changeLanguage(lang);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <ThemeProvider theme={theme}>
