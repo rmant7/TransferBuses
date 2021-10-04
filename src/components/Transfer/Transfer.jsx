@@ -102,9 +102,9 @@ export default function Transfer({transfer}) {
               justifyContent="flex-start"
             >
               <Paper className={"paper"}>
-                {cityFrom && cityFrom["name" + (lang === "ru" ? "_ru" : "")] || "---"}
+                {cityFrom && (cityFrom["name" + (lang === "ru" ? "_ru" : "")] || "---")}
                 <ArrowForwardSharpIcon style={{marginBottom: "-6px"}}/>
-                {cityTo && cityTo["name" + (lang === "ru" ? "_ru" : "")] || "---"}
+                {cityTo && (cityTo["name" + (lang === "ru" ? "_ru" : "")] || "---")}
               </Paper>
             </Grid>
             <Grid
