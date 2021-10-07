@@ -16,6 +16,10 @@ import { setSidebarAction } from '../../redux/actions/appActions';
 const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const logoText = ( (process.env.REACT_APP_BUILD_MODE === 'prod' ) ? 'TransferBuses' : 'TransferBuses -dev')
+  console.log(( (process.env.REACT_APP_BUILD_MODE === 'prod' ) ? 'TransferBuses' : 'TransferBuses -dev'))
+  console.log(typeof (process.env.REACT_APP_BUILD_MODE , "****************"))
+  console.log(process.env.REACT_APP_BUILD_MODE , "****************")
 
   return (
     <AppBar position="fixed">
@@ -25,7 +29,7 @@ const Navbar = () => {
       {/*<Container style={{maxWidth: '100% !important', width: '100% !important'}}>*/}
       <Container className={classes.toolbarContainer} style={{ maxWidth: '100% !important', width: '100% !important' }}>
         <Toolbar className={classes.toolbar}>
-          <a className={css.logo} href={MAIN_ROUTE}>TransferBuses</a>
+          <a className={css.logo} href={MAIN_ROUTE}>{logoText}</a>
           <nav className={`${classes.nav} ${css.option_block}`}>
             <LanguageSelector />
             <CurrenciesSelector />
