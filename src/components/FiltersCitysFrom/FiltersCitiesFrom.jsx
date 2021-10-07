@@ -8,6 +8,7 @@ import { getFilters, getInputFromToCity } from "../../redux/selectors";
 import i18next from "i18next";
 import { inputFromCityAction, inputToCityAction } from "../../redux/actions/inputs-actions";
 import { applyFilterFromCityIdAction } from "../../redux/actions/filters-actions";
+import { getTransfersAction } from "../../redux/actions/transfers-actions";
 
 export default function FiltersCitiesFrom() {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export default function FiltersCitiesFrom() {
         if (city) {
             dispatch(applyFilterFromCityIdAction(city.ID));
         } else {
-            alert(`No such city found: ${inputFromTo.inputFromCity}`);
+            dispatch(getTransfersAction());
         }
     };
 
