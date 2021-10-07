@@ -45,10 +45,7 @@ const schema = yup.object().shape({
         .min(1, "Available places must be more or equal to 1")
         .max(8, "Available places must be less or equal to 8")
         .required("places.Required"),
-    phoneNumber: yup
-        .string()
-        .required("phoneNumber.Required")
-        .phone(undefined, "phoneNumber.isNotValid"),
+    phoneNumber: yup.string().required("phoneNumber.Required").phone(undefined, "phoneNumber.isNotValid"),
     price: yup.string().required("price.Required"),
 });
 
@@ -64,9 +61,7 @@ export default function DriverPage() {
     const [latitude, setLatitude] = useState();
     const [longitude, setLongitude] = useState();
     const [userTimeZone, setUserTimeZone] = useState(() => {
-        const timeZone = timeZones.find(
-            (tz) => tz.shift === "" + new Date().getTimezoneOffset() / -60
-        );
+        const timeZone = timeZones.find((tz) => tz.shift === "" + new Date().getTimezoneOffset() / -60);
         console.log("timeZone detect:", timeZone);
         return timeZone || timeZones[0];
     });
@@ -152,10 +147,7 @@ export default function DriverPage() {
                     const Δλ = ((cityLng - longitude) * Math.PI) / 180;
                     const a =
                         Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-                        Math.cos(φ1) *
-                            Math.cos(φ2) *
-                            Math.sin(Δλ / 2) *
-                            Math.sin(Δλ / 2);
+                        Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
                     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
                     const d = R * c; // in metres
                     return d;
@@ -164,10 +156,7 @@ export default function DriverPage() {
                     let lowest = {};
                     let temp;
                     arr.forEach((element) => {
-                        if (
-                            Object.keys(lowest).length === 0 &&
-                            lowest.constructor === Object
-                        ) {
+                        if (Object.keys(lowest).length === 0 && lowest.constructor === Object) {
                             lowest = {
                                 id: element.id,
                                 Name: element.Name,
@@ -189,10 +178,7 @@ export default function DriverPage() {
                     return {
                         id: element.ID,
                         Name: element.name,
-                        distanceBetween: getDistance(
-                            element.latitude,
-                            element.longitude
-                        ),
+                        distanceBetween: getDistance(element.latitude, element.longitude),
                     };
                 });
                 //console.log(intervals);
@@ -233,6 +219,7 @@ export default function DriverPage() {
                     currency: rideCurrency,
                     duration: "",
                     passAParcel: false,
+                    isTakePet: false,
                     additionalInfo: "",
                     regularTrips: false,
                     regularTripsDays: {
@@ -293,12 +280,8 @@ export default function DriverPage() {
                         schema.fields.duration = null;
                         schema.fields.departureTime = null;
                     } else {
-                        schema.fields.date = yup
-                            .date()
-                            .required("date.Required");
-                        schema.fields.departureTime = yup
-                            .string()
-                            .required("departureTime.Required");
+                        schema.fields.date = yup.date().required("date.Required");
+                        schema.fields.departureTime = yup.string().required("departureTime.Required");
                         // schema.fields.duration = yup.string().required("duration.Required");
                     }
 
@@ -306,16 +289,12 @@ export default function DriverPage() {
                         // console.log(event.target);
                         // console.log(event.target.checked);
                         const weekDays = {};
-                        Object.keys(props.values.regularTripsDays).map(
-                            (weekDay) => {
-                                weekDays[weekDay] = {
-                                    selected: event.target.checked,
-                                    departureTime:
-                                        props.values.regularTripsDays[weekDay]
-                                            .departureTime,
-                                };
-                            }
-                        );
+                        Object.keys(props.values.regularTripsDays).map((weekDay) => {
+                            weekDays[weekDay] = {
+                                selected: event.target.checked,
+                                departureTime: props.values.regularTripsDays[weekDay].departureTime,
+                            };
+                        });
 
                         // console.log("weekdays: ", weekDays);
                         props.setFieldValue("regularTripsDays", weekDays);
@@ -338,16 +317,10 @@ export default function DriverPage() {
                                         {...params}
                                         label={i18n.t("From")}
                                         margin="normal"
-                                        error={
-                                            Boolean(props.errors.from) &&
-                                            props.touched.from
-                                        }
+                                        error={Boolean(props.errors.from) && props.touched.from}
                                         helperText={
-                                            Boolean(props.errors.from) &&
-                                            props.touched.from
-                                                ? i18n.t(
-                                                      `form.errors.${props.errors.from}`
-                                                  )
+                                            Boolean(props.errors.from) && props.touched.from
+                                                ? i18n.t(`form.errors.${props.errors.from}`)
                                                 : " "
                                         }
                                     />
@@ -368,16 +341,10 @@ export default function DriverPage() {
                                         {...params}
                                         label={i18n.t("To")}
                                         margin="dense"
-                                        error={
-                                            Boolean(props.errors.to) &&
-                                            props.touched.to
-                                        }
+                                        error={Boolean(props.errors.to) && props.touched.to}
                                         helperText={
-                                            Boolean(props.errors.to) &&
-                                            props.touched.to
-                                                ? i18n.t(
-                                                      `form.errors.${props.errors.to}`
-                                                  )
+                                            Boolean(props.errors.to) && props.touched.to
+                                                ? i18n.t(`form.errors.${props.errors.to}`)
                                                 : " "
                                         }
                                     />
@@ -396,10 +363,7 @@ export default function DriverPage() {
                                 label={i18n.t("Regular trips")}
                             />
                             {props.values.regularTrips && (
-                                <Paper
-                                    variant="outlined"
-                                    style={{ padding: "8px" }}
-                                >
+                                <Paper variant="outlined" style={{ padding: "8px" }}>
                                     <Grid
                                         container
                                         direction="column"
@@ -411,19 +375,12 @@ export default function DriverPage() {
                                             control={
                                                 <Checkbox
                                                     checked={
-                                                        Object.values(
-                                                            props.values
-                                                                .regularTripsDays
-                                                        ).reduce(
-                                                            (acc, val) =>
-                                                                (acc +=
-                                                                    +val.selected),
+                                                        Object.values(props.values.regularTripsDays).reduce(
+                                                            (acc, val) => (acc += +val.selected),
                                                             0
                                                         ) === 7
                                                     }
-                                                    onChange={
-                                                        handleSelectAllDaysChange
-                                                    }
+                                                    onChange={handleSelectAllDaysChange}
                                                     name="selectAll"
                                                     margin={""}
                                                 />
@@ -431,28 +388,19 @@ export default function DriverPage() {
                                             label={i18n.t("Select all")}
                                         />
 
-                                        {Object.keys(
-                                            props.values.regularTripsDays
-                                        ).map((weekDay) => {
+                                        {Object.keys(props.values.regularTripsDays).map((weekDay) => {
                                             return (
                                                 <Grid
                                                     container
                                                     direction={"row"}
                                                     alignItems="flex-end"
-                                                    id={
-                                                        "regularTripsDays." +
-                                                        weekDay
-                                                    }
-                                                    key={
-                                                        "regularTripsDays." +
-                                                        weekDay
-                                                    }
+                                                    id={"regularTripsDays." + weekDay}
+                                                    key={"regularTripsDays." + weekDay}
                                                 >
                                                     <Grid item xs={9}>
                                                         <FormControlLabel
                                                             style={{
-                                                                marginLeft:
-                                                                    "10px",
+                                                                marginLeft: "10px",
                                                             }}
                                                             control={
                                                                 <Checkbox
@@ -462,16 +410,10 @@ export default function DriverPage() {
                                                                         ".selected"
                                                                     }
                                                                     checked={
-                                                                        props
-                                                                            .values
-                                                                            .regularTripsDays[
-                                                                            weekDay
-                                                                        ]
+                                                                        props.values.regularTripsDays[weekDay]
                                                                             .selected
                                                                     }
-                                                                    onChange={
-                                                                        props.handleChange
-                                                                    }
+                                                                    onChange={props.handleChange}
                                                                     name={
                                                                         "regularTripsDays." +
                                                                         weekDay +
@@ -479,18 +421,11 @@ export default function DriverPage() {
                                                                     }
                                                                 />
                                                             }
-                                                            label={i18n.t(
-                                                                weekDay
-                                                            )}
+                                                            label={i18n.t(weekDay)}
                                                         />
                                                     </Grid>
                                                     <Grid item xs={3}>
-                                                        <Tooltip
-                                                            title={i18n.t(
-                                                                "Time"
-                                                            )}
-                                                            placement="top"
-                                                        >
+                                                        <Tooltip title={i18n.t("Time")} placement="top">
                                                             <TextField
                                                                 id={
                                                                     "regularTripsDays." +
@@ -505,22 +440,14 @@ export default function DriverPage() {
                                                                 type="time"
                                                                 margin="normal"
                                                                 disabled={
-                                                                    !props
-                                                                        .values
-                                                                        .regularTripsDays[
-                                                                        weekDay
-                                                                    ].selected
+                                                                    !props.values.regularTripsDays[weekDay]
+                                                                        .selected
                                                                 }
                                                                 value={
-                                                                    props.values
-                                                                        .regularTripsDays[
-                                                                        weekDay
-                                                                    ]
+                                                                    props.values.regularTripsDays[weekDay]
                                                                         .departureTime
                                                                 }
-                                                                onChange={
-                                                                    props.handleChange
-                                                                }
+                                                                onChange={props.handleChange}
                                                             />
                                                         </Tooltip>
                                                     </Grid>
@@ -532,10 +459,7 @@ export default function DriverPage() {
                             )}
                             {!props.values.regularTrips && (
                                 <>
-                                    <Grid
-                                        container
-                                        justifyContent="space-between"
-                                    >
+                                    <Grid container justifyContent="space-between">
                                         <Grid item xs={6}>
                                             <TextField
                                                 id="date"
@@ -544,27 +468,17 @@ export default function DriverPage() {
                                                 margin="normal"
                                                 fullWidth
                                                 onBlur={props.handleBlur}
-                                                error={
-                                                    Boolean(
-                                                        props.errors.date
-                                                    ) && props.touched.date
-                                                }
+                                                error={Boolean(props.errors.date) && props.touched.date}
                                                 // size={"small"}
                                                 helperText={
-                                                    Boolean(
-                                                        props.errors.date
-                                                    ) && props.touched.date
-                                                        ? i18n.t(
-                                                              `form.errors.${props.errors.date}`
-                                                          )
+                                                    Boolean(props.errors.date) && props.touched.date
+                                                        ? i18n.t(`form.errors.${props.errors.date}`)
                                                         : " "
                                                 }
                                                 value={props.values.date}
                                                 onChange={props.handleChange}
                                                 inputProps={{
-                                                    min: new Date()
-                                                        .toISOString()
-                                                        .slice(0, 10),
+                                                    min: new Date().toISOString().slice(0, 10),
                                                 }}
                                                 InputLabelProps={{
                                                     shrink: true,
@@ -573,10 +487,7 @@ export default function DriverPage() {
                                         </Grid>
                                     </Grid>
                                     {/**** DEPARTURE TIME ****/}
-                                    <Grid
-                                        container
-                                        justifyContent="space-between"
-                                    >
+                                    <Grid container justifyContent="space-between">
                                         <Grid item xs={5}>
                                             <TextField
                                                 id="departureTime"
@@ -586,31 +497,19 @@ export default function DriverPage() {
                                                 fullWidth
                                                 onBlur={props.handleBlur}
                                                 error={
-                                                    Boolean(
-                                                        props.errors
-                                                            .departureTime
-                                                    ) &&
+                                                    Boolean(props.errors.departureTime) &&
                                                     props.touched.departureTime
                                                 }
                                                 helperText={
-                                                    Boolean(
-                                                        props.errors
-                                                            .departureTime
-                                                    ) &&
+                                                    Boolean(props.errors.departureTime) &&
                                                     props.touched.departureTime
-                                                        ? i18n.t(
-                                                              `form.errors.${props.errors.departureTime}`
-                                                          )
+                                                        ? i18n.t(`form.errors.${props.errors.departureTime}`)
                                                         : " "
                                                 }
-                                                value={
-                                                    props.values.departureTime
-                                                }
+                                                value={props.values.departureTime}
                                                 onChange={props.handleChange}
                                                 inputProps={{
-                                                    min: new Date()
-                                                        .toISOString()
-                                                        .slice(0, 16),
+                                                    min: new Date().toISOString().slice(0, 16),
                                                 }}
                                                 InputLabelProps={{
                                                     shrink: true,
@@ -645,9 +544,7 @@ export default function DriverPage() {
                                                     // renderValue={userTimeZone.shift}
                                                     // renderValue={value => `${value}`}
                                                     // disableUnderline
-                                                    onChange={
-                                                        props.handleChange
-                                                    }
+                                                    onChange={props.handleChange}
                                                     // style={{paddingTop: "9px", paddingBottom: '4px'}}
                                                     style={{
                                                         textTransform: "none",
@@ -660,14 +557,10 @@ export default function DriverPage() {
                                                         return (
                                                             <MenuItem
                                                                 key={item.shift}
-                                                                value={
-                                                                    item.shift
-                                                                }
+                                                                value={item.shift}
                                                                 onClick={() => {
                                                                     // console.log('userTimeZone',userTimeZone);
-                                                                    setUserTimeZone(
-                                                                        item
-                                                                    );
+                                                                    setUserTimeZone(item);
                                                                     // console.log('userTimeZone after click',userTimeZone);
                                                                 }}
                                                             >
@@ -680,33 +573,21 @@ export default function DriverPage() {
                                         </Grid>
                                         {/*^^^ DEPARTURE TIMEZONE ^^^*/}
                                     </Grid>
-                                    <Grid
-                                        container
-                                        justifyContent="space-between"
-                                    >
+                                    <Grid container justifyContent="space-between">
                                         <Grid item xs={5}>
                                             <FormControl fullWidth>
-                                                <InputLabel
-                                                    shrink
-                                                    id="duration-label"
-                                                >
+                                                <InputLabel shrink id="duration-label">
                                                     {i18n.t("Travel time")}
                                                 </InputLabel>
                                                 <Select
                                                     labelId="duration-label"
                                                     id="duration"
                                                     name={"duration"}
-                                                    value={
-                                                        props.values.duration
-                                                    }
-                                                    renderValue={(value) =>
-                                                        `${value}`
-                                                    }
+                                                    value={props.values.duration}
+                                                    renderValue={(value) => `${value}`}
                                                     margin="dense"
                                                     // disableUnderline
-                                                    onChange={
-                                                        props.handleChange
-                                                    }
+                                                    onChange={props.handleChange}
                                                     label="duration"
                                                     //style={{paddingTop: "9px"}}
                                                 >
@@ -728,11 +609,7 @@ export default function DriverPage() {
                                 </>
                             )}
                             {/* Phone number block */}
-                            <Grid
-                                container
-                                justifyContent="space-between"
-                                alignItems="flex-end"
-                            >
+                            <Grid container justifyContent="space-between" alignItems="flex-end">
                                 {/* Phone */}
                                 <Grid item xs={8}>
                                     <TextField
@@ -744,16 +621,10 @@ export default function DriverPage() {
                                         margin="normal"
                                         value={props.values.phoneNumber}
                                         onBlur={props.handleBlur}
-                                        error={
-                                            Boolean(props.errors.phoneNumber) &&
-                                            props.touched.phoneNumber
-                                        }
+                                        error={Boolean(props.errors.phoneNumber) && props.touched.phoneNumber}
                                         helperText={
-                                            Boolean(props.errors.phoneNumber) &&
-                                            props.touched.phoneNumber
-                                                ? i18n.t(
-                                                      `form.errors.${props.errors.phoneNumber}`
-                                                  )
+                                            Boolean(props.errors.phoneNumber) && props.touched.phoneNumber
+                                                ? i18n.t(`form.errors.${props.errors.phoneNumber}`)
                                                 : " "
                                         }
                                         onChange={props.handleChange}
@@ -833,16 +704,10 @@ export default function DriverPage() {
                                         label={i18n.t("Price")}
                                         onChange={props.handleChange}
                                         onBlur={props.handleBlur}
-                                        error={
-                                            Boolean(props.errors.price) &&
-                                            props.touched.price
-                                        }
+                                        error={Boolean(props.errors.price) && props.touched.price}
                                         helperText={
-                                            Boolean(props.errors.price) &&
-                                            props.touched.price
-                                                ? i18n.t(
-                                                      `form.errors.${props.errors.price}`
-                                                  )
+                                            Boolean(props.errors.price) && props.touched.price
+                                                ? i18n.t(`form.errors.${props.errors.price}`)
                                                 : " "
                                         }
                                         inputProps={{
@@ -859,9 +724,7 @@ export default function DriverPage() {
                                         id="currency"
                                         name={"currency"}
                                         value={rideCurrency}
-                                        renderValue={(value) =>
-                                            `${value.toUpperCase()}`
-                                        }
+                                        renderValue={(value) => `${value.toUpperCase()}`}
                                         margin="dense"
                                         disableUnderline
                                         onChange={props.handleChange}
@@ -873,15 +736,9 @@ export default function DriverPage() {
                                                 <MenuItem
                                                     key={item.code}
                                                     value={item.code}
-                                                    onClick={() =>
-                                                        setRideCurrency(
-                                                            item.code
-                                                        )
-                                                    }
+                                                    onClick={() => setRideCurrency(item.code)}
                                                 >
-                                                    {item.code +
-                                                        `  ` +
-                                                        item.name}
+                                                    {item.code + `  ` + item.name}
                                                 </MenuItem>
                                             );
                                         })}
@@ -902,6 +759,18 @@ export default function DriverPage() {
                                 }
                                 label={i18n.t("Pass a parcel")}
                             />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        id="take-pet"
+                                        checked={props.values.isTakePet}
+                                        onChange={props.handleChange}
+                                        color="primary"
+                                        value={props.values.isTakePet}
+                                    />
+                                }
+                                label={i18n.t("TakePet")}
+                            />
                             <TextField
                                 value={props.values.additionalInfo}
                                 margin="normal"
@@ -911,19 +780,13 @@ export default function DriverPage() {
                                 multiline
                                 rows={2}
                                 error={
-                                    props.errors.additionalInfo &&
-                                    props.touched.additionalInfo
-                                        ? true
-                                        : false
+                                    props.errors.additionalInfo && props.touched.additionalInfo ? true : false
                                 }
                                 label={i18n.t("Additional information")}
                                 onChange={props.handleChange}
                                 helperText={
-                                    props.errors.additionalInfo &&
-                                    props.touched.additionalInfo
-                                        ? i18n.t(
-                                              `form.errors.${props.errors.additionalInfo}`
-                                          )
+                                    props.errors.additionalInfo && props.touched.additionalInfo
+                                        ? i18n.t(`form.errors.${props.errors.additionalInfo}`)
                                         : " "
                                 }
                             />
