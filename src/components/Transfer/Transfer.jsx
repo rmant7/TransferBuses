@@ -36,17 +36,19 @@ export default function Transfer({transfer}) {
   console.log('depTime = ', transfer.departureTime)
   console.log('transfer.timeZone = ', transfer.timeZone)
   const timeZoneName = timeZones.find(tz => tz.shift === transfer.timeZone)?.name
-  if(transfer.timeZone) {
-    console.log('>>>>>>>>>>>> departure time typeof: ', typeof transfer.departureTime)
-
-    let departureTime = transfer.departureTime.split(':')
-    console.log('>>>>>>>>>>>> departure time: ', departureTime)
-    // departureTime = departureTime.split(':')
-    departureTime[0] = +departureTime[0] + (+transfer.timeZone)
-    console.log('>>>>>>>>>>>> departure time: ', departureTime)
-    transfer.departureTime = departureTime.join(':')
-    // transfer.departureTime = departureTime
-  }
+  const departureTimeSplit = transfer.departureTime.split(':')
+  // if(transfer.timeZone) {
+  //   console.log('>>>>>>>>>>>> departure time typeof: ', typeof transfer.departureTime)
+  //
+  //   let departureTime = transfer.departureTime.split(':')
+  //   console.log('>>>>>>>>>>>> departure time: ', departureTime)
+  //   departureTime[0] = +departureTime[0] + (+transfer.timeZone)
+  //   console.log('>>>>>>>>>>>> departure time: ', departureTime)
+  //   console.log('#> transfer timezone:  ', transfer.timeZone)
+  //   transfer.departureTime = departureTime.join(':')
+  //   console.log('$> depTime = ', transfer.departureTime)
+  //
+  // }
 
 
 
@@ -155,8 +157,11 @@ export default function Transfer({transfer}) {
                   justifyContent="flex-end"
                 >
                   <Button>
-                    {/* {i18n.t("Duration of ride")}:*/}
-                    {transfer.departureTime} {timeZoneName ? '(' + timeZoneName + ')':""}
+                    {
+                      transfer.timeZone ?
+                        (+departureTimeSplit[0] + +transfer.timeZone) + ":" + departureTimeSplit[1] :
+                        transfer.departureTime
+                    } {timeZoneName ? '(' + timeZoneName + ')':""}
                   </Button>
                 </Grid>
               </Grid>
