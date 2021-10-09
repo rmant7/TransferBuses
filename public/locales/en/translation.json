@@ -1,28 +1,39 @@
 {
-  "Home": "Home",
-  "Contacts": "Contacts",
   "A parcel delivery": "A parcel delivery",
+  "Additional information": "Additional information",
+  "Apply": "Apply",
+  "Apply Filter": "Apply Filter",
+  "Cancel": "Cancel",
+  "CheapTrip commercial": "Find most beneficial and unusual routes between cities with airports, combining flight, train, bus, ferry and rideshare. ",
+  "Clear": "Clear",
+  "Clear Filter": "Clear Filter",
+  "Contacts": "Contacts",
   "Date": "Date",
   "Date of travel": "Date of travel",
-  "Additional information": "Additional information",
   "Driver\u0027s phone number": "Carrier\u0027s phone number",
   "Duration of ride": "Duration of ride",
+  "Filter": "Filter By:",
+  "Founder and Ceo": "Founder and Ceo",
   "From": "From",
+  "From City": "From City",
+  "Home": "Home",
   "I\u0027m a driver": "I\u0027m a carrier",
   "I\u0027m a passenger": "I\u0027m a passenger",
-  "Our partners": "Our partners:",
-  "CheapTrip commercial": "Find most beneficial and unusual routes between cities with airports, combining flight, train, bus, ferry and rideshare. ",
+  "Messenger": "Messenger",
+  "Name": "ROMAN MANTELMAKHER",
   "No": "No",
+  "Our partners": "Our partners:",
   "Pass a parcel": "Pass a parcel",
   "Phone number": "Phone Number",
-  "Messenger": "Messenger",
   "Places": "Places",
   "Price": "Price",
   "Publish a ride": "Publish a ride",
   "Regular trips": "Regular trips",
   "Select all": "Select all",
   "Time": "Departure Time",
+  "Timezone": "Timezone",
   "To": "To",
+  "To City": "To City",
   "Travel time": "Travel time",
   "Yes": "Yes",
   "Yes or no": "Yes or no",
@@ -35,9 +46,6 @@
   "_6sunday": "Sunday",
   "form": {
     "errors": {
-      "time": {
-        "Required": "Required field"
-      },
       "departureTime": {
         "Required": "Required field"
       },
@@ -48,8 +56,9 @@
         "Required": "Required field"
       },
       "phoneNumber": {
-        "isNotValid": "Phone number is not valid",
-        "Required": "Required field"
+        "Phone number is not valid": "Phone number is not valid",
+        "Required": "Required field",
+        "isNotValid": "Phone number is not valid"
       },
       "places": {
         "Required": "Required field"
@@ -57,17 +66,12 @@
       "price": {
         "Required": "Required field"
       },
+      "time": {
+        "Required": "Required field"
+      },
       "to": {
         "Required": "Required field"
       }
     }
-  },
-  "From City": "From City",
-  "To City": "To City",
-  "Filter": "Filter By:",
-  "Apply": "Apply",
-  "Clear": "Clear",
-  "Cancel": "Cancel",
-  "Name": "ROMAN MANTELMAKHER",
-  "Founder and Ceo": "Founder and Ceo"
+  }
 }
