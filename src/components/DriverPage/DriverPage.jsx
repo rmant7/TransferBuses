@@ -58,9 +58,9 @@ export default function DriverPage() {
   const [nearestCity, setNearestCity] = useState();
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
-  const [userTimeZone, setUserTimeZone] = useState(()=>{
-    const timeZone = timeZones.find( tz =>  tz.shift === '' + new Date()
-      .getTimezoneOffset()/(-60))
+  const [userTimeZone, setUserTimeZone] = useState(() => {
+    const timeZone = timeZones.find(tz => tz.shift === '' + new Date()
+      .getTimezoneOffset() / (-60))
     console.log('timeZone detect:', timeZone)
     return timeZone || timeZones[0]
   });
@@ -372,22 +372,34 @@ export default function DriverPage() {
                     // justify="center"
                     // style={{minHeight: "100vh"}}
                   >
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={
-                            Object.values(props.values.regularTripsDays).reduce(
-                              (acc, val) => (acc += +val.selected),
-                              0
-                            ) === 7
-                          }
-                          onChange={handleSelectAllDaysChange}
-                          name="selectAll"
-                          margin={""}
-                        />
-                      }
-                      label={i18n.t("Select all")}
-                    />
+                    <Grid container
+                          direction={"row"}
+                    >
+                      <Grid item xs={9}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={
+                              Object.values(props.values.regularTripsDays).reduce(
+                                (acc, val) => (acc += +val.selected),
+                                0
+                              ) === 7
+                            }
+                            onChange={handleSelectAllDaysChange}
+                            name="selectAll"
+                            margin={""}
+                          />
+                        }
+                        label={i18n.t("Select all")}
+                      />
+                      </Grid>
+                      <Grid item xs={3}>
+
+                        {i18n.t("Time")}
+                      </Grid>
+
+                    </Grid>
+
 
                     {Object.keys(props.values.regularTripsDays).map(weekDay => {
                       return (
@@ -516,8 +528,8 @@ export default function DriverPage() {
 
                     {/*VVV DEPARTURE TIMEZONE VVV*/}
                     <Grid item xs={6}>
-                      <FormControl fullWidth style ={{paddingTop:'0px', marginTop: '9px'}}>
-                        <InputLabel shrink id="timeZone-label" style ={{marginTop: '8px'}}>
+                      <FormControl fullWidth style={{paddingTop: '0px', marginTop: '9px'}}>
+                        <InputLabel shrink id="timeZone-label" style={{marginTop: '8px'}}>
                           {i18n.t("Timezone")}
                         </InputLabel>
                         <Select
