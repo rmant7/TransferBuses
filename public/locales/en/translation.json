@@ -73,5 +73,20 @@
         "Required": "Required field"
       }
     }
+  },
+  "timezone": {
+    "0": " ",
+    "1": "Central Europe",
+    "10": "Vladivostok",
+    "11": "Magadan",
+    "12": "Kamchatka",
+    "2": "Eastern Europe",
+    "3": "Moscow",
+    "4": "Samara",
+    "5": "Ekaterinburg",
+    "6": "Omsk",
+    "7": "Krasnoyarsk",
+    "8": "Irkutsk",
+    "9": "Yakutiya"
   }
 }

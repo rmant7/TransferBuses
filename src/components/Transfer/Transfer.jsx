@@ -35,22 +35,12 @@ export default function Transfer({transfer}) {
 
   console.log('depTime = ', transfer.departureTime)
   console.log('transfer.timeZone = ', transfer.timeZone)
-  const timeZoneName = timeZones.find(tz => tz.shift === transfer.timeZone)?.name
+  //const timeZoneName = timeZones.find(tz => tz.shift === transfer.timeZone)?.name
+  const timeZoneName = "GMT+" + transfer.timeZone + ' ' + i18n.t('timezone.' + transfer.timeZone)
+
+
+
   const departureTimeSplit = transfer.departureTime.split(':')
-  // if(transfer.timeZone) {
-  //   console.log('>>>>>>>>>>>> departure time typeof: ', typeof transfer.departureTime)
-  //
-  //   let departureTime = transfer.departureTime.split(':')
-  //   console.log('>>>>>>>>>>>> departure time: ', departureTime)
-  //   departureTime[0] = +departureTime[0] + (+transfer.timeZone)
-  //   console.log('>>>>>>>>>>>> departure time: ', departureTime)
-  //   console.log('#> transfer timezone:  ', transfer.timeZone)
-  //   transfer.departureTime = departureTime.join(':')
-  //   console.log('$> depTime = ', transfer.departureTime)
-  //
-  // }
-
-
 
   if (currencies.map(cur => cur.code).includes(transfer.currency)) {
     // IF transfer.currency IS IN THE currencies ARRAY

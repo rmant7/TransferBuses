@@ -562,7 +562,8 @@ export default function DriverPage() {
 
                                   }}
                                 >
-                                  {item.name}
+                                  {/*{item.name}*/}
+                                  {"GMT+" + item.shift + ' ' + i18n.t('timezone.' + item.shift)}
                                 </MenuItem>
                               );
                             })}
