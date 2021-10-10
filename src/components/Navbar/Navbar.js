@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Container, IconButton, Toolbar } from '@material-ui/core';
+import { AppBar, IconButton, Toolbar } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -9,7 +9,7 @@ import { Sidebar, LanguageSelector } from '..';
 import CurrenciesSelector from '../CurrenciesSelector/CurrenciesSelector';
 import { useStyles } from '../../utils/useStyles';
 import css from './Navbar.module.css';
-import { setSidebarAction } from '../../redux/actions/appActions';
+import { setSidebarAction } from '../../redux/actions/app-actions';
 // import {useTranslation} from "react-i18next";
 
 // const Navbar = ({ changeLanguage }) => {
@@ -27,7 +27,6 @@ const Navbar = () => {
       {/*<Container maxWidth={'false !important'}>*/}
       {/*<Container className={classes.toolbarContainer}>*/}
       {/*<Container style={{maxWidth: '100% !important', width: '100% !important'}}>*/}
-      <Container className={classes.toolbarContainer} style={{ maxWidth: '100% !important', width: '100% !important' }}>
         <Toolbar className={classes.toolbar}>
           <a className={css.logo} href={MAIN_ROUTE}>{logoText}</a>
           <nav className={`${classes.nav} ${css.option_block}`}>
@@ -43,7 +42,6 @@ const Navbar = () => {
             </IconButton>
           </nav>
         </Toolbar>
-      </Container>
       <Sidebar />
     </AppBar>
   );

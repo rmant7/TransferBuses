@@ -266,9 +266,13 @@ export default function Transfer({transfer}) {
                 <AirlineSeatReclineNormalIcon fontSize="small"/>
               </Paper> */}
 
-              <Paper className={"paper"}>
+              <Paper className={"paper"} style={{marginRight: "10px"}}>
                 {i18n.t("A parcel delivery")}:{" "}
                 {transfer.passAParcel ? i18n.t("Yes") : i18n.t("No")}
+              </Paper>
+              <Paper className={"paper"}>
+                {i18n.t("Pass Pet")}:{" "}
+                {transfer.isTakePet ? i18n.t("Yes") : i18n.t("No")}
               </Paper>
             </Grid>
 

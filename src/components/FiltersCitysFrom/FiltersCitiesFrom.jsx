@@ -4,25 +4,23 @@ import { getCityByName } from "../../utils/cities";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
 import FilterComponent from "../Filter/FilterComponent";
-import { getFilters, inputFromToCity } from "../../redux/selectors";
+import { getFilters, getInputFromToCity } from "../../redux/selectors";
 import i18next from "i18next";
-import {
-    inputFromCityAction,
-    inputToCityAction,
-} from "../../redux/actions/inputFromToCityActions";
-import { applyFilterFromCityIdAction } from "../../redux/actions/filtersActions";
+import { inputFromCityAction, inputToCityAction } from "../../redux/actions/inputs-actions";
+import { applyFilterFromCityIdAction } from "../../redux/actions/filters-actions";
+import { getTransfersAction } from "../../redux/actions/transfers-actions";
 
 export default function FiltersCitiesFrom() {
     const dispatch = useDispatch();
     const filters = useSelector(getFilters);
-    const inputFromTo = useSelector(inputFromToCity);
+    const inputFromTo = useSelector(getInputFromToCity);
 
     const handleApplyFilter = () => {
         const city = getCityByName(inputFromTo.inputFromCity);
         if (city) {
             dispatch(applyFilterFromCityIdAction(city.ID));
         } else {
-            alert(`No such city found: ${inputFromTo.inputFromCity}`);
+            dispatch(getTransfersAction());
         }
     };
 
@@ -45,11 +43,7 @@ export default function FiltersCitiesFrom() {
                 getOptionLabel={(o) => o.name}
             />
             <div className={classes.filter_buttons}>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleApplyFilter}
-                >
+                <Button variant="contained" color="primary" onClick={handleApplyFilter}>
                     {i18next.t("Apply")}
                 </Button>
                 <Button

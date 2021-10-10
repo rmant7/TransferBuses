@@ -1,4 +1,4 @@
-import { SET_FROM_CITY, SET_TO_CITY } from "../actions/inputFromToCityActions";
+import { SET_FROM_CITY, SET_TO_CITY } from "../actions/inputs-actions";
 
 const defaultInputFromToState = {
     inputFromCity: '',

@@ -1,9 +1,9 @@
 import { getTransfers, uploadTransfer } from "../../services/data-service";
 import { getCityById } from "../../utils/cities";
-import { setFiltersAction } from "./filtersActions";
-import { loadingTransfersAction } from "./loadingActions";
+import { setFiltersAction } from "./filters-actions";
+import { loadingTransfersAction, loadingUploadTransferAction } from "./loading-actions";
 
-export const SET_ADD_NEW_TRANSFER = 'set-add-new-transfer';
+export const SET_SAVE_NEW_TRANSFER = 'set-save-new-transfer';
 export const SET_TRANSFERS = 'set-received-transfers';
 
 export function getTransfersAction() {
@@ -25,10 +25,21 @@ export function getTransfersAction() {
 export function saveNewTransferAction(transfer) {
     return async (dispatch) => {
         try {
-            const uploaded = await uploadTransfer(transfer);
-            dispatch({ type: SET_ADD_NEW_TRANSFER, payload: uploaded });
+            dispatch(loadingUploadTransferAction(true));
+            await uploadTransfer(transfer).then((response) => {
+                console.log(response);
+                dispatch({ type: SET_SAVE_NEW_TRANSFER, payload: { isAdded: true, transfer: response.data } });
+                // history.push("/");
+            })
+                .catch((error) => {
+                    console.log(error);
+                    // setState({ error: error });
+                    dispatch({ type: SET_SAVE_NEW_TRANSFER, payload: { isAdded: false, transfer: {} } });
+                });
+            dispatch(loadingUploadTransferAction(false));
         } catch (e) {
-            dispatch({ type: SET_ADD_NEW_TRANSFER, payload: {} });
+            dispatch({ type: SET_SAVE_NEW_TRANSFER, payload: {} });
+            dispatch(loadingUploadTransferAction(false));
         };
     };
 }

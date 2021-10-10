@@ -1,9 +1,10 @@
 export const getCurrency = (state) => state.app.currency;
 export const getLanguage = (state) => state.app.lang;
+export const getSaveNewTransfer = (state) => state.saveNewTransfer;
 export const getSidebar = (state) => state.app.sidebar;
 export const getTransfersData = (state) => state.transfersData;
-export const fromCityTransfersData = (state) => state.fromCityTransfersData;
+export const getFromCityTransfersData = (state) => state.fromCityTransfersData;
 export const getFilters = (state) => state.filters;
-export const selectFilter = (state) => state.selectFilter;
-export const loading = (state) => state.loading;
-export const inputFromToCity = (state) => state.inputFromToCity;
+export const getSelectFilter = (state) => state.selectFilter;
+export const getLoading = (state) => state.loading;
+export const getInputFromToCity = (state) => state.inputFromToCity;

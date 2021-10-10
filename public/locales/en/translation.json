@@ -1,4 +1,5 @@
 {
+  "Home": "Home",
   "A parcel delivery": "A parcel delivery",
   "Additional information": "Additional information",
   "Apply": "Apply",
@@ -8,8 +9,10 @@
   "Clear": "Clear",
   "Clear Filter": "Clear Filter",
   "Contacts": "Contacts",
+  "A parcel delivery": "A parcel delivery",
   "Date": "Date",
   "Date of travel": "Date of travel",
+  "Additional information": "Additional information",
   "Driver\u0027s phone number": "Carrier\u0027s phone number",
   "Duration of ride": "Duration of ride",
   "Filter": "Filter By:",
@@ -23,8 +26,11 @@
   "Name": "ROMAN MANTELMAKHER",
   "No": "No",
   "Our partners": "Our partners:",
+  "CheapTrip commercial": "Find most beneficial and unusual routes between cities with airports, combining flight, train, bus, ferry and rideshare. ",
+  "No": "No",
   "Pass a parcel": "Pass a parcel",
   "Phone number": "Phone Number",
+  "Messenger": "Messenger",
   "Places": "Places",
   "Price": "Price",
   "Publish a ride": "Publish a ride",
@@ -46,6 +52,9 @@
   "_6sunday": "Sunday",
   "form": {
     "errors": {
+      "time": {
+        "Required": "Required field"
+      },
       "departureTime": {
         "Required": "Required field"
       },
@@ -74,6 +83,14 @@
       }
     }
   },
+  "From City": "From City",
+  "To City": "To City",
+  "Filter": "Filter By:",
+  "Apply": "Apply",
+  "Clear": "Clear",
+  "Cancel": "Cancel",
+  "TakePet": "I'll take a pet",
+  "PassPet": "Pass a pet",
   "timezone": {
     "0": " ",
     "1": "Central Europe",

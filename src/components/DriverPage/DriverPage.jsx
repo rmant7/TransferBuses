@@ -10,16 +10,17 @@ import "./DriverPage.css";
 import {uploadTransfer} from "../../services/data-service";
 import {useHistory} from "react-router-dom";
 import {
-  Checkbox,
-  Container,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select,
-  Tooltip,
+    Checkbox,
+    CircularProgress,
+    Container,
+    FormControl,
+    FormControlLabel,
+    Grid,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Tooltip,
 } from "@material-ui/core";
 import cities_json from "../../utils/cities.json";
 import i18n from "../../i18n";
@@ -27,43 +28,43 @@ import {useSelector} from "react-redux";
 import {currencies} from "../../utils/currencies";
 import axios from "axios";
 import "yup-phone-lite";
-import {useStyles} from "../../utils/useStyles";
-import {timeZones} from "../../utils/timezones";
-
+import { useStyles } from "../../utils/useStyles";
+import { timeZones } from "../../utils/timezones";
+import { getLoading } from "../../redux/selectors";
+import { useDispatch } from "react-redux";
+import { saveNewTransferAction } from "../../redux/actions/transfers-actions";
 
 const schema = yup.object().shape({
-  from: yup.string().required("from.Required"),
-  to: yup.string().required("to.Required"),
-  date: yup.date().required("date.Required"), //!!! date, departureTime, and duration are conditionally reassigned later;
-  departureTime: yup.string().required("departureTime.Required"),
-  // duration: yup.string().required("duration.Required"),
-  places: yup
-    .number()
-    .min(1, "Available places must be more or equal to 1")
-    .max(8, "Available places must be less or equal to 8")
-    .required("places.Required"),
-  phoneNumber: yup
-    .string()
-    .required("phoneNumber.Required")
-    .phone(undefined, "phoneNumber.isNotValid"),
-  price: yup.string().required("price.Required"),
+    from: yup.string().required("from.Required"),
+    to: yup.string().required("to.Required"),
+    date: yup.date().required("date.Required"), //!!! date, departureTime, and duration are conditionally reassigned later;
+    departureTime: yup.string().required("departureTime.Required"),
+    // duration: yup.string().required("duration.Required"),
+    places: yup
+        .number()
+        .min(1, "Available places must be more or equal to 1")
+        .max(8, "Available places must be less or equal to 8")
+        .required("places.Required"),
+    phoneNumber: yup.string().required("phoneNumber.Required").phone(undefined, "phoneNumber.isNotValid"),
+    price: yup.string().required("price.Required"),
 });
 
 export default function DriverPage() {
-  const cur = useSelector(state => state.app.currency);
-  const lang = useSelector((state) => state.app.lang);
-  const classes = useStyles();
-  const [rideCurrency, setRideCurrency] = useState(cur);
-  const [messenger, setMessenger] = useState();
-  const [nearestCity, setNearestCity] = useState();
-  const [latitude, setLatitude] = useState();
-  const [longitude, setLongitude] = useState();
-  const [userTimeZone, setUserTimeZone] = useState(() => {
-    const timeZone = timeZones.find(tz => tz.shift === '' + new Date()
-      .getTimezoneOffset() / (-60))
-    console.log('timeZone detect:', timeZone)
-    return timeZone || timeZones[0]
-  });
+    const dispatch = useDispatch();
+    const cur = useSelector((state) => state.app.currency);
+    const lang = useSelector((state) => state.app.lang);
+    const loading = useSelector(getLoading).isLoadingNewTransfer;
+    const classes = useStyles();
+    const [rideCurrency, setRideCurrency] = useState(cur);
+    // const [messenger, setMessenger] = useState();
+    // const [nearestCity, setNearestCity] = useState();
+    const [latitude, setLatitude] = useState();
+    const [longitude, setLongitude] = useState();
+    const [userTimeZone, setUserTimeZone] = useState(() => {
+        const timeZone = timeZones.find((tz) => tz.shift === "" + new Date().getTimezoneOffset() / -60);
+        console.log("timeZone detect:", timeZone);
+        return timeZone || timeZones[0];
+    });
 
   // console.log("cur: ", cur);
   // console.log("rideCurrency: ", rideCurrency);
@@ -206,72 +207,74 @@ export default function DriverPage() {
     }
   });
 
-  return (
-    <Container maxWidth="xl" className={classes.drivePage}>
-      <Formik
-        initialValues={{
-          date: new Date().toJSON().slice(0, 10),
-          departureTime: "",
-          timeZone: userTimeZone.shift,
-          phoneNumber: "",
-          places: 1,
-          price: "",
-          currency: rideCurrency,
-          duration: "",
-          passAParcel: false,
-          additionalInfo: "",
-          regularTrips: false,
-          regularTripsDays: {
-            _0monday: {
-              selected: false,
-              departureTime: "",
-            },
-            _1tuesday: {
-              selected: false,
-              departureTime: "",
-            },
-            _2wednesday: {
-              selected: false,
-              departureTime: "",
-            },
-            _3thursday: {
-              selected: false,
-              departureTime: "",
-            },
-            _4friday: {
-              selected: false,
-              departureTime: "",
-            },
-            _5saturday: {
-              selected: false,
-              departureTime: "",
-            },
-            _6sunday: {
-              selected: false,
-              departureTime: "",
-            },
-          },
-        }}
-        onSubmit={values => {
-          console.log("SUBMITTING");
-          const departureTimeGMT = values.departureTime.split(":")
-          departureTimeGMT[0] -= values.timeZone
-          values.departureTime = departureTimeGMT.join(':')
-
-          uploadTransfer(values)
-            .then(response => {
-              console.log(response);
-              history.push("/");
-            })
-            .catch(error => {
-              console.log(error);
-              setState({error: error});
-            });
-        }}
-        validationSchema={schema}
-      >
-        {props => {
-          // console.log("Formik props: ", props);
+    return (
+        <Container maxWidth="xl" className={classes.drivePage}>
+            <Formik
+                initialValues={{
+                    date: new Date().toJSON().slice(0, 10),
+                    departureTime: "",
+                    timeZone: userTimeZone.shift,
+                    phoneNumber: "",
+                    places: 1,
+                    price: "",
+                    currency: rideCurrency,
+                    duration: "",
+                    passAParcel: false,
+                    isTakePet: false,
+                    additionalInfo: "",
+                    regularTrips: false,
+                    regularTripsDays: {
+                        _0monday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                        _1tuesday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                        _2wednesday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                        _3thursday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                        _4friday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                        _5saturday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                        _6sunday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                    },
+                }}
+                onSubmit={(values) => {
+                    console.log("SUBMITTING");
+                    const departureTimeGMT = values.departureTime.split(":");
+                    departureTimeGMT[0] -= values.timeZone;
+                    values.departureTime = departureTimeGMT.join(":");
+                    console.log(values);
+                    dispatch(saveNewTransferAction(values));
+                    // uploadTransfer(values)
+                    //     .then((response) => {
+                    //         console.log(response);
+                    //         history.push("/");
+                    //     })
+                    //     .catch((error) => {
+                    //         console.log(error);
+                    //         setState({ error: error });
+                    //     });
+                }}
+                validationSchema={schema}
+            >
+                {(props) => {
+                    // console.log("Formik props: ", props);
 
           if (props.values.regularTrips) {
             schema.fields.date = null;
@@ -725,83 +728,94 @@ export default function DriverPage() {
                   />
                 </Grid>
 
-                {/*CURRENCY v*/}
-                <Grid item xs={4}>
-                  <Select
-                    id="currency"
-                    name={"currency"}
-                    value={rideCurrency}
-                    renderValue={value => `${value.toUpperCase()}`}
-                    margin="dense"
-                    disableUnderline
-                    onChange={props.handleChange}
-                    label="currency"
-                    style={{paddingTop: "8px"}}
-                  >
-                    {currencies.map(item => {
-                      return (
-                        <MenuItem
-                          key={item.code}
-                          value={item.code}
-                          onClick={() => setRideCurrency(item.code)}
-                        >
-                          {item.code + `  ` + item.name}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </Grid>
-                {/*CURRENCY ^*/}
-              </Grid>
-              {/*</Grid>*/}
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    id={"passAParcel"}
-                    checked={props.values.passAParcel}
-                    onChange={props.handleChange}
-                    color="primary"
-                    value={props.values.parcel}
-                  />
-                }
-                label={i18n.t("Pass a parcel")}
-              />
-              <TextField
-                value={props.values.additionalInfo}
-                margin="normal"
-                id="additionalInfo"
-                name="additionalInfo"
-                fullWidth
-                multiline
-                rows={2}
-                error={
-                  props.errors.additionalInfo && props.touched.additionalInfo
-                    ? true
-                    : false
-                }
-                label={i18n.t("Additional information")}
-                onChange={props.handleChange}
-                helperText={
-                  props.errors.additionalInfo &&
-                  props.touched.additionalInfo ?
-                    i18n.t(`form.errors.${props.errors.additionalInfo}`) :
-                    " "
-                }
-              />
-              <div className={"submitBtn"}>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  fullWidth
-                  type="submit"
-                >
-                  {i18n.t("Publish a ride")}
-                </Button>
-              </div>
-            </form>
-          );
-        }}
-      </Formik>
-    </Container>
-  );
+                                {/*CURRENCY v*/}
+                                <Grid item xs={4}>
+                                    <Select
+                                        id="currency"
+                                        name={"currency"}
+                                        value={rideCurrency}
+                                        renderValue={(value) => `${value.toUpperCase()}`}
+                                        margin="dense"
+                                        disableUnderline
+                                        onChange={props.handleChange}
+                                        label="currency"
+                                        style={{ paddingTop: "8px" }}
+                                    >
+                                        {currencies.map((item) => {
+                                            return (
+                                                <MenuItem
+                                                    key={item.code}
+                                                    value={item.code}
+                                                    onClick={() => setRideCurrency(item.code)}
+                                                >
+                                                    {item.code + `  ` + item.name}
+                                                </MenuItem>
+                                            );
+                                        })}
+                                    </Select>
+                                </Grid>
+                                {/*CURRENCY ^*/}
+                            </Grid>
+                            {/*</Grid>*/}
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        id={"passAParcel"}
+                                        checked={props.values.passAParcel}
+                                        onChange={props.handleChange}
+                                        color="primary"
+                                        value={props.values.parcel}
+                                    />
+                                }
+                                label={i18n.t("Pass a parcel")}
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        id="take-pet"
+                                        checked={props.values.isTakePet}
+                                        onChange={props.handleChange}
+                                        color="primary"
+                                        value={props.values.isTakePet}
+                                    />
+                                }
+                                label={i18n.t("TakePet")}
+                            />
+                            <TextField
+                                value={props.values.additionalInfo}
+                                margin="normal"
+                                id="additionalInfo"
+                                name="additionalInfo"
+                                fullWidth
+                                multiline
+                                rows={2}
+                                error={
+                                    props.errors.additionalInfo && props.touched.additionalInfo ? true : false
+                                }
+                                label={i18n.t("Additional information")}
+                                onChange={props.handleChange}
+                                helperText={
+                                    props.errors.additionalInfo && props.touched.additionalInfo
+                                        ? i18n.t(`form.errors.${props.errors.additionalInfo}`)
+                                        : " "
+                                }
+                            />
+                            <div className={"submitBtn"}>
+                                <Button
+                                    disabled={loading}
+                                    color="primary"
+                                    variant="contained"
+                                    fullWidth
+                                    type="submit"
+                                >
+                                    {i18n.t("Publish a ride")}
+                                </Button>
+                                {loading ? <CircularProgress /> : null}
+                            </div>
+                        </form>
+                    );
+                }}
+            </Formik>
+        </Container>
+    );
 }
