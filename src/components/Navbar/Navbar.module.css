@@ -5,8 +5,16 @@
 .logo {
     display: flex;
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 600;
     text-decoration: none;
     cursor: pointer;
     color: #fff;
+    display: grid;
+}
+
+@media (min-width: 350px) {
+    .logo {
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
 }

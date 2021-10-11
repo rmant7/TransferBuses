@@ -10,13 +10,16 @@ import CurrenciesSelector from '../CurrenciesSelector/CurrenciesSelector';
 import { useStyles } from '../../utils/useStyles';
 import css from './Navbar.module.css';
 import { setSidebarAction } from '../../redux/actions/app-actions';
+import { NavLink } from 'react-router-dom';
+import { logo, version } from "../../config/logo-config";
 // import {useTranslation} from "react-i18next";
 
 // const Navbar = ({ changeLanguage }) => {
 const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const logoText = ( (process.env.REACT_APP_BUILD_MODE === 'prod' ) ? 'TransferBuses' : 'TransferBuses -dev')
+  // const logo = 'TransferBuses';
+  // const logoText = ( (process.env.REACT_APP_BUILD_MODE === 'prod' ) ? 'TransferBuses' : 'TransferBuses -dev')
   console.log(( (process.env.REACT_APP_BUILD_MODE === 'prod' ) ? 'TransferBuses' : 'TransferBuses -dev'))
   console.log(typeof (process.env.REACT_APP_BUILD_MODE , "****************"))
   console.log(process.env.REACT_APP_BUILD_MODE , "****************")
@@ -28,7 +31,10 @@ const Navbar = () => {
       {/*<Container className={classes.toolbarContainer}>*/}
       {/*<Container style={{maxWidth: '100% !important', width: '100% !important'}}>*/}
         <Toolbar className={classes.toolbar}>
-          <a className={css.logo} href={MAIN_ROUTE}>{logoText}</a>
+          <NavLink className={css.logo} to={MAIN_ROUTE}>
+            <div style={{}}>{logo}</div>
+            <div style={{fontSize: "10px"}}>{version}</div>
+          </NavLink>
           <nav className={`${classes.nav} ${css.option_block}`}>
             <LanguageSelector />
             <CurrenciesSelector />
