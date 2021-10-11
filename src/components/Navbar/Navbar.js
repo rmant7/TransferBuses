@@ -30,7 +30,7 @@ const Navbar = () => {
       {/*<Container maxWidth={'false !important'}>*/}
       {/*<Container className={classes.toolbarContainer}>*/}
       {/*<Container style={{maxWidth: '100% !important', width: '100% !important'}}>*/}
-        <Toolbar className={classes.toolbar}>
+        <Toolbar className={`${classes.toolbar} ${css.navbar}`}>
           <NavLink className={css.logo} to={MAIN_ROUTE}>
             <div>{logo}</div>
             <div style={{fontSize: "11px", fontWeight: "200", color: "rgba(250, 250, 250, 0.7)"}}>{version}</div>
