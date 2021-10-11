@@ -180,6 +180,9 @@ export default function Transfer({transfer}) {
               </Grid>
             )}
 
+                <Paper className={"paper"}>
+                  {transfer.additionalInfo}
+                </Paper>
 
             {transfer.regularTrips && (
               <>
