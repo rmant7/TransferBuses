@@ -180,9 +180,6 @@ export default function Transfer({transfer}) {
               </Grid>
             )}
 
-                <Paper className={"paper"}>
-                  {transfer.additionalInfo}
-                </Paper>
 
             {transfer.regularTrips && (
               <>
@@ -300,7 +297,20 @@ export default function Transfer({transfer}) {
                 </Paper>
               </Grid>
             )}
-          </Grid>
+            {
+              transfer.additionalInfo && (<Grid
+                container
+                item
+                xs={12}
+                justifyContent="flex-start"
+                alignItems="center"
+              >
+                <Paper className={"paper"}>
+                  {transfer.additionalInfo}
+                </Paper>
+              </Grid>)
+            }
+            </Grid>
         </AccordionDetails>
       </Accordion>
       {/* <Grid item xs={2}>
