@@ -261,6 +261,7 @@ export default function DriverPage() {
                     values.departureTime = departureTimeGMT.join(":");
                     console.log(values);
                     dispatch(saveNewTransferAction(values));
+                    history.push("/");
                     // uploadTransfer(values)
                     //     .then((response) => {
                     //         console.log(response);
