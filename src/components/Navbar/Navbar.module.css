@@ -4,7 +4,7 @@
 
 .logo {
     display: flex;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
@@ -12,7 +12,7 @@
     display: grid;
 }
 
-@media (min-width: 350px) {
+@media (max-width: 350px) {
     .logo {
         font-size: 1.1rem;
         font-weight: 400;
