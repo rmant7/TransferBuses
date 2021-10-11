@@ -74,8 +74,8 @@
   "Apply": "Apply",
   "Clear": "Clear",
   "Cancel": "Cancel",
-  "TakePet": "I'll take a pet",
-  "PassPet": "Pass a pet",
+  "Take Pet": "I'll take a pet",
+  "Pets Allowed": "Pets allowed",
   "timezone": {
     "0": " ",
     "1": "Central Europe",
