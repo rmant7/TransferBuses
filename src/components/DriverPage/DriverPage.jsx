@@ -780,7 +780,7 @@ export default function DriverPage() {
                                         value={props.values.isTakePet}
                                     />
                                 }
-                                label={i18n.t("TakePet")}
+                                label={i18n.t("Take Pet")}
                             />
                             <TextField
                                 value={props.values.additionalInfo}
