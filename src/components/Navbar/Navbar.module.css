@@ -12,6 +12,13 @@
     display: grid;
 }
 
+@media (max-width: 450px) {
+    .logo {
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+}
+
 @media (max-width: 350px) {
     .logo {
         font-size: 1.1rem;
