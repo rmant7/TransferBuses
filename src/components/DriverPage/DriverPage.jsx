@@ -772,7 +772,7 @@ export default function DriverPage() {
                             <FormControlLabel
                                 control={
                                     <Checkbox
-                                        id="take-pet"
+                                        id="isTakePet"
                                         checked={props.values.isTakePet}
                                         onChange={props.handleChange}
                                         color="primary"
