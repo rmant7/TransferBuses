@@ -260,17 +260,17 @@ export default function DriverPage() {
                     departureTimeGMT[0] -= values.timeZone;
                     values.departureTime = departureTimeGMT.join(":");
                     console.log(values);
-                    dispatch(saveNewTransferAction(values));
-                    history.push("/");
-                    // uploadTransfer(values)
-                    //     .then((response) => {
-                    //         console.log(response);
-                    //         history.push("/");
-                    //     })
-                    //     .catch((error) => {
-                    //         console.log(error);
-                    //         setState({ error: error });
-                    //     });
+                    // dispatch(saveNewTransferAction(values));
+                    // history.push("/");
+                    uploadTransfer(values)
+                        .then((response) => {
+                            console.log(response);
+                            history.push("/");
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            setState({ error: error });
+                        });
                 }}
                 validationSchema={schema}
             >
