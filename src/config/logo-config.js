@@ -1,2 +1,3 @@
-export const logo = "TransferBuses";
-export const version = "dev justedlev v.21.10.11";
+import { LogoVersion } from "./LogoVersion";
+
+export const logoInfo = new LogoVersion("TransferBuses", null, "justedlev");
