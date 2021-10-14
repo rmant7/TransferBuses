@@ -11,7 +11,7 @@ export class LogoVersion {
         date.getMonth() + 1
       }.${date.getDate()}`;
     } else {
-      this.version = version;
+      this.version = `v.${version}`;
     }
     this.developer = developer;
   }
