@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 // import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 // import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import "./DriverPage.css";
+import "./CarrierPage.css";
 import { uploadTransfer } from "../../services/data-service";
 import { useHistory } from "react-router-dom";
 import {
@@ -49,7 +49,7 @@ const schema = yup.object().shape({
     price: yup.string().required("price.Required"),
 });
 
-export default function DriverPage() {
+export default function CarrierPage() {
     const dispatch = useDispatch();
     const cur = useSelector((state) => state.app.currency);
     const lang = useSelector((state) => state.app.lang);

@@ -1,4 +1,4 @@
-import { MainPage, PassengerPage, BusPage, DriverPage, TransferPage } from '../components';
+import { MainPage, PassengerPage, BusPage, CarrierPage, TransferPage } from '../components';
 import { Contacts } from '../pages';
 import {
   MAIN_ROUTE,
@@ -24,7 +24,7 @@ export const publicRoutes = [
   },
   {
     path: DRIVER_ROUTE,
-    Component: DriverPage,
+    Component: CarrierPage,
   },
   {
     path: TRANSFER_ROUTE,

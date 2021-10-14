@@ -1,7 +1,7 @@
 export { default as Navbar } from './Navbar/Navbar';
 export { default as Sidebar } from './Navbar/Sidebar/Sidebar';
 export { default as BusPage } from './BusPage/BusPage';
-export { default as DriverPage } from './DriverPage/DriverPage';
+export { default as CarrierPage } from './CarrierPage/CarrierPage';
 export { default as MainPage } from './MainPage/MainPage';
 export { default as PassengerPage } from './PassengerPage/PassengerPage';
 export { default as TransferPage } from './TransferPage/TransferPage';
