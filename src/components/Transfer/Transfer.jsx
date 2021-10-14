@@ -153,7 +153,7 @@ export default function Transfer({ transfer }) {
                         {transfer.duration && (
                             <Grid container item xs={12} alignItems="center" justifyContent="flex-start">
                                 <Paper className={"paper"}>
-                                    {i18n.t("Travel time")}: {/*{transfer.date.replace("T", "  ")}*/}
+                                    {i18n.t("Duration of ride")}: {/*{transfer.date.replace("T", "  ")}*/}
                                     {transfer.duration}
                                 </Paper>
                             </Grid>

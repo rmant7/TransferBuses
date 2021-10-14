@@ -702,6 +702,7 @@ export default function CarrierPage() {
                             >
                                 <Grid item xs={8}>
                                     <TextField
+                                        type="number"
                                         value={props.values.price}
                                         margin="dense"
                                         id="price"
