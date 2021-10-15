@@ -264,7 +264,7 @@ export default function CarrierPage() {
                     uploadTransfer(values)
                         .then((response) => {
                             console.log(response);
-                            history.push("/");
+                            // history.push("/");
                         })
                         .catch((error) => {
                             console.log(error);
@@ -702,7 +702,6 @@ export default function CarrierPage() {
                             >
                                 <Grid item xs={8}>
                                     <TextField
-                                        type="number"
                                         value={props.values.price}
                                         margin="dense"
                                         id="price"
@@ -802,6 +801,7 @@ export default function CarrierPage() {
                                     variant="contained"
                                     fullWidth
                                     type="submit"
+                                    onClick={() => props.resetForm()}
                                 >
                                     {i18n.t("Publish a ride")}
                                 </Button>
