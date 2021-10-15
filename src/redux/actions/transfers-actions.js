@@ -1,10 +1,7 @@
 import { getTransfers, uploadTransfer } from "../../services/data-service";
 import { getCityById } from "../../utils/cities";
 import { setFiltersAction } from "./filters-actions";
-import {
-  loadingTransfersAction,
-  loadingUploadTransferAction,
-} from "./loading-actions";
+import { loadingTransfersAction, loadingUploadTransferAction } from "./loading-actions";
 
 export const SET_SAVE_NEW_TRANSFER = "set-save-new-transfer";
 export const SET_TRANSFERS = "set-received-transfers";
@@ -19,11 +16,7 @@ export function getTransfersAction() {
         type: SET_TRANSFERS,
         payload: { isReceived: true, transfers: transfers.slice() },
       });
-      dispatch(
-        setFiltersAction(
-          Array.from(new Set(transfers.map((t) => getCityById(t.from))))
-        )
-      );
+      dispatch(setFiltersAction(Array.from(new Set(transfers.map((t) => getCityById(t.from))))));
     } catch (e) {
       dispatch({
         type: SET_TRANSFERS,
