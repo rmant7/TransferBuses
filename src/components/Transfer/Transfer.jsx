@@ -31,8 +31,8 @@ export default function Transfer({ transfer }) {
         currencies.find((cur) => cur.code === transfer.currency) ||
         currencies.find((cur) => cur.code === "EUR");
 
-    console.log("depTime = ", transfer.departureTime);
-    console.log("transfer.timeZone = ", transfer.timeZone);
+    // console.log("depTime = ", transfer.departureTime);
+    // console.log("transfer.timeZone = ", transfer.timeZone);
     //const timeZoneName = timeZones.find(tz => tz.shift === transfer.timeZone)?.name
     const timeZoneName = "GMT+" + transfer.timeZone + " " + i18n.t("timezone." + transfer.timeZone);
 
@@ -67,7 +67,7 @@ export default function Transfer({ transfer }) {
         priceToDisplay = priceNum + " " + globalCurrency.r2rSymbol;
     }
 
-    console.log("transfer.regularTripsDays: ", transfer.regularTripsDays);
+    // console.log("transfer.regularTripsDays: ", transfer.regularTripsDays);
 
     return (
         <div className="transfer">
@@ -131,7 +131,7 @@ export default function Transfer({ transfer }) {
                                               ":" +
                                               departureTimeSplit[1]
                                             : transfer.departureTime}{" "}
-                                        {timeZoneName ? "(" + timeZoneName + ")" : ""}
+                                        {/*{timeZoneName ? "(" + timeZoneName + ")" : ""}*/}
                                     </Button>
                                 </Grid>
                             </Grid>

@@ -62,17 +62,16 @@ export default function CarrierPage() {
     const [longitude, setLongitude] = useState();
     const [userTimeZone, setUserTimeZone] = useState(() => {
         const timeZone = timeZones.find((tz) => tz.shift === "" + new Date().getTimezoneOffset() / -60);
-        console.log("timeZone detect:", timeZone);
         return timeZone || timeZones[0];
     });
 
     // console.log("cur: ", cur);
     // console.log("rideCurrency: ", rideCurrency);
-    console.log("Current latitude", latitude);
-    console.log("Current longitude", longitude);
-    console.log(lang);
-
-    console.log("user time zone", userTimeZone);
+    // console.log("Current latitude", latitude);
+    // console.log("Current longitude", longitude);
+    // console.log(lang);
+    //
+    // console.log("user time zone", userTimeZone);
 
     const cities =
         lang === "ru"
@@ -256,6 +255,7 @@ export default function CarrierPage() {
                 onSubmit={(values) => {
                     console.log("SUBMITTING");
                     const departureTimeGMT = values.departureTime.split(":");
+                    console.log('values; ', values)
                     departureTimeGMT[0] -= values.timeZone;
                     values.departureTime = departureTimeGMT.join(":");
                     console.log(values);
@@ -526,7 +526,7 @@ export default function CarrierPage() {
                                         </Grid>
                                         {/*^^^ DEPARTURE TIME ^^^*/}
 
-                                        {/*VVV DEPARTURE TIMEZONE VVV*/}
+                                        {/*VVV DEPARTURE TIMEZONE   temporary commented out VVV*/}
                                         <Grid item xs={6}>
                                             <FormControl
                                                 fullWidth
@@ -546,25 +546,17 @@ export default function CarrierPage() {
                                                     margin="normal"
                                                     name={"timeZone"}
                                                     value={userTimeZone.shift}
-                                                    // renderValue={userTimeZone.shift}
-                                                    // renderValue={value => `${value}`}
-                                                    // disableUnderline
                                                     onChange={props.handleChange}
-                                                    // style={{paddingTop: "9px", paddingBottom: '4px'}}
                                                     style={{ textTransform: "none" }}
                                                     helperText={" 123"}
-                                                    // style={{marginTop: "25px"}}
                                                 >
                                                     {timeZones.map((item) => {
-                                                        // console.log(item.shift, item.name)
                                                         return (
                                                             <MenuItem
                                                                 key={item.shift}
                                                                 value={item.shift}
                                                                 onClick={() => {
-                                                                    // console.log('userTimeZone',userTimeZone);
                                                                     setUserTimeZone(item);
-                                                                    // console.log('userTimeZone after click',userTimeZone);
                                                                 }}
                                                             >
                                                                 {/*{item.name}*/}
