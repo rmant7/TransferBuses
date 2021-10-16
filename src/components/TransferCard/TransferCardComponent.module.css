@@ -31,9 +31,17 @@
   padding: 10px;
 }
 
+.regular_trips_ico {
+  width: 64px;
+  height: 64px;
+  padding: 10px;
+  background: no-repeat center url("../../assets/schedule.png");
+  background-size: 64px;
+}
+
 .date {
-  width: 50px;
-  padding: 5px;
+  width: 65px;
+  padding: 8px;
   border-radius: 7px 0;
   text-align: center;
   display: grid;
@@ -75,7 +83,8 @@
   margin: 10px 10px 10px auto;
   padding: 8px;
   border-radius: 100px;
-  background-color: #536dfeb4;
+  color: #fff;
+  background-color: #536dfe;
 }
 
 .wallet_ico {
@@ -89,7 +98,7 @@
 
 .price {
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 600;
   margin: auto 0;
   padding: inherit;
 }
