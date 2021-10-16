@@ -527,49 +527,49 @@ export default function CarrierPage() {
                                         {/*^^^ DEPARTURE TIME ^^^*/}
 
                                         {/*VVV DEPARTURE TIMEZONE   temporary commented out VVV*/}
-                                        <Grid item xs={6}>
-                                            <FormControl
-                                                fullWidth
-                                                style={{ paddingTop: "0px", marginTop: "9px" }}
-                                            >
-                                                <InputLabel
-                                                    shrink
-                                                    id="timeZone-label"
-                                                    style={{ marginTop: "8px" }}
-                                                >
-                                                    {i18n.t("Timezone")}
-                                                </InputLabel>
-                                                <Select
-                                                    labelId="timeZone-label"
-                                                    id="timeZone"
-                                                    label="timeZone"
-                                                    margin="normal"
-                                                    name={"timeZone"}
-                                                    value={userTimeZone.shift}
-                                                    onChange={props.handleChange}
-                                                    style={{ textTransform: "none" }}
-                                                    helperText={" 123"}
-                                                >
-                                                    {timeZones.map((item) => {
-                                                        return (
-                                                            <MenuItem
-                                                                key={item.shift}
-                                                                value={item.shift}
-                                                                onClick={() => {
-                                                                    setUserTimeZone(item);
-                                                                }}
-                                                            >
-                                                                {/*{item.name}*/}
-                                                                {"GMT+" +
-                                                                    item.shift +
-                                                                    " " +
-                                                                    i18n.t("timezone." + item.shift)}
-                                                            </MenuItem>
-                                                        );
-                                                    })}
-                                                </Select>
-                                            </FormControl>
-                                        </Grid>
+                                        {/*<Grid item xs={6}>*/}
+                                        {/*    <FormControl*/}
+                                        {/*        fullWidth*/}
+                                        {/*        style={{ paddingTop: "0px", marginTop: "9px" }}*/}
+                                        {/*    >*/}
+                                        {/*        <InputLabel*/}
+                                        {/*            shrink*/}
+                                        {/*            id="timeZone-label"*/}
+                                        {/*            style={{ marginTop: "8px" }}*/}
+                                        {/*        >*/}
+                                        {/*            {i18n.t("Timezone")}*/}
+                                        {/*        </InputLabel>*/}
+                                        {/*        <Select*/}
+                                        {/*            labelId="timeZone-label"*/}
+                                        {/*            id="timeZone"*/}
+                                        {/*            label="timeZone"*/}
+                                        {/*            margin="normal"*/}
+                                        {/*            name={"timeZone"}*/}
+                                        {/*            value={userTimeZone.shift}*/}
+                                        {/*            onChange={props.handleChange}*/}
+                                        {/*            style={{ textTransform: "none" }}*/}
+                                        {/*            helperText={" 123"}*/}
+                                        {/*        >*/}
+                                        {/*            {timeZones.map((item) => {*/}
+                                        {/*                return (*/}
+                                        {/*                    <MenuItem*/}
+                                        {/*                        key={item.shift}*/}
+                                        {/*                        value={item.shift}*/}
+                                        {/*                        onClick={() => {*/}
+                                        {/*                            setUserTimeZone(item);*/}
+                                        {/*                        }}*/}
+                                        {/*                    >*/}
+                                        {/*                        /!*{item.name}*!/*/}
+                                        {/*                        {"GMT+" +*/}
+                                        {/*                            item.shift +*/}
+                                        {/*                            " " +*/}
+                                        {/*                            i18n.t("timezone." + item.shift)}*/}
+                                        {/*                    </MenuItem>*/}
+                                        {/*                );*/}
+                                        {/*            })}*/}
+                                        {/*        </Select>*/}
+                                        {/*    </FormControl>*/}
+                                        {/*</Grid>*/}
                                         {/*^^^ DEPARTURE TIMEZONE ^^^*/}
                                     </Grid>
                                     <Grid container justifyContent="space-between">
