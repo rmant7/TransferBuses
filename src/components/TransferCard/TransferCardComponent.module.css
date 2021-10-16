@@ -1,0 +1,95 @@
+.transfer_card {
+  transition: all ease-in-out 0.3s;
+  width: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  box-shadow: 0px 5px 25px -5px rgba(34, 60, 80, 0.2);
+  margin: 15px;
+  display: inline-block;
+  vertical-align: top;
+  background-color: #fff;
+}
+
+.transfer_card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 5px 50px 5px rgba(34, 60, 80, 0.8);
+}
+
+.transfer_card_header {
+  width: 100%;
+  display: flex;
+}
+
+.transfer_card_footer {
+  width: 100%;
+  vertical-align: middle;
+  display: flex;
+}
+
+.content {
+  text-align: center;
+  padding: 10px;
+}
+
+.date {
+  width: 50px;
+  padding: 5px;
+  border-radius: 7px 0;
+  text-align: center;
+  display: grid;
+  color: #fff;
+  background-color: #536dfe;
+}
+
+.day {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.month {
+  font-size: 1.3rem;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+}
+
+.year {
+  font-size: 1.1rem;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.way {
+  margin: auto auto;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.city {
+  padding: 0 3px;
+}
+
+.price_block {
+  display: flex;
+  margin: 10px 10px 10px auto;
+  padding: 8px;
+  border-radius: 100px;
+  background-color: #536dfeb4;
+}
+
+.wallet_ico {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  padding: inherit;
+  background: no-repeat center url("../../assets/wallet.png");
+  background-size: 32px;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: auto 0;
+  padding: inherit;
+}
