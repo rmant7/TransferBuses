@@ -8,12 +8,13 @@ import { getTransfersAction } from "../../redux/actions/transfers-actions";
 import { getLoading, getTransfersData } from "../../redux/selectors";
 import Transfer from "../Transfer/Transfer";
 import filtersClasses from "../Filter/FilterComponent.module.css";
+import classes from "./PassengerPage.module.css";
 import { useStyles } from "../../utils/useStyles";
 import TransfersList from "../TransfersList/TransfersList";
+import TransferCardComponent from "../TransferCard/TransferCardComponent";
 // import "./PassengerPage.css";
 
 export default function PassengerPage() {
-    const classes = useStyles();
     const dispatch = useDispatch();
     // const [transfers, setTransfers] = useState([]);
     // const [loading, setLoading] = useState();
@@ -37,7 +38,7 @@ export default function PassengerPage() {
             {/* <Divider style={{margin: "10px"}}/> */}
             {/* {loading && <h2>Loading...</h2>} */}
             {/* {!loading && <TransfersList transfers={transfers} />} */}
-            <div className="transfers">
+            <div className={classes.transfers}>
                 {loading && !data.isReceived ? (
                     <Box sx={{ width: "100%" }}>
                         <LinearProgress />
@@ -45,6 +46,7 @@ export default function PassengerPage() {
                 ) : (
                     // <TransfersList transfers={data.transfers} />
                     data.transfers.map((transfer) => <Transfer key={transfer.id} transfer={transfer} />)
+                    // data.transfers.map((transfer) => <TransferCardComponent transfer={transfer} />)
                 )}
             </div>
         </Container>
