@@ -3366,5 +3366,63 @@
     "latitude": "49.62375",
     "longitude": "38.12014",
     "name_ru": "Полтава"
+  },
+  {
+    "ID": "2010",
+    "name": "Uman",
+    "country_id": "186",
+    "latitude": "48.75",
+    "longitude": "30.216667",
+    "name_ru": "Умань"
+  },
+  {
+    "ID": "2011",
+    "name": "Mykolaiv",
+    "country_id": "186",
+    "latitude": "46.966667",
+    "longitude": "32",
+    "name_ru": "Николаев"
+  },
+  {
+    "ID": "2012",
+    "name": "Pervomaisk (Luhansk Obl)",
+    "country_id": "186",
+    "latitude": "48.629722",
+    "longitude": "38.561944",
+    "name_ru": "Первомайск (Луг. обл)"
+  },
+  {
+    "ID": "2013",
+    "name": "Pervomaisk (Mykolaiv Obl)",
+    "country_id": "186",
+    "latitude": "48.043889",
+    "longitude": "30.85",
+    "name_ru": "Первомайск (Ник. обл)"
+  },
+  {
+    "ID": "2014",
+    "name": "Voznesensk",
+    "country_id": "186",
+    "latitude": "47.566667",
+    "longitude": "31.3",
+    "name_ru": "Вознесенск"
+  },
+  {
+    "ID": "2015",
+    "name": "Yuzhnoukrainsk",
+    "country_id": "186",
+    "latitude": "47.821667",
+    "longitude": "31.175",
+    "name_ru": "Южноукраинск"
+  },
+  {
+    "ID": "2016",
+    "name": "Kryvyi Rih",
+    "country_id": "186",
+    "latitude": "47.956802",
+    "longitude": "33.370531",
+    "name_ru": "Кривой рог"
   }
+
+
 ]
