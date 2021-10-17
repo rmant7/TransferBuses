@@ -50,29 +50,28 @@ const schema = yup.object().shape({
 });
 
 export default function CarrierPage() {
-  const dispatch = useDispatch();
-  const cur = useSelector((state) => state.app.currency);
-  const lang = useSelector((state) => state.app.lang);
-  const loading = useSelector(getLoading).isLoadingNewTransfer;
-  const classes = useStyles();
-  const [rideCurrency, setRideCurrency] = useState(cur);
-  // const [messenger, setMessenger] = useState();
-  // const [nearestCity, setNearestCity] = useState();
-  const [latitude, setLatitude] = useState();
-  const [longitude, setLongitude] = useState();
-  const [userTimeZone, setUserTimeZone] = useState(() => {
-    const timeZone = timeZones.find((tz) => tz.shift === "" + new Date().getTimezoneOffset() / -60);
-    console.log("timeZone detect:", timeZone);
-    return timeZone || timeZones[0];
-  });
+    const dispatch = useDispatch();
+    const cur = useSelector((state) => state.app.currency);
+    const lang = useSelector((state) => state.app.lang);
+    const loading = useSelector(getLoading).isLoadingNewTransfer;
+    const classes = useStyles();
+    const [rideCurrency, setRideCurrency] = useState(cur);
+    // const [messenger, setMessenger] = useState();
+    // const [nearestCity, setNearestCity] = useState();
+    const [latitude, setLatitude] = useState();
+    const [longitude, setLongitude] = useState();
+    const [userTimeZone, setUserTimeZone] = useState(() => {
+        const timeZone = timeZones.find((tz) => tz.shift === "" + new Date().getTimezoneOffset() / -60);
+        return timeZone || timeZones[0];
+    });
 
-  // console.log("cur: ", cur);
-  // console.log("rideCurrency: ", rideCurrency);
-  console.log("Current latitude", latitude);
-  console.log("Current longitude", longitude);
-  console.log(lang);
-
-  console.log("user time zone", userTimeZone);
+    // console.log("cur: ", cur);
+    // console.log("rideCurrency: ", rideCurrency);
+    // console.log("Current latitude", latitude);
+    // console.log("Current longitude", longitude);
+    // console.log(lang);
+    //
+    // console.log("user time zone", userTimeZone);
 
   const cities =
     lang === "ru"
@@ -206,75 +205,76 @@ export default function CarrierPage() {
     }
   });
 
-  return (
-    <Container maxWidth="xl" className={classes.drivePage}>
-      <Formik
-        initialValues={{
-          date: new Date().toJSON().slice(0, 10),
-          departureTime: "",
-          timeZone: userTimeZone.shift,
-          phoneNumber: "",
-          places: 1,
-          price: "",
-          currency: rideCurrency,
-          duration: "",
-          passAParcel: false,
-          isTakePet: false,
-          additionalInfo: "",
-          regularTrips: false,
-          regularTripsDays: {
-            _0monday: {
-              selected: false,
-              departureTime: "",
-            },
-            _1tuesday: {
-              selected: false,
-              departureTime: "",
-            },
-            _2wednesday: {
-              selected: false,
-              departureTime: "",
-            },
-            _3thursday: {
-              selected: false,
-              departureTime: "",
-            },
-            _4friday: {
-              selected: false,
-              departureTime: "",
-            },
-            _5saturday: {
-              selected: false,
-              departureTime: "",
-            },
-            _6sunday: {
-              selected: false,
-              departureTime: "",
-            },
-          },
-        }}
-        onSubmit={(values) => {
-          console.log("SUBMITTING");
-          const departureTimeGMT = values.departureTime.split(":");
-          departureTimeGMT[0] -= values.timeZone;
-          values.departureTime = departureTimeGMT.join(":");
-          console.log(values);
-          // dispatch(saveNewTransferAction(values));
-          // history.push("/");
-          uploadTransfer(values)
-            .then((response) => {
-              console.log(response);
-              // history.push("/");
-            })
-            .catch((error) => {
-              console.log(error);
-              setState({ error: error });
-            });
-        }}
-        validationSchema={schema}
-      >
-        {(props) => {
-          // console.log("Formik props: ", props);
+    return (
+        <Container maxWidth="xl" className={classes.drivePage}>
+            <Formik
+                initialValues={{
+                    date: new Date().toJSON().slice(0, 10),
+                    departureTime: "",
+                    timeZone: userTimeZone.shift,
+                    phoneNumber: "",
+                    places: 1,
+                    price: "",
+                    currency: rideCurrency,
+                    duration: "",
+                    passAParcel: false,
+                    isTakePet: false,
+                    additionalInfo: "",
+                    regularTrips: false,
+                    regularTripsDays: {
+                        _0monday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                        _1tuesday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                        _2wednesday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                        _3thursday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                        _4friday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                        _5saturday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                        _6sunday: {
+                            selected: false,
+                            departureTime: "",
+                        },
+                    },
+                }}
+                onSubmit={(values) => {
+                    console.log("SUBMITTING");
+                    const departureTimeGMT = values.departureTime.split(":");
+                    console.log('values; ', values)
+                    departureTimeGMT[0] -= values.timeZone;
+                    values.departureTime = departureTimeGMT.join(":");
+                    console.log(values);
+                    // dispatch(saveNewTransferAction(values));
+                    // history.push("/");
+                    uploadTransfer(values)
+                        .then((response) => {
+                            console.log(response);
+                            // history.push("/");
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            setState({ error: error });
+                        });
+                }}
+                validationSchema={schema}
+            >
+                {(props) => {
+                    // console.log("Formik props: ", props);
 
           if (props.values.regularTrips) {
             schema.fields.date = null;
@@ -495,111 +495,113 @@ export default function CarrierPage() {
                     </Grid>
                     {/*^^^ DEPARTURE TIME ^^^*/}
 
-                    {/*VVV DEPARTURE TIMEZONE VVV*/}
-                    <Grid item xs={6}>
-                      <FormControl fullWidth style={{ paddingTop: "0px", marginTop: "9px" }}>
-                        <InputLabel shrink id="timeZone-label" style={{ marginTop: "8px" }}>
-                          {i18n.t("Timezone")}
-                        </InputLabel>
-                        <Select
-                          labelId="timeZone-label"
-                          id="timeZone"
-                          label="timeZone"
-                          margin="normal"
-                          name={"timeZone"}
-                          value={userTimeZone.shift}
-                          // renderValue={userTimeZone.shift}
-                          // renderValue={value => `${value}`}
-                          // disableUnderline
-                          onChange={props.handleChange}
-                          // style={{paddingTop: "9px", paddingBottom: '4px'}}
-                          style={{ textTransform: "none" }}
-                          helperText={" 123"}
-                          // style={{marginTop: "25px"}}
-                        >
-                          {timeZones.map((item) => {
-                            // console.log(item.shift, item.name)
-                            return (
-                              <MenuItem
-                                key={item.shift}
-                                value={item.shift}
-                                onClick={() => {
-                                  // console.log('userTimeZone',userTimeZone);
-                                  setUserTimeZone(item);
-                                  // console.log('userTimeZone after click',userTimeZone);
-                                }}
-                              >
-                                {/*{item.name}*/}
-                                {"GMT+" + item.shift + " " + i18n.t("timezone." + item.shift)}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                    {/*^^^ DEPARTURE TIMEZONE ^^^*/}
-                  </Grid>
-                  <Grid container justifyContent="space-between">
-                    <Grid item xs={5}>
-                      <FormControl fullWidth>
-                        <InputLabel shrink id="duration-label">
-                          {i18n.t("Travel time")}
-                        </InputLabel>
-                        <Select
-                          labelId="duration-label"
-                          id="duration"
-                          name={"duration"}
-                          value={props.values.duration}
-                          renderValue={(value) => `${value}`}
-                          margin="dense"
-                          // disableUnderline
-                          onChange={props.handleChange}
-                          label="duration"
-                          //style={{paddingTop: "9px"}}
-                        >
-                          {durations.map((item) => {
-                            return (
-                              <MenuItem
-                                key={item}
-                                value={item}
-                                // onClick={() => setRideCurrency(item.code)}
-                              >
-                                {item}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                  </Grid>
-                </>
-              )}
-              {/* Phone number block */}
-              <Grid container justifyContent="space-between" alignItems="flex-end">
-                {/* Phone */}
-                <Grid item xs={8}>
-                  <TextField
-                    fullWidth
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    label={i18n.t("Phone number")}
-                    placeholder={"+1234567890"}
-                    margin="normal"
-                    value={props.values.phoneNumber}
-                    onBlur={props.handleBlur}
-                    error={Boolean(props.errors.phoneNumber) && props.touched.phoneNumber}
-                    helperText={
-                      Boolean(props.errors.phoneNumber) && props.touched.phoneNumber
-                        ? i18n.t(`form.errors.${props.errors.phoneNumber}`)
-                        : " "
-                    }
-                    onChange={props.handleChange}
-                  />
-                </Grid>
-                {/* Messenger */}
-                <Grid item xs={4}>
-                  {/* Checkboxes */}
-                  {/* <FormGroup aria-label="position" row>
+                                        {/*VVV DEPARTURE TIMEZONE   temporary commented out VVV*/}
+                                        {/*<Grid item xs={6}>*/}
+                                        {/*    <FormControl*/}
+                                        {/*        fullWidth*/}
+                                        {/*        style={{ paddingTop: "0px", marginTop: "9px" }}*/}
+                                        {/*    >*/}
+                                        {/*        <InputLabel*/}
+                                        {/*            shrink*/}
+                                        {/*            id="timeZone-label"*/}
+                                        {/*            style={{ marginTop: "8px" }}*/}
+                                        {/*        >*/}
+                                        {/*            {i18n.t("Timezone")}*/}
+                                        {/*        </InputLabel>*/}
+                                        {/*        <Select*/}
+                                        {/*            labelId="timeZone-label"*/}
+                                        {/*            id="timeZone"*/}
+                                        {/*            label="timeZone"*/}
+                                        {/*            margin="normal"*/}
+                                        {/*            name={"timeZone"}*/}
+                                        {/*            value={userTimeZone.shift}*/}
+                                        {/*            onChange={props.handleChange}*/}
+                                        {/*            style={{ textTransform: "none" }}*/}
+                                        {/*            helperText={" 123"}*/}
+                                        {/*        >*/}
+                                        {/*            {timeZones.map((item) => {*/}
+                                        {/*                return (*/}
+                                        {/*                    <MenuItem*/}
+                                        {/*                        key={item.shift}*/}
+                                        {/*                        value={item.shift}*/}
+                                        {/*                        onClick={() => {*/}
+                                        {/*                            setUserTimeZone(item);*/}
+                                        {/*                        }}*/}
+                                        {/*                    >*/}
+                                        {/*                        /!*{item.name}*!/*/}
+                                        {/*                        {"GMT+" +*/}
+                                        {/*                            item.shift +*/}
+                                        {/*                            " " +*/}
+                                        {/*                            i18n.t("timezone." + item.shift)}*/}
+                                        {/*                    </MenuItem>*/}
+                                        {/*                );*/}
+                                        {/*            })}*/}
+                                        {/*        </Select>*/}
+                                        {/*    </FormControl>*/}
+                                        {/*</Grid>*/}
+                                        {/*^^^ DEPARTURE TIMEZONE ^^^*/}
+                                    </Grid>
+                                    <Grid container justifyContent="space-between">
+                                        <Grid item xs={5}>
+                                            <FormControl fullWidth>
+                                                <InputLabel shrink id="duration-label">
+                                                    {i18n.t("Travel time")}
+                                                </InputLabel>
+                                                <Select
+                                                    labelId="duration-label"
+                                                    id="duration"
+                                                    name={"duration"}
+                                                    value={props.values.duration}
+                                                    renderValue={(value) => `${value}`}
+                                                    margin="dense"
+                                                    // disableUnderline
+                                                    onChange={props.handleChange}
+                                                    label="duration"
+                                                    //style={{paddingTop: "9px"}}
+                                                >
+                                                    {durations.map((item) => {
+                                                        return (
+                                                            <MenuItem
+                                                                key={item}
+                                                                value={item}
+                                                                // onClick={() => setRideCurrency(item.code)}
+                                                            >
+                                                                {item}
+                                                            </MenuItem>
+                                                        );
+                                                    })}
+                                                </Select>
+                                            </FormControl>
+                                        </Grid>
+                                    </Grid>
+                                </>
+                            )}
+                            {/* Phone number block */}
+                            <Grid container justifyContent="space-between" alignItems="flex-end">
+                                {/* Phone */}
+                                <Grid item xs={8}>
+                                    <TextField
+                                        fullWidth
+                                        id="phoneNumber"
+                                        name="phoneNumber"
+                                        label={i18n.t("Phone number")}
+                                        placeholder={"+1234567890"}
+                                        margin="normal"
+                                        value={props.values.phoneNumber}
+                                        onBlur={props.handleBlur}
+                                        error={Boolean(props.errors.phoneNumber) && props.touched.phoneNumber}
+                                        helperText={
+                                            Boolean(props.errors.phoneNumber) && props.touched.phoneNumber
+                                                ? i18n.t(`form.errors.${props.errors.phoneNumber}`)
+                                                : " "
+                                        }
+                                        onChange={props.handleChange}
+                                    />
+                                </Grid>
+                                {/* Messenger */}
+                                <Grid item xs={4}>
+                                    {/* Checkboxes */}
+                                    {/* <FormGroup aria-label="position" row>
                     <FormControlLabel
                       control={
                         <Checkbox

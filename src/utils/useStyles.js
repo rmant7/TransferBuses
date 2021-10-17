@@ -39,6 +39,7 @@ export const useStyles = makeStyles(theme => ({
   drivePage: {
     maxWidth: "360px",
     paddingTop: "80px",
+    paddingBottom: "80px"
   },
 
   // !! MainPage
