@@ -120,7 +120,7 @@ export default function Transfer({ transfer }) {
                     {transfer.timeZone
                       ? +departureTimeSplit[0] + +transfer.timeZone + ":" + departureTimeSplit[1]
                       : transfer.departureTime}{" "}
-                    {timeZoneName ? "(" + timeZoneName + ")" : ""}
+                    {/* {timeZoneName ? "(" + timeZoneName + ")" : ""} */}
                   </Button>
                 </Grid>
               </Grid>
