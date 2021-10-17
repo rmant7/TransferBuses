@@ -13,6 +13,11 @@ import {
   Checkbox,
   CircularProgress,
   Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   FormControl,
   FormControlLabel,
   Grid,
@@ -34,6 +39,8 @@ import { getLoading } from "../../redux/selectors";
 import { useDispatch } from "react-redux";
 import { saveNewTransferAction } from "../../redux/actions/transfers-actions";
 import { LoadingButton } from "@mui/lab";
+import { Alert } from "@material-ui/lab";
+import { loadingAction, loadingUploadTransferAction } from "../../redux/actions/loading-actions";
 
 const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
@@ -47,54 +54,8 @@ const schema = yup.object().shape({
     .max(8, "Available places must be less or equal to 8")
     .required("places.Required"),
   phoneNumber: yup.string().required("phoneNumber.Required").phone(undefined, "phoneNumber.isNotValid"),
-  price: yup.number().min(0.01, "").required("price.Required"),
+  price: yup.string().required("price.Required"),
 });
-
-const initialFormState = {
-  date: new Date().toJSON().slice(0, 10),
-  departureTime: "",
-  // timeZone: userTimeZone.shift,
-  phoneNumber: "",
-  places: 1,
-  price: "",
-  // currency: rideCurrency,
-  duration: "",
-  passAParcel: false,
-  isTakePet: false,
-  isNegotiable: false,
-  additionalInfo: "",
-  regularTrips: false,
-  regularTripsDays: {
-    _0monday: {
-      selected: false,
-      departureTime: "",
-    },
-    _1tuesday: {
-      selected: false,
-      departureTime: "",
-    },
-    _2wednesday: {
-      selected: false,
-      departureTime: "",
-    },
-    _3thursday: {
-      selected: false,
-      departureTime: "",
-    },
-    _4friday: {
-      selected: false,
-      departureTime: "",
-    },
-    _5saturday: {
-      selected: false,
-      departureTime: "",
-    },
-    _6sunday: {
-      selected: false,
-      departureTime: "",
-    },
-  },
-};
 
 export default function CarrierPage() {
   const dispatch = useDispatch();
@@ -160,7 +121,13 @@ export default function CarrierPage() {
   // durations.pop()
   durations.push(maxDurationHour + ":00 +");
 
-  const [state, setState] = useState({});
+  const [message, setMessage] = useState({ type: "", msg: "" });
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const history = useHistory();
   const defaultProps = {
     options: cities,
@@ -256,24 +223,71 @@ export default function CarrierPage() {
   return (
     <Container maxWidth="xl" className={classes.drivePage}>
       <Formik
-        initialValues={initialFormState}
+        initialValues={{
+          date: new Date().toJSON().slice(0, 10),
+          departureTime: "",
+          timeZone: userTimeZone.shift,
+          phoneNumber: "",
+          places: 1,
+          price: "",
+          currency: rideCurrency,
+          duration: "",
+          passAParcel: false,
+          isTakePet: false,
+          additionalInfo: "",
+          regularTrips: false,
+          regularTripsDays: {
+            _0monday: {
+              selected: false,
+              departureTime: "",
+            },
+            _1tuesday: {
+              selected: false,
+              departureTime: "",
+            },
+            _2wednesday: {
+              selected: false,
+              departureTime: "",
+            },
+            _3thursday: {
+              selected: false,
+              departureTime: "",
+            },
+            _4friday: {
+              selected: false,
+              departureTime: "",
+            },
+            _5saturday: {
+              selected: false,
+              departureTime: "",
+            },
+            _6sunday: {
+              selected: false,
+              departureTime: "",
+            },
+          },
+        }}
         onSubmit={(values) => {
           console.log("SUBMITTING");
           const departureTimeGMT = values.departureTime.split(":");
           departureTimeGMT[0] -= values.timeZone;
           values.departureTime = departureTimeGMT.join(":");
           console.log(values);
-          dispatch(saveNewTransferAction(values));
+          // dispatch(saveNewTransferAction(values));
           // history.push("/");
-          // uploadTransfer(values)
-          //   .then((response) => {
-          //     console.log(response);
-          //     // history.push("/");
-          //   })
-          //   .catch((error) => {
-          //     console.log(error);
-          //     setState({ error: error });
-          //   });
+          dispatch(loadingUploadTransferAction(true));
+          uploadTransfer(values)
+            .then((response) => {
+              console.log(response);
+              setMessage({ type: "success", msg: i18n.t("SuccessTrip") });
+              dispatch(loadingUploadTransferAction(false));
+              setOpen(true);
+              // history.push("/");
+            })
+            .catch((error) => {
+              console.log(error);
+              setMessage({ type: "error", msg: error });
+            });
         }}
         validationSchema={schema}
       >
@@ -663,73 +677,55 @@ export default function CarrierPage() {
                 alignItems="flex-end"
                 style={{ display: "flex", alignItems: "center" }}
               >
-                {/* <Grid item xs={8}> */}
-
-                <FormControlLabel
-                style={{display:"inline-block"}}
-                  control={
-                    <Checkbox
-                      id="isNegotiable"
-                      checked={props.values.isNegotiable}
-                      onChange={props.handleChange}
-                      color="primary"
-                      value={props.values.isNegotiable}
-                    />
-                  }
-                  label={i18n.t("Negotiable")}
-                />
-
-                {!props.values.isNegotiable && (
-                  <>
-                    <TextField
+                <Grid item xs={8}>
+                  <TextField
                     type="number"
-                      value={props.values.price}
-                      margin="dense"
-                      id="price"
-                      label={i18n.t("Price")}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      error={Boolean(props.errors.price) && props.touched.price}
-                      helperText={
-                        Boolean(props.errors.price) && props.touched.price
-                          ? i18n.t(`form.errors.${props.errors.price}`)
-                          : " "
-                      }
-                      inputProps={{
-                        min: 0.01,
-                        type: "price",
-                        "aria-labelledby": "input-slider",
-                      }}
-                    />
-                    <Select
-                      id="currency"
-                      name={"currency"}
-                      value={rideCurrency}
-                      renderValue={(value) => `${value.toUpperCase()}`}
-                      margin="dense"
-                      disableUnderline
-                      onChange={props.handleChange}
-                      label="currency"
-                      style={{ paddingTop: "8px" }}
-                    >
-                      {currencies.map((item) => {
-                        return (
-                          <MenuItem
-                            key={item.code}
-                            value={item.code}
-                            onClick={() => setRideCurrency(item.code)}
-                          >
-                            {item.code + `  ` + item.name}
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                  </>
-                )}
-                {/* </Grid> */}
+                    value={props.values.price}
+                    margin="dense"
+                    id="price"
+                    label={i18n.t("Price")}
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    error={Boolean(props.errors.price) && props.touched.price}
+                    helperText={
+                      Boolean(props.errors.price) && props.touched.price
+                        ? i18n.t(`form.errors.${props.errors.price}`)
+                        : " "
+                    }
+                    inputProps={{
+                      min: 0,
+                      type: "price",
+                      "aria-labelledby": "input-slider",
+                    }}
+                  />
+                </Grid>
 
                 {/*CURRENCY v*/}
-                <Grid item xs={4}></Grid>
+                <Grid item xs={4}>
+                  <Select
+                    id="currency"
+                    name={"currency"}
+                    value={rideCurrency}
+                    renderValue={(value) => `${value.toUpperCase()}`}
+                    margin="dense"
+                    disableUnderline
+                    onChange={props.handleChange}
+                    label="currency"
+                    style={{ paddingTop: "8px" }}
+                  >
+                    {currencies.map((item) => {
+                      return (
+                        <MenuItem
+                          key={item.code}
+                          value={item.code}
+                          onClick={() => setRideCurrency(item.code)}
+                        >
+                          {item.code + `  ` + item.name}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </Grid>
                 {/*CURRENCY ^*/}
               </Grid>
               {/*</Grid>*/}
@@ -755,7 +751,7 @@ export default function CarrierPage() {
                     value={props.values.isTakePet}
                   />
                 }
-                label={i18n.t("Pets Allowed")}
+                label={i18n.t("PetsAllowed")}
               />
               <TextField
                 value={props.values.additionalInfo}
@@ -774,11 +770,27 @@ export default function CarrierPage() {
                     : " "
                 }
               />
-              <div className={"submitBtn"}>
-                <LoadingButton disabled={loading} color="primary" variant="contained" fullWidth type="submit">
+              <div style={{ margin: "10px" }} className={"submitBtn"}>
+                <LoadingButton loading={loading} color="primary" variant="contained" fullWidth type="submit">
                   {i18n.t("Publish a ride")}
                 </LoadingButton>
-                {loading ? <CircularProgress /> : null}
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="responsive-dialog-title"
+                >
+                  <DialogContent>
+                    <DialogContentText>
+                      {message.msg}
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose} autoFocus>
+                      Ok
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+                {/* {loading ? <CircularProgress /> : null} */}
               </div>
             </form>
           );
