@@ -67,13 +67,14 @@
       }
     }
   },
-  "From City": "Из города",
-  "To City": "В город",
+  "FromCity": "Из города",
+  "ToCity": "В город",
   "Filter": "Фильтр:",
   "Clear": "Очистить",
   "Cancel": "Отмена",
   "Apply": "Применить",
-  "Pets Allowed": "Можно с животными",
+  "PetsAllowed": "Можно с животными",
+  "SuccessTrip": "Поездка успешно добавлена!",
   "Negotiable": "Договорная",
   "timezone": {
     "0": " ",

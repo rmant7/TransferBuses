@@ -68,13 +68,14 @@
       }
     }
   },
-  "From City": "From City",
-  "To City": "To City",
+  "FromCity": "From City",
+  "ToCity": "To City",
   "Filter": "Filter By:",
   "Apply": "Apply",
   "Clear": "Clear",
   "Cancel": "Cancel",
-  "Pets Allowed": "Pets allowed",
+  "PetsAllowed": "Pets allowed",
+  "SuccessTrip": "Trip added successfully!",
   "Negotiable": "Negotiable",
   "timezone": {
     "0": " ",
