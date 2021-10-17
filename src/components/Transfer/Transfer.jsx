@@ -130,15 +130,6 @@ export default function Transfer({ transfer }) {
         <AccordionDetails>
           <hr />
           <Grid container spacing={2} justifyContent="space-around">
-            {transfer.additionalInfo && (
-              <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
-                <Paper className={"paper"}>
-                  <span style={{ paddingRight: "5px" }}>{i18n.t("Additional information")}:</span>
-                  {transfer.additionalInfo}
-                </Paper>
-              </Grid>
-            )}
-
             {!transfer.regularTrips && (
               <Grid container item xs={12} alignItems="center" justifyContent="flex-start">
                 <Paper className={"paper"}>
@@ -234,6 +225,15 @@ export default function Transfer({ transfer }) {
                   >
                     {transfer.driversComment}{" "}
                   </div>
+                </Paper>
+              </Grid>
+            )}
+
+            {transfer.additionalInfo && (
+              <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
+                <Paper className={"paper"}>
+                  <span style={{ paddingRight: "5px" }}>{i18n.t("Additional information")}:</span>
+                  {transfer.additionalInfo}
                 </Paper>
               </Grid>
             )}
