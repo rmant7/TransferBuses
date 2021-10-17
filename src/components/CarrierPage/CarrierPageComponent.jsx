@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import { Formik } from "formik";
+import { LoadingButton } from "@mui/lab";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 // import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
@@ -33,7 +34,6 @@ import { timeZones } from "../../utils/timezones";
 import { getLoading } from "../../redux/selectors";
 import { useDispatch } from "react-redux";
 import { saveNewTransferAction } from "../../redux/actions/transfers-actions";
-import { LoadingButton } from "@mui/lab";
 
 const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
@@ -47,7 +47,7 @@ const schema = yup.object().shape({
     .max(8, "Available places must be less or equal to 8")
     .required("places.Required"),
   phoneNumber: yup.string().required("phoneNumber.Required").phone(undefined, "phoneNumber.isNotValid"),
-  price: yup.number().min(0.01, "").required("price.Required"),
+  price: yup.number().min(0.01, "minimum value is 1").required("price.Required"),
 });
 
 const initialFormState = {
@@ -56,7 +56,7 @@ const initialFormState = {
   // timeZone: userTimeZone.shift,
   phoneNumber: "",
   places: 1,
-  price: "",
+  price: NaN,
   // currency: rideCurrency,
   duration: "",
   passAParcel: false,
@@ -96,8 +96,7 @@ const initialFormState = {
   },
 };
 
-export default function CarrierPage() {
-  const dispatch = useDispatch();
+export default function CarrierPageComponent() {
   const cur = useSelector((state) => state.app.currency);
   const lang = useSelector((state) => state.app.lang);
   const loading = useSelector(getLoading).isLoadingNewTransfer;
@@ -263,17 +262,17 @@ export default function CarrierPage() {
           departureTimeGMT[0] -= values.timeZone;
           values.departureTime = departureTimeGMT.join(":");
           console.log(values);
-          dispatch(saveNewTransferAction(values));
+          // dispatch(saveNewTransferAction(values));
           // history.push("/");
-          // uploadTransfer(values)
-          //   .then((response) => {
-          //     console.log(response);
-          //     // history.push("/");
-          //   })
-          //   .catch((error) => {
-          //     console.log(error);
-          //     setState({ error: error });
-          //   });
+          uploadTransfer(values)
+            .then((response) => {
+              console.log(response);
+              // history.push("/");
+            })
+            .catch((error) => {
+              console.log(error);
+              setState({ error: error });
+            });
         }}
         validationSchema={schema}
       >
@@ -666,7 +665,7 @@ export default function CarrierPage() {
                 {/* <Grid item xs={8}> */}
 
                 <FormControlLabel
-                style={{display:"inline-block"}}
+                  style={{ display: "inline-block" }}
                   control={
                     <Checkbox
                       id="isNegotiable"
@@ -682,7 +681,6 @@ export default function CarrierPage() {
                 {!props.values.isNegotiable && (
                   <>
                     <TextField
-                    type="number"
                       value={props.values.price}
                       margin="dense"
                       id="price"
@@ -696,7 +694,7 @@ export default function CarrierPage() {
                           : " "
                       }
                       inputProps={{
-                        min: 0.01,
+                        min: 0,
                         type: "price",
                         "aria-labelledby": "input-slider",
                       }}

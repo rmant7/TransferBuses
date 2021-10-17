@@ -35,10 +35,10 @@ export function saveNewTransferAction(transfer) {
       await uploadTransfer(transfer)
         .then((response) => {
           console.log(response);
-          dispatch({
-            type: SET_SAVE_NEW_TRANSFER,
-            payload: { isAdded: true, transfer: response.data },
-          });
+          // dispatch({
+          //   type: SET_SAVE_NEW_TRANSFER,
+          //   payload: { isAdded: true, transfer: response.data },
+          // });
           // history.push("/");
         })
         .catch((error) => {
