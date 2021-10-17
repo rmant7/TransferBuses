@@ -30,6 +30,12 @@ export async function uploadTransfer(transfer) {
   }
 }
 
+export async function uploadNewTransfer(transfer) {
+    const response = await getTransfersByFromCityId().add(transfer);
+    console.log("response", response);
+    return response;
+}
+
 export async function getTransfers() {
   try {
     const collection = await fb.firestore().collection(fireBaseCollection).get();
