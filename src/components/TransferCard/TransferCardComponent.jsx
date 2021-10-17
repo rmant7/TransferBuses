@@ -9,6 +9,8 @@ import { timeZones } from "../../utils/timezones";
 import { getCityById } from "../../utils/cities";
 import { getLanguage } from "../../redux/selectors";
 import { Button, Divider, Grid, Paper } from "@material-ui/core";
+import i18next from "i18next";
+import { number } from "yup";
 
 const months_ru = [
   "Янв.",
@@ -91,12 +93,16 @@ export default function TransferCardComponent({ transfer }) {
   return (
     <div className={classes.transfer_card}>
       <div className={classes.transfer_card_header}>
-        <div className={classes.date}>
-          {/* {i18n.t("Date of travel")}: */}
-          <span className={classes.day}>{new Date(transfer.date).getDate()}</span>
-          <span className={classes.month}>{months_en[new Date(transfer.date).getMonth()]}</span>
-          <span className={classes.year}>{new Date(transfer.date).getFullYear()}</span>
-        </div>
+        {!transfer.regularTrips ? (
+          <div className={classes.date}>
+            {/* {i18n.t("Date of travel")}: */}
+            <span className={classes.day}>{new Date(transfer.date).getDate()}</span>
+            <span className={classes.month}>{months_en[new Date(transfer.date).getMonth()]}</span>
+            <span className={classes.year}>{new Date(transfer.date).getFullYear()}</span>
+          </div>
+        ) : (
+          <div className={classes.regular_trips_ico} />
+        )}
         <div className={classes.way}>
           <span className={classes.city}>{getCityById(transfer.from).name}</span>
           <ArrowForwardRoundedIcon />
@@ -105,6 +111,15 @@ export default function TransferCardComponent({ transfer }) {
       </div>
       <Divider variant="middle" style={{ margin: "10px" }} />
       <div className={classes.content}>
+        {transfer.additionalInfo && (
+          <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
+            <Paper className={"paper"}>
+              <span style={{ paddingRight: "5px" }}>{i18n.t("Additional information")}:</span>
+              {transfer.additionalInfo}
+            </Paper>
+          </Grid>
+        )}
+        
         {transfer.regularTrips ? (
           i18n.t("Regular trips")
         ) : (
@@ -127,110 +142,100 @@ export default function TransferCardComponent({ transfer }) {
           </Grid>
         )}
         <Grid container spacing={2} justifyContent="space-around">
-           {transfer.duration && (
-              <Grid container item xs={12} alignItems="center" justifyContent="flex-start">
-                <Paper className={"paper"}>
-                  {i18n.t("Duration of ride")}: {/*{transfer.date.replace("T", "  ")}*/}
-                  {transfer.duration}
-                </Paper>
-              </Grid>
-            )}
-
-            {transfer.regularTrips && (
-              <>
-                <Grid container item xs={12} alignItems="center" justifyContent="flex-start">
-                  <Paper className={"paper"}>
-                    {/*<div style={{margin: "8px", minWidth: "190px", textAlign: "center"}}>*/}
-                    {/*  {i18n.t("Regular trips")}*/}
-                    {/*</div>*/}
-                    <div style={{ margin: "8px", minWidth: "190px", textAlign: "center" }}>
-                      {/*{i18n.t("Regular trips")}*/}
-                    </div>
-                    <Grid container direction={"column"} xs={12} style={{ margin: "4px" }}>
-                      {Object.keys(transfer.regularTripsDays)
-                        .sort()
-                        .map((weekDay) => {
-                          console.log("weekDay: ", weekDay, transfer.regularTripsDays[weekDay]);
-                          return !transfer.regularTripsDays[weekDay].selected ? (
-                            <>
-                              <Grid container item justifyContent={"space-between"}>
-                                <Grid xs={7}>{i18n.t(weekDay)} </Grid>
-                                <Grid xs={3}>
-                                  {transfer.regularTripsDays[weekDay].selected
-                                    ? transfer.regularTripsDays[weekDay].departureTime
-                                    : "-- : --"}
-                                </Grid>
-                              </Grid>
-                              {/*<WeekDayIcon*/}
-                              {/*  name={weekDay}*/}
-                              {/*  value={transfer.regularTripsDays[weekDay]}*/}
-                              {/*/>*/}
-                            </>
-                          ) : null;
-                        })}
-                    </Grid>
-                  </Paper>
-                </Grid>
-                <Grid container item xs={4} alignItems="stretch" justifyContent="flex-start">
-                  <Button>
-                    {/* {i18n.t("Duration of ride")}:*/} {transfer.duration}
-                  </Button>
-                </Grid>
-              </>
-            )}
-
+          {transfer.duration && (
             <Grid container item xs={12} alignItems="center" justifyContent="flex-start">
               <Paper className={"paper"}>
-                {i18n.t("Driver's phone number")}: {transfer.phoneNumber} <RingVolumeIcon fontSize="small" />
+                {i18n.t("Duration of ride")}: {/*{transfer.date.replace("T", "  ")}*/}
+                {transfer.duration}
               </Paper>
             </Grid>
-            <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
-              {/* <Paper className={"paper"}>
+          )}
+
+          {transfer.regularTrips && (
+            <>
+              <Grid container item xs={12} alignItems="center" justifyContent="flex-start">
+                <Paper className={"paper"}>
+                  {/*<div style={{margin: "8px", minWidth: "190px", textAlign: "center"}}>*/}
+                  {/*  {i18n.t("Regular trips")}*/}
+                  {/*</div>*/}
+                  <div style={{ margin: "8px", minWidth: "190px", textAlign: "center" }}>
+                    {/*{i18n.t("Regular trips")}*/}
+                  </div>
+                  <Grid container direction={"column"} xs={12} style={{ margin: "4px" }}>
+                    {Object.keys(transfer.regularTripsDays)
+                      .sort()
+                      .map((weekDay) => {
+                        console.log("weekDay: ", weekDay, transfer.regularTripsDays[weekDay]);
+                        return transfer.regularTripsDays[weekDay].selected ? (
+                          <>
+                            <Grid container item justifyContent={"space-between"}>
+                              <Grid xs={7}>{i18n.t(weekDay)} </Grid>
+                              <Grid xs={3}>
+                                {transfer.regularTripsDays[weekDay].selected
+                                  ? transfer.regularTripsDays[weekDay].departureTime
+                                  : "-- : --"}
+                              </Grid>
+                            </Grid>
+                            {/*<WeekDayIcon*/}
+                            {/*  name={weekDay}*/}
+                            {/*  value={transfer.regularTripsDays[weekDay]}*/}
+                            {/*/>*/}
+                          </>
+                        ) : null;
+                      })}
+                  </Grid>
+                </Paper>
+              </Grid>
+              <Grid container item xs={4} alignItems="stretch" justifyContent="flex-start">
+                <Button>
+                  {/* {i18n.t("Duration of ride")}:*/} {transfer.duration}
+                </Button>
+              </Grid>
+            </>
+          )}
+
+          <Grid container item xs={12} alignItems="center" justifyContent="flex-start">
+            <Paper className={"paper"}>
+              {i18n.t("Driver's phone number")}: {transfer.phoneNumber} <RingVolumeIcon fontSize="small" />
+            </Paper>
+          </Grid>
+          <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
+            {/* <Paper className={"paper"}>
                 {i18n.t("Places")}: {transfer.places}
                 <AirlineSeatReclineNormalIcon fontSize="small"/>
               </Paper> */}
 
-              <Paper className={"paper"}>
-                {i18n.t("A parcel delivery")}: {transfer.passAParcel ? i18n.t("Yes") : i18n.t("No")}
-              </Paper>
-            </Grid>
+            <Paper className={"paper"}>
+              {i18n.t("A parcel delivery")}: {transfer.passAParcel ? i18n.t("Yes") : i18n.t("No")}
+            </Paper>
+          </Grid>
 
+          <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
+            <Paper className={"paper"}>
+              {i18n.t("Pets Allowed")}: {transfer.isTakePet ? i18n.t("Yes") : i18n.t("No")}
+            </Paper>
+          </Grid>
+
+          {transfer.driversComment && (
             <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
               <Paper className={"paper"}>
-                {i18n.t("Pets Allowed")}: {transfer.isTakePet ? i18n.t("Yes") : i18n.t("No")}
+                <div>{i18n.t("Driver's comment")}:</div>
+                <div
+                  style={{
+                    textOverflow: "ellipsis",
+                    wordBreak: "break-all",
+                  }}
+                >
+                  {transfer.driversComment}{" "}
+                </div>
               </Paper>
             </Grid>
-
-            {transfer.driversComment && (
-              <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
-                <Paper className={"paper"}>
-                  <div>{i18n.t("Driver's comment")}:</div>
-                  <div
-                    style={{
-                      textOverflow: "ellipsis",
-                      wordBreak: "break-all",
-                    }}
-                  >
-                    {transfer.driversComment}{" "}
-                  </div>
-                </Paper>
-              </Grid>
-            )}
-            {transfer.additionalInfo && (
-              <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
-                <Paper className={"paper"}>
-                  <span style={{ paddingRight: "5px" }}>{i18n.t("Additional information")}:</span>
-                  {transfer.additionalInfo}
-                </Paper>
-              </Grid>
-            )}
-          </Grid>
-      <Divider variant="middle" style={{ margin: "10px" }} />
+          )}
+        </Grid>
+        <Divider variant="middle" style={{ margin: "10px" }} />
       </div>
       <div className={classes.transfer_card_footer}>
-        <div>
-          
-        </div>
+        <div></div>
         <div className={classes.price_block}>
           <div className={classes.wallet_ico} />
           <span className={classes.price}>{priceToDisplay}</span>

@@ -36,7 +36,7 @@ export default function FiltersCitiesFrom() {
     return (
         <div className={classes.filters}>
             <FilterComponent
-                label={i18next.t("From City")}
+                label={i18next.t("FromCity")}
                 options={filters}
                 handler={handleInputFrom}
                 inputValue={inputFromTo.inputFromCity}

@@ -163,7 +163,7 @@ export default function Transfer({ transfer }) {
                         .sort()
                         .map((weekDay) => {
                           console.log("weekDay: ", weekDay, transfer.regularTripsDays[weekDay]);
-                          return !transfer.regularTripsDays[weekDay].selected ? (
+                          return transfer.regularTripsDays[weekDay].selected ? (
                             <>
                               <Grid container item justifyContent={"space-between"}>
                                 <Grid xs={7}>{i18n.t(weekDay)} </Grid>
@@ -209,7 +209,7 @@ export default function Transfer({ transfer }) {
 
             <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
               <Paper className={"paper"}>
-                {i18n.t("Pets Allowed")}: {transfer.isTakePet ? i18n.t("Yes") : i18n.t("No")}
+                {i18n.t("PetsAllowed")}: {transfer.isTakePet ? i18n.t("Yes") : i18n.t("No")}
               </Paper>
             </Grid>
 
@@ -228,6 +228,7 @@ export default function Transfer({ transfer }) {
                 </Paper>
               </Grid>
             )}
+
             {transfer.additionalInfo && (
               <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
                 <Paper className={"paper"}>

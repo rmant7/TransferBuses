@@ -1,17 +1,14 @@
 import { fb } from "../config/firebase-config";
 
-
-const fireBaseCollection = process.env.REACT_APP_BUILD_MODE === 'prod' ? "transfers" : "dev-transfers"
+const fireBaseCollection = process.env.REACT_APP_BUILD_MODE === "prod" ? "transfers" : "dev-transfers";
 const getTransfersCollectionFromFB = () => {
   return fb.firestore().collection(fireBaseCollection);
 };
 
 export async function getTransfersByFromCityId(fromCityId) {
   try {
-    const collection = await getTransfersCollectionFromFB()
-      .where("from", "==", fromCityId)
-      .get();
-    const response = collection.docs.map(v => {
+    const collection = await getTransfersCollectionFromFB().where("from", "==", fromCityId).get();
+    const response = collection.docs.map((v) => {
       return { ...v.data(), id: v.id };
     });
     return response;
@@ -20,23 +17,23 @@ export async function getTransfersByFromCityId(fromCityId) {
   }
 }
 
-export async function uploadTransfer(
-  transfer
-) {
-
+export async function uploadTransfer(transfer) {
   if (!transfer.regularTrips) {
-    delete (transfer.regularTripsDays)
+    delete transfer.regularTripsDays;
   }
   try {
     const collection = fb.firestore().collection(fireBaseCollection);
-    const response = await collection.add(
-      transfer
-    );
+    const response = await collection.add(transfer);
     console.log("response id", response.id);
-
   } catch (error) {
     return Promise.reject(error);
   }
+}
+
+export async function uploadNewTransfer(transfer) {
+    const response = await getTransfersByFromCityId().add(transfer);
+    console.log("response", response);
+    return response;
 }
 
 export async function getTransfers() {
