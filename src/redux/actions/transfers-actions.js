@@ -1,4 +1,4 @@
-import { getTransfers, uploadTransfer } from "../../services/data-service";
+import { getTransfers, uploadNewTransfer, uploadTransfer } from "../../services/data-service";
 import { getCityById } from "../../utils/cities";
 import { setFiltersAction } from "./filters-actions";
 import { loadingTransfersAction, loadingUploadTransferAction } from "./loading-actions";
@@ -32,7 +32,7 @@ export function saveNewTransferAction(transfer) {
   return async (dispatch) => {
     dispatch(loadingUploadTransferAction(true));
     try {
-      await uploadTransfer(transfer)
+      await uploadNewTransfer(transfer)
         .then((response) => {
           console.log(response);
           // dispatch({
