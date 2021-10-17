@@ -218,7 +218,7 @@ export default function Transfer({ transfer }) {
 
             <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
               <Paper className={"paper"}>
-                {i18n.t("Pets Allowed")}: {transfer.isTakePet ? i18n.t("Yes") : i18n.t("No")}
+                {i18n.t("PetsAllowed")}: {transfer.isTakePet ? i18n.t("Yes") : i18n.t("No")}
               </Paper>
             </Grid>
 
