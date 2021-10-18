@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as yup from "yup";
 import { Formik } from "formik";
 import Button from "@material-ui/core/Button";
@@ -36,6 +36,7 @@ import { timeZones } from "../../utils/timezones";
 import { getLoading } from "../../redux/selectors";
 import { useDispatch } from "react-redux";
 import { LoadingButton } from "@mui/lab";
+import { Alert } from "@mui/material";
 import { loadingUploadTransferAction } from "../../redux/actions/loading-actions";
 
 const schema = yup.object().shape({
@@ -54,28 +55,28 @@ const schema = yup.object().shape({
 });
 
 export default function CarrierPage() {
-    const dispatch = useDispatch();
-    const cur = useSelector((state) => state.app.currency);
-    const lang = useSelector((state) => state.app.lang);
-    const loading = useSelector(getLoading).isLoadingNewTransfer;
-    const classes = useStyles();
-    const [rideCurrency, setRideCurrency] = useState(cur);
-    // const [messenger, setMessenger] = useState();
-    // const [nearestCity, setNearestCity] = useState();
-    const [latitude, setLatitude] = useState();
-    const [longitude, setLongitude] = useState();
-    const [userTimeZone, setUserTimeZone] = useState(() => {
-        const timeZone = timeZones.find((tz) => tz.shift === "" + new Date().getTimezoneOffset() / -60);
-        return timeZone || timeZones[0];
-    });
+  const dispatch = useDispatch();
+  const cur = useSelector((state) => state.app.currency);
+  const lang = useSelector((state) => state.app.lang);
+  const loading = useSelector(getLoading).isLoadingNewTransfer;
+  const classes = useStyles();
+  const [rideCurrency, setRideCurrency] = useState(cur);
+  // const [messenger, setMessenger] = useState();
+  // const [nearestCity, setNearestCity] = useState();
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
+  const [userTimeZone, setUserTimeZone] = useState(() => {
+    const timeZone = timeZones.find((tz) => tz.shift === "" + new Date().getTimezoneOffset() / -60);
+    return timeZone || timeZones[0];
+  });
 
-    // console.log("cur: ", cur);
-    // console.log("rideCurrency: ", rideCurrency);
-    // console.log("Current latitude", latitude);
-    // console.log("Current longitude", longitude);
-    // console.log(lang);
-    //
-    // console.log("user time zone", userTimeZone);
+  // console.log("cur: ", cur);
+  // console.log("rideCurrency: ", rideCurrency);
+  // console.log("Current latitude", latitude);
+  // console.log("Current longitude", longitude);
+  // console.log(lang);
+  //
+  // console.log("user time zone", userTimeZone);
 
   const cities =
     lang === "ru"
@@ -116,7 +117,7 @@ export default function CarrierPage() {
   // durations.pop()
   durations.push(maxDurationHour + ":00 +");
 
-  const [message, setMessage] = useState({ type: "", msg: "" });
+  const [message, setMessage] = useState({ type: "info", msg: "" });
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -282,6 +283,7 @@ export default function CarrierPage() {
             .catch((error) => {
               console.log(error);
               setMessage({ type: "error", msg: error });
+              setOpen(true);
             });
         }}
         validationSchema={schema}
@@ -508,51 +510,51 @@ export default function CarrierPage() {
                     </Grid>
                     {/*^^^ DEPARTURE TIME ^^^*/}
 
-                                        {/*VVV DEPARTURE TIMEZONE   temporary commented out VVV*/}
-                                        {/*<Grid item xs={6}>*/}
-                                        {/*    <FormControl*/}
-                                        {/*        fullWidth*/}
-                                        {/*        style={{ paddingTop: "0px", marginTop: "9px" }}*/}
-                                        {/*    >*/}
-                                        {/*        <InputLabel*/}
-                                        {/*            shrink*/}
-                                        {/*            id="timeZone-label"*/}
-                                        {/*            style={{ marginTop: "8px" }}*/}
-                                        {/*        >*/}
-                                        {/*            {i18n.t("Timezone")}*/}
-                                        {/*        </InputLabel>*/}
-                                        {/*        <Select*/}
-                                        {/*            labelId="timeZone-label"*/}
-                                        {/*            id="timeZone"*/}
-                                        {/*            label="timeZone"*/}
-                                        {/*            margin="normal"*/}
-                                        {/*            name={"timeZone"}*/}
-                                        {/*            value={userTimeZone.shift}*/}
-                                        {/*            onChange={props.handleChange}*/}
-                                        {/*            style={{ textTransform: "none" }}*/}
-                                        {/*            helperText={" 123"}*/}
-                                        {/*        >*/}
-                                        {/*            {timeZones.map((item) => {*/}
-                                        {/*                return (*/}
-                                        {/*                    <MenuItem*/}
-                                        {/*                        key={item.shift}*/}
-                                        {/*                        value={item.shift}*/}
-                                        {/*                        onClick={() => {*/}
-                                        {/*                            setUserTimeZone(item);*/}
-                                        {/*                        }}*/}
-                                        {/*                    >*/}
-                                        {/*                        /!*{item.name}*!/*/}
-                                        {/*                        {"GMT+" +*/}
-                                        {/*                            item.shift +*/}
-                                        {/*                            " " +*/}
-                                        {/*                            i18n.t("timezone." + item.shift)}*/}
-                                        {/*                    </MenuItem>*/}
-                                        {/*                );*/}
-                                        {/*            })}*/}
-                                        {/*        </Select>*/}
-                                        {/*    </FormControl>*/}
-                                        {/*</Grid>*/}
-                                        {/*^^^ DEPARTURE TIMEZONE ^^^*/}
+                    {/*VVV DEPARTURE TIMEZONE   temporary commented out VVV*/}
+                    {/*<Grid item xs={6}>*/}
+                    {/*    <FormControl*/}
+                    {/*        fullWidth*/}
+                    {/*        style={{ paddingTop: "0px", marginTop: "9px" }}*/}
+                    {/*    >*/}
+                    {/*        <InputLabel*/}
+                    {/*            shrink*/}
+                    {/*            id="timeZone-label"*/}
+                    {/*            style={{ marginTop: "8px" }}*/}
+                    {/*        >*/}
+                    {/*            {i18n.t("Timezone")}*/}
+                    {/*        </InputLabel>*/}
+                    {/*        <Select*/}
+                    {/*            labelId="timeZone-label"*/}
+                    {/*            id="timeZone"*/}
+                    {/*            label="timeZone"*/}
+                    {/*            margin="normal"*/}
+                    {/*            name={"timeZone"}*/}
+                    {/*            value={userTimeZone.shift}*/}
+                    {/*            onChange={props.handleChange}*/}
+                    {/*            style={{ textTransform: "none" }}*/}
+                    {/*            helperText={" 123"}*/}
+                    {/*        >*/}
+                    {/*            {timeZones.map((item) => {*/}
+                    {/*                return (*/}
+                    {/*                    <MenuItem*/}
+                    {/*                        key={item.shift}*/}
+                    {/*                        value={item.shift}*/}
+                    {/*                        onClick={() => {*/}
+                    {/*                            setUserTimeZone(item);*/}
+                    {/*                        }}*/}
+                    {/*                    >*/}
+                    {/*                        /!*{item.name}*!/*/}
+                    {/*                        {"GMT+" +*/}
+                    {/*                            item.shift +*/}
+                    {/*                            " " +*/}
+                    {/*                            i18n.t("timezone." + item.shift)}*/}
+                    {/*                    </MenuItem>*/}
+                    {/*                );*/}
+                    {/*            })}*/}
+                    {/*        </Select>*/}
+                    {/*    </FormControl>*/}
+                    {/*</Grid>*/}
+                    {/*^^^ DEPARTURE TIMEZONE ^^^*/}
                   </Grid>
                   <Grid container justifyContent="space-between">
                     <Grid item xs={5}>
@@ -771,15 +773,9 @@ export default function CarrierPage() {
                 <LoadingButton loading={loading} color="primary" variant="contained" fullWidth type="submit">
                   {i18n.t("Publish a ride")}
                 </LoadingButton>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="responsive-dialog-title"
-                >
+                <Dialog open={open} onClose={handleClose} aria-labelledby="responsive-dialog-title">
                   <DialogContent>
-                    <DialogContentText>
-                      {message.msg}
-                    </DialogContentText>
+                    <Alert severity={message.type}>{message.msg}</Alert>
                   </DialogContent>
                   <DialogActions>
                     <Button onClick={handleClose} autoFocus>
