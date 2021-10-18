@@ -11,13 +11,11 @@ import { uploadTransfer } from "../../services/data-service";
 import { useHistory } from "react-router-dom";
 import {
   Checkbox,
-  CircularProgress,
   Container,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle,
   FormControl,
   FormControlLabel,
   Grid,
@@ -37,10 +35,8 @@ import { useStyles } from "../../utils/useStyles";
 import { timeZones } from "../../utils/timezones";
 import { getLoading } from "../../redux/selectors";
 import { useDispatch } from "react-redux";
-import { saveNewTransferAction } from "../../redux/actions/transfers-actions";
 import { LoadingButton } from "@mui/lab";
-import { Alert } from "@material-ui/lab";
-import { loadingAction, loadingUploadTransferAction } from "../../redux/actions/loading-actions";
+import { loadingUploadTransferAction } from "../../redux/actions/loading-actions";
 
 const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
@@ -232,7 +228,7 @@ export default function CarrierPage() {
           currency: rideCurrency,
           duration: "",
           passAParcel: false,
-          isTakePet: false,
+          isPetsAllowed: false,
           additionalInfo: "",
           regularTrips: false,
           regularTripsDays: {
@@ -745,11 +741,11 @@ export default function CarrierPage() {
               <FormControlLabel
                 control={
                   <Checkbox
-                    id="isTakePet"
-                    checked={props.values.isTakePet}
+                    id="isPetsAllowed"
+                    checked={props.values.isPetsAllowed}
                     onChange={props.handleChange}
                     color="primary"
-                    value={props.values.isTakePet}
+                    value={props.values.isPetsAllowed}
                   />
                 }
                 label={i18n.t("PetsAllowed")}
