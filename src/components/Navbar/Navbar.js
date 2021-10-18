@@ -14,8 +14,6 @@ import { NavLink } from "react-router-dom";
 import { logoInfo } from "../../config/logo-config";
 // import {useTranslation} from "react-i18next";
 
-console.log(logoInfo);
-
 // const Navbar = ({ changeLanguage }) => {
 const Navbar = () => {
   const dispatch = useDispatch();
