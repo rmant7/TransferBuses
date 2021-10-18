@@ -168,7 +168,7 @@ export default function Transfer({ transfer }) {
                               <Grid container item justifyContent={"space-between"}>
                                 <Grid xs={7}>{i18n.t(weekDay)} </Grid>
                                 <Grid xs={3}>
-                                  {transfer.regularTripsDays[weekDay].selected
+                                  {!transfer.regularTripsDays[weekDay].departureTime
                                     ? transfer.regularTripsDays[weekDay].departureTime
                                     : "-- : --"}
                                 </Grid>
@@ -209,7 +209,7 @@ export default function Transfer({ transfer }) {
 
             <Grid container item xs={12} justifyContent="flex-start" alignItems="center">
               <Paper className={"paper"}>
-                {i18n.t("PetsAllowed")}: {transfer.isTakePet ? i18n.t("Yes") : i18n.t("No")}
+                {i18n.t("PetsAllowed")}: {transfer.isPetsAllowed ? i18n.t("Yes") : i18n.t("No")}
               </Paper>
             </Grid>
 
