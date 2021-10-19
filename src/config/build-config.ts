@@ -6,13 +6,19 @@ type BuildModeData = {
 };
 
 export const getMode = (): string => {
-  return process.env.NODE_ENV;
+  return process.env.REACT_APP_BUILD_MODE as string;
 };
 
 export const getDb = (): string => {
-  return getMode() === "production"
-    ? (process.env.REACT_APP_DB_PRODUCTION as string)
-    : (process.env.REACT_APP_DB_DEVELOPMENT as string);
+  return process.env.REACT_APP_DB as string;
+};
+
+export const getDeveloper = (): string => {
+  return process.env.REACT_APP_DEVELOPER as string;
+};
+
+export const getVersion = (): string => {
+  return process.env.REACT_APP_VERSION as string;
 };
 
 export const getBuildModeDev = (): BuildModeData => {
@@ -20,12 +26,10 @@ export const getBuildModeDev = (): BuildModeData => {
 };
 
 export const getBuildMode = (developer: string): BuildModeData => {
-  const date = new Date();
-  const ver = `v.${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
   return {
     mode: getMode(),
-    developer,
-    version: ver,
+    developer: getDeveloper(),
+    version: getVersion(),
     db: getDb(),
   };
 };
