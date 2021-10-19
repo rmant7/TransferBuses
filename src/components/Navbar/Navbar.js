@@ -8,14 +8,14 @@ import { useStyles } from "../../utils/useStyles";
 import css from "./Navbar.module.css";
 import { setSidebarAction } from "../../redux/actions/app-actions";
 import { NavLink } from "react-router-dom";
-import { getBuildMode, getBuildModeDev } from "../../config/build-config";
+import { getBuildMode } from "../../config/build-config";
 // import {useTranslation} from "react-i18next";
 
 // const Navbar = ({ changeLanguage }) => {
 const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const mode = getBuildMode("justedlev");
+  const mode = getBuildMode();
   // const mode = getBuildModeDev();
 
   function getLogo() {
