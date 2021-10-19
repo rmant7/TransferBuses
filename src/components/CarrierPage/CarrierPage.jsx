@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 // import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 // import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import "./CarrierPage.css";
+import styles from "./CarrierPage.module.css";
 import { uploadTransfer } from "../../services/data-service";
 import { useHistory } from "react-router-dom";
 import {
@@ -217,7 +217,7 @@ export default function CarrierPage() {
   });
 
   return (
-    <Container maxWidth="xl" className={classes.drivePage}>
+    <Container maxWidth="sm" className={classes.drivePage}>
       <Formik
         initialValues={{
           date: new Date().toJSON().slice(0, 10),
