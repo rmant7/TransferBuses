@@ -54,7 +54,8 @@
       },
       "phoneNumber": {
         "Phone number is not valid": "Неверный формат",
-        "Required": "Обязательное поле"
+        "Required": "Обязательное поле",
+        "isNotValid": "Неправильный формат номера телефона"
       },
       "places": {
         "Required": "Обязательное поле"
