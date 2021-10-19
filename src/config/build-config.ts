@@ -21,15 +21,11 @@ export const getVersion = (): string => {
   return process.env.REACT_APP_VERSION as string;
 };
 
-export const getBuildModeDev = (): BuildModeData => {
-  return getBuildMode("dev");
-};
-
-export const getBuildMode = (developer: string): BuildModeData => {
+export const getBuildMode = (): BuildModeData => {
   return {
     mode: getMode(),
     developer: getDeveloper(),
-    version: getVersion(),
+    version: `v.${getVersion()}`,
     db: getDb(),
   };
 };
