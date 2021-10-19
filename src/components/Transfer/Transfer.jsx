@@ -30,10 +30,10 @@ export default function Transfer({ transfer }) {
   const transferCurrency =
     currencies.find((cur) => cur.code === transfer.currency) || currencies.find((cur) => cur.code === "EUR");
 
-    // console.log("depTime = ", transfer.departureTime);
-    // console.log("transfer.timeZone = ", transfer.timeZone);
-    //const timeZoneName = timeZones.find(tz => tz.shift === transfer.timeZone)?.name
-    const timeZoneName = "GMT+" + transfer.timeZone + " " + i18n.t("timezone." + transfer.timeZone);
+  // console.log("depTime = ", transfer.departureTime);
+  // console.log("transfer.timeZone = ", transfer.timeZone);
+  //const timeZoneName = timeZones.find(tz => tz.shift === transfer.timeZone)?.name
+  const timeZoneName = "GMT+" + transfer.timeZone + " " + i18n.t("timezone." + transfer.timeZone);
 
   const departureTimeSplit = transfer.departureTime.split(":");
 
@@ -163,15 +163,12 @@ export default function Transfer({ transfer }) {
                         .sort()
                         .map((weekDay) => {
                           console.log("weekDay: ", weekDay, transfer.regularTripsDays[weekDay]);
+                          const departTime = transfer.regularTripsDays[weekDay].departureTime;
                           return transfer.regularTripsDays[weekDay].selected ? (
                             <>
                               <Grid container item justifyContent={"space-between"}>
                                 <Grid xs={7}>{i18n.t(weekDay)} </Grid>
-                                <Grid xs={3}>
-                                  {transfer.regularTripsDays[weekDay].departureTime
-                                    ? transfer.regularTripsDays[weekDay].departureTime
-                                    : "-- : --"}
-                                </Grid>
+                                <Grid xs={3}>{departTime ? departTime : "-- : --"}</Grid>
                               </Grid>
                               {/*<WeekDayIcon*/}
                               {/*  name={weekDay}*/}
