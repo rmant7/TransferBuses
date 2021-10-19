@@ -67,6 +67,7 @@ export default function Transfer({ transfer }) {
 
   // console.log("transfer.regularTripsDays: ", transfer.regularTripsDays);
 
+  // add new variables - dispatchTime arrivalTime
   return (
     <div className="transfer">
       <Accordion>
