@@ -18,3 +18,10 @@
 .hidden {
   display: none;
 }
+
+.drive_page {
+  min-width: 360px;
+  max-width: 360px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
