@@ -47,12 +47,14 @@
     "yup-phone-lite": "^1.0.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "env-cmd -e dev react-scripts start",
     "run1": "node server.js",
     "run": "react-scripts start",
-    "build": "react-scripts build",
-    "build-dev": "set REACT_APP_BUILD_MODE=dev&& react-scripts build && move build build-dev",
-    "build-prod": "set REACT_APP_BUILD_MODE=prod&& react-scripts build && move build build-prod",
+    "build": "env-cmd -e prod react-scripts build",
+    "build-dev": "env-cmd -e dev react-scripts build",
+    "build-yuvin": "env-cmd -e dev-yuvinogradov react-scripts build",
+    "build-justedlev": "env-cmd -e dev-justedlev react-scripts build",
+    "build-gin1104": "env-cmd -e dev-gin1104 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
