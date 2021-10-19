@@ -14,6 +14,8 @@
 > 
 > `npm run-script build` - builds an app with a production db without developer version in the site header
 
+*All values can be changed in the file `.env-cmdrc`, syntax as a JSON object*
+
 ---
 
 
