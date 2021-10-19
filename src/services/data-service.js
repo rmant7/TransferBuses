@@ -1,7 +1,8 @@
+import { getDb } from "../config/build-config";
 import { fb } from "../config/firebase-config";
 
-const fireBaseCollection = process.env.REACT_APP_BUILD_MODE === "prod" ? "transfers" : "dev-transfers";
-// const fireBaseCollection = "transfers";
+const fireBaseCollection = getDb();
+
 const getTransfersCollectionFromFB = () => {
   return fb.firestore().collection(fireBaseCollection);
 };
