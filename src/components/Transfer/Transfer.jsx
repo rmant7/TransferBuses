@@ -168,7 +168,7 @@ export default function Transfer({ transfer }) {
                               <Grid container item justifyContent={"space-between"}>
                                 <Grid xs={7}>{i18n.t(weekDay)} </Grid>
                                 <Grid xs={3}>
-                                  {!transfer.regularTripsDays[weekDay].departureTime
+                                  {transfer.regularTripsDays[weekDay].departureTime
                                     ? transfer.regularTripsDays[weekDay].departureTime
                                     : "-- : --"}
                                 </Grid>
