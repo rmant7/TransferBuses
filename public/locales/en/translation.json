@@ -61,7 +61,8 @@
         "Required": "Required field"
       },
       "price": {
-        "Required": "Required field"
+        "Required": "Required field",
+        "OnlyPositive": "The price cannot be negative"
       },
       "to": {
         "Required": "Required field"
