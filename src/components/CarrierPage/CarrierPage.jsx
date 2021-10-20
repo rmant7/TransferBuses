@@ -51,7 +51,7 @@ const schema = yup.object().shape({
     .max(8, "Available places must be less or equal to 8")
     .required("places.Required"),
   phoneNumber: yup.string().required("phoneNumber.Required").phone(undefined, "phoneNumber.isNotValid"),
-  price: yup.string().required("price.Required"),
+  price: yup.number().positive("price.OnlyPositive"),
 });
 
 export default function CarrierPage() {
@@ -335,9 +335,9 @@ export default function CarrierPage() {
                     margin="normal"
                     error={Boolean(props.errors.from) && props.touched.from}
                     helperText={
-                      Boolean(props.errors.from) && props.touched.from
-                        ? i18n.t(`form.errors.${props.errors.from}`)
-                        : " "
+                      Boolean(props.errors.from) &&
+                      props.touched.from &&
+                      i18n.t(`form.errors.${props.errors.from}`)
                     }
                   />
                 )}
@@ -359,9 +359,7 @@ export default function CarrierPage() {
                     margin="dense"
                     error={Boolean(props.errors.to) && props.touched.to}
                     helperText={
-                      Boolean(props.errors.to) && props.touched.to
-                        ? i18n.t(`form.errors.${props.errors.to}`)
-                        : " "
+                      Boolean(props.errors.to) && props.touched.to && i18n.t(`form.errors.${props.errors.to}`)
                     }
                   />
                 )}
@@ -467,9 +465,9 @@ export default function CarrierPage() {
                         error={Boolean(props.errors.date) && props.touched.date}
                         // size={"small"}
                         helperText={
-                          Boolean(props.errors.date) && props.touched.date
-                            ? i18n.t(`form.errors.${props.errors.date}`)
-                            : " "
+                          Boolean(props.errors.date) &&
+                          props.touched.date &&
+                          i18n.t(`form.errors.${props.errors.date}`)
                         }
                         value={props.values.date}
                         onChange={props.handleChange}
@@ -494,9 +492,9 @@ export default function CarrierPage() {
                         onBlur={props.handleBlur}
                         error={Boolean(props.errors.departureTime) && props.touched.departureTime}
                         helperText={
-                          Boolean(props.errors.departureTime) && props.touched.departureTime
-                            ? i18n.t(`form.errors.${props.errors.departureTime}`)
-                            : " "
+                          Boolean(props.errors.departureTime) &&
+                          props.touched.departureTime &&
+                          i18n.t(`form.errors.${props.errors.departureTime}`)
                         }
                         value={props.values.departureTime}
                         onChange={props.handleChange}
@@ -606,9 +604,9 @@ export default function CarrierPage() {
                     onBlur={props.handleBlur}
                     error={Boolean(props.errors.phoneNumber) && props.touched.phoneNumber}
                     helperText={
-                      Boolean(props.errors.phoneNumber) && props.touched.phoneNumber
-                        ? i18n.t(`form.errors.${props.errors.phoneNumber}`)
-                        : " "
+                      Boolean(props.errors.phoneNumber) &&
+                      props.touched.phoneNumber &&
+                      i18n.t(`form.errors.${props.errors.phoneNumber}`)
                     }
                     onChange={props.handleChange}
                   />
@@ -687,15 +685,15 @@ export default function CarrierPage() {
                     onBlur={props.handleBlur}
                     error={Boolean(props.errors.price) && props.touched.price}
                     helperText={
-                      Boolean(props.errors.price) && props.touched.price
-                        ? i18n.t(`form.errors.${props.errors.price}`)
-                        : " "
+                      Boolean(props.errors.price) &&
+                      props.touched.price &&
+                      i18n.t(`form.errors.${props.errors.price}`)
                     }
-                    inputProps={{
-                      min: 0,
-                      type: "price",
-                      "aria-labelledby": "input-slider",
-                    }}
+                    // inputProps={{
+                    //   min: 0,
+                    //   type: "price",
+                    //   "aria-labelledby": "input-slider",
+                    // }}
                   />
                 </Grid>
 
@@ -760,13 +758,13 @@ export default function CarrierPage() {
                 fullWidth
                 multiline
                 rows={2}
-                error={props.errors.additionalInfo && props.touched.additionalInfo ? true : false}
+                error={Boolean(props.errors.additionalInfo) && props.touched.additionalInfo}
                 label={i18n.t("Additional information")}
                 onChange={props.handleChange}
                 helperText={
-                  props.errors.additionalInfo && props.touched.additionalInfo
-                    ? i18n.t(`form.errors.${props.errors.additionalInfo}`)
-                    : " "
+                  Boolean(props.errors.additionalInfo) &&
+                  props.touched.additionalInfo &&
+                  i18n.t(`form.errors.${props.errors.additionalInfo}`)
                 }
               />
               <div style={{ margin: "10px" }} className={"submitBtn"}>
