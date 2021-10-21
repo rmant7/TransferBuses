@@ -5,9 +5,11 @@
   border-radius: 7px;
   box-shadow: 0px 5px 25px -5px rgba(34, 60, 80, 0.2);
   margin: 15px;
+  padding: 15px;
   display: inline-block;
   vertical-align: top;
   background-color: #fff;
+  text-decoration: none;
 }
 
 .transfer_card:hover {
@@ -16,6 +18,9 @@
 }
 
 .transfer_card_header {
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 600;
   width: 100%;
   display: flex;
 }
@@ -27,78 +32,156 @@
 }
 
 .content {
-  text-align: center;
   padding: 10px;
-}
-
-.regular_trips_ico {
-  width: 64px;
-  height: 64px;
-  padding: 10px;
-  background: no-repeat center url("../../assets/schedule.png");
-  background-size: 64px;
-}
-
-.date {
-  width: 65px;
-  padding: 8px;
-  border-radius: 7px 0;
-  text-align: center;
-  display: grid;
-  color: #fff;
-  background-color: #536dfe;
-}
-
-.day {
-  font-size: 2.5rem;
-  font-weight: 600;
-}
-
-.month {
   font-size: 1.3rem;
-  font-weight: 200;
-  color: rgba(255, 255, 255, 0.8);
-  text-transform: uppercase;
+  font-weight: 400;
 }
 
-.year {
-  font-size: 1.1rem;
-  font-weight: 200;
-  color: rgba(255, 255, 255, 0.6);
+.icon_text {
+  margin: 0 auto;
+  padding-bottom: 8px;
+  display: flex;
+}
+
+.text {
+  color: rgba(0, 0, 0, 0.8);
+  margin: auto 0;
+  display: flex;
+}
+
+.icon_style {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  padding-right: 10px;
+  /* filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)); */
+  padding-right: 10px;
 }
 
 .way {
-  margin: auto auto;
-  font-size: 1.5rem;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-.city {
-  padding: 0 3px;
-}
-
-.price_block {
   display: flex;
-  margin: 10px 10px 10px auto;
-  padding: 8px;
-  border-radius: 100px;
-  color: #fff;
-  background-color: #536dfe;
+  margin: 0 auto;
 }
 
-.wallet_ico {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  padding: inherit;
-  background: no-repeat center url("../../assets/wallet.png");
-  background-size: 32px;
+.arrow_icon {
+  transform: rotate(90deg);
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-.price {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: auto 0;
-  padding: inherit;
+@media (max-width: 640px) {
+  .transfer_card {
+    width: 300px;
+  }
+/*   
+  .transfer_card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 50px 5px rgba(34, 60, 80, 0.8);
+  }
+  
+  .transfer_card_header {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+  }
+  
+  .transfer_card_footer {
+    width: 100%;
+    vertical-align: middle;
+    display: flex;
+  }
+  
+  .card_header_text {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  
+  .content {
+    padding: 10px;
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+  
+  .icon_text {
+    margin: 0 auto;
+    padding-bottom: 8px;
+    display: flex;
+    background-size: 64px;
+  }
+  
+  .text {
+    color: rgb(20, 20, 20);
+    margin: auto 0;
+    display: flex;
+  }
+  
+  .icon_style {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    padding-right: 10px;
+    padding-right: 10px;
+  }
+  
+  .way {
+    display: flex;
+    margin: 0 auto;
+  }
+  
+  .arrow_icon {
+    transform: rotate(90deg);
+    padding-left: 5px;
+    padding-right: 5px;
+  } */
+}
+
+@media (max-width: 480px) {
+  .transfer_card {
+    width: 200px;
+    margin: 15px;
+    padding: 15px;
+  }
+  
+  .transfer_card_header {
+    font-size: 1.1rem;
+  }
+  
+  .transfer_card_footer {
+    display: grid;
+  }
+  
+  .content {
+    font-size: 1rem;
+  }
+  
+  /* .icon_text {
+    padding-bottom: 8px;
+    display: flex;
+  } */
+  
+  /* .text {
+    margin: auto 0;
+    display: flex;
+  } */
+
+  .way {
+    display: grid;
+  }
+  
+  .icon_style {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    padding-right: 10px;
+    padding-right: 10px;
+  }
+  
+  .arrow_icon {
+    transform: rotate(180deg);
+    width: 20px;
+    height: 20px;
+  }
 }
