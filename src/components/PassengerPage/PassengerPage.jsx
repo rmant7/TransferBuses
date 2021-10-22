@@ -14,6 +14,10 @@ import TransfersList from "../TransfersList/TransfersList";
 import TransferCardComponent from "../future/TransferCard/TransferCardComponent";
 // import "./PassengerPage.css";
 
+function isNewDesign() {
+  return process.env.REACT_APP_NEW_DESIGN && process.env.REACT_APP_NEW_DESIGN === "true";
+}
+
 export default function PassengerPage() {
   const dispatch = useDispatch();
   // const [transfers, setTransfers] = useState([]);
@@ -44,7 +48,7 @@ export default function PassengerPage() {
             <LinearProgress />
           </Box>
         ) : // <TransfersList transfers={data.transfers} />
-        process.env.REACT_APP_NEW_DESIGN === "true" ? (
+        isNewDesign() ? (
           data.transfers.map((transfer, i) => <TransferCardComponent transfer={transfer} id={i} />)
         ) : (
           data.transfers.map((transfer) => <Transfer key={transfer.id} transfer={transfer} />)
