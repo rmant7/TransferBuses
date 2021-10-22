@@ -12,36 +12,8 @@ import ScheduleIcon from "../../../assets/schedule.png";
 import PetsAllowedIcon from "../../../assets/pets-allowed.png";
 import ParcelIcon from "../../../assets/parcel.png";
 import WalletIcon from "../../../assets/wallet.png";
-
-const months_ru = [
-  "Янв.",
-  "Фев.",
-  "Мар.",
-  "Апр.",
-  "Май.",
-  "Июн.",
-  "Июл.",
-  "Авг.",
-  "Сен.",
-  "Окт.",
-  "Ноя.",
-  "Дек.",
-];
-
-const months_en = [
-  "Jan.",
-  "Feb.",
-  "Mar.",
-  "Apr.",
-  "May",
-  "June",
-  "July",
-  "Aug.",
-  "Sept.",
-  "Oct.",
-  "Nov.",
-  "Dec.",
-];
+import TimingIcon from "../../../assets/timing.png";
+import { months_en } from "../../../utils/months-util";
 
 export default function TransferCardComponent({ transfer, id }) {
   const globalCurrencyCode = useSelector(getCurrency);
@@ -104,13 +76,19 @@ export default function TransferCardComponent({ transfer, id }) {
       <Divider variant="middle" style={{ margin: "10px" }} />
       <div className={classes.content}>
         <div className={classes.icon_text}>
-        <img src={ScheduleIcon} className={classes.icon_style} />
+          <img src={ScheduleIcon} className={classes.icon_style} />
           {!transfer.regularTrips ? (
             <div className={classes.text}>
               {new Date(transfer.date).getDate()} {months_en[new Date(transfer.date).getMonth()]}{" "}
               {new Date(transfer.date).getFullYear()}
             </div>
-          ) : (<span className={classes.text}>{i18n.t("Regular trips")}</span>)}
+          ) : (
+            <span className={classes.text}>{i18n.t("Regular trips")}</span>
+          )}
+        </div>
+        <div className={classes.icon_text}>
+          <img src={TimingIcon} className={classes.icon_style} />
+          <span className={classes.text}>{transfer.duration}</span>
         </div>
         <div className={classes.icon_text}>
           <img src={WalletIcon} className={classes.icon_style} />

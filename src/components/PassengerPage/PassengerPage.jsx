@@ -43,10 +43,11 @@ export default function PassengerPage() {
           <Box sx={{ width: "100%" }}>
             <LinearProgress />
           </Box>
+        ) : // <TransfersList transfers={data.transfers} />
+        process.env.REACT_APP_NEW_DESIGN === "true" ? (
+          data.transfers.map((transfer, i) => <TransferCardComponent transfer={transfer} id={i} />)
         ) : (
-          // <TransfersList transfers={data.transfers} />
           data.transfers.map((transfer) => <Transfer key={transfer.id} transfer={transfer} />)
-          // data.transfers.map((transfer, i) => <TransferCardComponent transfer={transfer} id={i} />)
         )}
       </div>
     </Container>
