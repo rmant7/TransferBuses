@@ -181,11 +181,6 @@ export default function Transfer({ transfer }) {
                     </Grid>
                   </Paper>
                 </Grid>
-                <Grid container item xs={4} alignItems="stretch" justifyContent="flex-start">
-                  <Button>
-                    {/* {i18n.t("Duration of ride")}:*/} {transfer.duration}
-                  </Button>
-                </Grid>
               </>
             )}
 
