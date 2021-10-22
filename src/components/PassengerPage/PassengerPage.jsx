@@ -49,9 +49,9 @@ export default function PassengerPage() {
           </Box>
         ) : // <TransfersList transfers={data.transfers} />
         isNewDesign() ? (
-          data.transfers.map((transfer, i) => <TransferCardComponent transfer={transfer} id={i} />)
+          data.transfers.sort((a, b) => a.timestamp - b.timestamp).map((transfer, i) => <TransferCardComponent transfer={transfer} id={i} />)
         ) : (
-          data.transfers.map((transfer) => <Transfer key={transfer.id} transfer={transfer} />)
+          data.transfers.sort((a, b) => a.timestamp - b.timestamp).map((transfer) => <Transfer key={transfer.id} transfer={transfer} />)
         )}
       </div>
     </Container>
