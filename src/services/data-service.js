@@ -25,7 +25,7 @@ export async function uploadTransfer(transfer) {
   }
   try {
     const collection = fb.firestore().collection(fireBaseCollection);
-    const response = await collection.add(transfer);
+    const response = await collection.add({ timestamp: new Date().getTime(), ...transfer });
     console.log("response id", response.id);
   } catch (error) {
     return Promise.reject(error);
@@ -33,9 +33,9 @@ export async function uploadTransfer(transfer) {
 }
 
 export async function uploadNewTransfer(transfer) {
-    const response = await getTransfersByFromCityId().add(transfer);
-    console.log("response", response);
-    return response;
+  const response = await getTransfersByFromCityId().add(transfer);
+  console.log("response", response);
+  return response;
 }
 
 export async function getTransfers() {
