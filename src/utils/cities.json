@@ -3422,7 +3422,69 @@
     "latitude": "47.956802",
     "longitude": "33.370531",
     "name_ru": "Кривой рог"
+  },
+  {
+    "ID": "2017",
+    "name": "Pyatigorsk",
+    "country_id": "145",
+    "latitude": "44.0433664",
+    "longitude": "43.0055816",
+    "name_ru": "Пятигорск"
+  },
+  {
+    "ID": "2018",
+    "name": "Dombay",
+    "country_id": "145",
+    "latitude": "43.2844718",
+    "longitude": "41.6039282",
+    "name_ru": "Домбай"
+  },
+  {
+    "ID": "2019",
+    "name": "Arkhyz",
+    "country_id": "145",
+    "latitude": "43.564083",
+    "longitude": "41.280435",
+    "name_ru": "Архыз"
+  },
+  {
+    "ID": "2020",
+    "name": "Yessentuki",
+    "country_id": "145",
+    "latitude": "44.044526",
+    "longitude": "42.858910",
+    "name_ru": "Ессентуки"
+  },
+  {
+    "ID": "2021",
+    "name": "Yalta",
+    "country_id": "145",
+    "latitude": "44.497415",
+    "longitude": "34.169506",
+    "name_ru": "Ялта"
+  },
+  {
+    "ID": "2022",
+    "name": "Simferopol",
+    "country_id": "145",
+    "latitude": "44.948237",
+    "longitude": "34.100327",
+    "name_ru": "Симферополь"
+  },
+  {
+    "ID": "2023",
+    "name": "Sevastopol",
+    "country_id": "145",
+    "latitude": "44.616495",
+    "longitude": "33.525135",
+    "name_ru": "Севастополь"
+  },
+  {
+    "ID": "2023",
+    "name": "Kerch",
+    "country_id": "145",
+    "latitude": "45.356219",
+    "longitude": "36.467378",
+    "name_ru": "Керчь"
   }
-
-
 ]
