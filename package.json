@@ -60,6 +60,7 @@
     "build-dev": "env-cmd -e dev react-scripts build",
     "build-yuvin": "env-cmd -e dev-yuvinogradov react-scripts build",
     "build-justedlev": "env-cmd -e dev-justedlev react-scripts build",
+    "build-justedlev-design": "env-cmd -e dev-justedlev-new-design react-scripts build",
     "build-gin1104": "env-cmd -e dev-gin1104 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
