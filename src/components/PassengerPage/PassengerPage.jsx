@@ -4,14 +4,16 @@ import i18next from "i18next";
 import FiltersCitiesFrom from "../FiltersCitysFrom/FiltersCitiesFrom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getTransfersAction } from "../../redux/actions/transfers-actions";
+import { getNextTransfersAction, getTransfersAction } from "../../redux/actions/transfers-actions";
 import { getLoading, getTransfersData } from "../../redux/selectors";
 import Transfer from "../Transfer/Transfer";
 import filtersClasses from "../Filter/FilterComponent.module.css";
 import classes from "./PassengerPage.module.css";
 import { useStyles } from "../../utils/useStyles";
-import TransfersList from "../TransfersList/TransfersList";
 import TransferCardComponent from "../future/TransferCard/TransferCardComponent";
+import { LoadingButton } from "@mui/lab";
+import i18n from "../../i18n";
+import { PAGE_SIZE } from "../../services/data-service";
 // import "./PassengerPage.css";
 
 function isNewDesign() {
@@ -23,16 +25,20 @@ export default function PassengerPage() {
   // const [transfers, setTransfers] = useState([]);
   // const [loading, setLoading] = useState();
   const data = useSelector(getTransfersData);
-  const loading = useSelector(getLoading).isLoadingTransfers;
+  const loading = useSelector(getLoading);
 
   console.log(data);
+
+  const addNextHandler = () => {
+    dispatch(getNextTransfersAction(data.transfers));
+  };
 
   useEffect(() => {
     dispatch(getTransfersAction());
   }, [dispatch]);
 
   return (
-    <Container maxWidth="xl" className={filtersClasses.top_padding}>
+    <Container maxWidth="xl" className={classes.tb_padding}>
       <div className={filtersClasses.filters_sector}>
         <Typography variant="button" display="block" gutterBottom>
           {i18next.t("Filter")}
@@ -43,15 +49,20 @@ export default function PassengerPage() {
       {/* {loading && <h2>Loading...</h2>} */}
       {/* {!loading && <TransfersList transfers={transfers} />} */}
       <div className={classes.transfers}>
-        {loading && !data.isReceived ? (
+        {loading.isLoadingTransfers && !data.isReceived ? (
           <Box sx={{ width: "100%" }}>
             <LinearProgress />
           </Box>
         ) : // <TransfersList transfers={data.transfers} />
         isNewDesign() ? (
-          data.transfers.sort((a, b) => a.timestamp - b.timestamp).map((transfer, i) => <TransferCardComponent transfer={transfer} id={i} />)
+          data.transfers.map((transfer, i) => <TransferCardComponent transfer={transfer} id={i} />)
         ) : (
-          data.transfers.sort((a, b) => a.timestamp - b.timestamp).map((transfer) => <Transfer key={transfer.id} transfer={transfer} />)
+          data.transfers.map((transfer) => <Transfer key={transfer.id} transfer={transfer} />)
+        )}
+        {data.nextTransfers.length === PAGE_SIZE && (
+          <LoadingButton variant="contained" loading={loading.isLoadingNextTransfers} onClick={addNextHandler}>
+            {i18n.t("LoadMore")}
+          </LoadingButton>
         )}
       </div>
     </Container>

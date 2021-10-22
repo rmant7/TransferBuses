@@ -2,10 +2,26 @@ import { getDb } from "../config/build-config";
 import { fb } from "../config/firebase-config";
 
 const fireBaseCollection = getDb();
+export const PAGE_SIZE = 15;
+const ORDER_BY_FIELD = "date";
 
-const getTransfersCollectionFromFB = () => {
+function getTransfersCollectionFromFB() {
   return fb.firestore().collection(fireBaseCollection);
-};
+}
+
+function getNextTransfersQuery(pageSize) {
+  return getTransfersCollectionFromFB().orderBy(ORDER_BY_FIELD).limit(pageSize);
+}
+
+function getNextTransfersFromLastQuery(last, pageSize) {
+  var lastTransfer = last[last.length - 1];
+  delete lastTransfer.id;
+  console.log(last, lastTransfer);
+  return getTransfersCollectionFromFB()
+    .orderBy(ORDER_BY_FIELD)
+    .startAfter(lastTransfer.date)
+    .limit(pageSize);
+}
 
 export async function getTransfersByFromCityId(fromCityId) {
   try {
@@ -40,13 +56,29 @@ export async function uploadNewTransfer(transfer) {
 
 export async function getTransfers() {
   try {
-    const collection = await fb.firestore().collection(fireBaseCollection).get();
+    const collection = await getNextTransfersQuery(PAGE_SIZE).get();
+    // const c = await getTransfersCollectionFromFB().orderBy("price").get();
+    // c.docs.map(d => console.log(d.data()));
     const transfers = collection.docs.map((doc) => {
       return { ...doc.data(), id: doc.id };
     });
     console.log("received transfers: ", transfers);
     return transfers;
   } catch (error) {
+    return Promise.reject(error);
+  }
+}
+
+export async function getNextTransfers(lastTransfers) {
+  try {
+    const collection = await getNextTransfersFromLastQuery(lastTransfers, PAGE_SIZE).get();
+    const transfers = collection.docs.map((doc) => {
+      return { ...doc.data(), id: doc.id };
+    });
+    console.log("next transfers: ", transfers);
+    return transfers;
+  } catch (error) {
+    console.log(error);
     return Promise.reject(error);
   }
 }
