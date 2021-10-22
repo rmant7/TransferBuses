@@ -1,23 +1,17 @@
-import React from "react";
 import classes from "./TransferCardComponent.module.css";
 import i18n from "i18next";
 import { useHistory } from "react-router";
-import ArrowIcon from "../../assets/upward-arrow.png";
-import { Link } from "react-router-dom";
-import RingVolumeIcon from "@mui/icons-material/RingVolume";
 import { useSelector } from "react-redux";
-import { currencies } from "../../utils/currencies";
-import { timeZones } from "../../utils/timezones";
-import { getCityById } from "../../utils/cities";
-import { getCurrency, getLanguage } from "../../redux/selectors";
-import { Button, Divider, Grid, Paper } from "@material-ui/core";
-import i18next from "i18next";
-import { number } from "yup";
-import { MAIN_ROUTE, PASSENGER_ROUTE } from "../../utils/constants";
-import ScheduleIcon from "../../assets/schedule.png";
-import PetsAllowedIcon from "../../assets/pets-allowed.png";
-import ParcelIcon from "../../assets/parcel.png";
-import WalletIcon from "../../assets/wallet.png";
+import { currencies } from "../../../utils/currencies";
+import { getCityById } from "../../../utils/cities";
+import { getCurrency, getLanguage } from "../../../redux/selectors";
+import { Button, Divider } from "@material-ui/core";
+import { PASSENGER_ROUTE } from "../../../utils/constants";
+import ArrowIcon from "../../../assets/upward-arrow.png";
+import ScheduleIcon from "../../../assets/schedule.png";
+import PetsAllowedIcon from "../../../assets/pets-allowed.png";
+import ParcelIcon from "../../../assets/parcel.png";
+import WalletIcon from "../../../assets/wallet.png";
 
 const months_ru = [
   "Янв.",
