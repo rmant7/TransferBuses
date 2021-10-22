@@ -217,7 +217,8 @@ export default function CarrierPage() {
   });
 
   return (
-    <Container maxWidth="sm" className={classes.drivePage}>
+    // <Container maxWidth="sm" className={classes.drivePage}>
+    <Container maxWidth="sm" style={{marginTop: "75px"}}>
       <Formik
         initialValues={{
           date: new Date().toJSON().slice(0, 10),
@@ -554,41 +555,41 @@ export default function CarrierPage() {
                     {/*</Grid>*/}
                     {/*^^^ DEPARTURE TIMEZONE ^^^*/}
                   </Grid>
-                  <Grid container justifyContent="space-between">
-                    <Grid item xs={5}>
-                      <FormControl fullWidth>
-                        <InputLabel shrink id="duration-label">
-                          {i18n.t("Travel time")}
-                        </InputLabel>
-                        <Select
-                          labelId="duration-label"
-                          id="duration"
-                          name={"duration"}
-                          value={props.values.duration}
-                          renderValue={(value) => `${value}`}
-                          margin="dense"
-                          // disableUnderline
-                          onChange={props.handleChange}
-                          label="duration"
-                          //style={{paddingTop: "9px"}}
-                        >
-                          {durations.map((item) => {
-                            return (
-                              <MenuItem
-                                key={item}
-                                value={item}
-                                // onClick={() => setRideCurrency(item.code)}
-                              >
-                                {item}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                  </Grid>
                 </>
               )}
+              <Grid container justifyContent="space-between">
+                <Grid item xs={5}>
+                  <FormControl fullWidth>
+                    <InputLabel shrink id="duration-label">
+                      {i18n.t("Travel time")}
+                    </InputLabel>
+                    <Select
+                      labelId="duration-label"
+                      id="duration"
+                      name={"duration"}
+                      value={props.values.duration}
+                      renderValue={(value) => `${value}`}
+                      margin="dense"
+                      // disableUnderline
+                      onChange={props.handleChange}
+                      label="duration"
+                      //style={{paddingTop: "9px"}}
+                    >
+                      {durations.map((item) => {
+                        return (
+                          <MenuItem
+                            key={item}
+                            value={item}
+                            // onClick={() => setRideCurrency(item.code)}
+                          >
+                            {item}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </Grid>
+              </Grid>
               {/* Phone number block */}
               <Grid container justifyContent="space-between" alignItems="flex-end">
                 {/* Phone */}
