@@ -69,14 +69,14 @@ export default function TransferCardComponent({ transfer, id }) {
       <div className={classes.transfer_card_header}>
         <div className={classes.way}>
           <span className={classes.text}>{getCityById(transfer.from).name}</span>
-          <img src={ArrowIcon} className={classes.arrow_icon} />
+          <img src={ArrowIcon} className={classes.arrow_icon} alt="icon" />
           <span className={classes.text}>{getCityById(transfer.to).name}</span>
         </div>
       </div>
       <Divider variant="middle" style={{ margin: "10px" }} />
       <div className={classes.content}>
         <div className={classes.icon_text}>
-          <img src={ScheduleIcon} className={classes.icon_style} />
+          <img src={ScheduleIcon} className={classes.icon_style} alt="icon" />
           {!transfer.regularTrips ? (
             <div className={classes.text}>
               {new Date(transfer.date).getDate()} {months_en[new Date(transfer.date).getMonth()]}{" "}
@@ -87,11 +87,11 @@ export default function TransferCardComponent({ transfer, id }) {
           )}
         </div>
         <div className={classes.icon_text}>
-          <img src={TimingIcon} className={classes.icon_style} />
+          <img src={TimingIcon} className={classes.icon_style} alt="icon" />
           <span className={classes.text}>{transfer.duration}</span>
         </div>
         <div className={classes.icon_text}>
-          <img src={WalletIcon} className={classes.icon_style} />
+          <img src={WalletIcon} className={classes.icon_style} alt="icon" />
           <span className={classes.text}>{priceToDisplay}</span>
         </div>
         {transfer.passAParcel && <img src={ParcelIcon} className={classes.icon_style} />}
