@@ -140,15 +140,6 @@ export default function Transfer({ transfer }) {
               </Grid>
             )}
 
-            {transfer.duration && (
-              <Grid container item xs={12} alignItems="center" justifyContent="flex-start">
-                <Paper className={"paper"}>
-                  {i18n.t("Duration of ride")}: {/*{transfer.date.replace("T", "  ")}*/}
-                  {transfer.duration}
-                </Paper>
-              </Grid>
-            )}
-
             {transfer.regularTrips && (
               <>
                 <Grid container item xs={12} alignItems="center" justifyContent="flex-start">
@@ -182,6 +173,15 @@ export default function Transfer({ transfer }) {
                   </Paper>
                 </Grid>
               </>
+            )}
+
+            {transfer.duration && (
+              <Grid container item xs={12} alignItems="center" justifyContent="flex-start">
+                <Paper className={"paper"}>
+                  {i18n.t("Duration of ride")}: {/*{transfer.date.replace("T", "  ")}*/}
+                  {transfer.duration}
+                </Paper>
+              </Grid>
             )}
 
             <Grid container item xs={12} alignItems="center" justifyContent="flex-start">
