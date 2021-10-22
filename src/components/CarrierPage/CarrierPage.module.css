@@ -19,9 +19,15 @@
   display: none;
 }
 
-.drive_page {
-  min-width: 360px;
-  max-width: 360px;
-  padding-top: 80px;
-  padding-bottom: 80px;
+.height95px {
+  height: 95px;
+}
+
+.form_style {
+  margin-top: 95px;
+  margin-bottom: 25px;
+  padding: 25px;
+  box-shadow: 0px 5px 25px -5px rgba(34, 60, 80, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
 }

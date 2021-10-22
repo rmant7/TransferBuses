@@ -218,7 +218,7 @@ export default function CarrierPage() {
 
   return (
     // <Container maxWidth="sm" className={classes.drivePage}>
-    <Container maxWidth="sm" style={{marginTop: "75px"}}>
+    <Container maxWidth="sm" style={{ marginTop: "75px" }}>
       <Formik
         initialValues={{
           date: new Date().toJSON().slice(0, 10),
@@ -318,8 +318,9 @@ export default function CarrierPage() {
           };
 
           return (
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={props.handleSubmit} className={styles.form_style}>
               <Autocomplete
+                className={styles.height95px}
                 {...defaultProps}
                 id="from"
                 name={"from"}
@@ -345,6 +346,7 @@ export default function CarrierPage() {
                 ListboxProps={{ style: { maxHeight: "7rem" } }}
               />
               <Autocomplete
+                className={styles.height95px}
                 {...defaultProps}
                 id="to"
                 name={"to"}
@@ -364,7 +366,7 @@ export default function CarrierPage() {
                     }
                   />
                 )}
-                ListboxProps={{ style: { maxHeight: "7rem" } }}
+                // ListboxProps={{ style: { maxHeight: "7rem" } }}
               />
               <FormControlLabel
                 control={
