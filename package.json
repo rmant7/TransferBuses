@@ -52,6 +52,7 @@
     "start": "env-cmd -e dev react-scripts start",
     "start-yuvin": "env-cmd -e dev-yuvinogradov react-scripts start",
     "start-justedlev": "env-cmd -e dev-justedlev react-scripts start",
+    "start-justedlev-new": "env-cmd -e dev-justedlev-new-design react-scripts start",
     "start-gin1104": "env-cmd -e dev-gin1104 react-scripts start",
     "run1": "node server.js",
     "run": "react-scripts start",
