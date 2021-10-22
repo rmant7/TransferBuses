@@ -11,7 +11,7 @@ import filtersClasses from "../Filter/FilterComponent.module.css";
 import classes from "./PassengerPage.module.css";
 import { useStyles } from "../../utils/useStyles";
 import TransfersList from "../TransfersList/TransfersList";
-import TransferCardComponent from "../TransferCard/TransferCardComponent";
+import TransferCardComponent from "../future/TransferCard/TransferCardComponent";
 // import "./PassengerPage.css";
 
 export default function PassengerPage() {
