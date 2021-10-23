@@ -13,6 +13,14 @@ export const getDb = (): string => {
   return process.env.REACT_APP_DB as string;
 };
 
+export const getNewDb = (): string => {
+  return process.env.REACT_APP_DB_NEW as string;
+};
+
+export const getBackupDb = (): string => {
+  return process.env.REACT_APP_DB_BACKUP as string;
+};
+
 export const getDeveloper = (): string => {
   return process.env.REACT_APP_DEVELOPER as string;
 };
