@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useStyles } from '../../utils/useStyles';
 import { FormControl, Select, MenuItem } from '@material-ui/core';
 import { currencies } from '../../utils/currencies';
-import { setCurrency } from '../../redux/reducers/appReducer';
+// import { setCurrency } from '../../redux/reducers/appReducer';
 import { getCurrency } from '../../redux/selectors';
 import { setCurrencyAction } from '../../redux/actions/appActions';
 

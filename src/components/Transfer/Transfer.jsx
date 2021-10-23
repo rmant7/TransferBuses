@@ -1,6 +1,6 @@
 import React from "react";
 import ArrowForwardSharpIcon from "@material-ui/icons/ArrowForwardSharp";
-import RingVolumeIcon from "@material-ui/icons/RingVolume";
+//   
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -14,7 +14,10 @@ import {useSelector} from "react-redux";
 import {currencies} from "../../utils/currencies";
 import {Tooltip} from "@material-ui/core";
 import cities from "../../utils/cities.json";
-import {timeZones} from "../../utils/timezones";
+import { timeZones } from "../../utils/timezones";
+import SocialButton from "../SocialButton/SocialButton";
+import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import {faWhatsapp, faViber} from '@fortawesome/fontawesome-free-brands';
 
 export default function Transfer({transfer}) {
   const globalCurrencyCode = useSelector(state => state.app.currency);
@@ -254,9 +257,29 @@ export default function Transfer({transfer}) {
               alignItems="center"
               justifyContent="flex-start"
             >
-              <Paper className={"paper"}>
-                {i18n.t("Driver's phone number")}: {transfer.phoneNumber}{" "}
-                <RingVolumeIcon fontSize="small"/>
+              <Paper className={"paper"} >
+                {i18n.t("Driver's phone number")}:
+                {transfer.phoneNumber}{" "}
+                <SocialButton
+                   href={transfer.phoneNumber}
+                   Icon={faPhoneAlt} 
+                  classNameButton="social-button phone-but phone" classNameIcon='phone'
+                   size= "1x"
+                />
+                  <SocialButton
+                  href={`https://wa.me/${transfer.phoneNumber}`}
+                  Icon={faWhatsapp} 
+                  classNameButton="social-button whats-but" classNameIcon='whatsapp'
+                  size= "1x"
+                />
+                   <SocialButton
+                      href={`viber://add?number=${transfer.phoneNumber}`}
+                      Icon={faViber}
+                      classNameButton="social-button viber-but viber" 
+                      size= "1x"
+                />
+
+                {/* <RingVolumeIcon fontSize="small"/> */}
               </Paper>
             </Grid>
             <Grid

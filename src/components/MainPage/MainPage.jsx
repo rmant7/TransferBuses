@@ -14,7 +14,7 @@ export default function MainPage() {
         spacing={3}
         direction="column"
         alignItems="center"
-        justify="center"
+        justifyContent="center"
         className={(classes.mainPage, classes.topPadding)}
       >
         <Grid item xs={12} lg={4} md={6}>
