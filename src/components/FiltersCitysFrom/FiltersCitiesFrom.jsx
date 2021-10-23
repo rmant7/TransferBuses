@@ -1,5 +1,5 @@
 import classes from "../Filter/FilterComponent.module.css";
-import { getCityByName } from "../../utils/cities";
+import { getCities, getCityByName } from "../../utils/cities";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
 import FilterComponent from "../Filter/FilterComponent";
@@ -11,7 +11,7 @@ import i18n from "../../i18n";
 
 export default function FiltersCitiesFrom() {
     const dispatch = useDispatch();
-    const filters = useSelector(getFilters);
+    // const filters = useSelector(getFilters);
     const inputFromTo = useSelector(getInputFromToCity);
 
     const handleApplyFilter = () => {
@@ -36,7 +36,7 @@ export default function FiltersCitiesFrom() {
         <div className={classes.filters}>
             <FilterComponent
                 label={i18n.t("FromCity")}
-                options={filters}
+                options={getCities()}
                 handler={handleInputFrom}
                 inputValue={inputFromTo.inputFromCity}
                 getOptionLabel={(o) => o.name}
