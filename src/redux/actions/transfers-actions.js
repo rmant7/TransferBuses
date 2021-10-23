@@ -1,6 +1,5 @@
 import { getNextTransfers, getTransfers, uploadNewTransfer } from "../../services/data-service";
-import { getCityById } from "../../utils/cities";
-import { setFiltersAction, SET_FILTER_APPLY } from "./filters-actions";
+import { SET_FILTER_APPLY } from "./filters-actions";
 import {
   loadingNextTransfersAction,
   loadingTransfersAction,
@@ -29,7 +28,6 @@ export function getTransfersAction() {
         type: SET_NEXT_TRANSFERS,
         payload: transfers.slice(),
       });
-      dispatch(setFiltersAction(Array.from(new Set(transfers.map((t) => getCityById(t.from))))));
     } catch (e) {
       dispatch({
         type: SET_TRANSFERS,
