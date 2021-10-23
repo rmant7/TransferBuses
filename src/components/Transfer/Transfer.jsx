@@ -154,7 +154,7 @@ export default function Transfer({ transfer }) {
                       {Object.keys(transfer.regularTripsDays)
                         .sort()
                         .map((weekDay) => {
-                          console.log("weekDay: ", weekDay, transfer.regularTripsDays[weekDay]);
+                          // console.log("weekDay: ", weekDay, transfer.regularTripsDays[weekDay]);
                           const departTime = transfer.regularTripsDays[weekDay].departureTime;
                           return transfer.regularTripsDays[weekDay].selected ? (
                             <>
