@@ -12,6 +12,7 @@ import classes from "./PassengerPage.module.css";
 import { useStyles } from "../../utils/useStyles";
 import TransferCardComponent from "../future/TransferCard/TransferCardComponent";
 import { LoadingButton } from "@mui/lab";
+import { Alert } from "@mui/material";
 import i18n from "../../i18n";
 import { PAGE_SIZE } from "../../services/data-service";
 // import "./PassengerPage.css";
@@ -49,7 +50,7 @@ export default function PassengerPage() {
       {/* {loading && <h2>Loading...</h2>} */}
       {/* {!loading && <TransfersList transfers={transfers} />} */}
       <div className={classes.transfers}>
-        {loading.isLoadingTransfers && !data.isReceived ? (
+        {loading.isLoadingTransfers ? (
           <Box sx={{ width: "100%" }}>
             <LinearProgress />
           </Box>
@@ -59,6 +60,7 @@ export default function PassengerPage() {
         ) : (
           data.transfers.map((transfer, i) => <Transfer key={i} transfer={transfer} />)
         )}
+        {data.transfers.length === 0 && data.isFilterApply && <Alert severity="warning">{i18n.t("NothingFound")}</Alert>}
       </div>
       <div style={{ width: "200px", margin: "10px auto", textAlign: "center" }}>
         {data.nextTransfers.length === PAGE_SIZE && data.transfers.length !== 0 && !data.isFilterApply && (
