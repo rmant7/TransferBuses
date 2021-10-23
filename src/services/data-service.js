@@ -1,9 +1,13 @@
-import { getDb } from "../config/build-config";
+import { getNewDb } from "../config/build-config";
 import { fb } from "../config/firebase-config";
 
-const fireBaseCollection = getDb();
+const fireBaseCollection = getNewDb();
 export const PAGE_SIZE = 15;
-const ORDER_BY_FIELD = "date";
+const ORDER_BY_FIELD = "_id";
+
+function getUniqueId() {
+  return Math.random() * Math.floor(Math.random() * Date.now());
+}
 
 function getTransfersCollectionFromFB() {
   return fb.firestore().collection(fireBaseCollection);
@@ -14,22 +18,18 @@ function getNextTransfersQuery(pageSize) {
 }
 
 function getNextTransfersFromLastQuery(last, pageSize) {
-  var lastTransfer = last[last.length - 1];
-  delete lastTransfer.id;
-  console.log(last, lastTransfer);
-  return getTransfersCollectionFromFB()
-    .orderBy(ORDER_BY_FIELD)
-    .startAfter(lastTransfer.date)
-    .limit(pageSize);
+  // delete lastTransfer.id;
+  console.log("last: ", last);
+  return getTransfersCollectionFromFB().orderBy(ORDER_BY_FIELD).startAfter(last._id).limit(pageSize);
 }
 
 export async function getTransfersByFromCityId(fromCityId) {
   try {
     const collection = await getTransfersCollectionFromFB().where("from", "==", fromCityId).get();
-    const response = collection.docs.map((v) => {
-      return { ...v.data(), id: v.id };
+    const data = collection.docs.map((v) => {
+      return v.data();
     });
-    return response;
+    return data;
   } catch (error) {
     return Promise.reject(error);
   }
@@ -41,9 +41,10 @@ export async function uploadTransfer(transfer) {
   }
   try {
     const collection = fb.firestore().collection(fireBaseCollection);
-    const response = await collection.add({ timestamp: new Date().getTime(), ...transfer });
+    const response = await collection.add({ _id: getUniqueId(), timestamp: Date.now(), ...transfer });
     console.log("response id", response.id);
   } catch (error) {
+    console.error(error);
     return Promise.reject(error);
   }
 }
@@ -57,28 +58,27 @@ export async function uploadNewTransfer(transfer) {
 export async function getTransfers() {
   try {
     const collection = await getNextTransfersQuery(PAGE_SIZE).get();
-    // const c = await getTransfersCollectionFromFB().orderBy("price").get();
-    // c.docs.map(d => console.log(d.data()));
     const transfers = collection.docs.map((doc) => {
-      return { ...doc.data(), id: doc.id };
+      return doc.data();
     });
     console.log("received transfers: ", transfers);
     return transfers;
   } catch (error) {
+    console.error(error);
     return Promise.reject(error);
   }
 }
 
 export async function getNextTransfers(lastTransfers) {
   try {
-    const collection = await getNextTransfersFromLastQuery(lastTransfers, PAGE_SIZE).get();
+    const collection = await getNextTransfersFromLastQuery(lastTransfers[lastTransfers.length - 1], PAGE_SIZE).get();
     const transfers = collection.docs.map((doc) => {
-      return { ...doc.data(), id: doc.id };
+      return doc.data();
     });
     console.log("next transfers: ", transfers);
     return transfers;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return Promise.reject(error);
   }
 }

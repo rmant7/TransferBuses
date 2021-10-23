@@ -16,7 +16,7 @@ export function getTransfersAction() {
   return async (dispatch) => {
     dispatch(loadingTransfersAction(true));
     try {
-      dispatch({ type: SET_TRANSFERS, payload: { isReceived: false } });
+      // dispatch({ type: SET_TRANSFERS, payload: [] });
       const transfers = await getTransfers();
       dispatch({
         type: SET_TRANSFERS,
@@ -26,7 +26,6 @@ export function getTransfersAction() {
         type: SET_NEXT_TRANSFERS,
         payload: transfers.slice(),
       });
-      dispatch(setFiltersAction(Array.from(new Set(transfers.map((t) => getCityById(t.from))))));
     } catch (e) {
       dispatch({
         type: SET_TRANSFERS,
@@ -44,14 +43,13 @@ export function getNextTransfersAction(last) {
     try {
       const nextTransfers = await getNextTransfers(last);
       dispatch({
+        type: SET_NEXT_TRANSFERS,
+        payload: nextTransfers,
+      });
+      dispatch({
         type: SET_TRANSFERS,
         payload: _.concat(last, nextTransfers),
       });
-      dispatch({
-        type: SET_NEXT_TRANSFERS,
-        payload: nextTransfers.slice(),
-      });
-      // dispatch(setFiltersAction(last.push(Array.from(new Set(nextTransfers.map((t) => getCityById(t.from)))))));
     } catch (e) {
       dispatch({
         type: SET_NEXT_TRANSFERS,
