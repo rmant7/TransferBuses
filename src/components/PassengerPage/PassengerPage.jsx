@@ -59,6 +59,8 @@ export default function PassengerPage() {
         ) : (
           data.transfers.map((transfer, i) => <Transfer key={i} transfer={transfer} />)
         )}
+      </div>
+      <div style={{ width: "200px", margin: "10px auto", textAlign: "center" }}>
         {data.nextTransfers.length === PAGE_SIZE && (
           <LoadingButton
             variant="contained"
