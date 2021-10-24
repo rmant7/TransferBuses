@@ -16,7 +16,7 @@ export const publicRoutes = [
     Component: MainPage,
   },
   {
-    path: `${PASSENGER_ROUTE}/:trip`,
+    path: `${PASSENGER_ROUTE}/:id`,
     Component: TransferViewComponent,
   },
   {
