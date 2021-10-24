@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { getAllTransfers, getTransfersByFromCityId } from "../../services/data-service";
 import { getCityById } from "../../utils/cities";
 import { loadingTransfersAction } from "./loading-actions";
@@ -38,15 +39,17 @@ export function applyFilterFromCityIdAction(city) {
   };
 }
 
-export function getFiltersAction() {
+export function filtersCityFromAction() {
   return async (dispatch) => {
     dispatch(loadingTransfersAction(true));
     try {
       const transfers = await getAllTransfers();
-      const fromCities = Array.from(new Set(transfers.map((t) => getCityById(t.from))));
+      const fromCities = transfers.map((t) => getCityById(t.from));
+      const fromCitiesEn = Array.from(new Set(fromCities.map((c) => c.name)));
+      const fromCitiesRu = Array.from(new Set(fromCities.map((c) => c.name_ru)));
       dispatch({
         type: SET_FILTER_FROM_CITIES,
-        payload: fromCities,
+        payload: _.concat(fromCitiesEn, fromCitiesRu),
       });
     } catch (e) {
       dispatch({

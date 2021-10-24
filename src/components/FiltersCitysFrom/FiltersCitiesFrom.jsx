@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
 import FilterComponent from "../Filter/FilterComponent";
 import { getFilters } from "../../redux/selectors";
-import { applyFilterFromCityIdAction, getFiltersAction } from "../../redux/actions/filters-actions";
+import { applyFilterFromCityIdAction, filtersCityFromAction } from "../../redux/actions/filters-actions";
 import { getTransfersAction } from "../../redux/actions/transfers-actions";
 import i18n from "../../i18n";
 import { useEffect, useState } from "react";
@@ -18,7 +18,7 @@ export default function FiltersCitiesFrom() {
   console.log(filters);
 
   useEffect(() => {
-    dispatch(getFiltersAction());
+    dispatch(filtersCityFromAction());
   }, [dispatch]);
 
   const handleApplyFilter = () => {
@@ -44,7 +44,7 @@ export default function FiltersCitiesFrom() {
         options={filters.fromCities}
         handler={handleInputFrom}
         inputValue={fromCity}
-        getOptionLabel={(o) => o.name}
+        // getOptionLabel={(o) => o.name}
       />
       <div className={classes.filter_buttons}>
         {filters.isFilterApply ? (
