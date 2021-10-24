@@ -1,28 +1,36 @@
-import { getTransfersByFromCityId } from "../../services/data-service";
+import { getAllTransfers, getTransfersByFromCityId } from "../../services/data-service";
+import { getCityById } from "../../utils/cities";
 import { loadingTransfersAction } from "./loading-actions";
-import { SET_TRANSFERS } from "./transfers-actions";
+import { SET_DATA, SET_IS_RECEIVED, SET_MESSAGE } from "./transfers-actions";
 
-export const SET_FILTERS = "set-filters";
-export const SET_FILTER_APPLY = "set-filters-apply";
-export const SET_SELECT_FILTER = "set-select-filter";
+export const SET_FILTER_FROM_CITIES = "set-filter-from-cities";
+export const SET_IS_FILTER_APPLY = "set-is-filters-apply";
 
-export function applyFilterFromCityIdAction(fromCityId) {
+export function applyFilterFromCityIdAction(city) {
   return async (dispatch) => {
     dispatch(loadingTransfersAction(true));
     try {
-      const filteredCities = await getTransfersByFromCityId(fromCityId);
+      const filteredTransfers = await getTransfersByFromCityId(city);
       dispatch({
-        type: SET_FILTER_APPLY,
+        type: SET_IS_FILTER_APPLY,
         payload: true,
       });
       dispatch({
-        type: SET_TRANSFERS,
-        payload: filteredCities.slice(),
+        type: SET_IS_RECEIVED,
+        payload: true,
+      });
+      dispatch({
+        type: SET_DATA,
+        payload: filteredTransfers.slice(),
       });
     } catch (e) {
       dispatch({
-        type: SET_TRANSFERS,
-        payload: [],
+        type: SET_IS_RECEIVED,
+        payload: false,
+      });
+      dispatch({
+        type: SET_MESSAGE,
+        payload: e,
       });
     } finally {
       dispatch(loadingTransfersAction(false));
@@ -30,10 +38,23 @@ export function applyFilterFromCityIdAction(fromCityId) {
   };
 }
 
-export function setFiltersAction(filters) {
-  return (dispatch) => dispatch({ type: SET_FILTERS, payload: filters });
-}
-
-export function selectFilterAction(city) {
-  return (dispatch) => dispatch({ type: SET_SELECT_FILTER, payload: city });
+export function getFiltersAction() {
+  return async (dispatch) => {
+    dispatch(loadingTransfersAction(true));
+    try {
+      const transfers = await getAllTransfers();
+      const fromCities = Array.from(new Set(transfers.map((t) => getCityById(t.from))));
+      dispatch({
+        type: SET_FILTER_FROM_CITIES,
+        payload: fromCities,
+      });
+    } catch (e) {
+      dispatch({
+        type: SET_FILTER_FROM_CITIES,
+        payload: [],
+      });
+    } finally {
+      dispatch(loadingTransfersAction(false));
+    }
+  };
 }
