@@ -1,7 +1,8 @@
-import { SET_DATA, SET_IS_RECEIVED, SET_MESSAGE, SET_SAVE_NEW_TRANSFER } from "../actions/transfers-actions";
+import { SET_DATA, SET_IS_NEXT, SET_IS_RECEIVED, SET_MESSAGE, SET_SAVE_NEW_TRANSFER } from "../actions/transfers-actions";
 
 const receiveTransfersState = {
   isReceived: false,
+  isNext: false,
   data: [],
   msg: "",
 };
@@ -14,6 +15,8 @@ export function transfersReducer(state = receiveTransfersState, action) {
       return { ...state, data: action.payload };
     case SET_MESSAGE:
       return { ...state, msg: action.payload };
+    case SET_IS_NEXT:
+      return { ...state, isNext: action.payload };
     default:
       return state;
   }

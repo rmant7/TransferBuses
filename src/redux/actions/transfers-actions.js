@@ -6,11 +6,13 @@ import {
 } from "./loading-actions";
 import _ from "lodash";
 import { SET_IS_FILTER_APPLY } from "./filters-actions";
+import { MAX_PAGE_SIZE } from "../../utils/constants";
 
 export const SET_SAVE_NEW_TRANSFER = "set-save-new-transfer";
 export const SET_DATA = "set-transfers-data";
 export const SET_IS_RECEIVED = "set-transfers-is-received";
 export const SET_MESSAGE = "set-transfers-message";
+export const SET_IS_NEXT = "set-transfers-is-next";
 
 export function getTransfersAction() {
   return async (dispatch) => {
@@ -21,6 +23,10 @@ export function getTransfersAction() {
     });
     try {
       const transfers = await getTransfers();
+      dispatch({
+        type: SET_IS_NEXT,
+        payload: transfers.length === MAX_PAGE_SIZE,
+      });
       dispatch({
         type: SET_IS_FILTER_APPLY,
         payload: false,
@@ -60,6 +66,10 @@ export function getNextTransfersAction(lastTransfers) {
       dispatch({
         type: SET_IS_RECEIVED,
         payload: true,
+      });
+      dispatch({
+        type: SET_IS_NEXT,
+        payload: nextTransfers.length === MAX_PAGE_SIZE,
       });
       dispatch({
         type: SET_DATA,
