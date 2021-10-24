@@ -94,8 +94,8 @@ export default function TransferCardComponent({ transfer, id }) {
           <img src={WalletIcon} className={classes.icon_style} alt="icon" />
           <span className={classes.text}>{priceToDisplay}</span>
         </div>
-        {transfer.passAParcel && <img src={ParcelIcon} className={classes.icon_style} />}
-        {transfer.isPetsAllowed && <img src={PetsAllowedIcon} className={classes.icon_style} />}
+        {transfer.passAParcel && <img src={ParcelIcon} className={classes.icon_style} alt="icon" />}
+        {transfer.isPetsAllowed && <img src={PetsAllowedIcon} className={classes.icon_style} alt="icon" />}
       </div>
       <Divider variant="middle" style={{ margin: "10px" }} />
       <div className={classes.transfer_card_footer}>
@@ -103,7 +103,7 @@ export default function TransferCardComponent({ transfer, id }) {
           size="medium"
           color="primary"
           variant="contained"
-          onClick={() => history.push(`${PASSENGER_ROUTE}/${JSON.stringify(transfer)}`)}
+          onClick={() => history.push(`${PASSENGER_ROUTE}/${transfer._id}`)}
           style={{ marginRight: "0", marginLeft: "auto" }}
         >
           {i18n.t("More")}

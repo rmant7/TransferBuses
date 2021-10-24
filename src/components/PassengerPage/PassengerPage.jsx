@@ -5,7 +5,7 @@ import FiltersCitiesFrom from "../FiltersCitysFrom/FiltersCitiesFrom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getNextTransfersAction, getTransfersAction } from "../../redux/actions/transfers-actions";
-import { getLoading, getTransfersData } from "../../redux/selectors";
+import { getFilters, getLoading, getTransfers } from "../../redux/selectors";
 import Transfer from "../Transfer/Transfer";
 import filtersClasses from "../Filter/FilterComponent.module.css";
 import classes from "./PassengerPage.module.css";
@@ -14,7 +14,6 @@ import TransferCardComponent from "../future/TransferCard/TransferCardComponent"
 import { LoadingButton } from "@mui/lab";
 import { Alert } from "@mui/material";
 import i18n from "../../i18n";
-import { PAGE_SIZE } from "../../services/data-service";
 // import "./PassengerPage.css";
 
 function isNewDesign() {
@@ -25,13 +24,14 @@ export default function PassengerPage() {
   const dispatch = useDispatch();
   // const [transfers, setTransfers] = useState([]);
   // const [loading, setLoading] = useState();
-  const data = useSelector(getTransfersData);
+  const transfers = useSelector(getTransfers);
+  const filters = useSelector(getFilters);
   const loading = useSelector(getLoading);
 
-  console.log(data);
+  console.log(transfers);
 
   const addNextHandler = () => {
-    dispatch(getNextTransfersAction(data.transfers));
+    dispatch(getNextTransfersAction(transfers.data));
   };
 
   useEffect(() => {
@@ -56,14 +56,17 @@ export default function PassengerPage() {
           </Box>
         ) : // <TransfersList transfers={data.transfers} />
         isNewDesign() ? (
-          data.transfers.map((transfer, i) => <TransferCardComponent key={i} transfer={transfer} />)
+          transfers.data.map((transfer, i) => <TransferCardComponent key={i} transfer={transfer} />)
         ) : (
-          data.transfers.map((transfer, i) => <Transfer key={i} transfer={transfer} />)
+          transfers.data.map((transfer, i) => <Transfer key={i} transfer={transfer} />)
         )}
-        {data.transfers.length === 0 && data.isFilterApply && <Alert severity="warning">{i18n.t("NothingFound")}</Alert>}
+        {transfers.data.length === 0 && filters.isFilterApply && (
+          <Alert severity="warning">{i18n.t("NothingFound")}</Alert>
+        )}
+        {transfers.msg && <Alert severity="error">transfers.msg</Alert>}
       </div>
       <div style={{ width: "200px", margin: "10px auto", textAlign: "center" }}>
-        {data.nextTransfers.length === PAGE_SIZE && data.transfers.length !== 0 && !data.isFilterApply && (
+        {transfers.data.length !== 0 && !filters.isFilterApply && (
           <LoadingButton
             variant="contained"
             loading={loading.isLoadingNextTransfers}
