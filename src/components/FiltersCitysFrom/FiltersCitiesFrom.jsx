@@ -1,9 +1,9 @@
 import classes from "../Filter/FilterComponent.module.css";
-import { getCityByName } from "../../utils/cities";
+import { getCityByName, getCityByNameRu } from "../../utils/cities";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
 import FilterComponent from "../Filter/FilterComponent";
-import { getFilters } from "../../redux/selectors";
+import { getFilters, getLanguage } from "../../redux/selectors";
 import { applyFilterFromCityIdAction, filtersCityFromAction } from "../../redux/actions/filters-actions";
 import { getTransfersAction } from "../../redux/actions/transfers-actions";
 import i18n from "../../i18n";
@@ -14,6 +14,7 @@ export default function FiltersCitiesFrom() {
   const filters = useSelector(getFilters);
   const [fromCity, setFromCity] = useState("");
   const [isDiscard, setDiscard] = useState(false);
+  const [isFilterApply, setFilterApply] = useState(false);
 
   console.log(filters);
 
@@ -22,19 +23,26 @@ export default function FiltersCitiesFrom() {
   }, [dispatch]);
 
   const handleApplyFilter = () => {
+    setFilterApply(true);
     setDiscard(false);
-    const city = getCityByName(fromCity);
+    let city = getCityByName(fromCity);
+    console.log(city);
+    if (!city) {
+      city = getCityByNameRu(fromCity);
+    }
     dispatch(applyFilterFromCityIdAction(city ? city.ID : NaN));
   };
 
   const handleDiscardFilter = () => {
     setDiscard(true);
+    setFilterApply(true);
     setFromCity("");
     dispatch(getTransfersAction());
   };
 
   const handleInputFrom = (e, v) => {
     setFromCity(v);
+    setFilterApply(false);
   };
 
   return (
@@ -47,7 +55,7 @@ export default function FiltersCitiesFrom() {
         // getOptionLabel={(o) => o.name}
       />
       <div className={classes.filter_buttons}>
-        {filters.isFilterApply ? (
+        {isFilterApply ? (
           <Button disabled={isDiscard} variant="contained" color="primary" onClick={handleDiscardFilter}>
             {i18n.t("Discard")}
           </Button>
