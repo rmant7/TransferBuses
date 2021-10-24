@@ -14,7 +14,6 @@ import TransferCardComponent from "../future/TransferCard/TransferCardComponent"
 import { LoadingButton } from "@mui/lab";
 import { Alert } from "@mui/material";
 import i18n from "../../i18n";
-import { MAX_PAGE_SIZE } from "../../utils/constants";
 // import "./PassengerPage.css";
 
 function isNewDesign() {
