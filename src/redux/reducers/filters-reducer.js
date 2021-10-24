@@ -1,15 +1,17 @@
-import { SET_FILTERS, SET_SELECT_FILTER } from "../actions/filters-actions";
+import { SET_FILTER_FROM_CITIES, SET_IS_FILTER_APPLY } from "../actions/filters-actions";
 
 const filtersState = {
-    filters: [],
+  isFilterApply: false,
+  fromCities: [],
 };
 
 export function filtersReducer(state = filtersState, action) {
-    return action.type === SET_FILTERS ? action.payload : state;
-}
-
-const selectedFiletrState = {};
-
-export function selectFilterReducer(state = selectedFiletrState, action) {
-    return action.type === SET_SELECT_FILTER ? action.payload : state;
+  switch (action.type) {
+    case SET_IS_FILTER_APPLY:
+      return { ...state, isFilterApply: action.payload };
+    case SET_FILTER_FROM_CITIES:
+      return { ...state, fromCities: action.payload };
+    default:
+      return state;
+  }
 }

@@ -1,32 +1,28 @@
-import { SET_FILTER_APPLY } from "../actions/filters-actions";
-import { SET_NEXT_TRANSFERS, SET_SAVE_NEW_TRANSFER, SET_TRANSFERS } from "../actions/transfers-actions";
+import { SET_DATA, SET_IS_RECEIVED, SET_MESSAGE, SET_SAVE_NEW_TRANSFER } from "../actions/transfers-actions";
 
 const receiveTransfersState = {
-  isFilterApply: false,
-  transfers: [],
-  nextTransfers: [],
+  isReceived: false,
+  data: [],
+  msg: "",
 };
 
 export function transfersReducer(state = receiveTransfersState, action) {
   switch (action.type) {
-    case SET_FILTER_APPLY:
-      return { ...state, isFilterApply: action.payload };
-    case SET_TRANSFERS:
-      return { ...state, transfers: action.payload };
-    case SET_NEXT_TRANSFERS:
-      return { ...state, nextTransfers: action.payload };
+    case SET_IS_RECEIVED:
+      return { ...state, isReceived: action.payload };
+    case SET_DATA:
+      return { ...state, data: action.payload };
+    case SET_MESSAGE:
+      return { ...state, msg: action.payload };
     default:
       return state;
   }
 }
 
-export function fromCityTransfersReducer(state = receiveTransfersState, action) {
-  return action.type === SET_TRANSFERS ? action.payload : state;
-}
-
 const newTransferState = {
   isAdded: false,
-  transfer: {},
+  data: {},
+  msg: "",
 };
 
 export function saveNewTransferReducer(state = newTransferState, action) {
