@@ -8,6 +8,10 @@ export function getCityById(id) {
     return cities.find(city => city.ID === id);
 }
 
-export function getCityByName(name, language) {
-    return cities.find(city => language === "ru" ? city.name_ru === name : city.name === name);
+export function getCityByName(name) {
+    return cities.find(city => city.name === name);
+}
+
+export function getCityByNameRu(name) {
+    return cities.find(city => city.name_ru === name);
 }
