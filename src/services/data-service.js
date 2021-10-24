@@ -1,9 +1,8 @@
 import { getNewDb } from "../config/build-config";
 import { fb } from "../config/firebase-config";
+import { MAX_PAGE_SIZE, TIMESTAMP_FIELD } from "../utils/constants";
 
 const fireBaseCollection = getNewDb();
-export const PAGE_SIZE = 15;
-const ORDER_BY_FIELD = "_id";
 
 function getUniqueId() {
   return Math.random() * Math.floor(Math.random() * Date.now());
@@ -13,23 +12,23 @@ function getFBCollection() {
   return fb.firestore().collection(fireBaseCollection);
 }
 
-function getNextTransfersQuery(pageSize) {
-  return getFBCollection().orderBy(ORDER_BY_FIELD).limit(pageSize);
+function getNextTransfersQuery() {
+  return getFBCollection().orderBy(TIMESTAMP_FIELD).limit(MAX_PAGE_SIZE);
 }
 
-function getNextTransfersFromLastQuery(last, pageSize) {
+function getNextTransfersFromLastQuery(last) {
   // delete lastTransfer.id;
   console.log("last: ", last);
-  return getFBCollection().orderBy(ORDER_BY_FIELD).startAfter(last._id).limit(pageSize);
+  return getNextTransfersQuery().startAt(last.timestamp);
 }
 
 export async function getTransfersByFromCityId(fromCityId) {
   console.log(fromCityId);
   try {
     const collection = await getFBCollection().where("from", "==", fromCityId).get();
-    const data = collection.docs.map((v) => {
-      console.log(v.data());
-      return v.data();
+    const data = collection.docs.map((doc) => {
+      console.log(doc.data());
+      return { ...doc.data(), _documentId: doc.id };
     });
     return data;
   } catch (error) {
@@ -44,7 +43,11 @@ export async function uploadTransfer(transfer) {
   }
   try {
     const collection = fb.firestore().collection(fireBaseCollection);
-    const response = await collection.add({ ...transfer, _id: getUniqueId(), timestamp: Date.now() });
+    const response = await collection.add({
+      ...transfer,
+      _id: getUniqueId(),
+      timestamp: new Date().toJSON(),
+    });
     console.log("response id", response.id);
   } catch (error) {
     console.error(error);
@@ -60,11 +63,11 @@ export async function uploadNewTransfer(transfer) {
 
 export async function getTransfers() {
   try {
-    const collection = await getNextTransfersQuery(PAGE_SIZE).get();
+    const collection = await getNextTransfersQuery().get();
     // rewrite("transfers", "transfers-id-timestamp");
     // rewrite("dev-transfers", "dev-transfers-id-timestamp");
     const transfers = collection.docs.map((doc) => {
-      return doc.data();
+      return { ...doc.data(), _documentId: doc.id };
     });
     console.log("received transfers: ", transfers);
     return transfers;
@@ -74,11 +77,25 @@ export async function getTransfers() {
   }
 }
 
+export async function getAllTransfers() {
+  try {
+    const collection = await getFBCollection().get();
+    const transfers = collection.docs.map((doc) => {
+      return { ...doc.data(), _documentId: doc.id };
+    });
+    console.log("received all transfers: ", transfers);
+    return transfers;
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(error);
+  }
+}
+
 export async function getNextTransfers(last) {
   try {
-    const collection = await getNextTransfersFromLastQuery(last, PAGE_SIZE).get();
+    const collection = await getNextTransfersFromLastQuery(last).get();
     const transfers = collection.docs.map((doc) => {
-      return doc.data();
+      return { ...doc.data(), _documentId: doc.id };
     });
     console.log("next transfers: ", transfers);
     return transfers;
@@ -92,7 +109,7 @@ async function rewrite(dbFrom, dbTo) {
   const c = await fb.firestore().collection(dbFrom).get();
   c.docs.forEach((v) => {
     console.log("old: ", v.data());
-    const res = { ...v.data(), _id: getUniqueId(), timestamp: new Date().toJSON() };
+    const res = { ...v.data(), _id: getUniqueId(), _timestamp: new Date().toJSON() };
     fb.firestore().collection(dbTo).add(res);
     console.log("new: ", res);
   });
