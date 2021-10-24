@@ -1,17 +1,13 @@
 import { combineReducers } from "redux";
 import appReducer from "./reducers/app-reducer";
-import { filtersReducer, selectFilterReducer } from "./reducers/filters-reducer";
-import { inputFromToCityReducer } from "./reducers/inputs-reducer";
+import { filtersReducer } from "./reducers/filters-reducer";
 import { loadingReducer } from "./reducers/loading-reducer";
-import { fromCityTransfersReducer, saveNewTransferReducer, transfersReducer } from "./reducers/transfers-reducer";
+import { saveNewTransferReducer, transfersReducer } from "./reducers/transfers-reducer";
 
 export const rootReducer = combineReducers({
     app: appReducer,
-    transfersData: transfersReducer,
+    transfers: transfersReducer,
     saveNewTransfer: saveNewTransferReducer,
-    fromCityTransfersData: fromCityTransfersReducer,
     filters: filtersReducer,
-    selectFilter: selectFilterReducer,
-    inputFromToCity: inputFromToCityReducer,
     loading: loadingReducer
 });
