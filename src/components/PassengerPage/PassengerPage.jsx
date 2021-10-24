@@ -14,6 +14,7 @@ import TransferCardComponent from "../future/TransferCard/TransferCardComponent"
 import { LoadingButton } from "@mui/lab";
 import { Alert } from "@mui/material";
 import i18n from "../../i18n";
+import { MAX_PAGE_SIZE } from "../../utils/constants";
 // import "./PassengerPage.css";
 
 function isNewDesign() {
@@ -63,10 +64,10 @@ export default function PassengerPage() {
         {transfers.data.length === 0 && filters.isFilterApply && (
           <Alert severity="warning">{i18n.t("NothingFound")}</Alert>
         )}
-        {transfers.msg && <Alert severity="error">transfers.msg</Alert>}
+        {transfers.msg && <Alert severity="error">{transfers.msg}</Alert>}
       </div>
       <div style={{ width: "200px", margin: "10px auto", textAlign: "center" }}>
-        {transfers.data.length !== 0 && !filters.isFilterApply && (
+        {transfers.data.length !== 0 && transfers.isNext && !filters.isFilterApply && (
           <LoadingButton
             variant="contained"
             loading={loading.isLoadingNextTransfers}
