@@ -2,23 +2,20 @@ type BuildModeData = {
   mode: string;
   developer: string;
   version: string;
-  db: string;
+  collection: string;
+  filterFromCityCollection: string;
 };
 
 export const getMode = (): string => {
   return process.env.REACT_APP_BUILD_MODE as string;
 };
 
-export const getDb = (): string => {
-  return process.env.REACT_APP_DB as string;
+export const getCollection = (): string => {
+  return process.env.REACT_APP_FIREBASE_COLLECTION as string;
 };
 
-export const getNewDb = (): string => {
-  return process.env.REACT_APP_DB_NEW as string;
-};
-
-export const getBackupDb = (): string => {
-  return process.env.REACT_APP_DB_BACKUP as string;
+export const getFromCityCollection = (): string => {
+  return process.env.REACT_APP_FIREBASE_COLLECTION_FILTER_FROM_CITY as string;
 };
 
 export const getDeveloper = (): string => {
@@ -34,6 +31,7 @@ export const getBuildMode = (): BuildModeData => {
     mode: getMode(),
     developer: getDeveloper(),
     version: `v.${getVersion()}`,
-    db: getDb(),
+    collection: getCollection(),
+    filterFromCityCollection: getFromCityCollection(),
   };
 };

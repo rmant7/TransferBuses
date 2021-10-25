@@ -2,7 +2,7 @@ import _ from "lodash";
 import { getAllTransfers, getTransfersByFromCityId } from "../../services/data-service";
 import { getCityById } from "../../utils/cities";
 import { loadingTransfersAction } from "./loading-actions";
-import { SET_DATA, SET_IS_RECEIVED, SET_MESSAGE } from "./transfers-actions";
+import {SET_TRANSFERS_DATA, SET_TRANSFERS_IS_RECEIVED, SET_TRANSFERS_MESSAGE, } from "./transfers-actions";
 
 export const SET_FILTER_FROM_CITIES = "set-filter-from-cities";
 export const SET_IS_FILTER_APPLY = "set-is-filters-apply";
@@ -17,20 +17,20 @@ export function applyFilterFromCityIdAction(city) {
         payload: true,
       });
       dispatch({
-        type: SET_IS_RECEIVED,
+        type: SET_TRANSFERS_IS_RECEIVED,
         payload: true,
       });
       dispatch({
-        type: SET_DATA,
+        type: SET_TRANSFERS_DATA,
         payload: filteredTransfers.slice(),
       });
     } catch (e) {
       dispatch({
-        type: SET_IS_RECEIVED,
+        type: SET_TRANSFERS_IS_RECEIVED,
         payload: false,
       });
       dispatch({
-        type: SET_MESSAGE,
+        type: SET_TRANSFERS_MESSAGE,
         payload: e,
       });
     } finally {
