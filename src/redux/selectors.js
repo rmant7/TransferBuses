@@ -3,6 +3,7 @@ export const getLanguage = (state) => state.app.lang;
 export const getSaveNewTransfer = (state) => state.saveNewTransfer;
 export const getSidebar = (state) => state.app.sidebar;
 export const getTransfers = (state) => state.transfers;
+export const getTransfer = (state) => state.transfer;
 export const getFromCityTransfers = (state) => state.fromCityTransfers;
 export const getFilters = (state) => state.filters;
 export const getLoading = (state) => state.loading;

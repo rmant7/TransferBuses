@@ -105,6 +105,20 @@ export async function getTransfers() {
   }
 }
 
+export async function getTransfer(id) {
+  try {
+    const collection = await getFBCollection(mode.collection).where("_id", "==", id).get();
+    const transfer = collection.docs.map((doc) => {
+      return { ...doc.data(), _documentId: doc.id };
+    });
+    console.log("received transfer: ", transfer);
+    return transfer[0];
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(error);
+  }
+}
+
 export async function getAllTransfers() {
   try {
     const collection = await getFBCollection(mode.collection).get();
