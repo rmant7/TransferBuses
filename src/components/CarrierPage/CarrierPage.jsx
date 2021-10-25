@@ -58,7 +58,7 @@ export default function CarrierPage() {
   const dispatch = useDispatch();
   const cur = useSelector((state) => state.app.currency);
   const lang = useSelector((state) => state.app.lang);
-  const loading = useSelector(getLoading).isLoadingNewTransfer;
+  const loading = useSelector(getLoading);
   const classes = useStyles();
   const [rideCurrency, setRideCurrency] = useState(cur);
   // const [messenger, setMessenger] = useState();
@@ -771,7 +771,7 @@ export default function CarrierPage() {
                 }
               />
               <div style={{ margin: "10px" }} className={"submitBtn"}>
-                <LoadingButton loading={loading} color="primary" variant="contained" fullWidth type="submit">
+                <LoadingButton loading={loading.isLoadingNewTransfer} color="primary" variant="contained" fullWidth type="submit">
                   {i18n.t("Publish a ride")}
                 </LoadingButton>
                 <Dialog open={open} onClose={handleClose} aria-labelledby="responsive-dialog-title">
