@@ -1,7 +1,14 @@
 import { MainPage, PassengerPage, BusPage, CarrierPage, TransferPage } from "../components";
 import TransferViewComponent from "../components/future/TransferCard/TransferView/TransferViewComponent";
 import { Contacts } from "../pages";
-import { ADD_TRANSFER_ROUTE, BUS_ROUTE, CONTACTS_ROUTE, MAIN_ROUTE, TRANSFERS_ROUTE, TRANSFER_ROUTE } from "../utils/constants";
+import {
+  ADD_TRANSFER_ROUTE,
+  BUS_ROUTE,
+  CONTACTS_ROUTE,
+  MAIN_ROUTE,
+  TRANSFERS_ROUTE,
+  TRANSFER_ROUTE,
+} from "../utils/constants";
 
 export const publicRoutes = [
   {
