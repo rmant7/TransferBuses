@@ -18,6 +18,7 @@ export function getTransfersAction() {
     });
     try {
       const transfers = await getTransfers();
+      dispatch(loadingNextTransfersAction(false));
       dispatch({
         type: SET_TRANSFERS_IS_NEXT,
         payload: transfers.length === MAX_PAGE_SIZE,
