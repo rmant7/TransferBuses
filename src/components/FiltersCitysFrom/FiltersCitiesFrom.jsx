@@ -3,7 +3,7 @@ import { getCityByName, getCityByNameRu } from "../../utils/cities";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
 import FilterComponent from "../Filter/FilterComponent";
-import { getFilters, getLanguage } from "../../redux/selectors";
+import { getFilters } from "../../redux/selectors";
 import { applyFilterFromCityIdAction, filtersCityFromAction } from "../../redux/actions/filters-actions";
 import { getTransfersAction } from "../../redux/actions/transfers-actions";
 import i18n from "../../i18n";
@@ -26,7 +26,6 @@ export default function FiltersCitiesFrom() {
     setFilterApply(true);
     setDiscard(false);
     let city = getCityByName(fromCity);
-    console.log(city);
     if (!city) {
       city = getCityByNameRu(fromCity);
     }
