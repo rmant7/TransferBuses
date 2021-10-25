@@ -1,5 +1,6 @@
 export const SET_LOADING = "set-loading";
 export const SET_LOADING_TRANSFERS = "set-loading-transfers";
+export const SET_LOADING_TRANSFER = "set-loading-transfer";
 export const SET_LOADING_NEXT_TRANSFERS = "set-loading-next-transfers";
 export const SET_LOADING_UPLOAD_TRANSFER = "set-loading-upload-transfer";
 
@@ -9,6 +10,10 @@ export function loadingAction(isLoading) {
 
 export function loadingTransfersAction(isLoading) {
   return (dispatch) => dispatch({ type: SET_LOADING_TRANSFERS, payload: isLoading });
+}
+
+export function loadingTransferAction(isLoading) {
+  return (dispatch) => dispatch({ type: SET_LOADING_TRANSFER, payload: isLoading });
 }
 
 export function loadingNextTransfersAction(isLoading) {
