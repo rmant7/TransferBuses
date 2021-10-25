@@ -41,7 +41,7 @@ export async function uploadTransfer(transfer) {
     const response = await collection.add({
       ...transfer,
       _id: generate(),
-      timestamp: new Date().toJSON(),
+      _timestamp: new Date().toJSON(),
     });
     // await uploadFilterFromCity(transfer.from);
     console.log("response", response);
@@ -93,7 +93,7 @@ export async function getTransfers() {
   try {
     const collection = await getNextTransfersQuery().get();
     // rewrite("transfers-id-timestamp", "transfers-new");
-    // rewrite("dev-transfers-new", "dev-transfers-id-timestamp");
+    // rewrite("dev-transfers-id-timestamp", "dev-transfers-new");
     const transfers = collection.docs.map((doc) => {
       return { ...doc.data(), _documentId: doc.id };
     });
@@ -138,6 +138,7 @@ async function rewrite(dbFrom, dbTo) {
   c.docs.forEach((v) => {
     console.log("old: ", v.data());
     const res = { ...v.data(), _id: generate(), _timestamp: new Date().toJSON() };
+    delete res.timestamp;
     fb.firestore().collection(dbTo).add(res);
     console.log("new: ", res);
   });
