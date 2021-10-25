@@ -10,7 +10,7 @@ function getFBCollection(name) {
 }
 
 function getNextTransfersQuery() {
-  return getFBCollection(mode.collection).orderBy(TIMESTAMP_FIELD).limit(MAX_PAGE_SIZE);
+  return getFBCollection(mode.collection).orderBy(TIMESTAMP_FIELD, "desc").limit(MAX_PAGE_SIZE);
 }
 
 function getNextTransfersFromLastQuery(last) {
