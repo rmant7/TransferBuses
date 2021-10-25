@@ -1,31 +1,26 @@
-import { getNewDb } from "../config/build-config";
+import { getBuildMode } from "../config/build-config";
 import { fb } from "../config/firebase-config";
 import { MAX_PAGE_SIZE, TIMESTAMP_FIELD } from "../utils/constants";
+import { generate } from "../utils/unique-id-util";
 
-const fireBaseCollection = getNewDb();
+const mode = getBuildMode();
 
-function getUniqueId() {
-  return Math.random() * Math.floor(Math.random() * Date.now());
-}
-
-function getFBCollection() {
-  return fb.firestore().collection(fireBaseCollection);
+function getFBCollection(name) {
+  return fb.firestore().collection(name);
 }
 
 function getNextTransfersQuery() {
-  return getFBCollection().orderBy(TIMESTAMP_FIELD).limit(MAX_PAGE_SIZE);
+  return getFBCollection(mode.collection).orderBy(TIMESTAMP_FIELD).limit(MAX_PAGE_SIZE);
 }
 
 function getNextTransfersFromLastQuery(last) {
-  // delete lastTransfer.id;
-  console.log("last: ", last);
   return getNextTransfersQuery().startAt(last.timestamp);
 }
 
 export async function getTransfersByFromCityId(fromCityId) {
   console.log(fromCityId);
   try {
-    const collection = await getFBCollection().where("from", "==", fromCityId).get();
+    const collection = await getFBCollection(mode.collection).where("from", "==", fromCityId).get();
     const data = collection.docs.map((doc) => {
       console.log(doc.data());
       return { ...doc.data(), _documentId: doc.id };
@@ -42,13 +37,14 @@ export async function uploadTransfer(transfer) {
     delete transfer.regularTripsDays;
   }
   try {
-    const collection = fb.firestore().collection(fireBaseCollection);
+    const collection = fb.firestore().collection(mode.collection);
     const response = await collection.add({
       ...transfer,
-      _id: getUniqueId(),
+      _id: generate(),
       timestamp: new Date().toJSON(),
     });
-    console.log("response id", response.id);
+    // await uploadFilterFromCity(transfer.from);
+    console.log("response", response);
   } catch (error) {
     console.error(error);
     return Promise.reject(error);
@@ -61,11 +57,43 @@ export async function uploadNewTransfer(transfer) {
   return response;
 }
 
+export async function uploadFilterFromCity(cityId) {
+  const fromCity = getFilterFromCity(cityId);
+  if (!fromCity) {
+    const response = await getFBCollection(mode.filterFromCityCollection)
+      .add({ _id: cityId, count: 1 })
+      .then((response) => response.data);
+    console.log(response);
+  } else {
+    const response = await getFBCollection(mode.filterFromCityCollection)
+      .doc(fromCity._id)
+      .update({ count: fromCity.count + 1 })
+      .then(() => console.log("Document successfully updated!"));
+    console.log(response);
+  }
+}
+
+export async function getFilterFromCity(cityId) {
+  const response = await getFBCollection(mode.filterFromCityCollection)
+    .where("_id", "==", cityId)
+    .then((response) => response.data);
+  console.log(response);
+  return response;
+}
+
+export async function getAllFiltersFromCity() {
+  const collection = await getFBCollection(mode.filterFromCityCollection).get();
+  const filtersFromCity = collection.docs.map((doc) => {
+    return { ...doc.data(), _documentId: doc.id };
+  });
+  return filtersFromCity;
+}
+
 export async function getTransfers() {
   try {
     const collection = await getNextTransfersQuery().get();
-    // rewrite("transfers", "transfers-id-timestamp");
-    // rewrite("dev-transfers", "dev-transfers-id-timestamp");
+    // rewrite("transfers-id-timestamp", "transfers-new");
+    // rewrite("dev-transfers-new", "dev-transfers-id-timestamp");
     const transfers = collection.docs.map((doc) => {
       return { ...doc.data(), _documentId: doc.id };
     });
@@ -79,7 +107,7 @@ export async function getTransfers() {
 
 export async function getAllTransfers() {
   try {
-    const collection = await getFBCollection().get();
+    const collection = await getFBCollection(mode.collection).get();
     const transfers = collection.docs.map((doc) => {
       return { ...doc.data(), _documentId: doc.id };
     });
@@ -109,7 +137,7 @@ async function rewrite(dbFrom, dbTo) {
   const c = await fb.firestore().collection(dbFrom).get();
   c.docs.forEach((v) => {
     console.log("old: ", v.data());
-    const res = { ...v.data(), _id: getUniqueId(), _timestamp: new Date().toJSON() };
+    const res = { ...v.data(), _id: generate(), _timestamp: new Date().toJSON() };
     fb.firestore().collection(dbTo).add(res);
     console.log("new: ", res);
   });
