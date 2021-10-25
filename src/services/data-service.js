@@ -14,7 +14,7 @@ function getNextTransfersQuery() {
 }
 
 function getNextTransfersFromLastQuery(last) {
-  return getNextTransfersQuery().startAt(last.timestamp);
+  return getNextTransfersQuery().startAt(last._timestamp);
 }
 
 export async function getTransfersByFromCityId(fromCityId) {
