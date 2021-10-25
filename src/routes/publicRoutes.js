@@ -1,14 +1,7 @@
 import { MainPage, PassengerPage, BusPage, CarrierPage, TransferPage } from "../components";
 import TransferViewComponent from "../components/future/TransferCard/TransferView/TransferViewComponent";
 import { Contacts } from "../pages";
-import {
-  MAIN_ROUTE,
-  PASSENGER_ROUTE,
-  BUS_ROUTE,
-  DRIVER_ROUTE,
-  TRANSFER_ROUTE,
-  CONTACTS_ROUTE,
-} from "../utils/constants";
+import { ADD_TRANSFER_ROUTE, BUS_ROUTE, CONTACTS_ROUTE, MAIN_ROUTE, TRANSFERS_ROUTE, TRANSFER_ROUTE } from "../utils/constants";
 
 export const publicRoutes = [
   {
@@ -16,11 +9,11 @@ export const publicRoutes = [
     Component: MainPage,
   },
   {
-    path: `${PASSENGER_ROUTE}/:id`,
+    path: `${TRANSFERS_ROUTE}/:id`,
     Component: TransferViewComponent,
   },
   {
-    path: PASSENGER_ROUTE,
+    path: TRANSFERS_ROUTE,
     Component: PassengerPage,
   },
   {
@@ -28,7 +21,7 @@ export const publicRoutes = [
     Component: BusPage,
   },
   {
-    path: DRIVER_ROUTE,
+    path: ADD_TRANSFER_ROUTE,
     Component: CarrierPage,
   },
   {
