@@ -6,7 +6,6 @@ import { currencies } from "../../../utils/currencies";
 import { getCityById } from "../../../utils/cities";
 import { getCurrency, getLanguage } from "../../../redux/selectors";
 import { Button, Divider } from "@material-ui/core";
-import { PASSENGER_ROUTE } from "../../../utils/constants";
 import ArrowIcon from "../../../assets/upward-arrow.png";
 import ScheduleIcon from "../../../assets/schedule.png";
 import PetsAllowedIcon from "../../../assets/pets-allowed.png";
@@ -14,6 +13,7 @@ import ParcelIcon from "../../../assets/parcel.png";
 import WalletIcon from "../../../assets/wallet.png";
 import TimingIcon from "../../../assets/timing.png";
 import { months_en } from "../../../utils/months-util";
+import { TRANSFERS_ROUTE } from "../../../utils/constants";
 
 export default function TransferCardComponent({ transfer, id }) {
   const globalCurrencyCode = useSelector(getCurrency);
@@ -103,7 +103,7 @@ export default function TransferCardComponent({ transfer, id }) {
           size="medium"
           color="primary"
           variant="contained"
-          onClick={() => history.push(`${PASSENGER_ROUTE}/${transfer._id}`)}
+          onClick={() => history.push(`${TRANSFERS_ROUTE}/${transfer._id}`)}
           style={{ marginRight: "0", marginLeft: "auto" }}
         >
           {i18n.t("More")}
