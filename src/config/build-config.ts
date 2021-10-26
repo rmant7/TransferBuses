@@ -4,6 +4,7 @@ type BuildModeData = {
   version: string;
   collection: string;
   filterFromCityCollection: string;
+  filterToCityCollection: string;
 };
 
 export const getMode = (): string => {
@@ -16,6 +17,10 @@ export const getCollection = (): string => {
 
 export const getFromCityCollection = (): string => {
   return process.env.REACT_APP_FIREBASE_COLLECTION_FILTER_FROM_CITY as string;
+};
+
+export const getToCityCollection = (): string => {
+  return process.env.REACT_APP_FIREBASE_COLLECTION_FILTER_TO_CITY as string;
 };
 
 export const getDeveloper = (): string => {
@@ -32,6 +37,7 @@ export const getBuildMode = (): BuildModeData => {
     developer: getDeveloper(),
     version: `v.${getVersion()}`,
     collection: getCollection(),
-    filterFromCityCollection: getFromCityCollection(),
+    filterFromCityCollection: `${getCollection()}-${getFromCityCollection()}`,
+    filterToCityCollection: `${getCollection()}-${getToCityCollection()}`,
   };
 };
