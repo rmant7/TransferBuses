@@ -7,11 +7,11 @@ import {
 } from "../actions/loading-actions";
 
 const defaultLoadingState = {
-  isLoading: true,
-  isLoadingTransfers: true,
-  isLoadingTransfer: true,
-  isLoadingNextTransfers: true,
-  isLoadingNewTransfer: true,
+  isLoading: false,
+  isLoadingTransfers: false,
+  isLoadingTransfer: false,
+  isLoadingNextTransfers: false,
+  isLoadingNewTransfer: false,
 };
 
 export function loadingReducer(state = defaultLoadingState, action) {

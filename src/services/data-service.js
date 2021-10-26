@@ -37,17 +37,17 @@ export async function getTransfersByFromCityId(fromCityId) {
 }
 
 export async function uploadTransfer(transfer) {
-  if (!transfer.regularTrips) {
-    delete transfer.regularTripsDays;
-  }
   try {
-    const collection = fb.firestore().collection(mode.collection);
-    const response = await collection.add({
-      ...transfer,
-      _id: generate(),
-      _timestamp: new Date().toJSON(),
-    });
-    // await uploadFilterFromCity(transfer.from);
+    const _id = generate();
+    const response = await getFBTransfersCollection()
+      .doc(_id)
+      .set({
+        ...transfer,
+        _id,
+        _timestamp: new Date().toJSON(),
+      });
+    await uploadFilterFromCity(transfer.from);
+    await uploadFilterToCity(transfer.to);
     console.log("response", response);
   } catch (error) {
     console.error(error);
@@ -73,34 +73,64 @@ export async function uploadNewTransfer(transfer) {
   }
 }
 
-export async function uploadFilterFromCity(cityId) {
-  const fromCity = getFilterFromCity(cityId);
-  if (!fromCity) {
-    const response = await getFBCollection(mode.filterFromCityCollection)
+export async function uploadFilterToCity(cityId) {
+  const toCity = await getFilterToCity(cityId);
+  console.log(toCity);
+  if (!toCity) {
+    const response = await getFBCollection(mode.filterToCityCollection)
       .doc(cityId)
-      .set({ _id: cityId, count: 1 })
-      .then((response) => response.data);
+      .set({ _id: cityId, count: 1 });
     console.log(response);
   } else {
-    const response = await getFBCollection(mode.filterFromCityCollection)
-      .doc(fromCity._id)
-      .update({ count: fromCity.count + 1 })
+    const response = await getFBCollection(mode.filterToCityCollection)
+      .doc(toCity._id)
+      .update({ count: toCity.count + 1 })
       .then(() => console.log("Document successfully updated!"));
     console.log(response);
   }
 }
 
+export async function uploadFilterFromCity(cityId) {
+  const fromCity = await getFilterFromCity(cityId);
+  if (!fromCity) {
+    const response = await getFBCollection(mode.filterFromCityCollection)
+      .doc(cityId)
+      .set({ _id: cityId, count: 1 });
+    console.log(response);
+  } else {
+    await getFBCollection(mode.filterFromCityCollection)
+      .doc(fromCity._id)
+      .update({ count: fromCity.count + 1 })
+      .then(() => console.log("Document successfully updated!"));
+  }
+}
+
+export async function getFilterToCity(cityId) {
+  const response = await getFBCollection(mode.filterToCityCollection)
+    .doc(cityId)
+    .get()
+    .then((v) => v.data());
+  return response;
+}
+
+export async function getAllFiltersToCity() {
+  const collection = await getFBCollection(mode.filterToCityCollection).get();
+  const filters = collection.docs.map((doc) => doc.data());
+  return filters;
+}
+
 export async function getFilterFromCity(cityId) {
-  const response = await getFBCollection(mode.filterFromCityCollection).doc(cityId).get();
-  // .then((response) => response.data);
-  console.log(response);
-  return response.data();
+  const response = await getFBCollection(mode.filterFromCityCollection)
+    .doc(cityId)
+    .get()
+    .then((v) => v.data());
+  return response;
 }
 
 export async function getAllFiltersFromCity() {
   const collection = await getFBCollection(mode.filterFromCityCollection).get();
-  const filtersFromCity = collection.docs.map((doc) => doc.data());
-  return filtersFromCity;
+  const filters = collection.docs.map((doc) => doc.data());
+  return filters;
 }
 
 export async function getTransfers() {
@@ -165,6 +195,8 @@ async function rewrite(dbFrom, dbTo) {
     console.log("old: ", v.data());
     const res = { ...v.data(), _id, _timestamp: new Date().toJSON() };
     delete res.timestamp;
+    // uploadFilterFromCity(v.data().from);
+    // uploadFilterToCity(v.data().to);
     fb.firestore().collection(dbTo).doc(_id).set(res);
     console.log("new: ", res);
   });
