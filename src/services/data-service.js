@@ -9,8 +9,12 @@ function getFBCollection(name) {
   return fb.firestore().collection(name);
 }
 
+function getFBTransfersCollection() {
+  return fb.firestore().collection(mode.collection);
+}
+
 function getNextTransfersQuery() {
-  return getFBCollection(mode.collection).orderBy(TIMESTAMP_FIELD, "desc").limit(MAX_PAGE_SIZE);
+  return getFBTransfersCollection().orderBy(TIMESTAMP_FIELD, "desc").limit(MAX_PAGE_SIZE);
 }
 
 function getNextTransfersFromLastQuery(last) {
@@ -20,7 +24,7 @@ function getNextTransfersFromLastQuery(last) {
 export async function getTransfersByFromCityId(fromCityId) {
   console.log(fromCityId);
   try {
-    const collection = await getFBCollection(mode.collection).where("from", "==", fromCityId).get();
+    const collection = await getFBTransfersCollection().where("from", "==", fromCityId).get();
     const data = collection.docs.map((doc) => {
       console.log(doc.data());
       return { ...doc.data(), _documentId: doc.id };
@@ -52,16 +56,29 @@ export async function uploadTransfer(transfer) {
 }
 
 export async function uploadNewTransfer(transfer) {
-  const response = await getTransfersByFromCityId().add(transfer);
-  console.log("response", response);
-  return response;
+  try {
+    const _id = generate();
+    const response = await getFBTransfersCollection()
+      .doc(_id)
+      .set({
+        ...transfer,
+        _id,
+        _timestamp: new Date().toJSON(),
+      });
+    console.log("response", response);
+    return response;
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(error);
+  }
 }
 
 export async function uploadFilterFromCity(cityId) {
   const fromCity = getFilterFromCity(cityId);
   if (!fromCity) {
     const response = await getFBCollection(mode.filterFromCityCollection)
-      .add({ _id: cityId, count: 1 })
+      .doc(cityId)
+      .set({ _id: cityId, count: 1 })
       .then((response) => response.data);
     console.log(response);
   } else {
@@ -74,18 +91,15 @@ export async function uploadFilterFromCity(cityId) {
 }
 
 export async function getFilterFromCity(cityId) {
-  const response = await getFBCollection(mode.filterFromCityCollection)
-    .where("_id", "==", cityId)
-    .then((response) => response.data);
+  const response = await getFBCollection(mode.filterFromCityCollection).doc(cityId).get();
+  // .then((response) => response.data);
   console.log(response);
-  return response;
+  return response.data();
 }
 
 export async function getAllFiltersFromCity() {
   const collection = await getFBCollection(mode.filterFromCityCollection).get();
-  const filtersFromCity = collection.docs.map((doc) => {
-    return { ...doc.data(), _documentId: doc.id };
-  });
+  const filtersFromCity = collection.docs.map((doc) => doc.data());
   return filtersFromCity;
 }
 
@@ -94,9 +108,7 @@ export async function getTransfers() {
     const collection = await getNextTransfersQuery().get();
     // rewrite("transfers-id-timestamp", "transfers-new");
     // rewrite("dev-transfers-id-timestamp", "dev-transfers-new");
-    const transfers = collection.docs.map((doc) => {
-      return { ...doc.data(), _documentId: doc.id };
-    });
+    const transfers = collection.docs.map((doc) => doc.data());
     console.log("received transfers: ", transfers);
     return transfers;
   } catch (error) {
@@ -107,12 +119,13 @@ export async function getTransfers() {
 
 export async function getTransfer(id) {
   try {
-    const collection = await getFBCollection(mode.collection).where("_id", "==", id).get();
-    const transfer = collection.docs.map((doc) => {
-      return { ...doc.data(), _documentId: doc.id };
-    });
-    console.log("received transfer: ", transfer);
-    return transfer[0];
+    const doc = await getFBTransfersCollection().doc(id).get();
+    // const transfer = collection.docs.map((doc) => {
+    //   return { ...doc.data(), _documentId: doc.id };
+    // });
+    const transfer = doc.data();
+    console.log("received transfer doc: ", doc);
+    return transfer;
   } catch (error) {
     console.error(error);
     return Promise.reject(error);
@@ -121,10 +134,8 @@ export async function getTransfer(id) {
 
 export async function getAllTransfers() {
   try {
-    const collection = await getFBCollection(mode.collection).get();
-    const transfers = collection.docs.map((doc) => {
-      return { ...doc.data(), _documentId: doc.id };
-    });
+    const collection = await getFBTransfersCollection().get();
+    const transfers = collection.docs.map((doc) => doc.data());
     console.log("received all transfers: ", transfers);
     return transfers;
   } catch (error) {
@@ -137,7 +148,7 @@ export async function getNextTransfers(last) {
   try {
     const collection = await getNextTransfersFromLastQuery(last).get();
     const transfers = collection.docs.map((doc) => {
-      return { ...doc.data(), _documentId: doc.id };
+      return doc.data();
     });
     console.log("next transfers: ", transfers);
     return transfers;
@@ -150,10 +161,11 @@ export async function getNextTransfers(last) {
 async function rewrite(dbFrom, dbTo) {
   const c = await fb.firestore().collection(dbFrom).get();
   c.docs.forEach((v) => {
+    const _id = generate();
     console.log("old: ", v.data());
-    const res = { ...v.data(), _id: generate(), _timestamp: new Date().toJSON() };
+    const res = { ...v.data(), _id, _timestamp: new Date().toJSON() };
     delete res.timestamp;
-    fb.firestore().collection(dbTo).add(res);
+    fb.firestore().collection(dbTo).doc(_id).set(res);
     console.log("new: ", res);
   });
 }
