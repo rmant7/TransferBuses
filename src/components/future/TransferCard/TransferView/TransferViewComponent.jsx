@@ -27,7 +27,7 @@ export default function TransferViewComponent() {
         <Box sx={{ width: "100%" }}>
           <LinearProgress />
         </Box>
-      ) : transfer.isReceived ? (
+      ) : transfer.isReceived && transfer.data ? (
         <div>
           <p>From City: {getCityById(transfer.data.from).name}</p>
           <p>To City: {getCityById(transfer.data.to).name}</p>
