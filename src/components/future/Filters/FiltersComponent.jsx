@@ -63,59 +63,62 @@ export default function FiltersComponent() {
   }, [dispatch, fcn, pass, pets, regularTrips, tcn]);
 
   return (
-    <div className={classes.filters}>
-      <div className={classes.cities}>
-        <FilterComponent
-          label={i18n.t("FromCity")}
-          options={filters.fromCities}
-          handler={handleInputFrom}
-          inputValue={cities.from}
-          // getOptionLabel={(o) => o.name}
-        />
-        <FilterComponent
-          label={i18n.t("ToCity")}
-          options={filters.toCities}
-          handler={handleInputTo}
-          inputValue={cities.to}
-          // getOptionLabel={(o) => o.name}
-        />
-      </div>
-      <div className={classes.buttons_block}>
-        <Button
-          disabled={!isFilterApply}
-          variant="contained"
-          color="secondary"
-          onClick={() => {
-            history.push(`${TRANSFERS_PATH}`);
-            handleDiscardFilter();
-          }}
-          style={{ marginLeft: "10px", marginBottom: "10px" }}
-        >
-          {i18n.t("Discard")}
-        </Button>
-        <Button
-          disabled={cities.from === "" && cities.to === ""}
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            const f = cities.from;
-            const t = cities.to;
-            history.push(
-              `${TRANSFERS_PATH}?from=${f}&to=${t}&pass-parcel=${false}&pets-allowed=${false}&regular-trips=${false}`
-            );
-          }}
-          style={{ marginLeft: "10px", marginBottom: "10px" }}
-        >
-          {i18n.t("Apply")}
-        </Button>
-        <Button
-          disabled={cities.from === "" && cities.to === ""}
-          variant="outlined"
-          onClick={() => setCities({ from: "", to: "" })}
-          style={{ marginLeft: "10px", marginBottom: "10px" }}
-        >
-          {i18n.t("Clear")}
-        </Button>
+    <div className={classes.filters_sector}>
+      <span>{i18n.t("Filter")}</span>
+      <div className={classes.filters}>
+        <div className={classes.cities}>
+          <FilterComponent
+            label={i18n.t("FromCity")}
+            options={filters.fromCities}
+            handler={handleInputFrom}
+            inputValue={cities.from}
+            // getOptionLabel={(o) => o.name}
+          />
+          <FilterComponent
+            label={i18n.t("ToCity")}
+            options={filters.toCities}
+            handler={handleInputTo}
+            inputValue={cities.to}
+            // getOptionLabel={(o) => o.name}
+          />
+        </div>
+        <div className={classes.buttons_block}>
+          <Button
+            disabled={!isFilterApply}
+            variant="contained"
+            color="secondary"
+            onClick={() => {
+              history.push(`${TRANSFERS_PATH}`);
+              handleDiscardFilter();
+            }}
+            style={{ marginLeft: "10px", marginBottom: "10px" }}
+          >
+            {i18n.t("Discard")}
+          </Button>
+          <Button
+            disabled={cities.from === "" && cities.to === ""}
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              const f = cities.from;
+              const t = cities.to;
+              history.push(
+                `${TRANSFERS_PATH}?from=${f}&to=${t}&pass-parcel=${false}&pets-allowed=${false}&regular-trips=${false}`
+              );
+            }}
+            style={{ marginLeft: "10px", marginBottom: "10px" }}
+          >
+            {i18n.t("Apply")}
+          </Button>
+          <Button
+            disabled={cities.from === "" && cities.to === ""}
+            variant="outlined"
+            onClick={() => setCities({ from: "", to: "" })}
+            style={{ marginLeft: "10px", marginBottom: "10px" }}
+          >
+            {i18n.t("Clear")}
+          </Button>
+        </div>
       </div>
     </div>
   );

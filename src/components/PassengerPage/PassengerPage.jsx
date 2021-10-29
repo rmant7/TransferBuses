@@ -33,10 +33,7 @@ export default function PassengerPage() {
 
   return (
     <Container maxWidth="xl" className={classes.tb_padding}>
-      <div className={classes.filters_sector}>
-        <span>{i18n.t("Filter")}</span>
-        <FiltersComponent />
-      </div>
+      <FiltersComponent />
       {/* <div style={{ textAlign: "center", marginTop: "10px" }}>
         <Button
           variant="contained"

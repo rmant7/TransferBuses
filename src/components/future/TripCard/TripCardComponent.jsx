@@ -42,7 +42,6 @@ export default function TripCardComponent({ transfer }) {
           <span className={classes.text}>{lang === "en" ? to.name : to.name_ru}</span>
         </div>
       </div>
-      <Divider variant="middle" style={{ margin: "10px" }} />
       <div className={classes.content}>
         {!transfer.regularTrips ? (
           <IconTextComponent icon={ScheduleIcon} text={dateView()} />
@@ -51,10 +50,12 @@ export default function TripCardComponent({ transfer }) {
         )}
         <IconTextComponent icon={DurationIcon} text={transfer.duration ? transfer.duration : "--:--"} />
         <IconTextComponent icon={WalletIcon} text={priceToDisplay} />
-        <IconComponent icon={transfer.passAParcel ? ParcelIcon : ParcelBWIcon} />
-        <IconComponent icon={transfer.isPetsAllowed ? PetsAllowedIcon : PetsAllowedBWIcon} />
+        <div className={classes.icons_block}>
+          <IconComponent icon={transfer.passAParcel ? ParcelIcon : ParcelBWIcon} />
+          <IconComponent icon={transfer.isPetsAllowed ? PetsAllowedIcon : PetsAllowedBWIcon} />
+        </div>
       </div>
-      <Divider variant="middle" style={{ margin: "10px" }} />
+      <Divider variant="middle" style={{ marginBottom: "10px" }} />
       <div className={classes.trip_card_footer}>
         <Button
           size="medium"
