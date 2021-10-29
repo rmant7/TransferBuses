@@ -9,6 +9,8 @@ import ArrowIcon from "../../../assets/upward-arrow.png";
 import ScheduleIcon from "../../../assets/schedule.png";
 import PetsAllowedIcon from "../../../assets/pets-allowed.png";
 import ParcelIcon from "../../../assets/parcel.png";
+import PetsAllowedBWIcon from "../../../assets/pets-allowed-bw.png";
+import ParcelBWIcon from "../../../assets/parcel-bw.png";
 import WalletIcon from "../../../assets/wallet.png";
 import DurationIcon from "../../../assets/duration.png";
 import { monthsEng } from "../../../utils/months-util";
@@ -49,8 +51,8 @@ export default function TripCardComponent({ transfer }) {
         )}
         <IconTextComponent icon={DurationIcon} text={transfer.duration ? transfer.duration : "--:--"} />
         <IconTextComponent icon={WalletIcon} text={priceToDisplay} />
-        {transfer.passAParcel && <IconComponent icon={ParcelIcon} />}
-        {transfer.isPetsAllowed && <IconComponent icon={PetsAllowedIcon} />}
+        <IconComponent icon={transfer.passAParcel ? ParcelIcon : ParcelBWIcon} />
+        <IconComponent icon={transfer.isPetsAllowed ? PetsAllowedIcon : PetsAllowedBWIcon} />
       </div>
       <Divider variant="middle" style={{ margin: "10px" }} />
       <div className={classes.trip_card_footer}>
