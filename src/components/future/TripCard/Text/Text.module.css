@@ -1,0 +1,10 @@
+.text {
+  color: rgba(0, 0, 0, 0.8);
+  margin: auto 0;
+  display: flex;
+}
+
+@media (max-width: 640px) {
+  .text {
+  }
+}
