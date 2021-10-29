@@ -1,16 +1,14 @@
 import { useEffect } from "react";
-import { Box, Container, LinearProgress, Typography } from "@material-ui/core";
-import i18next from "i18next";
-import FiltersCitiesFrom from "../FiltersCitysFrom/FiltersCitiesFrom";
+import { Box, Container, LinearProgress } from "@material-ui/core";
+import Filters from "../Filters/Filters";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getNextTransfersAction, getTransfersAction } from "../../redux/actions/transfers-actions";
 import { getFilters, getLoading, getTransfers } from "../../redux/selectors";
 import Transfer from "../Transfer/Transfer";
-import filtersClasses from "../Filter/FilterComponent.module.css";
 import classes from "./PassengerPage.module.css";
 import { useStyles } from "../../utils/useStyles";
-import TransferCardComponent from "../future/TransferCard/TransferCardComponent";
+import TripCardComponent from "../future/TripCard/TripCardComponent";
 import { LoadingButton } from "@mui/lab";
 import { Alert } from "@mui/material";
 import i18n from "../../i18n";
@@ -40,12 +38,21 @@ export default function PassengerPage() {
 
   return (
     <Container maxWidth="xl" className={classes.tb_padding}>
-      <div className={filtersClasses.filters_sector}>
-        <Typography variant="button" display="block" gutterBottom>
-          {i18next.t("Filter")}
-        </Typography>
-        <FiltersCitiesFrom />
+      <div className={classes.filters_sector}>
+        <span>{i18n.t("Filter")}</span>
+        <Filters />
       </div>
+      {/* <div style={{ textAlign: "center", marginTop: "10px" }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            history.push(`${TRIPS_SEARCH_PATH}`);
+          }}
+        >
+          {i18n.t("Filters")}
+        </Button>
+      </div> */}
       {/* <Divider style={{margin: "10px"}}/> */}
       {/* {loading && <h2>Loading...</h2>} */}
       {/* {!loading && <TransfersList transfers={transfers} />} */}
@@ -56,7 +63,7 @@ export default function PassengerPage() {
           </Box>
         ) : // <TransfersList transfers={data.transfers} />
         isNewDesign() ? (
-          transfers.data.map((transfer, i) => <TransferCardComponent key={i} transfer={transfer} />)
+          transfers.data.map((transfer, i) => <TripCardComponent key={i} transfer={transfer} />)
         ) : (
           transfers.data.map((transfer, i) => <Transfer key={i} transfer={transfer} />)
         )}
