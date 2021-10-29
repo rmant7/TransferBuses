@@ -1,4 +1,4 @@
-.transfer_card {
+.trip_card {
   transition: all ease-in-out 0.3s;
   width: 400px;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -12,12 +12,12 @@
   text-decoration: none;
 }
 
-.transfer_card:hover {
+.trip_card:hover {
   transform: scale(1.05);
   box-shadow: 0px 5px 50px 5px rgba(34, 60, 80, 0.8);
 }
 
-.transfer_card_header {
+.trip_card_header {
   text-transform: uppercase;
   font-size: 1.3rem;
   font-weight: 600;
@@ -25,7 +25,7 @@
   display: flex;
 }
 
-.transfer_card_footer {
+.trip_card_footer {
   width: 100%;
   vertical-align: middle;
   display: flex;
@@ -70,7 +70,7 @@
 }
 
 @media (max-width: 640px) {
-  .transfer_card {
+  .trip_card {
     width: 300px;
   }
 /*   
@@ -139,17 +139,17 @@
 }
 
 @media (max-width: 480px) {
-  .transfer_card {
+  .trip_card {
     width: 200px;
     margin: 15px;
     padding: 15px;
   }
   
-  .transfer_card_header {
+  .trip_card_header {
     font-size: 1.1rem;
   }
   
-  .transfer_card_footer {
+  .trip_card_footer {
     display: grid;
   }
   

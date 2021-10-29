@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getTransferAction } from "../../../../redux/actions/transfer-actions";
 import { getLoading, getTransfer } from "../../../../redux/selectors";
-import { getCityById } from "../../../../utils/cities";
+import { getCityById } from "../../../../utils/cities-util";
 
-export default function TransferViewComponent() {
+export default function TripViewComponent() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const transfer = useSelector(getTransfer);

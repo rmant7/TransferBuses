@@ -1,0 +1,33 @@
+.items_to_view {
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 25px;
+}
+
+.filters_sector {
+  border: 1px solid #dadada;
+  border-radius: 15px;
+  background-color: rgb(247, 247, 247);
+  padding: 25px;
+  box-shadow: 0px 5px 25px -5px rgba(34, 60, 80, 0.2);
+  margin: 80px auto 10px auto;
+  width: 85%;
+}
+
+.filters {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+
+.filter_buttons {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.filter {
+  display: inline-block;
+  width: 80%;
+}
