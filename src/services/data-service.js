@@ -13,12 +13,29 @@ function getFBTransfersCollection() {
   return fb.firestore().collection(mode.collection);
 }
 
-function getNextTransfersQuery() {
+function getSortedTransfersQuery() {
   return getFBTransfersCollection().orderBy(TIMESTAMP_FIELD, "desc").limit(MAX_PAGE_SIZE);
 }
 
 function getNextTransfersFromLastQuery(last) {
-  return getNextTransfersQuery().startAt(last._timestamp);
+  return getSortedTransfersQuery().startAt(last._timestamp);
+}
+
+export async function getTransfersBy(filters) {
+  let queries = getFBTransfersCollection();
+  filters.forEach((f) => (queries = queries.where(f.key, "==", f.value)));
+  console.log(queries);
+  try {
+    const collection = await queries.get();
+    const data = collection.docs.map((doc) => {
+      return doc.data();
+    });
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(error);
+  }
 }
 
 export async function getTransfersByFromCityId(fromCityId) {
@@ -27,7 +44,7 @@ export async function getTransfersByFromCityId(fromCityId) {
     const collection = await getFBTransfersCollection().where("from", "==", fromCityId).get();
     const data = collection.docs.map((doc) => {
       console.log(doc.data());
-      return { ...doc.data(), _documentId: doc.id };
+      return doc.data();
     });
     return data;
   } catch (error) {
@@ -135,7 +152,7 @@ export async function getAllFiltersFromCity() {
 
 export async function getTransfers() {
   try {
-    const collection = await getNextTransfersQuery().get();
+    const collection = await getSortedTransfersQuery().get();
     // rewrite("transfers-id-timestamp", "transfers-new");
     // rewrite("dev-transfers-id-timestamp", "dev-transfers-new");
     const transfers = collection.docs.map((doc) => doc.data());
