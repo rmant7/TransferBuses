@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { publicRoutes } from '../../routes/publicRoutes';
-import { MAIN_ROUTE } from '../../utils/constants';
+import { MAIN_PATH } from '../../utils/constants';
 
 const AppRouter = () => {
   return (
@@ -9,7 +9,7 @@ const AppRouter = () => {
       {publicRoutes.map(({ path, Component }) => (
         <Route key={path} path={path} component={Component} exact />
       ))}
-      <Redirect to={MAIN_ROUTE} />
+      <Redirect to={MAIN_PATH} />
     </Switch>
   );
 };

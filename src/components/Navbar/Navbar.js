@@ -1,7 +1,7 @@
 import { AppBar, IconButton, Toolbar } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import MenuIcon from "@material-ui/icons/Menu";
-import { MAIN_ROUTE } from "../../utils/constants";
+import { MAIN_PATH } from "../../utils/constants";
 import { Sidebar, LanguageSelector } from "..";
 import CurrenciesSelector from "../CurrenciesSelector/CurrenciesSelector";
 import { useStyles } from "../../utils/useStyles";
@@ -20,7 +20,7 @@ const Navbar = () => {
 
   function getLogo() {
     return (
-      <NavLink className={css.logo} to={MAIN_ROUTE}>
+      <NavLink className={css.logo} to={MAIN_PATH}>
         <span>TransferBuses</span>
         {mode.mode === "development" && (
           <div

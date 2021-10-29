@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Button, Grid, Container, Typography } from "@material-ui/core";
 import { useStyles } from "../../utils/useStyles";
 import Cheaptrip from "../../components/CheaptripCommercial/Cheaptrip";
-import { ADD_TRANSFER_ROUTE, TRANSFERS_ROUTE } from "../../utils/constants";
+import { TRANSFERS_ADD_TRANSFER_PATH, TRANSFERS_PATH } from "../../utils/constants";
 
 export default function MainPage() {
   const classes = useStyles();
@@ -24,7 +24,7 @@ export default function MainPage() {
             color="secondary"
             variant="contained"
             fullWidth
-            onClick={() => history.push(TRANSFERS_ROUTE)}
+            onClick={() => history.push(TRANSFERS_PATH)}
           >
             {i18n.t("I'm a passenger")}
           </Button>
@@ -36,17 +36,13 @@ export default function MainPage() {
             color="secondary"
             variant="contained"
             fullWidth
-            onClick={() => history.push(ADD_TRANSFER_ROUTE)}
+            onClick={() => history.push(TRANSFERS_ADD_TRANSFER_PATH)}
           >
             {i18n.t("I'm a driver")}
           </Button>
         </Grid>
         <Grid item xs={12} lg={4} md={6}>
-          <Typography
-            style={{ paddingTop: "2rem" }}
-            align="center"
-            gutterBottom
-          >
+          <Typography style={{ paddingTop: "2rem" }} align="center" gutterBottom>
             {i18n.t("Our partners")}
           </Typography>
         </Grid>
@@ -63,12 +59,7 @@ export default function MainPage() {
           </Button>
         </Grid>
         <Grid item xs={10} lg={6} md={6}>
-          <Typography
-            variant="h5"
-            align="center"
-            component="p"
-            className={classes.ctDescription}
-          >
+          <Typography variant="h5" align="center" component="p" className={classes.ctDescription}>
             {i18n.t("CheapTrip commercial")}
           </Typography>
         </Grid>

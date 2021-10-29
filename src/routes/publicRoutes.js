@@ -1,42 +1,48 @@
 import { MainPage, PassengerPage, BusPage, CarrierPage, TransferPage } from "../components";
-import TransferViewComponent from "../components/future/TransferCard/TransferView/TransferViewComponent";
+import FiltersComponent from "../components/future/Filters/FiltersComponent";
+import TripViewComponent from "../components/future/TripCard/TripView/TripViewComponent";
 import { Contacts } from "../pages";
 import {
-  ADD_TRANSFER_ROUTE,
-  BUS_ROUTE,
-  CONTACTS_ROUTE,
-  MAIN_ROUTE,
-  TRANSFERS_ROUTE,
-  TRANSFER_ROUTE,
+  TRANSFERS_ADD_TRANSFER_PATH,
+  BUS_PATH,
+  CONTACTS_PATH,
+  MAIN_PATH,
+  TRANSFERS_PATH,
+  TRANSFERS_SEARCH_PATH,
 } from "../utils/constants";
 
 export const publicRoutes = [
   {
-    path: MAIN_ROUTE,
+    path: MAIN_PATH,
     Component: MainPage,
   },
   {
-    path: `${TRANSFERS_ROUTE}/:id`,
-    Component: TransferViewComponent,
+    path: TRANSFERS_SEARCH_PATH,
+    Component: FiltersComponent,
   },
   {
-    path: TRANSFERS_ROUTE,
-    Component: PassengerPage,
-  },
-  {
-    path: BUS_ROUTE,
-    Component: BusPage,
-  },
-  {
-    path: ADD_TRANSFER_ROUTE,
+    path: TRANSFERS_ADD_TRANSFER_PATH,
     Component: CarrierPage,
   },
   {
-    path: TRANSFER_ROUTE,
-    Component: TransferPage,
+    path: TRANSFERS_PATH,
+    Component: PassengerPage,
   },
   {
-    path: CONTACTS_ROUTE,
+    path: `${TRANSFERS_PATH}/:id`,
+    Component: TripViewComponent,
+  },
+  {
+    path: BUS_PATH,
+    Component: BusPage,
+  },
+  // {
+  //   path: TRANSFER_PATH,
+  //   // Component: TransferPage,
+  //   Component: TripViewComponent,
+  // },
+  {
+    path: CONTACTS_PATH,
     Component: Contacts,
   },
 ];

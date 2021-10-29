@@ -1,8 +1,8 @@
-import { ADD_TRANSFER_ROUTE, CONTACTS_ROUTE, MAIN_ROUTE, TRANSFERS_ROUTE } from "./constants";
+import { TRANSFERS_ADD_TRANSFER_PATH, CONTACTS_PATH, MAIN_PATH, TRANSFERS_PATH } from "./constants";
 
 export const menuData = [
-  { title: "Home", path: MAIN_ROUTE },
-  { title: "I\u0027m a passenger", path: TRANSFERS_ROUTE },
-  { title: "I\u0027m a driver", path: ADD_TRANSFER_ROUTE },
-  { title: "Contacts", path: CONTACTS_ROUTE },
+  { title: "Home", path: MAIN_PATH },
+  { title: "I\u0027m a passenger", path: TRANSFERS_PATH },
+  { title: "I\u0027m a driver", path: TRANSFERS_ADD_TRANSFER_PATH },
+  { title: "Contacts", path: CONTACTS_PATH },
 ];
