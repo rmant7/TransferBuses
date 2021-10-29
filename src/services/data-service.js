@@ -74,16 +74,16 @@ export async function uploadTransfer(transfer) {
 
 export async function uploadNewTransfer(transfer) {
   try {
-    const _id = generate();
-    const response = await getFBTransfersCollection()
-      .doc(_id)
-      .set({
-        ...transfer,
-        _id,
-        _timestamp: new Date().toJSON(),
-      });
+    const res = {
+      ...transfer,
+      _id: generate(),
+      _timestamp: new Date().toJSON(),
+    };
+    const response = await getFBTransfersCollection().doc(res._id).set(res);
+    await uploadFilterFromCity(transfer.from);
+    await uploadFilterToCity(transfer.to);
     console.log("response", response);
-    return response;
+    return res;
   } catch (error) {
     console.error(error);
     return Promise.reject(error);

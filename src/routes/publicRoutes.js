@@ -20,10 +20,10 @@ export const publicRoutes = [
     path: TRANSFERS_SEARCH_PATH,
     Component: FiltersComponent,
   },
-  // {
-  //   path: TRANSFERS_ADD_TRANSFER_PATH,
-  //   Component: CarrierPage,
-  // },
+  {
+    path: TRANSFERS_ADD_TRANSFER_PATH,
+    Component: CarrierPage,
+  },
   {
     path: TRANSFERS_PATH,
     Component: PassengerPage,
