@@ -10,10 +10,12 @@ import ScheduleIcon from "../../../assets/schedule.png";
 import PetsAllowedIcon from "../../../assets/pets-allowed.png";
 import ParcelIcon from "../../../assets/parcel.png";
 import WalletIcon from "../../../assets/wallet.png";
-import TimingIcon from "../../../assets/timing.png";
+import DurationIcon from "../../../assets/duration.png";
 import { monthsEng } from "../../../utils/months-util";
 import { TRANSFERS_PATH } from "../../../utils/constants";
 import { convertToFixed, review } from "../../../utils/currency-util";
+import IconTextComponent from "./IconText/IconTextComponent";
+import IconComponent from "./Icon/IconComponent";
 
 export default function TripCardComponent({ transfer }) {
   const currency = useSelector(getCurrency);
@@ -34,30 +36,21 @@ export default function TripCardComponent({ transfer }) {
       <div className={classes.trip_card_header}>
         <div className={classes.way}>
           <span className={classes.text}>{lang === "en" ? from.name : from.name_ru}</span>
-          <img src={ArrowIcon} className={classes.arrow_icon} alt="icon" />
+          <IconComponent icon={ArrowIcon} someClass={classes.arrow_icon} />
           <span className={classes.text}>{lang === "en" ? to.name : to.name_ru}</span>
         </div>
       </div>
       <Divider variant="middle" style={{ margin: "10px" }} />
       <div className={classes.content}>
-        <div className={classes.icon_text}>
-          <img src={ScheduleIcon} className={classes.icon_style} alt="icon" />
-          {!transfer.regularTrips ? (
-            <div className={classes.text}>{dateView()}</div>
-          ) : (
-            <span className={classes.text}>{i18n.t("Regular trips")}</span>
-          )}
-        </div>
-        <div className={classes.icon_text}>
-          <img src={TimingIcon} className={classes.icon_style} alt="icon" />
-          <span className={classes.text}>{transfer.duration ? transfer.duration : "--:--"}</span>
-        </div>
-        <div className={classes.icon_text}>
-          <img src={WalletIcon} className={classes.icon_style} alt="icon" />
-          <span className={classes.text}>{priceToDisplay}</span>
-        </div>
-        {transfer.passAParcel && <img src={ParcelIcon} className={classes.icon_style} alt="icon" />}
-        {transfer.isPetsAllowed && <img src={PetsAllowedIcon} className={classes.icon_style} alt="icon" />}
+        {!transfer.regularTrips ? (
+          <IconTextComponent icon={ScheduleIcon} text={dateView()} />
+        ) : (
+          <IconTextComponent icon={ScheduleIcon} text={i18n.t("Regular trips")} />
+        )}
+        <IconTextComponent icon={DurationIcon} text={transfer.duration ? transfer.duration : "--:--"} />
+        <IconTextComponent icon={WalletIcon} text={priceToDisplay} />
+        {transfer.passAParcel && <IconComponent icon={ParcelIcon} />}
+        {transfer.isPetsAllowed && <IconComponent icon={PetsAllowedIcon} />}
       </div>
       <Divider variant="middle" style={{ margin: "10px" }} />
       <div className={classes.trip_card_footer}>

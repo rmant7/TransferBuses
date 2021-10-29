@@ -1,17 +1,16 @@
-import { useEffect } from "react";
-import { Box, Container, LinearProgress } from "@material-ui/core";
-import Filters from "../Filters/Filters";
+import { Container } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getNextTransfersAction, getTransfersAction } from "../../redux/actions/transfers-actions";
+import { getNextTransfersAction } from "../../redux/actions/transfers-actions";
 import { getFilters, getLoading, getTransfers } from "../../redux/selectors";
-import Transfer from "../Transfer/Transfer";
 import classes from "./PassengerPage.module.css";
-import { useStyles } from "../../utils/useStyles";
-import TripCardComponent from "../future/TripCard/TripCardComponent";
 import { LoadingButton } from "@mui/lab";
-import { Alert } from "@mui/material";
 import i18n from "../../i18n";
+import FiltersComponent from "../future/Filters/FiltersComponent";
+import { Box } from "@mui/system";
+import { Alert, LinearProgress } from "@mui/material";
+import TripCardComponent from "../future/TripCard/TripCardComponent";
+import Transfer from "../Transfer/Transfer";
 // import "./PassengerPage.css";
 
 function isNewDesign() {
@@ -32,15 +31,11 @@ export default function PassengerPage() {
     dispatch(getNextTransfersAction(transfers.data));
   };
 
-  useEffect(() => {
-    dispatch(getTransfersAction());
-  }, [dispatch]);
-
   return (
     <Container maxWidth="xl" className={classes.tb_padding}>
       <div className={classes.filters_sector}>
         <span>{i18n.t("Filter")}</span>
-        <Filters />
+        <FiltersComponent />
       </div>
       {/* <div style={{ textAlign: "center", marginTop: "10px" }}>
         <Button
