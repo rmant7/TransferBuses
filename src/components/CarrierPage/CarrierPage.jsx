@@ -15,7 +15,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
+  DialogTitle,
   FormControl,
   FormControlLabel,
   Grid,
@@ -33,11 +33,11 @@ import axios from "axios";
 import "yup-phone-lite";
 import { useStyles } from "../../utils/useStyles";
 import { timeZones } from "../../utils/timezones";
-import { getLoading } from "../../redux/selectors";
+import { getLoading, getSaveNewTransfer } from "../../redux/selectors";
 import { useDispatch } from "react-redux";
 import { LoadingButton } from "@mui/lab";
-import { Alert } from "@mui/material";
-import { loadingUploadTransferAction } from "../../redux/actions/loading-actions";
+import { saveNewTransferAction, setSavedNewTransferAction } from "../../redux/actions/transfer-actions";
+import { TRANSFERS_PATH } from "../../utils/constants";
 
 const schema = yup.object().shape({
   from: yup.string().required("from.Required"),
@@ -59,6 +59,8 @@ export default function CarrierPage() {
   const cur = useSelector((state) => state.app.currency);
   const lang = useSelector((state) => state.app.lang);
   const loading = useSelector(getLoading);
+  const history = useHistory();
+  const transfer = useSelector(getSaveNewTransfer);
   const classes = useStyles();
   const [rideCurrency, setRideCurrency] = useState(cur);
   // const [messenger, setMessenger] = useState();
@@ -69,6 +71,8 @@ export default function CarrierPage() {
     const timeZone = timeZones.find((tz) => tz.shift === "" + new Date().getTimezoneOffset() / -60);
     return timeZone || timeZones[0];
   });
+
+  console.log(transfer);
 
   // console.log("cur: ", cur);
   // console.log("rideCurrency: ", rideCurrency);
@@ -117,14 +121,13 @@ export default function CarrierPage() {
   // durations.pop()
   durations.push(maxDurationHour + ":00 +");
 
-  const [message, setMessage] = useState({ type: "info", msg: "" });
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
+    dispatch(setSavedNewTransferAction(false));
   };
 
-  const history = useHistory();
   const defaultProps = {
     options: cities,
     getOptionLabel: (option) => {
@@ -270,22 +273,27 @@ export default function CarrierPage() {
           departureTimeGMT[0] -= values.timeZone;
           values.departureTime = departureTimeGMT.join(":");
           console.log(values);
-          // dispatch(saveNewTransferAction(values));
           // history.push("/");
-          dispatch(loadingUploadTransferAction(true));
-          uploadTransfer(values)
-            .then((response) => {
-              console.log(response);
-              setMessage({ type: "success", msg: i18n.t("SuccessTrip") });
-              dispatch(loadingUploadTransferAction(false));
-              setOpen(true);
-              // history.push("/");
-            })
-            .catch((error) => {
-              console.log(error);
-              setMessage({ type: "error", msg: error });
-              setOpen(true);
-            });
+          // dispatch(loadingUploadTransferAction(true));
+          dispatch(saveNewTransferAction(values));
+          setOpen(true);
+          // .then(() => {
+          //   setMessage({ type: "success", msg: i18n.t("SuccessTrip") });
+          //
+          // });
+          // uploadTransfer(values)
+          //   .then((response) => {
+          //     console.log(response);
+          //     setMessage({ type: "success", msg: i18n.t("SuccessTrip") });
+          //     dispatch(loadingUploadTransferAction(false));
+          //     setOpen(true);
+          //     // history.push("/");
+          //   })
+          //   .catch((error) => {
+          //     console.log(error);
+          //     setMessage({ type: "error", msg: error });
+          //     setOpen(true);
+          //   });
         }}
         validationSchema={schema}
       >
@@ -771,21 +779,33 @@ export default function CarrierPage() {
                 }
               />
               <div style={{ margin: "10px" }} className={"submitBtn"}>
-                <LoadingButton loading={loading.isLoadingNewTransfer} color="primary" variant="contained" fullWidth type="submit">
+                <LoadingButton
+                  loading={loading.isLoadingNewTransfer}
+                  color="primary"
+                  variant="contained"
+                  fullWidth
+                  type="submit"
+                >
                   {i18n.t("Publish a ride")}
                 </LoadingButton>
+                {/* {loading ? <CircularProgress /> : null} */}
+              </div>
+              {!loading.isLoadingNewTransfer && (
                 <Dialog open={open} onClose={handleClose} aria-labelledby="responsive-dialog-title">
+                  <DialogTitle id="alert-dialog-title">{transfer.isSaved ? i18n.t("Success") : i18n.t("Failure")}</DialogTitle>
                   <DialogContent>
-                    <Alert severity={message.type}>{message.msg}</Alert>
+                    {transfer.isSaved ? i18n.t("SuccessTrip") : i18n.t("FailureTrip")}
                   </DialogContent>
                   <DialogActions>
+                    <Button onClick={() => history.push(`${TRANSFERS_PATH}/${transfer.data._id}`)} autoFocus>
+                      {i18n.t("More")}
+                    </Button>
                     <Button onClick={handleClose} autoFocus>
                       Ok
                     </Button>
                   </DialogActions>
                 </Dialog>
-                {/* {loading ? <CircularProgress /> : null} */}
-              </div>
+              )}
             </form>
           );
         }}
