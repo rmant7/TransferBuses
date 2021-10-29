@@ -28,15 +28,29 @@ export function getTransferAction(id) {
   };
 }
 
+export function setSavedNewTransferAction(isSaved) {
+  return (dispatch) => {
+    dispatch({
+      type: SET_TRANSFER_IS_SAVED,
+      payload: isSaved,
+    });
+  };
+}
+
 export function saveNewTransferAction(transfer) {
   return async (dispatch) => {
     dispatch(loadingUploadTransferAction(true));
     try {
-      await uploadNewTransfer(transfer);
+      const res = await uploadNewTransfer(transfer);
       dispatch({
         type: SET_TRANSFER_IS_SAVED,
         payload: true,
       });
+      dispatch({
+        type: SET_TRANSFER_DATA,
+        payload: res,
+      });
+      dispatch({ type: SET_TRANSFER_MESSAGE, payload: "success" });
     } catch (e) {
       dispatch({ type: SET_TRANSFER_IS_SAVED, payload: false });
       dispatch({ type: SET_TRANSFER_MESSAGE, payload: e });
