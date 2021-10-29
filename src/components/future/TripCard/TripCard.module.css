@@ -58,8 +58,8 @@
 
 @media (max-width: 480px) {
   .trip_card {
-    width: 200px;
-    margin: 15px;
+    width: 90%;
+    margin: 0 0 10px 0;
     padding: 15px;
   }
 
@@ -75,13 +75,8 @@
     font-size: 1rem;
   }
 
-  .way {
-    display: grid;
-  }
-
   .arrow_icon {
-    transform: rotate(180deg);
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
   }
 }
