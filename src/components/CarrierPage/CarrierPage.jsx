@@ -7,8 +7,7 @@ import TextField from "@material-ui/core/TextField";
 // import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import styles from "./CarrierPage.module.css";
-import { uploadTransfer } from "../../services/data-service";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Checkbox,
   Container,
@@ -59,7 +58,7 @@ export default function CarrierPage() {
   const cur = useSelector((state) => state.app.currency);
   const lang = useSelector((state) => state.app.lang);
   const loading = useSelector(getLoading);
-  const history = useHistory();
+  const [open, setOpen] = useState(false);
   const transfer = useSelector(getSaveNewTransfer);
   const classes = useStyles();
   const [rideCurrency, setRideCurrency] = useState(cur);
@@ -121,11 +120,9 @@ export default function CarrierPage() {
   // durations.pop()
   durations.push(maxDurationHour + ":00 +");
 
-  const [open, setOpen] = useState(false);
-
   const handleClose = () => {
+    // dispatch(setSavedNewTransferAction(false));
     setOpen(false);
-    dispatch(setSavedNewTransferAction(false));
   };
 
   const defaultProps = {
@@ -792,14 +789,22 @@ export default function CarrierPage() {
               </div>
               {!loading.isLoadingNewTransfer && (
                 <Dialog open={open} onClose={handleClose} aria-labelledby="responsive-dialog-title">
-                  <DialogTitle id="alert-dialog-title">{transfer.isSaved ? i18n.t("Success") : i18n.t("Failure")}</DialogTitle>
+                  <DialogTitle id="alert-dialog-title">
+                    {transfer.isSaved ? i18n.t("Success") : i18n.t("Failure")}
+                  </DialogTitle>
                   <DialogContent>
-                    {transfer.isSaved ? i18n.t("SuccessTrip") : i18n.t("FailureTrip")}
+                    {transfer.isSaved ? (
+                      <>
+                        <span>{i18n.t("SuccessTripMsg")} </span>
+                        <Link to={`${TRANSFERS_PATH}/${transfer.data._id}`} target="_blank">
+                          {i18n.t("More")}
+                        </Link>
+                      </>
+                    ) : (
+                      i18n.t("FailureTripMsg")
+                    )}
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={() => history.push(`${TRANSFERS_PATH}/${transfer.data._id}`)} autoFocus>
-                      {i18n.t("More")}
-                    </Button>
                     <Button onClick={handleClose} autoFocus>
                       Ok
                     </Button>
