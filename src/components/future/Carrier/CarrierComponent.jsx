@@ -1,5 +1,28 @@
+import { Button, FormControl, Grid, MenuItem } from "@material-ui/core";
+import { LoadingButton } from "@mui/lab";
+import {
+  Autocomplete,
+  Checkbox,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormControlLabel,
+  InputLabel,
+  Paper,
+  Select,
+  TextField,
+  Tooltip,
+} from "@mui/material";
+import { Formik } from "formik";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import yup from "yup";
+import i18n from "../../../i18n";
+import { saveNewTransferAction } from "../../../redux/actions/transfer-actions";
+import { getCurrency, getLanguage, getLoading, getSaveNewTransfer } from "../../../redux/selectors";
+import { TRANSFERS_PATH } from "../../../utils/constants";
 import classes from "./CarrierComponent.module.css";
 
 const trip = {
@@ -41,124 +64,30 @@ const schema = yup.object().shape({
 
 export default function CarrierComponent() {
   const dispatch = useDispatch();
-  const cur = useSelector((state) => state.app.currency);
-  const lang = useSelector((state) => state.app.lang);
+  const transfer = useSelector(getSaveNewTransfer);
+  const cur = useSelector(getCurrency);
+  const lang = useSelector(getLanguage);
   const loading = useSelector(getLoading).isLoadingNewTransfer;
   const [rideCurrency, setRideCurrency] = useState(cur);
-  // const [messenger, setMessenger] = useState();
-  // const [nearestCity, setNearestCity] = useState();
-  const [latitude, setLatitude] = useState();
-  const [longitude, setLongitude] = useState();
-  const [userTimeZone, setUserTimeZone] = useState(() => {
-    const timeZone = timeZones.find((tz) => tz.shift === "" + new Date().getTimezoneOffset() / -60);
-    return timeZone || timeZones[0];
-  });
-
-  // console.log("cur: ", cur);
-  // console.log("rideCurrency: ", rideCurrency);
-  // console.log("Current latitude", latitude);
-  // console.log("Current longitude", longitude);
-  // console.log(lang);
-  //
-  // console.log("user time zone", userTimeZone);
-
-  const cities =
-    lang === "ru"
-      ? [
-          ...cities_json
-            .reduce((acc, val) => {
-              acc.push({ id: val.ID, title: val["name_ru"] });
-              return acc;
-            }, [])
-            .sort((a, b) => (a.title < b.title ? -1 : 1)),
-          ...cities_json
-            .reduce((acc, val) => {
-              acc.push({ id: val.ID, title: val.name });
-              return acc;
-            }, [])
-            .sort((a, b) => (a.title < b.title ? -1 : 1)),
-        ]
-      : cities_json
-          .reduce((acc, val) => {
-            acc.push({ id: val.ID, title: val.name });
-            acc.push({ id: val.ID, title: val["name_ru"] });
-            return acc;
-          }, [])
-          .sort((a, b) => (a.title < b.title ? -1 : 1));
-
-  // const durations = [" ", "0:30",]
-  // for(let i=1; i<=12;i++){
-  //   durations.push(i+":00")
-  //   durations.push(i+":30")
-  // }
-
-  const durations = [" "];
-  const maxDurationHour = 48;
-  for (let i = 1; i < maxDurationHour; i++) {
-    durations.push(i + ":00");
-    // durations.push(i+":30")
-  }
-  // durations.pop()
-  durations.push(maxDurationHour + ":00 +");
-
-  const [message, setMessage] = useState({ type: "info", msg: "" });
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
+    // dispatch(setSavedNewTransferAction(false));
     setOpen(false);
   };
-
-  const defaultProps = {
-    options: cities,
-    getOptionLabel: (option) => {
-      // console.log(option.title);
-      return option.title;
-    },
-  };
-
-  const getCity = (lat, long) => {
-    const URL = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}&accept-language=en`;
-    axios.get(URL).then((response) => console.log(response.data));
-  };
-
-  useEffect(() => {
-    let startPos;
-    const geoSuccess = function (position) {
-      startPos = position;
-      setLatitude(startPos.coords.latitude);
-      setLongitude(startPos.coords.longitude);
-      getCity(startPos.coords.latitude, startPos.coords.longitude);
-    };
-    // geolocation determination is temporary commented out. To turn it on, uncomment the line bellow
-    // navigator.geolocation.getCurrentPosition(geoSuccess);
-  }, []);
 
   return (
     <div className={classes.carrier_form_container}>
       <Formik
-        initialValues={initialFormState}
+        initialValues={trip}
         onSubmit={(values) => {
           console.log("SUBMITTING");
           const departureTimeGMT = values.departureTime.split(":");
           departureTimeGMT[0] -= values.timeZone;
           values.departureTime = departureTimeGMT.join(":");
           console.log(values);
-          // dispatch(saveNewTransferAction(values));
-          // history.push("/");
-          dispatch(loadingUploadTransferAction(true));
-          uploadTransfer(values)
-            .then((response) => {
-              console.log(response);
-              setMessage({ type: "success", msg: i18n.t("SuccessTrip") });
-              dispatch(loadingUploadTransferAction(false));
-              setOpen(true);
-              // history.push("/");
-            })
-            .catch((error) => {
-              console.log(error);
-              setMessage({ type: "error", msg: error });
-              setOpen(true);
-            });
+          dispatch(saveNewTransferAction(values));
+          setOpen(true);
         }}
         validationSchema={schema}
       >
@@ -193,7 +122,6 @@ export default function CarrierComponent() {
           return (
             <form onSubmit={props.handleSubmit}>
               <Autocomplete
-                {...defaultProps}
                 id="from"
                 name={"from"}
                 value={props.values.from}
@@ -218,7 +146,6 @@ export default function CarrierComponent() {
                 ListboxProps={{ style: { maxHeight: "7rem" } }}
               />
               <Autocomplete
-                {...defaultProps}
                 id="to"
                 name={"to"}
                 value={props.values.to}
@@ -647,9 +574,23 @@ export default function CarrierComponent() {
                 <LoadingButton loading={loading} color="primary" variant="contained" fullWidth type="submit">
                   {i18n.t("Publish a ride")}
                 </LoadingButton>
+              </div>
+              {!loading.isLoadingNewTransfer && (
                 <Dialog open={open} onClose={handleClose} aria-labelledby="responsive-dialog-title">
+                  <DialogTitle id="alert-dialog-title">
+                    {transfer.isSaved ? i18n.t("Success") : i18n.t("Failure")}
+                  </DialogTitle>
                   <DialogContent>
-                    <Alert severity={message.type}>{message.msg}</Alert>
+                    {transfer.isSaved ? (
+                      <>
+                        <span>{i18n.t("SuccessTripMsg")} </span>
+                        <Link to={`${TRANSFERS_PATH}/${transfer.data._id}`} target="_blank">
+                          {i18n.t("More")}
+                        </Link>
+                      </>
+                    ) : (
+                      i18n.t("FailureTripMsg")
+                    )}
                   </DialogContent>
                   <DialogActions>
                     <Button onClick={handleClose} autoFocus>
@@ -657,8 +598,7 @@ export default function CarrierComponent() {
                     </Button>
                   </DialogActions>
                 </Dialog>
-                {/* {loading ? <CircularProgress /> : null} */}
-              </div>
+              )}
             </form>
           );
         }}
