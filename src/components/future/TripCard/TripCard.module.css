@@ -18,7 +18,7 @@
 
 .trip_card_header {
   border-bottom: inherit;
-  border-radius: 5px 5px 0 0;
+  border-radius: 6px 6px 0 0;
   background-color: #f6f8fa;
   height: 55px;
   text-transform: uppercase;
@@ -62,11 +62,7 @@
 
 @media (max-width: 480px) {
   .trip_card_header {
-    border-bottom: inherit;
-    border-radius: 5px 5px 0 0;
-    background-color: #f6f8fa;
     height: 40px;
-    font-weight: 600;
   }
 
   .trip_card {
