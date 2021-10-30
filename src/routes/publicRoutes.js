@@ -1,4 +1,5 @@
 import { MainPage, PassengerPage, BusPage, CarrierPage, TransferPage } from "../components";
+import ContactsComponent from "../components/future/Contact/ContactsComponent";
 import FiltersComponent from "../components/future/Filters/FiltersComponent";
 import TripViewComponent from "../components/future/TripCard/TripView/TripViewComponent";
 import { Contacts } from "../pages";
@@ -43,6 +44,9 @@ export const publicRoutes = [
   // },
   {
     path: CONTACTS_PATH,
-    Component: Contacts,
+    Component:
+      process.env.REACT_APP_NEW_DESIGN && process.env.REACT_APP_NEW_DESIGN === "false"
+        ? Contacts
+        : ContactsComponent,
   },
 ];
