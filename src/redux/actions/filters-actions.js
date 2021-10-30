@@ -1,12 +1,12 @@
-import {
-  getAllFiltersFromCity,
-  getAllFiltersToCity,
-  getTransfersBy,
-} from "../../services/data-service";
+import { getAllFiltersFromCity, getAllFiltersToCity, getTransfersBy } from "../../services/data-service";
 import { getCityById } from "../../utils/cities-util";
 import { convertToFilter } from "../../utils/filters-util";
 import { loadingTransfersAction } from "./loading-actions";
-import { SET_TRANSFERS_DATA, SET_TRANSFERS_IS_RECEIVED, SET_TRANSFERS_MESSAGE } from "./transfers-actions";
+import {
+  setTransfersAction,
+  setTransfersMessageAction,
+  setTransfersReceivedAction,
+} from "./transfers-actions";
 
 export const SET_FILTER_FROM_CITIES = "set-filter-from-cities";
 export const SET_FILTER_TO_CITIES = "set-filter-to-cities";
@@ -45,37 +45,34 @@ export const SET_FILTERS_FOR_APPLY = "set-filters-for-apply";
 //   };
 // }
 
+export function setFilterApplyAction(isApply) {
+  return (dispatch) =>
+    dispatch({
+      type: SET_IS_FILTER_APPLY,
+      payload: isApply,
+    });
+}
+
+export function setFiltersForApplyAction(filters) {
+  return (dispatch) =>
+    dispatch({
+      type: SET_FILTERS_FOR_APPLY,
+      payload: filters,
+    });
+}
+
 export function applyFiltersAction(values, keys) {
   return async (dispatch) => {
     dispatch(loadingTransfersAction(true));
     try {
       const filters = convertToFilter(values, keys);
-      dispatch({
-        type: SET_FILTERS_FOR_APPLY,
-        payload: filters,
-      });
-      const filteredTransfers = await getTransfersBy(filters);
-      dispatch({
-        type: SET_IS_FILTER_APPLY,
-        payload: true,
-      });
-      dispatch({
-        type: SET_TRANSFERS_IS_RECEIVED,
-        payload: true,
-      });
-      dispatch({
-        type: SET_TRANSFERS_DATA,
-        payload: filteredTransfers.slice(),
-      });
+      dispatch(setFiltersForApplyAction(filters));
+      const transfers = await getTransfersBy(filters);
+      dispatch(setFilterApplyAction(true));
+      dispatch(setTransfersAction(transfers));
     } catch (e) {
-      dispatch({
-        type: SET_TRANSFERS_IS_RECEIVED,
-        payload: false,
-      });
-      dispatch({
-        type: SET_TRANSFERS_MESSAGE,
-        payload: e,
-      });
+      dispatch(setTransfersReceivedAction(false));
+      dispatch(setTransfersMessageAction(e));
     } finally {
       dispatch(loadingTransfersAction(false));
     }

@@ -225,7 +225,6 @@ export default function FiltersComponent() {
             {i18n.t("Apply")}
           </Button>
           <Button
-            disabled={uriData.from === "" && uriData.to === "" && uriData.date === ""}
             variant="outlined"
             onClick={() =>
               setUriData({

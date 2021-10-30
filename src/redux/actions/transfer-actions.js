@@ -9,19 +9,14 @@ export const SET_TRANSFER_MESSAGE = "set-transfer-message";
 export function getTransferAction(id) {
   return async (dispatch) => {
     dispatch(loadingTransferAction(true));
+    dispatch(setTransferReceivedAction(false));
     try {
       const transfer = await getTransfer(id);
-      dispatch({
-        type: SET_TRANSFER_IS_RECEIVED,
-        payload: true,
-      });
-      dispatch({
-        type: SET_TRANSFER_DATA,
-        payload: transfer,
-      });
+      dispatch(setTransferDataAction(transfer));
+      dispatch(setTransferReceivedAction(true));
     } catch (e) {
-      dispatch({ type: SET_TRANSFER_IS_RECEIVED, payload: false });
-      dispatch({ type: SET_TRANSFER_MESSAGE, payload: e });
+      dispatch(setTransferReceivedAction(false));
+      dispatch(setTransferMessageAction(e));
     } finally {
       dispatch(loadingTransferAction(false));
     }
@@ -29,31 +24,49 @@ export function getTransferAction(id) {
 }
 
 export function setSavedNewTransferAction(isSaved) {
-  return (dispatch) => {
+  return (dispatch) =>
     dispatch({
       type: SET_TRANSFER_IS_SAVED,
       payload: isSaved,
     });
-  };
+}
+
+export function setTransferReceivedAction(isReceived) {
+  return (dispatch) =>
+    dispatch({
+      type: SET_TRANSFER_IS_RECEIVED,
+      payload: isReceived,
+    });
+}
+
+export function setTransferDataAction(data) {
+  return (dispatch) =>
+    dispatch({
+      type: SET_TRANSFER_DATA,
+      payload: data,
+    });
+}
+
+export function setTransferMessageAction(msg) {
+  return (dispatch) =>
+    dispatch({
+      type: SET_TRANSFER_MESSAGE,
+      payload: msg,
+    });
 }
 
 export function saveNewTransferAction(transfer) {
   return async (dispatch) => {
     dispatch(loadingUploadTransferAction(true));
+    dispatch(setSavedNewTransferAction(false));
     try {
       const res = await uploadNewTransfer(transfer);
-      dispatch({
-        type: SET_TRANSFER_IS_SAVED,
-        payload: true,
-      });
-      dispatch({
-        type: SET_TRANSFER_DATA,
-        payload: res,
-      });
-      dispatch({ type: SET_TRANSFER_MESSAGE, payload: "success" });
+      dispatch(setTransferDataAction(res));
+      dispatch(setSavedNewTransferAction(true));
+      dispatch(setTransferMessageAction("success"));
     } catch (e) {
-      dispatch({ type: SET_TRANSFER_IS_SAVED, payload: false });
-      dispatch({ type: SET_TRANSFER_MESSAGE, payload: e });
+      dispatch(setSavedNewTransferAction(false));
+      dispatch(setTransferMessageAction(e));
     } finally {
       dispatch(loadingUploadTransferAction(false));
     }

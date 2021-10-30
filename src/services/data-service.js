@@ -10,11 +10,15 @@ function getFBCollection(name) {
 }
 
 function getFBTransfersCollection() {
+  return fb.firestore().collection(mode.collection);
+}
+
+function getFBTransfersLimitedCollection() {
   return fb.firestore().collection(mode.collection).limit(MAX_PAGE_SIZE);
 }
 
 function getSortedTransfersQuery() {
-  return getFBTransfersCollection().orderBy(TIMESTAMP_FIELD, "desc");
+  return getFBTransfersLimitedCollection().orderBy(TIMESTAMP_FIELD, "desc");
 }
 
 function getNextTransfersFromLastQuery(last) {
