@@ -10,14 +10,14 @@ export const convertToFilter = (values: any[], keys?: string[] | undefined): Fil
   if (keys) {
     keys.forEach((k, i) => {
       const key = FILTER_KEYS.find((item) => item === k);
-      const value = values[i];
+      const value = values[i];      
       if (key && isValue(value)) {
-        res.push({ key, value: values[i] });
+        res.push({ key, value });
       }
     });
   } else {
     return toFilters(values);
-  }
+  }  
   return res;
 };
 
@@ -33,5 +33,5 @@ export const toFilters = (values: any[]): Filter[] => {
 };
 
 function isValue(v: any): boolean {
-  return v !== "" && v !== "NA" && v !== undefined && v !== null;
+  return v !== "" && v !== undefined && v !== null;
 }
