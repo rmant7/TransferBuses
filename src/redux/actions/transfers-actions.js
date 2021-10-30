@@ -1,4 +1,4 @@
-import { getNextTransfers, getTransfers } from "../../services/data-service";
+import { getNextTransfers, getTransfers, getTransfersBy } from "../../services/data-service";
 import { loadingNextTransfersAction, loadingTransfersAction } from "./loading-actions";
 import _ from "lodash";
 import { setFilterApplyAction } from "./filters-actions";
@@ -53,6 +53,8 @@ export function getTransfersAction() {
   return async (dispatch) => {
     loadingTransfersAction(true);
     setTransfersReceivedAction(false);
+    dispatch(setTransfersDataAction([]));
+    dispatch(setFilterApplyAction(false));
     try {
       const transfers = await getTransfers();
       dispatch(setTransfersAction(transfers.slice()));
@@ -66,10 +68,30 @@ export function getTransfersAction() {
   };
 }
 
+export function getTransfersByAction(filters) {
+  return async (dispatch) => {
+    dispatch(loadingTransfersAction(true));
+    dispatch(setTransfersReceivedAction(false));
+    dispatch(setTransfersDataAction([]));
+    dispatch(setFilterApplyAction(false));
+    try {
+      const transfers = await getTransfersBy(filters);
+      dispatch(setTransfersAction(transfers.slice()));
+      dispatch(setFilterApplyAction(true));
+    } catch (e) {
+      dispatch(setTransfersMessageAction(e));
+      dispatch(setTransfersReceivedAction(false));
+    } finally {
+      dispatch(loadingTransfersAction(false));
+    }
+  };
+}
+
 export function getNextTransfersAction(lastTransfers) {
   return async (dispatch) => {
     dispatch(loadingNextTransfersAction(true));
     dispatch(setTransfersReceivedAction(false));
+    dispatch(setTransfersDataAction([]));
     try {
       const nextTransfers = await getNextTransfers(lastTransfers[lastTransfers.length - 1]);
       dispatch(setTransfersAction(_.concat(lastTransfers, nextTransfers)));

@@ -10,6 +10,7 @@ export function getTransferAction(id) {
   return async (dispatch) => {
     dispatch(loadingTransferAction(true));
     dispatch(setTransferReceivedAction(false));
+    dispatch(setTransferDataAction({}));
     try {
       const transfer = await getTransfer(id);
       dispatch(setTransferDataAction(transfer));
@@ -59,6 +60,7 @@ export function saveNewTransferAction(transfer) {
   return async (dispatch) => {
     dispatch(loadingUploadTransferAction(true));
     dispatch(setSavedNewTransferAction(false));
+    dispatch(setTransferDataAction({}));
     try {
       const res = await uploadNewTransfer(transfer);
       dispatch(setTransferDataAction(res));
