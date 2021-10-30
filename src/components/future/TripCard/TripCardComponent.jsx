@@ -18,6 +18,7 @@ import { TRANSFERS_PATH } from "../../../utils/constants";
 import { convertToFixed, review } from "../../../utils/currency-util";
 import IconTextComponent from "./IconText/IconTextComponent";
 import IconComponent from "./Icon/IconComponent";
+import TextComponent from "./Text/TextComponent";
 
 export default function TripCardComponent({ transfer }) {
   const currency = useSelector(getCurrency);
@@ -37,9 +38,9 @@ export default function TripCardComponent({ transfer }) {
     <div className={classes.trip_card}>
       <div className={classes.trip_card_header}>
         <div className={classes.way}>
-          <span className={classes.text}>{lang === "en" ? from.name : from.name_ru}</span>
+          <TextComponent text={lang === "en" ? from.name : from.name_ru} />
           <IconComponent icon={ArrowIcon} someClass={classes.arrow_icon} />
-          <span className={classes.text}>{lang === "en" ? to.name : to.name_ru}</span>
+          <TextComponent text={lang === "en" ? to.name : to.name_ru} />
         </div>
       </div>
       <div className={classes.content}>
