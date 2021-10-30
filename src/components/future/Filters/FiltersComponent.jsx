@@ -14,6 +14,7 @@ import { TRANSFERS_PATH } from "../../../utils/constants";
 import { getCityByNameRu } from "../../../utils/cities-util";
 import i18n from "../../../i18n";
 import { getTransfersAction } from "../../../redux/actions/transfers-actions";
+import { Checkbox, FormControlLabel, TextField } from "@mui/material";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -24,62 +25,122 @@ export default function FiltersComponent() {
   const history = useHistory();
   const query = useQuery();
   const filters = useSelector(getFilters);
-  const [cities, setCities] = useState({ from: "", to: "" });
+  const [uriData, setUriData] = useState({
+    from: "",
+    to: "",
+    date: "",
+    pets: false,
+    pass: false,
+    regular: false,
+  });
   const [isFilterApply, setFilterApply] = useState(false);
   const fcn = query.get("from");
   const tcn = query.get("to");
+  const date = query.get("date");
   const pass = query.get("pass-parcel");
   const pets = query.get("pets-allowed");
   const regularTrips = query.get("regular-trips");
 
-  console.log(filters, query, cities);
+  console.log(filters, query, uriData);
+
+  function getUri() {
+    let uri = `${TRANSFERS_PATH}`;
+    if (uriData.from !== "") {
+      uri += `?from=${uriData.from}`;
+    }
+    if (uriData.to !== "") {
+      uri += uri.includes("?") ? `&to=${uriData.to}` : `?to=${uriData.to}`;
+    }
+    if (uriData.date !== "") {
+      uri += uri.includes("?") ? `&date=${uriData.date}` : `?date=${uriData.date}`;
+    }
+    return uri;
+  }
 
   const handleDiscardFilter = () => {
     setFilterApply(false);
-    setCities({ from: "", to: "" });
+    setUriData({ from: "", to: "" });
   };
 
   const handleInputFrom = (e, v) => {
-    setCities({ ...cities, from: v });
+    setUriData({ ...uriData, from: v });
   };
 
   const handleInputTo = (e, v) => {
-    setCities({ ...cities, to: v });
+    setUriData({ ...uriData, to: v });
   };
 
   useEffect(() => {
     dispatch(filtersFromCityAction());
     dispatch(filtersToCityAction());
-    if (fcn || tcn || pass || pets || regularTrips) {
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (fcn || tcn) {
       setFilterApply(true);
-      setCities({ from: fcn, to: tcn });
-      const cityFrom = getCityByNameRu(fcn);
       const cityTo = getCityByNameRu(tcn);
-      // dispatch(filtersForApplyAction([fcn, tcn, pass, pets, regularTrips]));
-      dispatch(filtersForApplyAction([cityFrom ? cityFrom.ID : "", cityTo ? cityTo.ID : ""], ["from", "to"]));
+      const cityFrom = getCityByNameRu(fcn);
+      if (cityTo && cityFrom) {
+        dispatch(filtersForApplyAction([cityFrom.ID, cityTo.ID], ["from", "to"]));
+      } else if (cityFrom) {
+        dispatch(filtersForApplyAction([cityFrom.ID], ["from"]));
+      } else if (cityTo) {
+        dispatch(filtersForApplyAction([cityTo.ID], ["to"]));
+      }
     } else {
       dispatch(getTransfersAction());
     }
-  }, [dispatch, fcn, pass, pets, regularTrips, tcn]);
+  }, [dispatch, fcn, tcn]);
 
   return (
     <div className={classes.filters_sector}>
       <span>{i18n.t("Filter")}</span>
       <div className={classes.filters}>
-        <div className={classes.cities}>
+        <div className={classes.block}>
           <FilterComponent
             label={i18n.t("FromCity")}
             options={filters.fromCities}
             handler={handleInputFrom}
-            inputValue={cities.from}
+            inputValue={uriData.from}
             // getOptionLabel={(o) => o.name}
           />
           <FilterComponent
             label={i18n.t("ToCity")}
             options={filters.toCities}
             handler={handleInputTo}
-            inputValue={cities.to}
+            inputValue={uriData.to}
             // getOptionLabel={(o) => o.name}
+          />
+        </div>
+        <div className={classes.block}>
+          <TextField
+            id="date"
+            label={i18n.t("Date")}
+            type="date"
+            margin="normal"
+            value={uriData.date}
+            onChange={(e) => setUriData({ ...uriData, date: e.target.value })}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={uriData.pass}
+                onChange={() => setUriData({ ...uriData, pass: !uriData.pass })}
+              />
+            }
+            label={i18n.t("Pass a parcel")}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={uriData.pets}
+                onChange={() => setUriData({ ...uriData, pets: !uriData.pets })}
+              />
+            }
+            label={i18n.t("PetsAllowed")}
           />
         </div>
         <div className={classes.buttons_block}>
@@ -96,24 +157,20 @@ export default function FiltersComponent() {
             {i18n.t("Discard")}
           </Button>
           <Button
-            disabled={cities.from === "" && cities.to === ""}
+            disabled={uriData.from === "" && uriData.to === ""}
             variant="contained"
             color="primary"
             onClick={() => {
-              const f = cities.from;
-              const t = cities.to;
-              history.push(
-                `${TRANSFERS_PATH}?from=${f}&to=${t}&pass-parcel=${false}&pets-allowed=${false}&regular-trips=${false}`
-              );
+              history.push(getUri());
             }}
             style={{ marginLeft: "10px", marginBottom: "10px" }}
           >
             {i18n.t("Apply")}
           </Button>
           <Button
-            disabled={cities.from === "" && cities.to === ""}
+            disabled={uriData.from === "" && uriData.to === ""}
             variant="outlined"
-            onClick={() => setCities({ from: "", to: "" })}
+            onClick={() => setUriData({ from: "", to: "" })}
             style={{ marginLeft: "10px", marginBottom: "10px" }}
           >
             {i18n.t("Clear")}
