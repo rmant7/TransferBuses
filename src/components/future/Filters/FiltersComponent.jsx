@@ -4,7 +4,7 @@ import { Button } from "@material-ui/core";
 import FilterComponent from "./Filter/FilterComponent";
 import { getFilters } from "../../../redux/selectors";
 import {
-  filtersForApplyAction,
+  applyFiltersAction,
   filtersFromCityAction,
   filtersToCityAction,
 } from "../../../redux/actions/filters-actions";
@@ -66,18 +66,6 @@ export default function FiltersComponent() {
     return uri;
   }
 
-  const handleDiscardFilter = () => {
-    setFilterApply(false);
-    setUriData({
-      from: "",
-      to: "",
-      date: "",
-      pets: false,
-      pass: false,
-      regular: false,
-    });
-  };
-
   const handleInputFrom = (e, v) => {
     setUriData({ ...uriData, from: v });
   };
@@ -97,8 +85,8 @@ export default function FiltersComponent() {
       const keys = [];
       if (cityTo && cityFrom) {
         setUriData({ ...uriData, from: fcn, to: tcn });
-        values.push([cityFrom.ID, cityTo.ID]);
-        keys.push(["from", "to"]);
+        values.push(cityFrom.ID, cityTo.ID);
+        keys.push("from", "to");
       } else if (cityFrom) {
         setUriData({ ...uriData, from: fcn });
         values.push(cityFrom.ID);
@@ -114,22 +102,22 @@ export default function FiltersComponent() {
         keys.push("date");
       }
       if (regular === "true") {
-        setUriData({ ...uriData, regular });
+        setUriData({ ...uriData, regular: Boolean(regular) });
         values.push(Boolean(regular));
         keys.push("regularTrips");
       }
       if (pass === "true") {
-        setUriData({ ...uriData, pass });
+        setUriData({ ...uriData, pass: Boolean(pass) });
         values.push(Boolean(pass));
         keys.push("passAParcel");
       }
       if (pets === "true") {
-        setUriData({ ...uriData, pets });
+        setUriData({ ...uriData, pets: Boolean(pets) });
         values.push(Boolean(pets));
         keys.push("isPetsAllowed");
       }
       console.log(values, keys);
-      dispatch(filtersForApplyAction(values, keys));
+      dispatch(applyFiltersAction(values, keys));
     } else {
       dispatch(getTransfersAction());
     }
@@ -226,20 +214,7 @@ export default function FiltersComponent() {
           />
         </div>
         <div className={classes.buttons_block}>
-          {/* <Button
-            disabled={!isFilterApply}
-            variant="contained"
-            color="secondary"
-            onClick={() => {
-              history.push(`${TRANSFERS_PATH}`);
-              handleDiscardFilter();
-            }}
-            style={{ marginLeft: "10px", marginBottom: "10px" }}
-          >
-            {i18n.t("Discard")}
-          </Button> */}
           <Button
-            // disabled={uriData.from === "" && uriData.to === "" && uriData.date === ""}
             variant="contained"
             color="primary"
             onClick={() => {
