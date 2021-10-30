@@ -10,11 +10,11 @@ function getFBCollection(name) {
 }
 
 function getFBTransfersCollection() {
-  return fb.firestore().collection(mode.collection);
+  return fb.firestore().collection(mode.collection).limit(MAX_PAGE_SIZE);
 }
 
 function getSortedTransfersQuery() {
-  return getFBTransfersCollection().orderBy(TIMESTAMP_FIELD, "desc").limit(MAX_PAGE_SIZE);
+  return getFBTransfersCollection().orderBy(TIMESTAMP_FIELD, "desc");
 }
 
 function getNextTransfersFromLastQuery(last) {
@@ -28,22 +28,6 @@ export async function getTransfersBy(filters) {
   try {
     const collection = await queries.get();
     const data = collection.docs.map((doc) => {
-      return doc.data();
-    });
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.error(error);
-    return Promise.reject(error);
-  }
-}
-
-export async function getTransfersByFromCityId(fromCityId) {
-  console.log(fromCityId);
-  try {
-    const collection = await getFBTransfersCollection().where("from", "==", fromCityId).get();
-    const data = collection.docs.map((doc) => {
-      console.log(doc.data());
       return doc.data();
     });
     return data;

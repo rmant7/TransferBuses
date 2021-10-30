@@ -2,7 +2,6 @@ import {
   getAllFiltersFromCity,
   getAllFiltersToCity,
   getTransfersBy,
-  getTransfersByFromCityId,
 } from "../../services/data-service";
 import { getCityById } from "../../utils/cities-util";
 import { convertToFilter } from "../../utils/filters-util";
@@ -14,44 +13,48 @@ export const SET_FILTER_TO_CITIES = "set-filter-to-cities";
 export const SET_IS_FILTER_APPLY = "set-is-filters-apply";
 export const SET_FILTERS_FOR_APPLY = "set-filters-for-apply";
 
-export function applyFilterFromCityIdAction(city) {
-  return async (dispatch) => {
-    dispatch(loadingTransfersAction(true));
-    try {
-      const filteredTransfers = await getTransfersByFromCityId(city);
-      dispatch({
-        type: SET_IS_FILTER_APPLY,
-        payload: true,
-      });
-      dispatch({
-        type: SET_TRANSFERS_IS_RECEIVED,
-        payload: true,
-      });
-      dispatch({
-        type: SET_TRANSFERS_DATA,
-        payload: filteredTransfers.slice(),
-      });
-    } catch (e) {
-      dispatch({
-        type: SET_TRANSFERS_IS_RECEIVED,
-        payload: false,
-      });
-      dispatch({
-        type: SET_TRANSFERS_MESSAGE,
-        payload: e,
-      });
-    } finally {
-      dispatch(loadingTransfersAction(false));
-    }
-  };
-}
+// export function applyFilterFromCityIdAction(city) {
+//   return async (dispatch) => {
+//     dispatch(loadingTransfersAction(true));
+//     try {
+//       const filteredTransfers = await getTransfersByFromCityId(city);
+//       dispatch({
+//         type: SET_IS_FILTER_APPLY,
+//         payload: true,
+//       });
+//       dispatch({
+//         type: SET_TRANSFERS_IS_RECEIVED,
+//         payload: true,
+//       });
+//       dispatch({
+//         type: SET_TRANSFERS_DATA,
+//         payload: filteredTransfers.slice(),
+//       });
+//     } catch (e) {
+//       dispatch({
+//         type: SET_TRANSFERS_IS_RECEIVED,
+//         payload: false,
+//       });
+//       dispatch({
+//         type: SET_TRANSFERS_MESSAGE,
+//         payload: e,
+//       });
+//     } finally {
+//       dispatch(loadingTransfersAction(false));
+//     }
+//   };
+// }
 
-export function applyFiltersAction(filters) {
+export function applyFiltersAction(values, keys) {
   return async (dispatch) => {
     dispatch(loadingTransfersAction(true));
     try {
+      const filters = convertToFilter(values, keys);
+      dispatch({
+        type: SET_FILTERS_FOR_APPLY,
+        payload: filters,
+      });
       const filteredTransfers = await getTransfersBy(filters);
-      console.log(filters, filteredTransfers);
       dispatch({
         type: SET_IS_FILTER_APPLY,
         payload: true,
@@ -123,16 +126,5 @@ export function filtersToCityAction() {
     } finally {
       dispatch(loadingTransfersAction(false));
     }
-  };
-}
-
-export function filtersForApplyAction(values, keys) {
-  return async (dispatch) => {
-    const res = convertToFilter(values, keys);
-    dispatch({
-      type: SET_FILTERS_FOR_APPLY,
-      payload: res,
-    });
-    dispatch(applyFiltersAction(res));
   };
 }
