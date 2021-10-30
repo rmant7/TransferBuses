@@ -181,7 +181,7 @@ export async function getAllTransfers() {
 
 export async function getNextTransfers(last) {
   try {
-    const collection = await getNextTransfersFromLastQuery(last).get();
+    const collection = await queries.get();
     const transfers = collection.docs.map((doc) => {
       return doc.data();
     });
