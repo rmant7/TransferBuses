@@ -1,11 +1,9 @@
-import { getAllFiltersFromCity, getAllFiltersToCity, getTransfersBy } from "../../services/data-service";
+import { getAllFiltersFromCity, getAllFiltersToCity } from "../../services/data-service";
 import { getCityById } from "../../utils/cities-util";
 import { convertToFilter } from "../../utils/filters-util";
 import { loadingTransfersAction } from "./loading-actions";
 import {
-  setTransfersAction,
-  setTransfersMessageAction,
-  setTransfersReceivedAction,
+  getTransfersByAction,
 } from "./transfers-actions";
 
 export const SET_FILTER_FROM_CITIES = "set-filter-from-cities";
@@ -62,20 +60,10 @@ export function setFiltersForApplyAction(filters) {
 }
 
 export function applyFiltersAction(values, keys) {
-  return async (dispatch) => {
-    dispatch(loadingTransfersAction(true));
-    try {
-      const filters = convertToFilter(values, keys);
-      dispatch(setFiltersForApplyAction(filters));
-      const transfers = await getTransfersBy(filters);
-      dispatch(setFilterApplyAction(true));
-      dispatch(setTransfersAction(transfers));
-    } catch (e) {
-      dispatch(setTransfersReceivedAction(false));
-      dispatch(setTransfersMessageAction(e));
-    } finally {
-      dispatch(loadingTransfersAction(false));
-    }
+  return (dispatch) => {
+    const filters = convertToFilter(values, keys);
+    dispatch(setFiltersForApplyAction(filters));
+    dispatch(getTransfersByAction(filters));
   };
 }
 
