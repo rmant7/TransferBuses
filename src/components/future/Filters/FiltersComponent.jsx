@@ -33,7 +33,6 @@ export default function FiltersComponent() {
     pass: false,
     regular: false,
   });
-  const [isFilterApply, setFilterApply] = useState(false);
   const fcn = query.get("from");
   const tcn = query.get("to");
   const date = query.get("date");
@@ -78,7 +77,6 @@ export default function FiltersComponent() {
     dispatch(filtersFromCityAction());
     dispatch(filtersToCityAction());
     if (fcn || tcn || date || pass || pets || regular) {
-      setFilterApply(true);
       const cityTo = getCityByNameRu(tcn);
       const cityFrom = getCityByNameRu(fcn);
       const values = [];
