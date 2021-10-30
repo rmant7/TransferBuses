@@ -226,7 +226,7 @@ export default function FiltersComponent() {
           />
         </div>
         <div className={classes.buttons_block}>
-          <Button
+          {/* <Button
             disabled={!isFilterApply}
             variant="contained"
             color="secondary"
@@ -237,7 +237,7 @@ export default function FiltersComponent() {
             style={{ marginLeft: "10px", marginBottom: "10px" }}
           >
             {i18n.t("Discard")}
-          </Button>
+          </Button> */}
           <Button
             // disabled={uriData.from === "" && uriData.to === "" && uriData.date === ""}
             variant="contained"
