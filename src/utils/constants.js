@@ -15,5 +15,5 @@ export const TRIP_DELETE_PATH = `${TRANSFER_PATH}${DELETE_PATH}`;
 
 export const ROMAN_PHONE_NUMBER = "+972 54-577-9239";
 export const ROMAN_EMAIL = "roman.mantelmakher@gmail.com";
-export const MAX_PAGE_SIZE = 15;
+export const MAX_PAGE_SIZE = 12;
 export const TIMESTAMP_FIELD = "_timestamp";
