@@ -1,7 +1,7 @@
 import { MainPage, PassengerPage, BusPage, CarrierPage, TransferPage } from "../components";
 import ContactsComponent from "../components/future/Contact/ContactsComponent";
 import FiltersComponent from "../components/future/Filters/FiltersComponent";
-import TripViewComponent from "../components/future/TripCard/TripView/TripViewComponent";
+import TripViewComponent from "../components/future/TripView/TripViewComponent";
 import { Contacts } from "../pages";
 import {
   TRANSFERS_ADD_TRANSFER_PATH,
