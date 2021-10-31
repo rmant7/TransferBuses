@@ -1,10 +1,8 @@
 import { getAllFiltersFromCity, getAllFiltersToCity } from "../../services/data-service";
 import { getCityById } from "../../utils/cities-util";
-import { convertToFilter } from "../../utils/filters-util";
+import { convertToFilterFromObject } from "../../utils/filters-util";
 import { loadingTransfersAction } from "./loading-actions";
-import {
-  getTransfersByAction,
-} from "./transfers-actions";
+import { getTransfersByAction } from "./transfers-actions";
 
 export const SET_FILTER_FROM_CITIES = "set-filter-from-cities";
 export const SET_FILTER_TO_CITIES = "set-filter-to-cities";
@@ -59,9 +57,9 @@ export function setFiltersForApplyAction(filters) {
     });
 }
 
-export function applyFiltersAction(values, keys) {
+export function applyFiltersAction(obj) {
   return (dispatch) => {
-    const filters = convertToFilter(values, keys);
+    const filters = convertToFilterFromObject(obj);
     dispatch(setFiltersForApplyAction(filters));
     dispatch(getTransfersByAction(filters));
   };

@@ -15,6 +15,7 @@ import { getCityByNameRu } from "../../../utils/cities-util";
 import i18n from "../../../i18n";
 import { getTransfersAction } from "../../../redux/actions/transfers-actions";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
+import { getFilterUri } from "../../../utils/filters-util";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -29,9 +30,9 @@ export default function FiltersComponent() {
     from: "",
     to: "",
     date: "",
-    pets: false,
-    pass: false,
-    regular: false,
+    regular_trips: false,
+    pass_parcel: false,
+    pets_allowed: false,
   });
   const from = query.get("from") || "";
   const to = query.get("to") || "";
@@ -42,28 +43,7 @@ export default function FiltersComponent() {
 
   console.log(filters, query, uriData);
 
-  function getUri() {
-    let uri = `${TRANSFERS_PATH}`;
-    if (uriData.from !== "") {
-      uri += `?from=${uriData.from}`;
-    }
-    if (uriData.to !== "") {
-      uri += uri.includes("?") ? `&to=${uriData.to}` : `?to=${uriData.to}`;
-    }
-    if (uriData.date !== "") {
-      uri += uri.includes("?") ? `&date=${uriData.date}` : `?date=${uriData.date}`;
-    }
-    if (uriData.pass) {
-      uri += uri.includes("?") ? `&pass-parcel=${uriData.pass}` : `?pass-parcel=${uriData.pass}`;
-    }
-    if (uriData.pets) {
-      uri += uri.includes("?") ? `&pets-allowed=${uriData.pets}` : `?pets-allowed=${uriData.pets}`;
-    }
-    if (uriData.regular) {
-      uri += uri.includes("?") ? `&regular-trips=${uriData.regular}` : `?regular-trips=${uriData.regular}`;
-    }
-    return uri;
-  }
+  console.log(filters, query, uriData);
 
   const handleInputFrom = (e, v) => {
     setUriData({ ...uriData, from: v });
@@ -80,43 +60,29 @@ export default function FiltersComponent() {
       from,
       to,
       date,
-      regular: Boolean(regular),
-      pass: Boolean(pass),
-      pets: Boolean(pets),
+      regular_trips: Boolean(regular),
+      pass_parcel: Boolean(pass),
+      pets_allowed: Boolean(pets),
     });
     if (from || to || date || pass || pets || regular) {
       const cityTo = getCityByNameRu(to);
       const cityFrom = getCityByNameRu(from);
-      const values = [];
-      const keys = [];
-      if (cityTo && cityFrom) {
-        values.push(cityFrom.ID, cityTo.ID);
-        keys.push("from", "to");
-      } else if (cityFrom) {
-        values.push(cityFrom.ID);
-        keys.push("from");
-      } else if (cityTo) {
-        values.push(cityTo.ID);
-        keys.push("to");
+      let objForFB = {
+        from,
+        to,
+        date,
+        regularTrips: Boolean(regular),
+        passAParcel: Boolean(pass),
+        isPetsAllowed: Boolean(pets),
+      };
+      if (cityTo) {
+        objForFB = { ...objForFB, to: cityTo.ID };
       }
-      if (date) {
-        values.push(date);
-        keys.push("date");
+      if (cityFrom) {
+        objForFB = { ...objForFB, from: cityFrom.ID };
       }
-      if (regular === "true") {
-        values.push(Boolean(regular));
-        keys.push("regularTrips");
-      }
-      if (pass === "true") {
-        values.push(Boolean(pass));
-        keys.push("passAParcel");
-      }
-      if (pets === "true") {
-        values.push(Boolean(pets));
-        keys.push("isPetsAllowed");
-      }
-      console.log(values, keys);
-      dispatch(applyFiltersAction(values, keys));
+      console.log(objForFB);
+      dispatch(applyFiltersAction(objForFB));
     } else {
       dispatch(getTransfersAction());
     }
@@ -141,24 +107,10 @@ export default function FiltersComponent() {
             inputValue={uriData.to}
             // getOptionLabel={(o) => o.name}
           />
-          <Button
-            disabled={uriData.from === "" && uriData.to === ""}
-            variant="outlined"
-            onClick={() =>
-              setUriData({
-                ...uriData,
-                from: "",
-                to: "",
-              })
-            }
-            style={{ marginLeft: "10px", marginBottom: "10px" }}
-          >
-            {i18n.t("Clear")}
-          </Button>
         </div>
         <div className={classes.block}>
           <TextField
-            disabled={uriData.regular}
+            disabled={uriData.regular_trips}
             id="date"
             label={i18n.t("Date")}
             type="date"
@@ -187,8 +139,8 @@ export default function FiltersComponent() {
           <FormControlLabel
             control={
               <Checkbox
-                checked={uriData.regular}
-                onChange={() => setUriData({ ...uriData, date: "", regular: !uriData.regular })}
+                checked={uriData.regular_trips}
+                onChange={() => setUriData({ ...uriData, date: "", regular: !uriData.regular_trips })}
               />
             }
             label={i18n.t("Regular trips")}
@@ -196,8 +148,8 @@ export default function FiltersComponent() {
           <FormControlLabel
             control={
               <Checkbox
-                checked={uriData.pass}
-                onChange={() => setUriData({ ...uriData, pass: !uriData.pass })}
+                checked={uriData.pass_parcel}
+                onChange={() => setUriData({ ...uriData, pass_parcel: !uriData.pass_parcel })}
               />
             }
             label={i18n.t("Pass a parcel")}
@@ -205,8 +157,8 @@ export default function FiltersComponent() {
           <FormControlLabel
             control={
               <Checkbox
-                checked={uriData.pets}
-                onChange={() => setUriData({ ...uriData, pets: !uriData.pets })}
+                checked={uriData.pets_allowed}
+                onChange={() => setUriData({ ...uriData, pets_allowed: !uriData.pets_allowed })}
               />
             }
             label={i18n.t("PetsAllowed")}
@@ -216,9 +168,7 @@ export default function FiltersComponent() {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => {
-              history.push(getUri());
-            }}
+            onClick={() => history.push(getFilterUri(`${TRANSFERS_PATH}`, uriData))}
             style={{ marginLeft: "10px", marginBottom: "10px" }}
           >
             {i18n.t("Apply")}
@@ -230,9 +180,9 @@ export default function FiltersComponent() {
                 from: "",
                 to: "",
                 date: "",
-                pets: false,
-                pass: false,
                 regular: false,
+                pass: false,
+                pets: false,
               })
             }
             style={{ marginLeft: "10px", marginBottom: "10px" }}
