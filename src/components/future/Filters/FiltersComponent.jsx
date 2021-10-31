@@ -33,12 +33,12 @@ export default function FiltersComponent() {
     pass: false,
     regular: false,
   });
-  const fcn = query.get("from");
-  const tcn = query.get("to");
-  const date = query.get("date");
-  const pass = query.get("pass-parcel");
-  const pets = query.get("pets-allowed");
-  const regular = query.get("regular-trips");
+  const from = query.get("from") || "";
+  const to = query.get("to") || "";
+  const date = query.get("date") || "";
+  const pass = query.get("pass-parcel") || false;
+  const pets = query.get("pets-allowed") || false;
+  const regular = query.get("regular-trips") || false;
 
   console.log(filters, query, uriData);
 
@@ -76,41 +76,42 @@ export default function FiltersComponent() {
   useEffect(() => {
     dispatch(filtersFromCityAction());
     dispatch(filtersToCityAction());
-    if (fcn || tcn || date || pass || pets || regular) {
-      const cityTo = getCityByNameRu(tcn);
-      const cityFrom = getCityByNameRu(fcn);
+    setUriData({
+      from,
+      to,
+      date,
+      regular: Boolean(regular),
+      pass: Boolean(pass),
+      pets: Boolean(pets),
+    });
+    if (from || to || date || pass || pets || regular) {
+      const cityTo = getCityByNameRu(to);
+      const cityFrom = getCityByNameRu(from);
       const values = [];
       const keys = [];
       if (cityTo && cityFrom) {
-        setUriData({ ...uriData, from: fcn, to: tcn });
         values.push(cityFrom.ID, cityTo.ID);
         keys.push("from", "to");
       } else if (cityFrom) {
-        setUriData({ ...uriData, from: fcn });
         values.push(cityFrom.ID);
         keys.push("from");
       } else if (cityTo) {
-        setUriData({ ...uriData, to: tcn });
         values.push(cityTo.ID);
         keys.push("to");
       }
       if (date) {
-        setUriData({ ...uriData, date });
         values.push(date);
         keys.push("date");
       }
       if (regular === "true") {
-        setUriData({ ...uriData, regular: Boolean(regular) });
         values.push(Boolean(regular));
         keys.push("regularTrips");
       }
       if (pass === "true") {
-        setUriData({ ...uriData, pass: Boolean(pass) });
         values.push(Boolean(pass));
         keys.push("passAParcel");
       }
       if (pets === "true") {
-        setUriData({ ...uriData, pets: Boolean(pets) });
         values.push(Boolean(pets));
         keys.push("isPetsAllowed");
       }
@@ -119,7 +120,7 @@ export default function FiltersComponent() {
     } else {
       dispatch(getTransfersAction());
     }
-  }, [date, dispatch, fcn, pass, pets, regular, tcn]);
+  }, [date, dispatch, from, pass, pets, regular, to]);
 
   return (
     <div className={classes.filters_sector}>
