@@ -72,7 +72,7 @@ export function filtersFromCityAction() {
       const filters = await getAllFiltersFromCity();
       const fromCities = filters.map((v) => getCityById(v._id));
       // const fromCitiesEn = Array.from(fromCities.map((c) => c.name));
-      const fromCitiesRu = Array.from(fromCities.map((c) => c.name_ru));
+      const fromCitiesRu = Array.from(fromCities.map((c) => c.name_ru)).sort();
       dispatch({
         type: SET_FILTER_FROM_CITIES,
         // payload: _.concat(fromCitiesEn, fromCitiesRu),
@@ -96,7 +96,7 @@ export function filtersToCityAction() {
       const filters = await getAllFiltersToCity();
       const toCities = filters.map((v) => getCityById(v._id));
       // const fromCitiesEn = Array.from(fromCities.map((c) => c.name));
-      const toCitiesRu = Array.from(toCities.map((c) => c.name_ru));
+      const toCitiesRu = Array.from(toCities.map((c) => c.name_ru)).sort();
       dispatch({
         type: SET_FILTER_TO_CITIES,
         payload: toCitiesRu,
