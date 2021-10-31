@@ -140,7 +140,7 @@ export default function FiltersComponent() {
             control={
               <Checkbox
                 checked={uriData.regular_trips}
-                onChange={() => setUriData({ ...uriData, date: "", regular: !uriData.regular_trips })}
+                onChange={() => setUriData({ ...uriData, date: "", regular_trips: !uriData.regular_trips })}
               />
             }
             label={i18n.t("Regular trips")}
