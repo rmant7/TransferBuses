@@ -91,7 +91,6 @@ export function getNextTransfersAction(lastTransfers) {
   return async (dispatch) => {
     dispatch(loadingNextTransfersAction(true));
     dispatch(setTransfersReceivedAction(false));
-    dispatch(setTransfersDataAction([]));
     try {
       const nextTransfers = await getNextTransfers(lastTransfers[lastTransfers.length - 1]);
       dispatch(setTransfersAction(_.concat(lastTransfers, nextTransfers)));
