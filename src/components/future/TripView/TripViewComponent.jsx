@@ -3,9 +3,9 @@ import { Box } from "@mui/system";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getTransferAction } from "../../../../redux/actions/transfer-actions";
-import { getLoading, getTransfer } from "../../../../redux/selectors";
-import { getCityById } from "../../../../utils/cities-util";
+import { getTransferAction } from "../../../redux/actions/transfer-actions";
+import { getLoading, getTransfer } from "../../../redux/selectors";
+import { getCityById } from "../../../utils/cities-util";
 
 export default function TripViewComponent() {
   const dispatch = useDispatch();
