@@ -141,8 +141,6 @@ export async function getAllFiltersFromCity() {
 export async function getTransfers() {
   try {
     const collection = await getSortedTransfersQuery().get();
-    // rewrite("transfers-id-timestamp", "transfers-new");
-    // rewrite("dev-transfers-id-timestamp", "dev-transfers-new");
     const transfers = collection.docs.map((doc) => doc.data());
     console.log("received transfers: ", transfers);
     return transfers;
@@ -191,20 +189,6 @@ export async function getNextTransfers(last) {
     console.error(error);
     return Promise.reject(error);
   }
-}
-
-async function rewrite(dbFrom, dbTo) {
-  const c = await fb.firestore().collection(dbFrom).get();
-  c.docs.forEach((v) => {
-    const _id = generate();
-    console.log("old: ", v.data());
-    const res = { ...v.data(), _id, _timestamp: new Date().toJSON() };
-    delete res.timestamp;
-    // uploadFilterFromCity(v.data().from);
-    // uploadFilterToCity(v.data().to);
-    fb.firestore().collection(dbTo).doc(_id).set(res);
-    console.log("new: ", res);
-  });
 }
 
 // export async function getMyLots(uid){
