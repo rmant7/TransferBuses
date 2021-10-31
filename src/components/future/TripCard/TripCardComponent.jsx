@@ -16,9 +16,9 @@ import DurationIcon from "../../../assets/duration.png";
 import { monthsEng } from "../../../utils/months-util";
 import { TRANSFERS_PATH } from "../../../utils/constants";
 import { convertToFixed, review } from "../../../utils/currency-util";
-import IconTextComponent from "./IconText/IconTextComponent";
-import IconComponent from "./Icon/IconComponent";
-import TextComponent from "./Text/TextComponent";
+import IconTextComponent from "../IconText/IconTextComponent";
+import IconComponent from "../Icon/IconComponent";
+import TextComponent from "../Text/TextComponent";
 
 export default function TripCardComponent({ transfer }) {
   const currency = useSelector(getCurrency);
