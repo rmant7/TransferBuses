@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import { TRANSFERS_PATH } from "../../../utils/constants";
-import { getCityByNameRu } from "../../../utils/cities-util";
+import { getCityByName } from "../../../utils/cities-util";
 import i18n from "../../../i18n";
 import { getTransfersAction } from "../../../redux/actions/transfers-actions";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
@@ -27,23 +27,13 @@ export default function FiltersComponent() {
   const query = useQuery();
   const filters = useSelector(getFilters);
   const [uriData, setUriData] = useState({
-    from: "",
-    to: "",
-    date: "",
-    regular_trips: false,
-    pass_parcel: false,
-    pets_allowed: false,
+    from: query.get("from") || "",
+    to: query.get("to") || "",
+    date: query.get("date") || "",
+    regular_trips: query.get("regular-trips") || false,
+    pass_parcel: query.get("pass-parcel") || false,
+    pets_allowed: query.get("pets-allowed") || false,
   });
-  const from = query.get("from") || "";
-  const to = query.get("to") || "";
-  const date = query.get("date") || "";
-  const pass = query.get("pass-parcel") || false;
-  const pets = query.get("pets-allowed") || false;
-  const regular = query.get("regular-trips") || false;
-
-  console.log(filters, query, uriData);
-
-  console.log(filters, query, uriData);
 
   const handleInputFrom = (e, v) => {
     setUriData({ ...uriData, from: v });
@@ -56,37 +46,29 @@ export default function FiltersComponent() {
   useEffect(() => {
     dispatch(filtersFromCityAction());
     dispatch(filtersToCityAction());
-    setUriData({
-      from,
-      to,
-      date,
-      regular_trips: Boolean(regular),
-      pass_parcel: Boolean(pass),
-      pets_allowed: Boolean(pets),
-    });
-    if (from || to || date || pass || pets || regular) {
-      const cityTo = getCityByNameRu(to);
-      const cityFrom = getCityByNameRu(from);
+    if (
+      uriData.from ||
+      uriData.to ||
+      uriData.date ||
+      uriData.pass_parcel ||
+      uriData.pets_allowed ||
+      uriData.regular_trips
+    ) {
+      const cityTo = getCityByName(uriData.to);
+      const cityFrom = getCityByName(uriData.from);
       let objForFB = {
-        from,
-        to,
-        date,
-        regularTrips: Boolean(regular),
-        passAParcel: Boolean(pass),
-        isPetsAllowed: Boolean(pets),
+        from: cityFrom ? cityFrom.ID : "",
+        to: cityTo ? cityTo.ID : "",
+        date: uriData.date,
+        regularTrips: Boolean(uriData.regular_trips),
+        passAParcel: Boolean(uriData.pass_parcel),
+        isPetsAllowed: Boolean(uriData.pets_allowed),
       };
-      if (cityTo) {
-        objForFB = { ...objForFB, to: cityTo.ID };
-      }
-      if (cityFrom) {
-        objForFB = { ...objForFB, from: cityFrom.ID };
-      }
-      console.log(objForFB);
       dispatch(applyFiltersAction(objForFB));
     } else {
       dispatch(getTransfersAction());
     }
-  }, [date, dispatch, from, pass, pets, regular, to]);
+  }, [dispatch, uriData]);
 
   return (
     <div className={classes.filters_sector}>
