@@ -68,14 +68,14 @@ export function getTransfersAction() {
   };
 }
 
-export function getTransfersByAction(filters) {
+export function getTransfersByAction(byValues) {
   return async (dispatch) => {
     dispatch(loadingTransfersAction(true));
     dispatch(setTransfersReceivedAction(false));
     dispatch(setTransfersDataAction([]));
     dispatch(setFilterApplyAction(false));
     try {
-      const transfers = await getTransfersBy(filters);
+      const transfers = await getTransfersBy(byValues);
       dispatch(setTransfersAction(transfers.slice()));
       dispatch(setFilterApplyAction(true));
     } catch (e) {

@@ -25,8 +25,6 @@ export default function PassengerPage() {
   const filters = useSelector(getFilters);
   const loading = useSelector(getLoading);
 
-  console.log(transfers);
-
   const addNextHandler = () => {
     dispatch(getNextTransfersAction(transfers.data));
   };

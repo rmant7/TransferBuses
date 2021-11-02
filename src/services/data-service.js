@@ -1,7 +1,8 @@
 import { getBuildMode } from "../config/build-config";
 import { fb } from "../config/firebase-config";
 import { MAX_PAGE_SIZE, TIMESTAMP_FIELD } from "../utils/constants";
-import { generate } from "../utils/unique-id-util";
+// import { generate } from "../utils/unique-id-util";
+import { juid } from "just-uid";
 
 const mode = getBuildMode();
 
@@ -27,8 +28,7 @@ function getNextTransfersFromLastQuery(last) {
 
 export async function getTransfersBy(filters) {
   let queries = getFBTransfersCollection();
-  filters.forEach((f) => (queries = queries.where(f.key, "==", f.value)));
-  console.log(queries);
+  filters.forEach((f) => (queries = queries.where(f.key, f.operator, f.value)));
   try {
     const collection = await queries.get();
     const data = collection.docs.map((doc) => {
@@ -43,7 +43,7 @@ export async function getTransfersBy(filters) {
 
 export async function uploadTransfer(transfer) {
   try {
-    const _id = generate();
+    const _id = juid();
     const response = await getFBTransfersCollection()
       .doc(_id)
       .set({
@@ -64,7 +64,7 @@ export async function uploadNewTransfer(transfer) {
   try {
     const res = {
       ...transfer,
-      _id: generate(),
+      _id: juid(),
       _timestamp: new Date().toJSON(),
     };
     const response = await getFBTransfersCollection().doc(res._id).set(res);

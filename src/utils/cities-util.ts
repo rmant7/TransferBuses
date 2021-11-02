@@ -18,9 +18,5 @@ export function getCityById(id: string): City | undefined {
 }
 
 export function getCityByName(name: string): City | undefined {
-  return cities.find((city) => city.name === name);
-}
-
-export function getCityByNameRu(name: string): City | undefined {
-  return cities.find((city) => city.name_ru === name);
+  return cities.find((city) => city.name === name || city.name_ru === name);
 }
