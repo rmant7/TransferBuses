@@ -1,10 +1,13 @@
 import { getBuildMode } from "../config/build-config";
 import { fb } from "../config/firebase-config";
 import { MAX_PAGE_SIZE, TIMESTAMP_FIELD } from "../utils/constants";
-// import { generate } from "../utils/unique-id-util";
-import { juid } from "just-uid";
+import { juid } from "just-unique-id";
 
 const mode = getBuildMode();
+
+function generateId() {
+  return juid(16, 24);
+}
 
 function getFBCollection(name) {
   return fb.firestore().collection(name);
@@ -43,7 +46,7 @@ export async function getTransfersBy(filters) {
 
 export async function uploadTransfer(transfer) {
   try {
-    const _id = juid();
+    const _id = generateId();
     const response = await getFBTransfersCollection()
       .doc(_id)
       .set({
@@ -64,7 +67,7 @@ export async function uploadNewTransfer(transfer) {
   try {
     const res = {
       ...transfer,
-      _id: juid(),
+      _id: generateId(),
       _timestamp: new Date().toJSON(),
     };
     const response = await getFBTransfersCollection().doc(res._id).set(res);
