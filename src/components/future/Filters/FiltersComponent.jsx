@@ -30,9 +30,9 @@ export default function FiltersComponent() {
     from: query.get("from") || "",
     to: query.get("to") || "",
     date: query.get("date") || "",
-    regular_trips: query.get("regular-trips") || false,
-    pass_parcel: query.get("pass-parcel") || false,
-    pets_allowed: query.get("pets-allowed") || false,
+    regular_trips: Boolean(query.get("regular_trips")) || false,
+    pass_parcel: Boolean(query.get("pass_parcel")) || false,
+    pets_allowed: Boolean(query.get("pets_allowed")) || false,
   });
 
   const handleInputFrom = (e, v) => {
@@ -46,6 +46,7 @@ export default function FiltersComponent() {
   useEffect(() => {
     dispatch(filtersFromCityAction());
     dispatch(filtersToCityAction());
+    history.push(getFilterUri(`${TRANSFERS_PATH}`, uriData));
     if (
       uriData.from ||
       uriData.to ||
@@ -147,15 +148,23 @@ export default function FiltersComponent() {
           />
         </div>
         <div className={classes.buttons_block}>
-          <Button
+          {/* <Button
             variant="contained"
             color="primary"
             onClick={() => history.push(getFilterUri(`${TRANSFERS_PATH}`, uriData))}
             style={{ marginLeft: "10px", marginBottom: "10px" }}
           >
             {i18n.t("Apply")}
-          </Button>
+          </Button> */}
           <Button
+            disabled={!Boolean(
+              uriData.from ||
+              uriData.to ||
+              uriData.date ||
+              uriData.pass_parcel ||
+              uriData.pets_allowed ||
+              uriData.regular_trips)
+            }
             variant="outlined"
             onClick={() =>
               setUriData({
