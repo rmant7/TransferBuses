@@ -1,4 +1,4 @@
-import classes from "./FilterComponent.module.css";
+import classes from "./Filter.module.css";
 import { TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 
