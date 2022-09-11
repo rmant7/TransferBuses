@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.034e3643.chunk.css",
+    "main.js": "/static/js/main.ca3540d3.chunk.js",
+    "main.js.map": "/static/js/main.ca3540d3.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.98fabb0b.js",
+    "runtime-main.js.map": "/static/js/runtime-main.98fabb0b.js.map",
+    "static/css/2.1ca50200.chunk.css": "/static/css/2.1ca50200.chunk.css",
+    "static/js/2.f694fc16.chunk.js": "/static/js/2.f694fc16.chunk.js",
+    "static/js/2.f694fc16.chunk.js.map": "/static/js/2.f694fc16.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.1ca50200.chunk.css.map": "/static/css/2.1ca50200.chunk.css.map",
+    "static/css/main.034e3643.chunk.css.map": "/static/css/main.034e3643.chunk.css.map",
+    "static/js/2.f694fc16.chunk.js.LICENSE.txt": "/static/js/2.f694fc16.chunk.js.LICENSE.txt",
+    "static/js/main.ca3540d3.chunk.js.LICENSE.txt": "/static/js/main.ca3540d3.chunk.js.LICENSE.txt",
+    "static/media/Logo_ChT_2.f6260958.png": "/static/media/Logo_ChT_2.f6260958.png",
+    "static/media/duration.3686aed8.png": "/static/media/duration.3686aed8.png",
+    "static/media/en.fabdd537.svg": "/static/media/en.fabdd537.svg",
+    "static/media/getFetch.cjs": "/static/media/getFetch.582d29c4.cjs",
+    "static/media/parcel-bw.65ec7192.png": "/static/media/parcel-bw.65ec7192.png",
+    "static/media/parcel.d14e8b3d.png": "/static/media/parcel.d14e8b3d.png",
+    "static/media/pets-allowed-bw.2d0569b1.png": "/static/media/pets-allowed-bw.2d0569b1.png",
+    "static/media/pets-allowed.479e6cfe.png": "/static/media/pets-allowed.479e6cfe.png",
+    "static/media/index.css": "/static/media/roboto-latin-900italic.cb5ad999.woff2",
+    "static/media/ru.ef3e7f83.svg": "/static/media/ru.ef3e7f83.svg",
+    "static/media/schedule.08574752.png": "/static/media/schedule.08574752.png",
+    "static/media/ua.78bf81ad.svg": "/static/media/ua.78bf81ad.svg",
+    "static/media/upward-arrow.69b9d9b5.png": "/static/media/upward-arrow.69b9d9b5.png",
+    "static/media/wallet.32eb69be.png": "/static/media/wallet.32eb69be.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.98fabb0b.js",
+    "static/css/2.1ca50200.chunk.css",
+    "static/js/2.f694fc16.chunk.js",
+    "static/css/main.034e3643.chunk.css",
+    "static/js/main.ca3540d3.chunk.js"
+  ]
+}
