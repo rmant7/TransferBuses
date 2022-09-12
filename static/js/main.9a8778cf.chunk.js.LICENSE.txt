@@ -1,0 +1,9 @@
+//!! Contact page
+
+//!! Material ui default classes
+
+//!! Navbar
+
+//!! Sidebar
+
+//!!! date, departureTime, and duration are conditionally reassigned later;
