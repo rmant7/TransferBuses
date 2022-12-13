@@ -8,7 +8,8 @@ import "./DriverPage.css";
 import { uploadTransfer } from "../../services/data-service";
 import { useHistory } from "react-router-dom";
 import { Checkbox, FormControlLabel, Grid, Paper } from "@material-ui/core";
-import data from "../../data.json";
+// import data from "../../data.json";
+import data from "../../cities.json";
 import i18n from "../../i18n";
 
 const phoneRegExp =
@@ -130,9 +131,7 @@ export default function DriverPage() {
                     {...params}
                     label={i18n.t("From")}
                     margin="normal"
-                    error={
-                      props.errors.from ? true : false
-                    }
+                    error={props.errors.from ? true : false}
                     helperText={
                       props.errors.from &&
                       i18n.t(`form.errors.${props.errors.from}`)
