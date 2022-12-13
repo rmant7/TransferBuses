@@ -16,7 +16,7 @@ i18n.use(Backend)
     fallbackLng: 'en',
     // keySeparator: false,
     detection:{
-        order: ['queryString','cookie'],
+        order: ['localStorage','queryString','cookie'],
         cache: ['cookie']
     },
     interpolation: {
