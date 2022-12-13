@@ -3486,5 +3486,61 @@
     "latitude": "45.356219",
     "longitude": "36.467378",
     "name_ru": "Керчь"
+  },
+  {
+    "ID": "3001",
+    "name": "Shoamko",
+    "country_id": "145",
+    "latitude": "0",
+    "longitude": "0",
+    "name_ru": "Шоамко"
+  },
+  {
+    "ID": "3002",
+    "name": "Krasnodarskij",
+    "country_id": "0",
+    "latitude": "0",
+    "longitude": "0",
+    "name_ru": "Краснодарский"
+  },
+  {
+    "ID": "3003",
+    "name": "Varenik",
+    "country_id": "145",
+    "latitude": "47.571411",
+    "longitude": "38.395386",
+    "name_ru": "Вареник"
+  },
+  {
+    "ID": "3004",
+    "name": "Ekaterinovka",
+    "country_id": "145",
+    "latitude": "47.542911",
+    "longitude": "38.383492",
+    "name_ru": "Екатериновка"
+  },
+  {
+    "ID": "3005",
+    "name": "Malokirsanovka",
+    "country_id": "145",
+    "latitude": "47.468286",
+    "longitude": "38.524839",
+    "name_ru": "Малокирсановка"
+  },
+  {
+    "ID": "3006",
+    "name": "Latonovo",
+    "country_id": "145",
+    "latitude": "47.477917",
+    "longitude": "38.629989",
+    "name_ru": "Латоново"
+  },
+  {
+    "ID": "3007",
+    "name": "Matveev Kurgan",
+    "country_id": "145",
+    "latitude": "47.572222",
+    "longitude": "38.866667",
+    "name_ru": "Матвеев Курган"
   }
 ]
