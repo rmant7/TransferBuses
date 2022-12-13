@@ -30,6 +30,7 @@
     "i18next-browser-languagedetector": "^6.1.2",
     "i18next-http-backend": "^1.2.6",
     "lodash": "^4.17.21",
+    "node": "^16.6.1",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
