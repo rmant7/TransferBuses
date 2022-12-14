@@ -12,7 +12,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import "./Transfer.css";
 import i18n from "i18next";
 import { WeekDayIcon } from "../WeekDayIcon/WeekDayIcon";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 // const theme = createTheme({
 //   palette: {
@@ -26,16 +26,60 @@ import { useHistory } from "react-router-dom";
 // });
 
 export default function Transfer({ transfer }) {
-  const history = useHistory();
+  // const history = useHistory();
   return (
-      <div className="transfer">
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Grid container spacing={4}>
+    <div className="transfer">
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Grid container spacing={4}>
+            <Grid
+              container
+              item
+              xs={12}
+              alignItems="center"
+              justifyContent="flex-start"
+            >
+              <Paper className={"paper"}>
+                {transfer.from}
+                <ArrowForwardSharpIcon style={{ marginBottom: "-6px" }} />
+                {transfer.to}
+              </Paper>
+            </Grid>
+
+            <Grid
+              container
+              item
+              xs={4}
+              alignItems="stretch"
+              justifyContent="flex-start"
+            >
+              <Button>
+                {/* {i18n.t("Duration of ride")}:*/} {transfer.duration}
+              </Button>
+            </Grid>
+
+            <Grid
+              container
+              item
+              xs={8}
+              alignItems="stretch"
+              justifyContent="flex-end"
+            >
+              <Button color="primary" variant="contained" className={"paper"}>
+                {/* {i18n.t("Price")}: */}
+                {transfer.price}{" "}
+              </Button>
+            </Grid>
+          </Grid>
+        </AccordionSummary>
+        <AccordionDetails>
+          <hr />
+          <Grid container spacing={2} justifyContent="space-around">
+            {!transfer.regularTrips && (
               <Grid
                 container
                 item
@@ -44,140 +88,94 @@ export default function Transfer({ transfer }) {
                 justifyContent="flex-start"
               >
                 <Paper className={"paper"}>
-                  {transfer.from}
-                  <ArrowForwardSharpIcon style={{marginBottom:"-6px"}}/>
-                  {transfer.to}
+                  {i18n.t("Date of travel")}: {transfer.date.replace("T", "  ")}
                 </Paper>
               </Grid>
+            )}
 
+            {transfer.regularTrips && (
               <Grid
                 container
                 item
-                xs={4}
-                alignItems="stretch"
+                xs={12}
+                alignItems="center"
                 justifyContent="flex-start"
               >
-                <Button>
-                  {/* {i18n.t("Duration of ride")}:*/} {transfer.duration}
-                </Button>
-              </Grid>
-
-              <Grid
-                container
-                item
-                xs={8}
-                alignItems="stretch"
-                justifyContent="flex-end"
-              >
-                <Button color="primary" variant="contained" className={"paper"}>
-                  {/* {i18n.t("Price")}: */}{transfer.price}{" "}
-                </Button>
-              </Grid>
-            </Grid>
-          </AccordionSummary>
-          <AccordionDetails>
-            
-            <hr />
-            <Grid container spacing={2} justifyContent="space-around">
-              {!transfer.regularTrips && (
-                <Grid
-                  container
-                  item
-                  xs={12}
-                  alignItems="center"
-                  justifyContent="flex-start"
-                >
-                  <Paper className={"paper"}>
-                    {i18n.t("Date of travel")}:{" "}
-                    {transfer.date.replace("T", "  ")}
-                  </Paper>
-                </Grid>
-              )}
-
-              {transfer.regularTrips && (
-                <Grid
-                  container
-                  item
-                  xs={12}
-                  alignItems="center"
-                  justifyContent="flex-start"
-                >
-                  <Paper className={"paper"}>
-                    <div style={{ marginBottom: "8px" }}>
-                      {i18n.t("Regular trips")}
-                    </div>
-                    <Grid container spacing="0">
-                      {Object.keys(transfer.regularTripsDays)
-                        .sort()
-                        .map((weekDay) => {
-                          return (
-                            <WeekDayIcon
-                              name={weekDay}
-                              value={transfer.regularTripsDays[weekDay]}
-                            />
-                          );
-                        })}
-                    </Grid>
-                  </Paper>
-                </Grid>
-              )}
-
-              <Grid
-                container
-                item
-                xs={12}
-                  alignItems="center"
-                  justifyContent="flex-start"
-              >
                 <Paper className={"paper"}>
-                  {i18n.t("Driver's phone number")}: {transfer.phoneNumber}{" "}
-                  <RingVolumeIcon fontSize="small" />
+                  <div style={{ marginBottom: "8px" }}>
+                    {i18n.t("Regular trips")}
+                  </div>
+                  <Grid container spacing="0">
+                    {Object.keys(transfer.regularTripsDays)
+                      .sort()
+                      .map((weekDay) => {
+                        return (
+                          <WeekDayIcon
+                            name={weekDay}
+                            value={transfer.regularTripsDays[weekDay]}
+                          />
+                        );
+                      })}
+                  </Grid>
                 </Paper>
               </Grid>
+            )}
+
+            <Grid
+              container
+              item
+              xs={12}
+              alignItems="center"
+              justifyContent="flex-start"
+            >
+              <Paper className={"paper"}>
+                {i18n.t("Driver's phone number")}: {transfer.phoneNumber}{" "}
+                <RingVolumeIcon fontSize="small" />
+              </Paper>
+            </Grid>
+            <Grid
+              container
+              item
+              xs={12}
+              justifyContent="flex-start"
+              alignItems="center"
+            >
+              <Paper className={"paper"}>
+                {i18n.t("Places")}: {transfer.places}
+                <AirlineSeatReclineNormalIcon fontSize="small" />
+              </Paper>
+
+              <Paper className={"paper"}>
+                {i18n.t("A parcel delivery")}:{" "}
+                {transfer.passAParcel ? i18n.t("Yes") : i18n.t("No")}
+              </Paper>
+            </Grid>
+
+            {transfer.driversComment && (
               <Grid
                 container
                 item
                 xs={12}
-
                 justifyContent="flex-start"
                 alignItems="center"
               >
                 <Paper className={"paper"}>
-                  {i18n.t("Places")}: {transfer.places}
-                  <AirlineSeatReclineNormalIcon fontSize="small" />
-                </Paper>
-
-                <Paper className={"paper"}>
-                  {i18n.t("A parcel delivery")}:{" "}
-                  {transfer.passAParcel ? i18n.t("Yes") : i18n.t("No")}
+                  <div>{i18n.t("Driver's comment")}:</div>
+                  <div
+                    style={{
+                      textOverflow: "ellipsis",
+                      wordBreak: "break-all",
+                    }}
+                  >
+                    {transfer.driversComment}{" "}
+                  </div>
                 </Paper>
               </Grid>
-
-              {transfer.driversComment && (
-                <Grid
-                  container
-                  item
-                  xs={12}
-                  justifyContent="flex-start"
-                  alignItems="center"
-                >
-                  <Paper className={"paper"}>
-                    <div>{i18n.t("Driver's comment")}:</div>
-                    <div
-                      style={{
-                        textOverflow: "ellipsis",
-                        wordBreak: "break-all",
-                      }}
-                    >
-                      {transfer.driversComment}{" "}
-                    </div>
-                  </Paper>
-                </Grid>
-              )}
-            </Grid>
-          </AccordionDetails>
-        </Accordion>
-        {/* <Grid item xs={2}>
+            )}
+          </Grid>
+        </AccordionDetails>
+      </Accordion>
+      {/* <Grid item xs={2}>
               <IconButton onClick={() =>
                 history.push(
                   {
@@ -189,6 +187,6 @@ export default function Transfer({ transfer }) {
                 <NearMeIcon fontSize="large"/>
               </IconButton>
             </Grid> */}
-      </div>
+    </div>
   );
 }
