@@ -8,3 +8,5 @@ export { default as TransferPage } from './TransferPage/TransferPage';
 export { default as AppRouter } from './AppRouter/AppRouter';
 export { default as LanguageSelector } from './LanguageSelector/LanguageSelector';
 export { default as CurrenciesSelector } from './CurrenciesSelector/CurrenciesSelector';
+
+// export { default as HeaderComponent } from './HeaderComponent/HeaderComponent';

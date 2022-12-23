@@ -1,0 +1,49 @@
+.Logo_Cht_Wrapper {
+    display: flex;
+}
+
+.Logo_Cht {
+    width: 460px;
+    margin: 0 auto;
+}
+
+.MainSlogan {
+    width: max-content;
+    font-size: 1.6rem;
+    color: #607d8b;
+    font-weight: 400;
+    margin: 86px auto 0;
+    font-family: Roboto,Helvetica Neue,sans-serif;
+}
+
+@media (max-width: 1230px) {
+    .MainSlogan {
+        font-size: 1.35rem;
+        padding: 0.12rem 0;
+    }
+}
+
+@media (max-width: 1030px) {
+    .MainSlogan {
+        font-size: 1.1rem;
+        padding: 0.24rem 0;
+    }
+}
+
+@media (max-width: 860px) {
+    .MainSlogan {
+        visibility: hidden;
+    }
+}
+
+/* .transfers {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 25px;
+} */
+
+/* .tb_padding {
+    padding-top: 70px;
+    padding-bottom: 50px;
+} */

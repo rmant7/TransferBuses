@@ -1,0 +1,23 @@
+.MenuTrip {
+    width: 100%;
+}
+
+.MenuTrip .MenuTrip_btn {
+    position: relative;
+    width: 100%;
+    padding: 8px 16px;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    text-transform: none;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+
+
+
+
+
+

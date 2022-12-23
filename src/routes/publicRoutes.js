@@ -1,6 +1,8 @@
 import { MainPage, PassengerPage, BusPage, CarrierPage, TransferPage } from "../components";
 import TransferViewComponent from "../components/future/TransferCard/TransferView/TransferViewComponent";
 import { Contacts } from "../pages";
+import { MainPageComponent } from "../components/MainPageComponent/MainPageComponent";
+
 import {
   MAIN_ROUTE,
   PASSENGER_ROUTE,
@@ -11,9 +13,13 @@ import {
 } from "../utils/constants";
 
 export const publicRoutes = [
+  // {
+  //   path: MAIN_ROUTE,
+  //   Component: MainPage,
+  // },
   {
     path: MAIN_ROUTE,
-    Component: MainPage,
+    Component: MainPageComponent,
   },
   {
     path: `${PASSENGER_ROUTE}/:trip`,

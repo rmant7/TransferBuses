@@ -6,6 +6,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import {theme, useStyles} from './utils/useStyles';
 import {StylesProvider} from "@material-ui/core";
+import HeaderComponent from './components/HeaderComponent/HeaderComponent';
+
 function App() {
   const { i18n } = useTranslation();
   const changeLanguage = (language) =>  {
@@ -25,7 +27,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <StylesProvider>
-        <Navbar/>
+      <HeaderComponent />
+        {/* <Navbar/> */}
         <AppRouter/>
       </StylesProvider>
     </ThemeProvider>

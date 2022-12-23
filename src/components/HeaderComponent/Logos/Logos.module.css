@@ -1,0 +1,70 @@
+.logo {
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+}
+
+.logoBus {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.logoTrip {
+    font-size: 3.3rem;
+    margin-top: -9px;
+}
+
+.sloganHeader {
+    margin-left: 40px;
+    font-size: 2.1rem;
+    letter-spacing: 1px;
+    width: max-content;
+    padding-bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.logoTrip,
+.sloganHeader {
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.sloganHeaderChilds {
+    width: max-content;
+}
+
+.sloganHeaderChilds:first-child {
+    padding-right: 7px;
+}
+
+
+@media (max-width: 860px) {
+    .sloganHeader {
+        font-size: 1.5rem;
+        margin-left: 20px;
+    }
+    .logoTrip {
+        font-size: 2.3rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .sloganHeader {
+        padding: 0;
+    }
+}
+
+@media (max-width: 450px) {
+    .logoBus {
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+}
+
+@media (max-width: 350px) {
+    .logoBus {
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+}
