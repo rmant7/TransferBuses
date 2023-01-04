@@ -25,6 +25,7 @@
     "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "firebase": "^8.7.0",
+    "firebase-tools": "^11.19.0",
     "formik": "^2.2.9",
     "i18next": "^20.3.3",
     "i18next-browser-languagedetector": "^6.1.2",
