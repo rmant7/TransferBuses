@@ -1,17 +1,19 @@
 import { useState } from "react";
 import AutoComplete from "./AutoComplete";
 import data from "./data.json";
-import './AutoComplete.css';
+import "./AutoComplete.css";
 import { HiChevronDoubleRight } from "react-icons/hi";
-import { IconContext } from "react-icons";
 
 export const AutoCompleteSection = () => {
   const [cityName, setCityName] = useState("");
-  const [options, setOptions] = useState();
-  const [json, setJson] = useState(null);
-  const [myJson, setmyJson] = useState(null);
-  const [searchMarker, setSearchMarker] = useState(null);
-  const [map, setMap] = useState(null);
+  const [cityNameTo, setCityNameTo] = useState("");
+  const [optionsFrom, setOptionsFrom] = useState();
+  const [optionsTo, setOptionsTo] = useState();
+  const [jsonFrom, setJsonFrom] = useState(null);
+  const [jsonTo, setJsonTo] = useState(null);
+  const [, /* myJson */ setmyJson] = useState(null);
+  const [, /* searchMarker */ setSearchMarker] = useState(null);
+  const [map /* setMap */] = useState(null);
 
   const findMyCities = (geometry) => {
     let lat1 = geometry[1];
@@ -62,66 +64,75 @@ export const AutoCompleteSection = () => {
     const url = `https://photon.komoot.io/api/?q=${cityName}&osm_tag=place:city`;
     const response = await fetch(url);
     let data = (await response.json()).features;
-
-    // const url = `https://nominatim.openstreetmap.org/search?city=${cityName}&format=geojson`;
-    // const response = await fetch(url);
-    // let data = (await response.json()).features;
     return data;
   };
 
-  const onChangeHandler = async (text) => {
-    setCityName(text);
+  const cityMatcher = async (text) => {
     let matches = [];
     if (text.length > 0) {
       const data = await findAutocomplete(text);
       matches = data.map((feature) => feature.properties.name);
-
       matches = matches.filter((a, b) => matches.indexOf(a) === b);
     }
+    return matches;
+  };
 
-    setOptions(matches);
+  const onChangeHandlerFrom = async (text) => {
+    setCityName(text);
+    setOptionsFrom(await cityMatcher(text));
+  };
+
+  const onChangeHandlerTo = async (text) => {
+    setCityNameTo(text);
+    setOptionsTo(await cityMatcher(text));
   };
 
   const findCities = async (cityName) => {
     const url = `https://nominatim.openstreetmap.org/search?city=${cityName}&format=geojson`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setJson(data.features);
-      });
+    return fetch(url).then((response) => response.json());
   };
-  ///******End of Anna`s code */
+
+  const findCitiesFrom = async (cityName) => {
+    findCities(cityName).then((data) => {
+      setJsonFrom(data.features);
+    });
+  };
+  const findCitiesTo = async (cityName) => {
+    findCities(cityName).then((data) => {
+      setJsonTo(data.features);
+    });
+  };
 
   return (
     <div className="autoCompleteSection">
       <AutoComplete
         onChange={(e) => {
-          onChangeHandler(e.target.value);
+          onChangeHandlerFrom(e.target.value);
         }}
         placeholder="From"
         value={cityName}
         setValue={setCityName}
-        options={options}
-        setOptions={setOptions}
-        findCities={findCities}
+        options={optionsFrom}
+        setOptions={setOptionsFrom}
+        findCities={findCitiesFrom}
         resultClick={resultClick}
-        json={json}
-        setJson={setJson}
+        json={jsonFrom}
+        setJson={setJsonFrom}
       />
-      <HiChevronDoubleRight  color={'#ff5722'} size={'1.5rem'} />
+      <HiChevronDoubleRight color={"#ff5722"} size={"1.5rem"} />
       <AutoComplete
-         /* onChange={(e) => {
-          onChangeHandler(e.target.value);
-        }} */
+        onChange={(e) => {
+          onChangeHandlerTo(e.target.value);
+        }}
         placeholder="To"
-        /*value={cityName}
-        setValue={setCityName}
-        options={options}*/
-        /* setOptions={setOptions} */
-        /* findCities={findCities} */
-        /* resultClick={resultClick} */
-        /* json={json} 
-        setJson={setJson} */
+        value={cityNameTo}
+        setValue={setCityNameTo}
+        options={optionsTo}
+        setOptions={setOptionsTo}
+        findCities={findCitiesTo}
+        resultClick={resultClick}
+        json={jsonTo}
+        setJson={setJsonTo}
       />
     </div>
   );
