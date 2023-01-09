@@ -40,6 +40,9 @@ export const AutoCompleteSection = () => {
       }
     });
     let midata = [rescity];
+    /* const nearestCoordinates = data.map(city=> city.geometry.coordinates); */
+    console.log("Nearest city");
+    console.log(midata[0].geometry.coordinates);
     setmyJson(midata);
     
   };
