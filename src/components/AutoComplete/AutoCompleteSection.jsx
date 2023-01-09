@@ -11,7 +11,7 @@ export const AutoCompleteSection = () => {
   const [optionsTo, setOptionsTo] = useState();
   const [jsonFrom, setJsonFrom] = useState(null);
   const [jsonTo, setJsonTo] = useState(null);
-  const [, /* myJson */ setmyJson] = useState(null);
+  const [ myJson, setmyJson] = useState(null);
   const [, /* searchMarker */ setSearchMarker] = useState(null);
   const [map /* setMap */] = useState(null);
 
@@ -41,6 +41,7 @@ export const AutoCompleteSection = () => {
     });
     let midata = [rescity];
     setmyJson(midata);
+    
   };
 
   const resultClick = ({ geometry, display_name }) => {
@@ -64,6 +65,8 @@ export const AutoCompleteSection = () => {
     const url = `https://photon.komoot.io/api/?q=${cityName}&osm_tag=place:city`;
     const response = await fetch(url);
     let data = (await response.json()).features;
+    const coordinates = data.map(city=> city.geometry.coordinates);
+    console.log(coordinates);
     return data;
   };
 
@@ -74,6 +77,7 @@ export const AutoCompleteSection = () => {
       matches = data.map((feature) => feature.properties.name);
       matches = matches.filter((a, b) => matches.indexOf(a) === b);
     }
+    console.log(matches);
     return matches;
   };
 
