@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AutoComplete from "./AutoComplete";
-import data from "./data.json";
+import data from "../data.json";
 import "./AutoComplete.css";
 import { HiChevronDoubleRight } from "react-icons/hi";
 
