@@ -21,7 +21,7 @@
     width: max-content;
     padding-bottom: 12px;
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 .logoTrip,
@@ -38,24 +38,28 @@
     padding-right: 7px;
 }
 
-
 @media (max-width: 860px) {
     .sloganHeader {
         font-size: 1.5rem;
         margin-left: 20px;
     }
+
     .logoTrip {
-        font-size: 2.3rem;
+        font-size: 2.9rem;
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 750px) {
     .sloganHeader {
-        padding: 0;
+        display: none;
     }
 }
 
 @media (max-width: 450px) {
+    .logoTrip {
+        font-size: 2.2rem;
+    }
+
     .logoBus {
         font-size: 1.4rem;
         font-weight: 400;
@@ -63,6 +67,9 @@
 }
 
 @media (max-width: 350px) {
+    .logoTrip {
+        font-size: 1.8rem;
+    }
     .logoBus {
         font-size: 1.1rem;
         font-weight: 400;
