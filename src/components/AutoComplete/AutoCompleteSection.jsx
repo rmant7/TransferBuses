@@ -1,8 +1,8 @@
 import { useState } from "react";
 import AutoComplete from "./AutoComplete";
-import data from "../data.json";
 import "./AutoComplete.css";
 import { HiChevronDoubleRight } from "react-icons/hi";
+import { findMyCities } from "./findMyCities";
 
 export const AutoCompleteSection = () => {
   const [cityName, setCityName] = useState("");
@@ -11,44 +11,12 @@ export const AutoCompleteSection = () => {
   const [optionsTo, setOptionsTo] = useState();
   const [jsonFrom, setJsonFrom] = useState(null);
   const [jsonTo, setJsonTo] = useState(null);
-  const [ myJson, setmyJson] = useState(null);
+  const [/* myJson, */ setmyJson] = useState(null);
   const [, /* searchMarker */ setSearchMarker] = useState(null);
   const [map /* setMap */] = useState(null);
 
-  const findMyCities = (geometry) => {
-    let lat1 = geometry[1];
-    let lon1 = geometry[0];
-    let distance = 20000;
-    let rescity = {};
-    let lat2, lon2, a, d;
-    let p = 0.017453292519943295;
-    let c = Math.cos;
-    data.cities.forEach((e) => {
-      lat2 = e.lat;
-      lon2 = e.lon;
-      a =
-        0.5 -
-        c((lat2 - lat1) * p) / 2 +
-        (c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p))) / 2;
-      d = 12742 * Math.asin(Math.sqrt(a));
-      if (d <= distance) {
-        distance = d;
-        rescity = {
-          geometry: { coordinates: [lon2, lat2] },
-          properties: { display_name: e.city },
-        };
-      }
-    });
-    let midata = [rescity];
-    /* const nearestCoordinates = data.map(city=> city.geometry.coordinates); */
-    console.log("Nearest city");
-    console.log(midata[0].geometry.coordinates);
-    setmyJson(midata);
-    
-  };
-
   const resultClick = ({ geometry, display_name }) => {
-    findMyCities(geometry);
+    findMyCities(geometry, setmyJson);
     setSearchMarker({
       coordinates: {
         lat: geometry[1],
@@ -80,7 +48,7 @@ export const AutoCompleteSection = () => {
       matches = data.map((feature) => feature.properties.name);
       matches = matches.filter((a, b) => matches.indexOf(a) === b);
     }
-    console.log(matches);
+
     return matches;
   };
 

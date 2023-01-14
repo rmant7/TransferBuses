@@ -5,7 +5,7 @@
 }
 .autoComplete .input{
   width:100%;
-  min-width:300px;
+  min-width:250px;
   font-size:1.3rem;
   border: none;
   /* border:2px solid black;

@@ -15,6 +15,8 @@ export default function AutoComplete({
 	findCities,
 }) {
 	const [optionsActive, setOptionsActive] = useState(false);
+	console.log("JSON");
+	console.log(json);
 
 	const nameOfCity = city => {
 		const nameOfCityArr = city.properties.display_name.split(',');
@@ -61,9 +63,10 @@ export default function AutoComplete({
 						/>
 					))}
 
-				{json &&
+				{(json&&json.length>1) &&
 					json.map(city => {
 						const formatingCity = nameOfCity(city);
+						console.log("step 2");
 						return (
 							<AutoCompleteItemSecondStep
 								key={formatingCity.id}
@@ -73,17 +76,6 @@ export default function AutoComplete({
 							/>
 						);
 					})}
-
-				{/* {optionsSecondStep &&
-					optionsSecondStep.map(option => (
-						<AutoCompleteItemSecondStep
-							key={option.id}
-							option={option}
-							setValue={setValue}
-							setOptions={setOptions}
-							resultClick={resultClick}
-						/>
-					))} */}
 			</ul>
 		</div>
 	);
