@@ -71,7 +71,7 @@ export const AutoCompleteSection = () => {
 
   const findCities = async (cityName) => {
     ///********active on step 1******** */
-    const url = `https://nominatim.openstreetmap.org/search?city=${cityName}&format=geojson`;
+    const url = `https://nominatim.openstreetmap.org/search?city=${cityName}&format=geojson&limit=10`;
     return fetch(url).then((response) => response.json());
   };
 

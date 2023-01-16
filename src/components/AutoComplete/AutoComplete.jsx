@@ -55,7 +55,7 @@ export default function AutoComplete({
       />
       <ul>
         {options &&
-          options.map((option) => (
+          options.slice(0,10).map((option) => (
             <AutoCompleteItemFirstStep
               key={option}
               option={option}
@@ -67,7 +67,7 @@ export default function AutoComplete({
 
         {json &&
           json.length > 1 &&
-          json.map((city) => {
+          json.slice(0,5).map((city) => {
             const formatingCity = nameOfCity(city);
             return (
               <AutoCompleteItemSecondStep
