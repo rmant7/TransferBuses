@@ -74,17 +74,26 @@ export const AutoCompleteSection = () => {
     const url = `https://nominatim.openstreetmap.org/search?city=${cityName}&format=geojson&limit=10`;
     return fetch(url).then((response) => response.json());
   };
+  const sortCitiesByImportance = (data) => {
+    return data.features.sort(
+      (firstData, secondData) =>
+      secondData.properties.importance  - firstData.properties.importance
+    );
+  }
 
   const findCitiesFrom = async (cityName) => {
     ///********active on step 1******** */
     findCities(cityName).then((data) => {
-      setJsonFrom(data.features);
+      const sortedData = sortCitiesByImportance(data);
+      setJsonFrom(sortedData);
+      console.log(sortedData);
     });
   };
   const findCitiesTo = async (cityName) => {
     ///********active on step 1******** */
     findCities(cityName).then((data) => {
-      setJsonTo(data.features);
+      const sortedData = sortCitiesByImportance(data);
+      setJsonTo(sortedData);
     });
   };
 
