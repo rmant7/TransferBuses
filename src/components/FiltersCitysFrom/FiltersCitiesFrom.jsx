@@ -8,10 +8,13 @@ import { inputFromCityAction, inputToCityAction } from "../../redux/actions/inpu
 import { applyFilterFromCityIdAction } from "../../redux/actions/filters-actions";
 import { getTransfersAction } from "../../redux/actions/transfers-actions";
 import i18n from "../../i18n";
+// import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+
 
 export default function FiltersCitiesFrom() {
     const dispatch = useDispatch();
-    // const filters = useSelector(getFilters);
+    const filters = useSelector(getFilters);
     const inputFromTo = useSelector(getInputFromToCity);
 
     const handleApplyFilter = () => {
@@ -27,6 +30,10 @@ export default function FiltersCitiesFrom() {
         dispatch(inputFromCityAction(v));
     };
 
+    const handleInputTo = (e, v) => {
+        dispatch(inputToCityAction(v));
+    }
+
     const handleClearFields = () => {
         dispatch(inputFromCityAction(""));
         dispatch(inputToCityAction(""));
@@ -34,13 +41,24 @@ export default function FiltersCitiesFrom() {
 
     return (
         <div className={classes.filters}>
-            <FilterComponent
-                label={i18n.t("FromCity")}
-                options={getCities()}
-                handler={handleInputFrom}
-                inputValue={inputFromTo.inputFromCity}
-                getOptionLabel={(o) => o.name}
-            />
+            <div style={{display: "flex", marginLeft:"auto", marginRight: "auto",alignItems: "center" }}>
+                <FilterComponent
+                    label={i18n.t("FromCity")}
+                    options={getCities()}
+                    handler={handleInputFrom}
+                    inputValue={inputFromTo.inputFromCity}
+                    getOptionLabel={(o) => o.name}
+                />
+                <CompareArrowsIcon style={{ marginLeft: "5px", marginRight: "5px",color: "#ff5722", width: "40px", height: "40px"}}/>
+                <FilterComponent
+                    label={i18n.t("ToCity")}
+                    options={getCities()}
+                    handler={handleInputTo}
+                    inputValue={inputFromTo.inputToCity}
+                    getOptionLabel={(o) => o.name}
+                    style={{ marginLeft: "10px" }}
+                />
+            </div>
             <div className={classes.filter_buttons}>
                 <Button variant="contained" color="primary" onClick={handleApplyFilter}>
                     {i18n.t("Apply")}

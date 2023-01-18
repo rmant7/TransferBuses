@@ -20,7 +20,7 @@ export const MainPageComponent = () => {
       {SloganMain()}
 
       <div className={filtersClasses.filters_sector}>
-        {/* <FiltersCitiesFrom /> */}
+        <FiltersCitiesFrom />
       </div>
 
       <div className={css.Logo_Cht_Wrapper}>
