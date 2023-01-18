@@ -25,9 +25,9 @@ const Sidebar = props => {
       open={sidebar}
       onClose={() => dispatch(setSidebarAction(false))}
     >
-      
+
       <div className={css.sideBarHeader}>
-        <span>{props.page_mode}</span>
+        {/* <span>{props.page_mode}</span> */}
         <CloseIcon
           style={{ cursor: "pointer" }}
           onClick={() => dispatch(setSidebarAction(false))}
@@ -35,6 +35,8 @@ const Sidebar = props => {
       </div>
 
       <List>
+        <div className={css.sideBarLine} />
+
         <ListItem button key={MAIN_ROUTE}>
           <ListItemText
             primary={i18n.t("CheapTrip")}
@@ -42,7 +44,11 @@ const Sidebar = props => {
           />
         </ListItem>
 
+        <div className={css.sideBarLine} />
+
         <MenuTrip />
+
+        <div className={css.sideBarLine} />
 
         <ListItem button key={CONTACTS_ROUTE}>
           <ListItemText
@@ -50,8 +56,12 @@ const Sidebar = props => {
             onClick={() => closeHandler(CONTACTS_ROUTE)}
           />
         </ListItem>
+
+        <div className={css.sideBarLine} />
       </List>
+
     </Drawer>
+
   );
 };
 

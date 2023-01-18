@@ -36,8 +36,8 @@ function LogoTrip() {
         <span className={css.logoTrip}>CheapTrip</span>
       </NavLink>
       <span className={css.sloganHeader}>
-        <span className={css.sloganHeaderChilds}>Pay less, </span>
-        <span className={css.sloganHeaderChilds}>visit more!</span>
+        <span className={css.sloganHeaderChilds}>Pay less,</span>
+        <span className={css.sloganHeaderChilds}> visit more!</span>
       </span>
     </>
   );
