@@ -1,20 +1,20 @@
-import './AutoComplete.css';
+import "./AutoComplete.css";
 export default function AutoCompleteItemFirstStep({
-	option,
-	setValue,
-	setOptions,
-	findCities,
+  option,
+  setValue,
+  setOptions,
+  findCities,
 }) {
-	return (
-		<li
-			className="item"
-			onClick={() => {
-				setValue(option);
-				setOptions([]);
-				findCities(option);
-			}}
-		>
-			<p className="itemCity">{option}</p>
-		</li>
-	);
+  return (
+    <li
+      className="item"
+      onClick={() => {
+        setValue(option);
+        setOptions([]);
+        findCities(option);
+      }}
+    >
+      <p className="itemCity">{option}</p>
+    </li>
+  );
 }

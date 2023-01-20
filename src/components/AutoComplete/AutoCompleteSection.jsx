@@ -4,6 +4,7 @@ import "./AutoComplete.css";
 import { HiChevronDoubleRight } from "react-icons/hi";
 import { findMyCities } from "./findMyCities";
 import SearchResult from "../SearchResult/SearchResult";
+import { sortingByString } from "./sortingByString";
 
 export const AutoCompleteSection = () => {
   const [cityName, setCityName] = useState(""); ///******data from input FROM******** */
@@ -53,6 +54,19 @@ export const AutoCompleteSection = () => {
       const data = await findAutocomplete(text);
       matches = data.map((feature) => feature.properties.name);
       matches = matches.filter((a, b) => matches.indexOf(a) === b);
+      matches = await sortingByString(matches, text);
+      /* matches = await matches.sort((first, second) => {
+        if (
+          first.toLowerCase().startsWith(text.toLowerCase()) &&
+          second.toLowerCase().startsWith(text.toLowerCase())
+        ) {
+          return 0;
+        }
+        if (first.toLowerCase().startsWith(text.toLowerCase())) {
+          return -1;
+        }
+        return 1;
+      }); */
     }
     return matches;
   };
@@ -77,23 +91,26 @@ export const AutoCompleteSection = () => {
   const sortCitiesByImportance = (data) => {
     return data.features.sort(
       (firstData, secondData) =>
-      secondData.properties.importance  - firstData.properties.importance
+        secondData.properties.importance - firstData.properties.importance
     );
-  }
+  };
 
   const findCitiesFrom = async (cityName) => {
     ///********active on step 1******** */
     findCities(cityName).then((data) => {
       const sortedData = sortCitiesByImportance(data);
+      console.log(data)
       setJsonFrom(sortedData);
-      console.log(sortedData);
     });
   };
   const findCitiesTo = async (cityName) => {
     ///********active on step 1******** */
     findCities(cityName).then((data) => {
       const sortedData = sortCitiesByImportance(data);
-      setJsonTo(sortedData);
+      const sortedDataByAlf = sortedData.sort((a, b) =>
+        a.properties.display_name.localeCompare(b.properties.display_name)
+      );
+      setJsonTo(sortedDataByAlf);
     });
   };
 

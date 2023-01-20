@@ -19,26 +19,6 @@ export default function AutoComplete({
 }) {
   const [optionsActive, setOptionsActive] = useState(false);
 
-  /* const nameOfCity = (city) => {
-    const nameOfCityArr = city.properties.display_name.split(",");
-    if (nameOfCityArr.length > 2) {
-      return {
-        city: nameOfCityArr[0],
-        country: nameOfCityArr[nameOfCityArr.length - 1],
-        county: nameOfCityArr[1],
-        geometry: city.geometry.coordinates,
-        id: city.properties.osm_id,
-      };
-    }
-    return {
-      city: nameOfCityArr[0],
-      country: nameOfCityArr[nameOfCityArr.length - 1],
-      county: null,
-      geometry: city.geometry.coordinates,
-      id: city.properties.osm_id,
-    };
-  }; */
-
   return (
     <div className="autoComplete">
       <input
@@ -55,19 +35,21 @@ export default function AutoComplete({
       />
       <ul>
         {options &&
-          options.slice(0,10).map((option) => (
-            <AutoCompleteItemFirstStep
-              key={option}
-              option={option}
-              setValue={setValue}
-              setOptions={setOptions}
-              findCities={findCities}
-            />
-          ))}
+          options
+            .slice(0, 10)
+            .map((option) => (
+              <AutoCompleteItemFirstStep
+                key={option}
+                option={option}
+                setValue={setValue}
+                setOptions={setOptions}
+                findCities={findCities}
+              />
+            ))}
 
         {json &&
           json.length > 1 &&
-          json.slice(0,5).map((city) => {
+          json.slice(0, 10).map((city) => {
             const formatingCity = nameOfCity(city);
             return (
               <AutoCompleteItemSecondStep
@@ -78,7 +60,7 @@ export default function AutoComplete({
               />
             );
           })}
-        {json &&json.length===1 &&(
+        {json && json.length === 1 && (
           <IsSecondStep
             json={json}
             resultClick={resultClick}
