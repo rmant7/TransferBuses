@@ -42,8 +42,6 @@ export const AutoCompleteSection = () => {
     let data = (await response.json()).features;
     /* const coordinates = data.map(city=> city.geometry.coordinates);
     console.log(coordinates); */
-    /* const res=coordinates.map(city=>ress.cities.map(item=> findShortestRange(city,item)));
-    console.log(res); */
     return data;
   };
 
@@ -55,18 +53,6 @@ export const AutoCompleteSection = () => {
       matches = data.map((feature) => feature.properties.name);
       matches = matches.filter((a, b) => matches.indexOf(a) === b);
       matches = await sortingByString(matches, text);
-      /* matches = await matches.sort((first, second) => {
-        if (
-          first.toLowerCase().startsWith(text.toLowerCase()) &&
-          second.toLowerCase().startsWith(text.toLowerCase())
-        ) {
-          return 0;
-        }
-        if (first.toLowerCase().startsWith(text.toLowerCase())) {
-          return -1;
-        }
-        return 1;
-      }); */
     }
     return matches;
   };
