@@ -85,7 +85,6 @@ export const AutoCompleteSection = () => {
     ///********active on step 1******** */
     findCities(cityName).then((data) => {
       const sortedData = sortCitiesByImportance(data);
-      console.log(data)
       setJsonFrom(sortedData);
     });
   };
@@ -93,10 +92,10 @@ export const AutoCompleteSection = () => {
     ///********active on step 1******** */
     findCities(cityName).then((data) => {
       const sortedData = sortCitiesByImportance(data);
-      const sortedDataByAlf = sortedData.sort((a, b) =>
+      /* const sortedDataByAlf = sortedData.sort((a, b) =>
         a.properties.display_name.localeCompare(b.properties.display_name)
-      );
-      setJsonTo(sortedDataByAlf);
+      ); */
+      setJsonTo(sortedData);
     });
   };
 

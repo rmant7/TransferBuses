@@ -1,7 +1,6 @@
 export const sortingByString = (array, query) => {
   const keyword = query.toLocaleLowerCase();
   const sortedArray = array.sort((first, second) => {
-    console.log(keyword);
     if (
       first.toLocaleLowerCase().startsWith(keyword) &&
       second.toLocaleLowerCase().startsWith(keyword)
