@@ -3,7 +3,7 @@ import AutoComplete from "./AutoComplete";
 import "./AutoComplete.css";
 import { HiChevronDoubleRight } from "react-icons/hi";
 import { findMyCities } from "./findMyCities";
-import SearchResult from "../SearchResult/SearchResult";
+/* import SearchResult from "../SearchResult/SearchResult"; */
 import { sortingByString } from "./sortingByString";
 
 export const AutoCompleteSection = () => {
@@ -132,7 +132,7 @@ export const AutoCompleteSection = () => {
           setJson={setJsonTo}
         />
       </div>
-      <div className="myresults">
+      {/* <div className="myresults">
         {myJson &&
           myJson.map((city) => (
             <SearchResult
@@ -141,7 +141,7 @@ export const AutoCompleteSection = () => {
               resultClick={resultClick}
             />
           ))}
-      </div>
+      </div> */}
     </>
   );
 };
