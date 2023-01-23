@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "chiptripdmtr",
+    "firebase-react-deploy": "chiptripdmtr"
+  },
+  "targets": {},
+  "etags": {}
+}

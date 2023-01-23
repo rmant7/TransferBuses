@@ -1,0 +1,19 @@
+.SearchResult{
+    box-sizing: border-box;
+    width:95%;
+    /* height:100px; */
+    border:2px solid black;
+    margin:0 auto;
+    margin-top:5px;
+    padding:10px 5px;
+  }
+  .SearchResult p{
+    margin:2px 0;
+  }
+  .SearchResult .name{
+    font-weight:bold;
+  }
+  .SearchResult:hover{
+    background-color:rgb(211, 208, 208);
+    cursor: pointer;
+  }
