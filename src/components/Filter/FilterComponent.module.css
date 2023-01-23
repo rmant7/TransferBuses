@@ -16,9 +16,6 @@
     text-align: center;
     display: inline-block;
     width: 100%;
-    @media (max-width: 768px) {
-        display: block;
-    }
 }
 
 .filter_buttons {
@@ -29,45 +26,5 @@
 
 .filter {
     display: inline-block;
-    width: 100%;
+    width: 80%;
 }
-/* Autocmplete style */
-.filter_auto {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.media {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-}
-@media (max-width: 768px) {
-    .media {
-        display: block;
-        justify-content: start;
-        margin-left: auto;
-    margin-right: auto;
-    }
-    .media_icon {
-        transform: rotate(90deg);
-        margin-top: 30px;
-    }
-    /* .media_filter {
-        margin-left: 35px;
-        margin-right: 45px;
-    } */
-}
-
-.media_filter {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    /* margin-left: 75px; */
-}
-
-
-
-

@@ -69,6 +69,7 @@
 @media (max-width: 350px) {
     .logoTrip {
         font-size: 1.8rem;
+        padding-right: 10px;
     }
     .logoBus {
         font-size: 1.1rem;

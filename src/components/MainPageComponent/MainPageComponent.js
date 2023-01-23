@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from "@material-ui/core";
-import FiltersCitiesFrom from "../FiltersCitysFrom/FiltersCitiesFrom";
+import SearchCitiesFromTo from "../SearchCheapTrip/SearchCitiesFromTo";
 import filtersClasses from "../Filter/FilterComponent.module.css";
 import css from "./MainPageComponent.module.css";
 import Logo_Cht from "./Logo_ChT_2.png";
@@ -20,7 +20,7 @@ export const MainPageComponent = () => {
       {SloganMain()}
 
       <div className={filtersClasses.filters_sector}>
-        <FiltersCitiesFrom />
+        <SearchCitiesFromTo />
       </div>
 
       <div className={css.Logo_Cht_Wrapper}>

@@ -1,30 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./FilterComponent.module.css";
-import TextField from '@mui/material/TextField';
-import  Autocomplete  from "@mui/material/Autocomplete";
-
+import { TextField } from "@material-ui/core";
+import { Autocomplete } from "@material-ui/lab";
 
 export default function FilterComponent({ label, getOptionLabel, options, handler, inputValue }) {
     return (
         <div className={classes.filter}>
-            <Autocomplete className={classes.filter_auto}
+            <Autocomplete
                 freeSolo
-                disableClearable
-                variant="standard"
+                variant="outlined"
                 id="combo-box-demo"
                 inputValue={inputValue}
                 options={options}
                 getOptionLabel={getOptionLabel}
-                // style={{width: "500px", marginLeft: "auto", marginRight: "auto"}}
+                sx={{ width: 500 }}
                 onInputChange={handler}
                 renderInput={(params) => (
-                    <TextField  
-                        variant="standard" 
-                        {...params} 
-                        label={label} 
-            />
+                    <TextField variant="outlined" {...params} label={label} />
                 )}
-            />            
+            />
         </div>
     );
 }

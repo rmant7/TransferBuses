@@ -8,12 +8,10 @@ import { inputFromCityAction, inputToCityAction } from "../../redux/actions/inpu
 import { applyFilterFromCityIdAction } from "../../redux/actions/filters-actions";
 import { getTransfersAction } from "../../redux/actions/transfers-actions";
 import i18n from "../../i18n";
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import CloseIcon from '@mui/icons-material/Close';
 
 export default function FiltersCitiesFrom() {
     const dispatch = useDispatch();
-    const filters = useSelector(getFilters);
+    // const filters = useSelector(getFilters);
     const inputFromTo = useSelector(getInputFromToCity);
 
     const handleApplyFilter = () => {
@@ -29,54 +27,20 @@ export default function FiltersCitiesFrom() {
         dispatch(inputFromCityAction(v));
     };
 
-    const handleInputTo = (e, v) => {
-        dispatch(inputToCityAction(v));
-    }
-
     const handleClearFields = () => {
         dispatch(inputFromCityAction(""));
         dispatch(inputToCityAction(""));
     };
-    const handleClearInputTo = () => {
-        dispatch(inputToCityAction(""));
-    };
-    const handleClearInputFrom = () => {
-        dispatch(inputFromCityAction(""));
-    };
 
     return (
         <div className={classes.filters}>
-            <div className={classes.media} >
-                <div className={classes.media_filter}>
-                    <FilterComponent
-                        label={i18n.t("From")}
-                        options={getCities()}
-                        handler={handleInputFrom}
-                        inputValue={inputFromTo.inputFromCity}
-                        getOptionLabel={(o) => o.name}
-                    />
-                        {<CloseIcon 
-                            variant="outlined"
-                            onClick={handleClearInputFrom}
-                            style={{ cursor: "pointer" }}
-                        />}
-                </div>
-                <CompareArrowsIcon className={classes.media_icon} style={{color: "#ff5722", width: "40px", height: "40px", marginLeft: "75px", marginRight: "75px"}}/>
-                <div className={classes.media_filter}>
-                    <FilterComponent
-                        label={i18n.t("To")}
-                        options={getCities()}
-                        handler={handleInputTo}
-                        inputValue={inputFromTo.inputToCity}
-                        getOptionLabel={(o) => o.name}
-                    />
-                        {<CloseIcon
-                            variant="outlined"
-                            onClick={handleClearInputTo}
-                            style={{ cursor: "pointer" }}
-                        />}
-                </div>
-            </div>
+            <FilterComponent
+                label={i18n.t("FromCity")}
+                options={getCities()}
+                handler={handleInputFrom}
+                inputValue={inputFromTo.inputFromCity}
+                getOptionLabel={(o) => o.name}
+            />
             <div className={classes.filter_buttons}>
                 <Button variant="contained" color="primary" onClick={handleApplyFilter}>
                     {i18n.t("Apply")}
