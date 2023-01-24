@@ -1,6 +1,5 @@
 import React from "react";
 import { Container } from "@material-ui/core";
-import FiltersCitiesFrom from "../FiltersCitysFrom/FiltersCitiesFrom";
 import filtersClasses from "../Filter/FilterComponent.module.css";
 import css from "./MainPageComponent.module.css";
 import Logo_Cht from "./Logo_ChT_2.png";

@@ -51,7 +51,7 @@ export default () => {
       >
         <MenuItem disabled>TransferBuses</MenuItem>
         <MenuItem onClick={() => rowHandleClick(PASSENGER_ROUTE)}>I'm a passenger</MenuItem>
-        <MenuItem onClick={() => rowHandleClick(DRIVER_ROUTE)}>I'm a driver</MenuItem>
+        <MenuItem onClick={() => rowHandleClick(DRIVER_ROUTE)}>I'm a carrier</MenuItem>
       </Menu>
 
     </div>

@@ -5,6 +5,14 @@ import { HiChevronDoubleRight } from "react-icons/hi";
 import { findMyCities } from "./findMyCities";
 /* import SearchResult from "../SearchResult/SearchResult"; */
 import { sortingByString } from "./sortingByString";
+// clear
+import { useDispatch } from "react-redux";
+import i18n from "../../i18n";
+import { inputFromCityAction, inputToCityAction } from "../../redux/actions/inputs-actions";
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import CloseIcon from '@mui/icons-material/Close';
+import { Button } from "@material-ui/core";
+import classes from "../SearchCheapTrip/SearchComponent.module.css";
 
 export const AutoCompleteSection = () => {
   const [cityName, setCityName] = useState(""); ///******data from input FROM******** */
@@ -99,38 +107,85 @@ export const AutoCompleteSection = () => {
     });
   };
 
+  // clear button
+  const dispatch = useDispatch();
+  const handleClearFields = () => {
+      dispatch(onChangeHandlerFrom(""));
+      dispatch(onChangeHandlerTo(""));
+  };
+
+  const handleClearInputFrom = () => {
+    dispatch(onChangeHandlerFrom(""));
+  };
+  
+  const handleClearInputTo = () => {
+      dispatch(onChangeHandlerTo(""));
+  };
+
   return (
-    <>
+    <div>
       <div className="autoCompleteSection">
-        <AutoComplete
-          onChange={(e) => {
-            onChangeHandlerFrom(e.target.value);
-          }}
-          placeholder="From"
-          value={cityName}
-          setValue={setCityName}
-          options={optionsFrom}
-          setOptions={setOptionsFrom}
-          findCities={findCitiesFrom}
-          resultClick={resultClick}
-          json={jsonFrom}
-          setJson={setJsonFrom}
-        />
-        <HiChevronDoubleRight color={"#ff5722"} size={"1.5rem"} />
-        <AutoComplete
-          onChange={(e) => {
-            onChangeHandlerTo(e.target.value);
-          }}
-          placeholder="To"
-          value={cityNameTo}
-          setValue={setCityNameTo}
-          options={optionsTo}
-          setOptions={setOptionsTo}
-          findCities={findCitiesTo}
-          resultClick={resultClick}
-          json={jsonTo}
-          setJson={setJsonTo}
-        />
+        <div className="autoComlete_item">
+          <AutoComplete 
+            onChange={(e) => {
+              onChangeHandlerFrom(e.target.value);
+            }}
+            placeholder="From"
+            value={cityName}
+            setValue={setCityName}
+            options={optionsFrom}
+            setOptions={setOptionsFrom}
+            findCities={findCitiesFrom}
+            resultClick={resultClick}
+            json={jsonFrom}
+            setJson={setJsonFrom}
+          />
+          {<CloseIcon 
+              variant="outlined"
+              onClick={handleClearInputFrom}
+              style={{ cursor: "pointer" }}
+          />}
+        </div>
+        {/* <HiChevronDoubleRight color={"#ff5722"} size={"1.5rem"} /> */}
+        <DoubleArrowIcon className={classes.media_icon} />
+        <div className="autoComlete_item">
+          <AutoComplete
+            onChange={(e) => {
+              onChangeHandlerTo(e.target.value);
+            }}
+            placeholder="To"
+            value={cityNameTo}
+            setValue={setCityNameTo}
+            options={optionsTo}
+            setOptions={setOptionsTo}
+            findCities={findCitiesTo}
+            resultClick={resultClick}
+            json={jsonTo}
+            setJson={setJsonTo}
+          />
+          {<CloseIcon
+              variant="outlined"
+              onClick={handleClearInputTo}
+              style={{ cursor: "pointer" }}
+          />}
+        </div>
+      </div>
+      <div className={classes.filter_buttons}>
+          <Button
+              variant="outlined"
+              onClick={handleClearFields}
+          >
+              {i18n.t("Clean")}
+          </Button>
+          <Button 
+              variant="contained" 
+              color="primary" 
+              // onClick={click} 
+              style={{ marginLeft: "10px" }}
+          >
+              {i18n.t("Let's Go")}
+          </Button>
+                
       </div>
       {/* <div className="myresults">
         {myJson &&
@@ -142,6 +197,6 @@ export const AutoCompleteSection = () => {
             />
           ))}
       </div> */}
-    </>
+    </div>
   );
 };
