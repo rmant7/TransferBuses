@@ -14,8 +14,8 @@ const Nav = () => {
 
     return (
         <nav className={css.nav}>
-            <LanguageSelector />
-            <CurrenciesSelector />
+            {/* <LanguageSelector />
+            <CurrenciesSelector /> */}
             <IconButton
                 onClick={() => dispatch(setSidebarAction(true))}
                 edge="end"

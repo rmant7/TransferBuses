@@ -44,15 +44,18 @@
     align-items: center;
     justify-content: center;
 }
+@media (max-width: 900px) {
+    .media_icon {
+        opacity: 0
+    }
+}
+
 @media (max-width: 768px) {
     .media {
         display: block;
         justify-content: start;
         margin-left: auto;
         margin-right: auto;
-    }
-    .media_icon {
-        opacity: 0
     }
 }
 

@@ -31,15 +31,15 @@ function LogoBus() {
 
 function LogoTrip() {
   return (
-    <>
-      <NavLink className={css.logo} style={{ display: "flex" }} to={MAIN_ROUTE}>
+    <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
+      <NavLink className={css.logo}  to={MAIN_ROUTE}>
         <span className={css.logoTrip}>CheapTrip</span>
       </NavLink>
       <span className={css.sloganHeader}>
         <span className={css.sloganHeaderChilds}>Pay less,</span>
         <span className={css.sloganHeaderChilds}> visit more!</span>
       </span>
-    </>
+    </div>
   );
 }
 
