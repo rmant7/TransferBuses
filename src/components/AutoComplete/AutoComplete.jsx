@@ -27,11 +27,11 @@ export default function AutoComplete({
         value={value}
         onChange={onChange}
         onClick={!optionsActive ? setOptionsActive(true) : undefined}
-        onBlur={() => {
+        /* onBlur={() => {
           setTimeout(() => {
             // setOptions([])
           }, 200);
-        }}
+        }} */
       />
       <ul>
         {options &&
