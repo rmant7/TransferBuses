@@ -13,6 +13,8 @@ import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button } from "@material-ui/core";
 import classes from "../SearchCheapTrip/SearchComponent.module.css";
+import locationJSON from '../../new_json/locations.json';
+
 
 export const AutoCompleteSection = () => {
   const [cityName, setCityName] = useState(""); ///******data from input FROM******** */
@@ -122,6 +124,15 @@ export const AutoCompleteSection = () => {
       dispatch(onChangeHandlerTo(""));
   };
 
+  const handleLetsGo = async () => {
+    const stroka =JSON.stringify(locationJSON);
+    let blob = new Blob([stroka], {type: "text/json"});
+    let link = document.createElement("a");
+    link.setAttribute("href", URL.createObjectURL(blob));
+    link.setAttribute("download", "downloads.json");
+    link.click();
+  };
+
   return (
     <div>
       <div className="autoCompleteSection">
@@ -180,7 +191,7 @@ export const AutoCompleteSection = () => {
           <Button 
               variant="contained" 
               color="primary" 
-              // onClick={click} 
+               onClick={handleLetsGo} 
               style={{ marginLeft: "10px" }}
           >
               {i18n.t("Let's Go")}
