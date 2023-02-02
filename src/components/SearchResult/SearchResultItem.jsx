@@ -11,7 +11,7 @@ const styles = {
     backgroundColor: "rgb(255, 251, 255)",
     borderTopWidth: 0,
     borderWidth: 1,
-    borderColor: "grey",
+    borderColor: "rgb(119, 87, 80)",
     borderTopStyle: 'solid',
     alignItems: "center",
     justifyContent: "center",
@@ -31,7 +31,7 @@ const styles = {
     borderColor: "rgb(177, 44, 22)",
     fontSize: "12px",
     padding: "2px 10px",
-    color: "black",
+    color: "rgb(177, 44, 22)",
   },
   price : {
     color : "rgb(177, 44, 22)",
@@ -49,11 +49,11 @@ export default function SearchResultItem({item}){
         <Typography><AirplanemodeActiveIcon /> Flight</Typography>
       </Box>
       <Box style={styles.directions}>
-        <Typography sx={{color: 'grey'}}>3 h 55m</Typography>
+        <Typography sx={{color: 'rgb(119, 87, 80)'}}>3 h 55m</Typography>
         <Button variant="outlined" onClick={buyTicketHandler} style={styles.buyTicket}>
         Buy Ticket
         </Button>
-        <Typography style={styles.price}>9.9 € </Typography>
+        <Typography style={styles.price}>9 € </Typography>
       </Box>
     </Box>
   );
