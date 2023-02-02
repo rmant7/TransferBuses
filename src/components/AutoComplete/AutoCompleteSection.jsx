@@ -13,6 +13,7 @@ import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button } from "@material-ui/core";
 import classes from "../SearchCheapTrip/SearchComponent.module.css";
+import SearchResultView from "../SearchResult/SearchResultView";
 
 export const AutoCompleteSection = () => {
   const [cityName, setCityName] = useState(""); ///******data from input FROM******** */
@@ -21,13 +22,15 @@ export const AutoCompleteSection = () => {
   const [optionsTo, setOptionsTo] = useState(); ///******matches between api and input TO************* */
   const [jsonFrom, setJsonFrom] = useState(null); ///*******matches data before step 2 (input FROM)********** */
   const [jsonTo, setJsonTo] = useState(null); ///*******matches data before step 2 (input TO)********** */
-  const [myJson, setmyJson] = useState(null); ////////***data after step2***************** */ */
+  const [myJson, setMyJson] = useState(null); ////////***data after step2***************** */ */
   const [searchMarker, setSearchMarker] = useState(null); //////******data for marker****** */
   const [map /* setMap */] = useState(null);
+  const [isResult, setIsResult] = useState(false); //------temporary for display layout of Search results after click
 
   const resultClick = ({ geometry, display_name }) => {
     ///**active after click on step 2**************** */ */
-    findMyCities(geometry, setmyJson);
+    findMyCities(geometry, setMyJson);
+    console.log('myjson', myJson);
     setSearchMarker({
       coordinates: {
         lat: geometry[1],
@@ -121,6 +124,9 @@ export const AutoCompleteSection = () => {
   const handleClearInputTo = () => {
       dispatch(onChangeHandlerTo(""));
   };
+  const handleClickResults = () => {
+    setIsResult(true); // ----------------------- TODO search results
+  }
 
   return (
     <div>
@@ -180,13 +186,16 @@ export const AutoCompleteSection = () => {
           <Button 
               variant="contained" 
               color="primary" 
-              // onClick={click} 
+              onClick={() => handleClickResults()}
               style={{ marginLeft: "10px" }}
           >
               {i18n.t("Let's Go")}
           </Button>
                 
       </div>
+      {isResult && myJson.map((city) => (
+        <SearchResultView city={city} key={city.properties.display_name}/>
+      ))/* ------ TODO fix search results */} 
       {/* <div className="myresults">
         {myJson &&
           myJson.map((city) => (
