@@ -66,7 +66,12 @@ export default function SearchResultItem({ item }) {
           {defineTypeOfTransport(item)}
           <Link href='https://www.booking.com/index.en-gb.html' target="_blank" rel="noreferrer">
             <Button variant="outlined" style={resultItemStyle.buyTicket}>
-              Find stay
+              Booking
+            </Button>
+          </Link>
+          <Link href='https://www.hostelworldgroup.com' target="_blank" rel="noreferrer">
+            <Button variant="outlined" style={resultItemStyle.buyTicket}>
+              Hostel world
             </Button>
           </Link>
         </Box>
