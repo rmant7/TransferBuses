@@ -1,6 +1,6 @@
 const resultStyle = {
-  shadow : {
-    elevation : 5,
+  shadow: {
+    elevation: 5,
     width: '100%',
     shadowColor: 'rgb(0, 0, 0)',
     shadowOffset: { width: 3, height: 3 },
@@ -20,7 +20,7 @@ const resultStyle = {
     flex: 1,
     justifyContent: 'space-between',
     marginTop: 10,
-    borderRadius:5,
+    borderRadius: 5,
     borderColor: "grey",
     borderWidth: 1,
     paddingVertical: 2.5,
@@ -48,6 +48,14 @@ const resultStyle = {
     borderRadius: 5,
     display: 'inline-block',
   },
+  car: {
+    zIndex: 100,
+    width: 30,
+    height: 30,
+    alignSelf: "center",
+    backgroundColor: "white",
+    marginLeft: 5,
+  },
 };
 const resultItemStyle = {
   itemContainer: {
@@ -65,23 +73,34 @@ const resultItemStyle = {
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
-    padding : 5,
+    padding: 5,
   },
   boldText: {
     fontWeight: "bold",
   },
   buyTicket: {
-    borderWidth : 1,
+    borderWidth: 1,
     borderColor: "rgb(177, 44, 22)",
     fontSize: "12px",
-    padding: "2px 10px",
+    padding: "0 7px",
+    margin: "0 5px",
     color: "rgb(177, 44, 22)",
   },
-  price : {
-    color : "rgb(177, 44, 22)",
+  price: {
+    color: "rgb(177, 44, 22)",
   },
   icon: {
     color: "#607d8b",
+    verticalAlign: "text-bottom",
+  },
+  car: {
+    zIndex: 100,
+    width: 20,
+    height: 20,
+    alignSelf: "center",
+    backgroundColor: "white",
+    marginLeft: 5,
+    verticalAlign: "text-bottom",
   },
 };
-export {resultStyle, resultItemStyle};
+export { resultStyle, resultItemStyle };
