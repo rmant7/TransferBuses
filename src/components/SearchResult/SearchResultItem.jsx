@@ -3,57 +3,24 @@ import { Box } from '@material-ui/core';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
-
-
-const styles = {
-  itemContainer: {
-    width: "100%",
-    backgroundColor: "rgb(255, 251, 255)",
-    borderTopWidth: 0,
-    borderWidth: 1,
-    borderColor: "rgb(119, 87, 80)",
-    borderTopStyle: 'solid',
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  directions: {
-    display: 'flex',
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    padding : 5,
-  },
-  boldText: {
-    fontWeight: "bold",
-  },
-  buyTicket: {
-    borderWidth : 1,
-    borderColor: "rgb(177, 44, 22)",
-    fontSize: "12px",
-    padding: "2px 10px",
-    color: "rgb(177, 44, 22)",
-  },
-  price : {
-    color : "rgb(177, 44, 22)",
-  }
-};
+import { resultItemStyle } from './style';
 
 export default function SearchResultItem({item}){
   const buyTicketHandler = () => {
     console.log("buy ticket");
   }
   return (
-    <Box style={styles.itemContainer}>
-      <Box style={styles.directions}>
-        <Typography style={styles.boldText}>Kiev - Wroclaw {item}</Typography>
-        <Typography><AirplanemodeActiveIcon /> Flight</Typography>
+    <Box style={resultItemStyle.itemContainer}>
+      <Box style={resultItemStyle.directions}>
+        <Typography style={resultItemStyle.boldText}>Kiev - Wroclaw {item}</Typography>
+        <Typography><AirplanemodeActiveIcon style={resultItemStyle.icon}/> Flight</Typography>
       </Box>
-      <Box style={styles.directions}>
+      <Box style={resultItemStyle.directions}>
         <Typography sx={{color: 'rgb(119, 87, 80)'}}>3 h 55m</Typography>
-        <Button variant="outlined" onClick={buyTicketHandler} style={styles.buyTicket}>
+        <Button variant="outlined" onClick={buyTicketHandler} style={resultItemStyle.buyTicket}>
         Buy Ticket
         </Button>
-        <Typography style={styles.price}>9 € </Typography>
+        <Typography style={resultItemStyle.price}>9 € </Typography>
       </Box>
     </Box>
   );
