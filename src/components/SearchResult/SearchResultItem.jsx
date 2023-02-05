@@ -13,21 +13,21 @@ export default function SearchResultItem({ item }) {
     switch (transport) {
       case 2:
         resultLink = (<Link href='https://blablacar.com' target="_blank" rel="noreferrer">
-          <Button variant="outlined" style={resultItemStyle.buyTicket}>
+          <Button variant="outlined" style={resultItemStyle.buyTicket} type="submit">
             Find a car
           </Button>
         </Link>);
         break;
       case 3:
         resultLink = (<Link href='https://www.aferry.com/' target="_blank" rel="noreferrer">
-          <Button variant="outlined" style={resultItemStyle.buyTicket}>
+          <Button variant="outlined" style={resultItemStyle.buyTicket} type="submit">
             Buy Ticket
           </Button>
         </Link>);
         break;
       default:
         resultLink = (<Link href='https://omio.sjv.io/XxEWmb' target="_blank" rel="noreferrer">
-          <Button variant="outlined" style={resultItemStyle.buyTicket}>
+          <Button variant="outlined" style={resultItemStyle.buyTicket} type="submit">
             Buy Ticket
           </Button>
         </Link>);
@@ -65,12 +65,12 @@ export default function SearchResultItem({ item }) {
         <Box>
           {defineTypeOfTransport(item)}
           <Link href='https://www.booking.com/index.en-gb.html' target="_blank" rel="noreferrer">
-            <Button variant="outlined" style={resultItemStyle.buyTicket}>
+            <Button variant="outlined" style={resultItemStyle.buyTicket} type="submit">
               Booking
             </Button>
           </Link>
           <Link href='https://www.hostelworldgroup.com' target="_blank" rel="noreferrer">
-            <Button variant="outlined" style={resultItemStyle.buyTicket}>
+            <Button variant="outlined" style={resultItemStyle.buyTicket} type="submit">
               Hostel world
             </Button>
           </Link>

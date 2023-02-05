@@ -180,6 +180,7 @@ export const AutoCompleteSection = () => {
           <Button
               variant="outlined"
               onClick={handleClearFields}
+              type="reset"
           >
               {i18n.t("Clean")}
           </Button>
@@ -188,6 +189,7 @@ export const AutoCompleteSection = () => {
               color="primary" 
               onClick={() => handleClickResults()}
               style={{ marginLeft: "10px" }}
+              type="submit"
           >
               {i18n.t("Let's Go")}
           </Button>
