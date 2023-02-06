@@ -1,10 +1,10 @@
 .MainPage {
-  width: 300px;
-  height: 600px;
-  margin: 100px auto;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 5px;
+	width: 300px;
+	height: 700px;
+	margin: 100px auto;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 5px;
 }
