@@ -37,9 +37,9 @@ const Navbar = () => {
     );
   }
 
-  console.log(typeof (process.env.REACT_APP_BUILD_MODE, "****************"));
-  console.log(process.env.REACT_APP_BUILD_MODE, "****************");
-  console.log(process.env);
+  // console.log(typeof (process.env.REACT_APP_BUILD_MODE, "****************"));
+  // console.log(process.env.REACT_APP_BUILD_MODE, "****************");
+  // console.log(process.env);
 
   return (
     <AppBar position="fixed">

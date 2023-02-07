@@ -115,14 +115,17 @@ export const AutoCompleteSection = () => {
   const handleClearFields = () => {
       dispatch(onChangeHandlerFrom(""));
       dispatch(onChangeHandlerTo(""));
+      setIsResult(false); // ----------------------- TODO search results
   };
 
   const handleClearInputFrom = () => {
     dispatch(onChangeHandlerFrom(""));
+    setIsResult(false); // ----------------------- TODO search results
   };
   
   const handleClearInputTo = () => {
       dispatch(onChangeHandlerTo(""));
+      setIsResult(false); // ----------------------- TODO search results
   };
   const handleClickResults = () => {
     setIsResult(true); // ----------------------- TODO search results
@@ -131,7 +134,7 @@ export const AutoCompleteSection = () => {
   return (
     <div>
       <div className="autoCompleteSection">
-        <div className="autoComlete_item">
+        <div className="autoComplete_item">
           <AutoComplete 
             onChange={(e) => {
               onChangeHandlerFrom(e.target.value);
@@ -154,7 +157,7 @@ export const AutoCompleteSection = () => {
         </div>
         {/* <HiChevronDoubleRight color={"#ff5722"} size={"1.5rem"} /> */}
         <DoubleArrowIcon className={classes.media_icon} />
-        <div className="autoComlete_item">
+        <div className="autoComplete_item">
           <AutoComplete
             onChange={(e) => {
               onChangeHandlerTo(e.target.value);
@@ -197,7 +200,8 @@ export const AutoCompleteSection = () => {
       </div>
       {isResult && myJson.map((city) => (
         <SearchResultView city={city} key={city.properties.display_name}/>
-      ))/* ------ TODO fix search results */} 
+      ))/* ------------------------------------------------------------ TODO fix search results */} 
+
       {/* <div className="myresults">
         {myJson &&
           myJson.map((city) => (

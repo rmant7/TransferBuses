@@ -5,7 +5,7 @@ import DirectionsBoatIcon from '@mui/icons-material/DirectionsBoat';
 import TrainIcon from '@mui/icons-material/Train';
 import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
 import { resultItemStyle } from './style';
-import CarSharing from "../../assets/car-sharing.png";
+import RideSharing from "../../assets/car-sharing.png";
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 
@@ -41,7 +41,7 @@ export default function SearchResultItem({ item }) {
     let resultIcon;
     switch (transport) {
       case 2:
-        resultIcon = (<Typography style={style.iconText}>Car share <img src={CarSharing} alt='car-shearing' style={style.car} /></Typography>);
+        resultIcon = (<Typography style={style.iconText}>Ride share <img src={RideSharing} alt='car-shearing' style={style.car} /></Typography>);
         break;
       case 3:
         resultIcon = (<Typography style={style.iconText}>Ferry <DirectionsBoatIcon style={style.icon} /></Typography>);
@@ -78,7 +78,7 @@ export default function SearchResultItem({ item }) {
             </Button>
           </Link>
         </Box>
-        <Typography style={style.price}>9 € </Typography>
+        <Typography style={style.price}>€ 9.00</Typography>
       </Box>
     </Box>
   );

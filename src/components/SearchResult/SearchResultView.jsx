@@ -52,7 +52,7 @@ export default function SearchResultView({ city }) {
             <Box style={style.bottomContainer}>
               <Typography style={style.time}>8 h 36 m</Typography>
               <Box style={style.priceContainer}>
-                <Typography style={style.price}>€ 100</Typography>
+                <Typography style={style.price}>€ 100.00</Typography>
               </Box>
             </Box>
           </Box>
@@ -88,7 +88,7 @@ export default function SearchResultView({ city }) {
             <Box style={style.bottomContainer}>
               <Typography style={style.time}>8 h 36 m</Typography>
               <Box style={style.priceContainer}>
-                <Typography style={style.price}>€ 100</Typography>
+                <Typography style={style.price}>€ 100.00</Typography>
               </Box>
             </Box>
           </Box>

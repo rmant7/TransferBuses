@@ -1,4 +1,4 @@
-.autoComplete{
+.autoComplete {
   width: 100%;
   /* width:fit-content; */
   /* z-index: 999;
@@ -6,13 +6,15 @@
 }
 
 @media (max-width:768px) {
-  .autoComlete_item{margin-right: 20px;}
+  .autoComplete_item {
+    margin-right: 20px;
+  }
 }
 
-.autoComplete .input{
-  width:100%;
+.autoComplete .input {
+  width: 100%;
   /* min-width:250px; */
-  font-size:1.3rem;
+  font-size: 1.3rem;
   border: none;
   /* border:2px solid black;
   border-radius:0px; */
@@ -22,70 +24,69 @@
   /* height:100%; */
   box-sizing: border-box;
 }
-.autoComplete ul{
-  width:100%;
-  background-color:rgb(247, 247, 247);
+
+.autoComplete ul {
+  width: 100%;
+  background-color: rgb(247, 247, 247);
   list-style: none;
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
 }
-.autoComplete li{
-  margin:0;
-  height:auto;
+
+.autoComplete li {
+  margin: 0;
+  height: auto;
   display: block;
   /* border: 2px solid black; */
-  font-size:1.3rem;
-  padding:5px;
+  font-size: 1.3rem;
+  padding: 5px;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .item {
-margin: 0;
+  margin: 0;
 }
 
-.itemCity{
-margin: 0;
+.itemCity {
+  margin: 0;
 }
 
-.itemWrapCountry{
+.itemWrapCountry {
   display: flex;
 }
 
-.itemCountry{
-margin: 3px 0 0 0;
-font-size: 0.8rem;
-color: rgba(0, 0, 0, 0.5);
+.itemCountry {
+  margin: 3px 0 0 0;
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.5);
 }
 
-.autoComplete li:hover{
-  background-color:rgb(163, 155, 155);
+.autoComplete li:hover {
+  background-color: rgb(163, 155, 155);
 }
 
-.autoCompleteSection  {
+.autoCompleteSection {
   display: flex;
   justify-content: space-evenly;
   align-items: start;
-  @media (max-width: 900px) {
-    .autoCompleteSection{
-      display: block;
-    }}
 }
 
 @media (max-width: 900px) {
-  .autoCompleteSection{
+  .autoCompleteSection {
     display: block;
   }
 
-  .itemWrapCountry{
+  .itemWrapCountry {
     display: flex;
   }
 
-  .autoComlete_item {
-    width: 100%;}
+  .autoComplete_item {
+    width: 100%;
+  }
 }
 
-.autoComlete_item {
+.autoComplete_item {
   display: flex;
   width: 100%;
   margin-left: auto;

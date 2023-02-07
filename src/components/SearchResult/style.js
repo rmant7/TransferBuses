@@ -49,7 +49,7 @@ const resultStyle = {
     car: {
       width: 27,
       height: 27,
-      margin: "0 2px",
+      margin: "0 5px",
     },
     arrow: {
       fontSize: 'large',
@@ -107,6 +107,7 @@ const resultStyle = {
     car: {
       width: 22,
       height: 22,
+      margin: "0 5px",
     },
     arrow: {
       fontSize: 'medium',
@@ -188,7 +189,8 @@ const resultItemStyle = {
       alignItems: "center",
     },
     boldText: {
-      fontWeight: "normal",
+      fontWeight: "bold",
+      fontSize: "0.8rem",
     },
     buyTicket: {
       borderWidth: 1,
