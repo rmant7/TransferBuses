@@ -50,7 +50,7 @@ export default function AutoComplete({
         {json &&
           json.length > 1 &&
           json.slice(0, 10).map((city) => {
-            console.log(city)
+            console.log("city from AutoComplete", city)
             const formatingCity = nameOfCity(city);
             return (
               <AutoCompleteItemSecondStep

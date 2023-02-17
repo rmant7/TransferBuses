@@ -14,7 +14,7 @@ function App() {
     i18n
       .changeLanguage(language)
       .then()
-      .catch((err) => console.error(err));
+      .catch((err) => console.error("error ", err));
   };
   i18n.reloadResources().then();
   const lang = useSelector((state) => state.app.lang);

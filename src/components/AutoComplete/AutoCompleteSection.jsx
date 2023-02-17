@@ -1,14 +1,14 @@
 import { useState } from "react";
 import AutoComplete from "./AutoComplete";
 import "./AutoComplete.css";
-import { HiChevronDoubleRight } from "react-icons/hi";
+// import { HiChevronDoubleRight } from "react-icons/hi";
 import { findMyCities } from "./findMyCities";
 /* import SearchResult from "../SearchResult/SearchResult"; */
 import { sortingByString } from "./sortingByString";
 // clear
 import { useDispatch } from "react-redux";
 import i18n from "../../i18n";
-import { inputFromCityAction, inputToCityAction } from "../../redux/actions/inputs-actions";
+// import { inputFromCityAction, inputToCityAction } from "../../redux/actions/inputs-actions";
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button } from "@material-ui/core";
@@ -185,7 +185,7 @@ export const AutoCompleteSection = () => {
               onClick={handleClearFields}
               type="reset"
           >
-              {i18n.t("Clean")}
+              {i18n.t("Clear")}
           </Button>
           <Button 
               variant="contained" 
