@@ -26,7 +26,7 @@ i18n.use(Backend)
   }, (err, t) => {
       if (err) return console.log('something went wrong loading', err);
       //console.log( t)
-      t("translation"); // -> same as i18next.t
+      // t("translation"); // -> same as i18next.t
   }) ;
 
 export default i18n;

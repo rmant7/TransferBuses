@@ -12,23 +12,28 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SearchResultItem from './SearchResultItem';
 import { Box } from '@material-ui/core';
 import { resultStyle } from './style';
-import CarSharing from '../../assets/car-sharing.png';
+import RideSharing from '../../assets/car-sharing.png';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+
 export default function SearchResultView({ city, cityFrom, cityTo, data }) {
+	const style = useMediaQuery('(max-width:650px)')
+		? resultStyle.sm
+		: resultStyle.lg;
+
 	const timeTravel = `${Math.floor(data[0][0].trip_duration / 60)} h ${
 		data[0][0].trip_duration - Math.floor(data[0][0].trip_duration / 60) * 60
 	} m`;
+
 	const priceTravel = `€ ${data[0][0].euro_price}`;
-	// const items = [1, 2, 3, 4, 5]; //------- temporary items of transport TODO: use from database
+
 	const defineIconOfTransport = (transport) => {
-		// TODO change cases to names from database
 		let resultIcon;
 		switch (transport) {
 			case 4:
 				resultIcon = (
 					<Typography>
-						<img src={CarSharing} alt='car-shearing' fontSize='large' />
+						<img src={RideSharing} alt='car-shearing' fontSize='large' />
 					</Typography>
 				);
 				break;
@@ -70,8 +75,8 @@ export default function SearchResultView({ city, cityFrom, cityTo, data }) {
 					aria-controls='panel1a-content'
 					id='panel1a-header'
 				>
-					<Box style={resultStyle.box}>
-						<Box style={resultStyle.inline}>
+					<Box style={style.box}>
+						<Box style={style.inline}>
 							{defineIconOfTransport(data[0][0].transportation_type)}
 						</Box>
 						<Typography>
@@ -82,10 +87,10 @@ export default function SearchResultView({ city, cityFrom, cityTo, data }) {
 							/>
 							{cityTo[0].properties.display_name}
 						</Typography>
-						<Box style={resultStyle.bottomContainer}>
-							<Typography style={resultStyle.time}>{timeTravel}</Typography>
-							<Box style={resultStyle.priceContainer}>
-								<Typography style={resultStyle.price}>{priceTravel}</Typography>
+						<Box style={style.bottomContainer}>
+							<Typography style={style.time}>{timeTravel}</Typography>
+							<Box style={style.priceContainer}>
+								<Typography style={style.price}>{priceTravel}</Typography>
 							</Box>
 						</Box>
 					</Box>
@@ -104,7 +109,6 @@ export default function SearchResultView({ city, cityFrom, cityTo, data }) {
 					))}
 				</AccordionDetails>
 			</Accordion>
-			{/* TODO delete second accordion and use one to map the component from database */}
 		</div>
 	);
 }

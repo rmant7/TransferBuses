@@ -5,7 +5,6 @@ import DirectionsBoatIcon from '@mui/icons-material/DirectionsBoat';
 import TrainIcon from '@mui/icons-material/Train';
 import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
 import { resultItemStyle } from './style';
-import CarSharing from '../../assets/car-sharing.png';
 import RideSharing from '../../assets/car-sharing.png';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
@@ -22,7 +21,6 @@ export default function SearchResultItem({
 		: resultItemStyle.lg;
 
 	const defineTypeOfTransport = (transport) => {
-		// TODO change cases to names from database
 		let resultLink;
 		switch (transport) {
 			case 4:
@@ -30,10 +28,10 @@ export default function SearchResultItem({
 					<Link href='https://blablacar.com' target='_blank' rel='noreferrer'>
 						<Button
 							variant='outlined'
-							style={resultItemStyle.buyTicket}
+							style={style.buyTicket}
 							type='submit'
 						>
-							Find a car
+							Find a trip
 						</Button>
 					</Link>
 				);
@@ -43,7 +41,7 @@ export default function SearchResultItem({
 					<Link href='https://www.aferry.com/' target='_blank' rel='noreferrer'>
 						<Button
 							variant='outlined'
-							style={resultItemStyle.buyTicket}
+							style={style.buyTicket}
 							type='submit'
 						>
 							Buy Ticket
@@ -53,14 +51,10 @@ export default function SearchResultItem({
 				break;
 			default:
 				resultLink = (
-					<Link
-						href='https://omio.sjv.io/XxEWmb'
-						target='_blank'
-						rel='noreferrer'
-					>
+					<Link href='https://omio.sjv.io/XxEWmb' target='_blank' rel='noreferrer'>
 						<Button
 							variant='outlined'
-							style={resultItemStyle.buyTicket}
+							style={style.buyTicket}
 							type='submit'
 						>
 							Buy Ticket
@@ -71,32 +65,31 @@ export default function SearchResultItem({
 		return resultLink;
 	};
 	const defineIconOfTransport = (transport) => {
-		// TODO change cases to names from database
 		let resultIcon;
 		switch (transport) {
 			case 4:
 				resultIcon = (
 					<Typography>
 						<img
-							src={CarSharing}
+							src={RideSharing}
 							alt='car-shearing'
-							style={resultItemStyle.car}
+							style={style.car}
 						/>{' '}
-						Car share
+						Ride share
 					</Typography>
 				);
 				break;
 			case 3:
 				resultIcon = (
 					<Typography>
-						<TrainIcon style={resultItemStyle.icon} fontSize='small' /> Train
+						<TrainIcon style={style.icon} fontSize='small' /> Train
 					</Typography>
 				);
 				break;
 			case 2:
 				resultIcon = (
 					<Typography>
-						<DirectionsBusIcon style={resultItemStyle.icon} fontSize='small' />{' '}
+						<DirectionsBusIcon style={style.icon} fontSize='small' />{' '}
 						Bus
 					</Typography>
 				);
@@ -104,7 +97,7 @@ export default function SearchResultItem({
 			case 10:
 				resultIcon = (
 					<Typography>
-						<DirectionsBoatIcon style={resultItemStyle.icon} fontSize='small' />{' '}
+						<DirectionsBoatIcon style={style.icon} fontSize='small' />{' '}
 						Ferry
 					</Typography>
 				);
@@ -113,7 +106,7 @@ export default function SearchResultItem({
 				resultIcon = (
 					<Typography>
 						<AirplanemodeActiveIcon
-							style={resultItemStyle.icon}
+							style={style.icon}
 							fontSize='small'
 						/>{' '}
 						Flight

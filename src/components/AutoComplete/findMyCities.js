@@ -1,11 +1,11 @@
-import data from '../locations.json';
+import data from '../../utils/locations.json';
 
-export const findMyCities = (geometry, setmyJson) => {
+export const findMyCities = (geometry, setMyJson) => {
 	///*****active on step 2********** */
 	let lat1 = geometry[1];
 	let lon1 = geometry[0];
 	let distance = 20000;
-	let rescity = {};
+	let resultCity = {};
 	let lat2, lon2, a, d;
 	let p = 0.017453292519943295;
 	let c = Math.cos;
@@ -20,14 +20,14 @@ export const findMyCities = (geometry, setmyJson) => {
 		d = 12742 * Math.asin(Math.sqrt(a));
 		if (d <= distance) {
 			distance = d;
-			rescity = {
+			resultCity = {
 				geometry: { coordinates: [lon2, lat2] },
 				properties: { display_name: e.name },
 			};
 		}
 	});
 
-	let midata = [rescity];
-	setmyJson(midata);
-	/* console.log(midata); */
+	let midData = [resultCity];
+	setMyJson(midData);
+	/* console.log(midData); */
 };

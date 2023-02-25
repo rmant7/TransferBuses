@@ -1,17 +1,11 @@
 import { useState } from 'react';
 import AutoComplete from './AutoComplete';
 import './AutoComplete.css';
-import { HiChevronDoubleRight } from 'react-icons/hi';
 import { findMyCities } from './findMyCities';
-/* import SearchResult from "../SearchResult/SearchResult"; */
 import { sortingByString } from './sortingByString';
-// clear
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import i18n from '../../i18n';
-import {
-	inputFromCityAction,
-	inputToCityAction,
-} from '../../redux/actions/inputs-actions';
+
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button } from '@material-ui/core';
@@ -19,8 +13,8 @@ import classes from '../SearchCheapTrip/SearchComponent.module.css';
 import SearchResultView from '../SearchResult/SearchResultView';
 import SearchFailResultView from '../SearchResult/SearchFailResultView';
 
-import travelData from '../routes.json';
-import dataNew from '../locations.json';
+import travelData from '../../utils/routes.json';
+import dataNew from '../../utils/locations.json';
 
 export const AutoCompleteSection = () => {
 	const [cityName, setCityName] = useState(''); ///******data from input FROM******** */
@@ -31,15 +25,14 @@ export const AutoCompleteSection = () => {
 	const [jsonTo, setJsonTo] = useState(null); ///*******matches data before step 2 (input TO)********** */
 	const [myJson, setMyJson] = useState(null); ////////***data after step2***************** */ */
 	const [myJson2, setMyJson2] = useState(null); ////////***data after step2***************** */ */
-	const [searchMarker, setSearchMarker] = useState(null); //////******data for marker****** */
-	const [map /* setMap */] = useState(null);
-	const [isResult, setIsResult] = useState(false); //------temporary for display layout of Search results after click
+	const [isResult, setIsResult] = useState(false); //------ for display layout of Search results after click
 	const [isFailResult, setIsFailResult] = useState(false);
 	const [resultOfSearch, setResultOfSearch] = useState(null);
 
 	const findCityData = (curCity) => {
 		const result = Object.values(dataNew).filter((item) => {
 			if (item.name === curCity[0].properties.display_name) return item;
+      // return [];
 		});
 		return result[0];
 	};
@@ -59,37 +52,11 @@ export const AutoCompleteSection = () => {
 	const resultClick = ({ geometry, display_name }) => {
 		///**active after click on step 2**************** */ */
 		findMyCities(geometry, setMyJson);
-		setSearchMarker({
-			coordinates: {
-				lat: geometry[1],
-				lng: geometry[0],
-			},
-			name: display_name,
-		});
-		if (map) {
-			map.flyTo({
-				lat: geometry[1],
-				lng: geometry[0],
-			});
-		}
 	};
 
 	const resultClick2 = ({ geometry, display_name }) => {
 		///**active after click on step 2**************** */ */
 		findMyCities(geometry, setMyJson2);
-		setSearchMarker({
-			coordinates: {
-				lat: geometry[1],
-				lng: geometry[0],
-			},
-			name: display_name,
-		});
-		if (map) {
-			map.flyTo({
-				lat: geometry[1],
-				lng: geometry[0],
-			});
-		}
 	};
 
 	const findAutocomplete = async (cityName) => {
@@ -156,8 +123,7 @@ export const AutoCompleteSection = () => {
 		});
 	};
 
-	// clear button
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const handleClearFields = () => {
 		// dispatch(onChangeHandlerFrom(''));
 		// dispatch(onChangeHandlerTo(''));
@@ -168,24 +134,26 @@ export const AutoCompleteSection = () => {
 	};
 
 	const handleClearInputFrom = () => {
-		dispatch(onChangeHandlerFrom(''));
-		setIsResult(false); // ----------------------- TODO search results
+		// dispatch(onChangeHandlerFrom(''));
+		setCityName('');
+		setIsResult(false); 
+		setIsFailResult(false);
 	};
 
 	const handleClearInputTo = () => {
-		dispatch(onChangeHandlerTo(''));
-		setIsResult(false); // ----------------------- TODO search results
+		// dispatch(onChangeHandlerTo(''));
+		setCityNameTo('');
+		setIsResult(false); 
+		setIsFailResult(false);
 	};
 	const handleClickResults = () => {
-		// ----------------------- TODO search results
-		console.log(myJson, myJson2);
 		const result = [];
-		const cityFromYouTrawel = findCityData(myJson);
-		const cityToYouTrawel = findCityData(myJson2);
-		result.push(findRoutes(cityFromYouTrawel, cityToYouTrawel));
+		const cityFromYouTravel = findCityData(myJson);
+		const cityToYouTravel = findCityData(myJson2);
+		result.push(findRoutes(cityFromYouTravel, cityToYouTravel));
 		if (
-			result[0] == 'We have not found such a route' ||
-			result[0].length == 0
+			result[0] === 'We have not found such a route' ||
+			result[0].length === 0
 		) {
 			setIsResult(false);
 			setIsFailResult(true);
@@ -222,7 +190,6 @@ export const AutoCompleteSection = () => {
 						/>
 					}
 				</div>
-				{/* <HiChevronDoubleRight color={"#ff5722"} size={"1.5rem"} /> */}
 				<DoubleArrowIcon className={classes.media_icon} />
 				<div className='autoComplete_item'>
 					<AutoComplete
