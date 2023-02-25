@@ -20,6 +20,7 @@ export default function SearchResultItem({
 	const style = useMediaQuery('(max-width:650px)')
 		? resultItemStyle.sm
 		: resultItemStyle.lg;
+
 	const defineTypeOfTransport = (transport) => {
 		// TODO change cases to names from database
 		let resultLink;
@@ -85,31 +86,37 @@ export default function SearchResultItem({
 					</Typography>
 				);
 				break;
+			case 3:
+				resultIcon = (
+					<Typography>
+						<TrainIcon style={resultItemStyle.icon} fontSize='small' /> Train
+					</Typography>
+				);
+				break;
+			case 2:
+				resultIcon = (
+					<Typography>
+						<DirectionsBusIcon style={resultItemStyle.icon} fontSize='small' />{' '}
+						Bus
+					</Typography>
+				);
+				break;
 			case 10:
 				resultIcon = (
 					<Typography>
-						<DirectionsBoatIcon style={resultItemStyle.icon} /> Ferry
-					</Typography>
-				);
-				break;
-			case 4:
-				resultIcon = (
-					<Typography>
-						<AirplanemodeActiveIcon style={resultItemStyle.icon} /> Flight
-					</Typography>
-				);
-				break;
-			case 5:
-				resultIcon = (
-					<Typography>
-						<TrainIcon style={resultItemStyle.icon} /> Train
+						<DirectionsBoatIcon style={resultItemStyle.icon} fontSize='small' />{' '}
+						Ferry
 					</Typography>
 				);
 				break;
 			default:
 				resultIcon = (
 					<Typography>
-						<AirplanemodeActiveIcon style={resultItemStyle.icon} /> Flight
+						<AirplanemodeActiveIcon
+							style={resultItemStyle.icon}
+							fontSize='small'
+						/>{' '}
+						Flight
 					</Typography>
 				);
 		}

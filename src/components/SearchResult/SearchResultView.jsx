@@ -16,11 +16,11 @@ import CarSharing from '../../assets/car-sharing.png';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function SearchResultView({ city, cityFrom, cityTo, data }) {
-	const items = [1, 2, 3, 4, 5]; //------- temporary items of transport TODO: use from database
 	const timeTravel = `${Math.floor(data[0][0].trip_duration / 60)} h ${
 		data[0][0].trip_duration - Math.floor(data[0][0].trip_duration / 60) * 60
 	} m`;
 	const priceTravel = `€ ${data[0][0].euro_price}`;
+	// const items = [1, 2, 3, 4, 5]; //------- temporary items of transport TODO: use from database
 	const defineIconOfTransport = (transport) => {
 		// TODO change cases to names from database
 		let resultIcon;

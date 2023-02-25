@@ -199,7 +199,7 @@ export const AutoCompleteSection = () => {
 	return (
 		<div>
 			<div className='autoCompleteSection'>
-				<div className='autoComlete_item'>
+				<div className='autoComplete_item'>
 					<AutoComplete
 						onChange={(e) => {
 							onChangeHandlerFrom(e.target.value);
@@ -224,7 +224,7 @@ export const AutoCompleteSection = () => {
 				</div>
 				{/* <HiChevronDoubleRight color={"#ff5722"} size={"1.5rem"} /> */}
 				<DoubleArrowIcon className={classes.media_icon} />
-				<div className='autoComlete_item'>
+				<div className='autoComplete_item'>
 					<AutoComplete
 						onChange={(e) => {
 							onChangeHandlerTo(e.target.value);

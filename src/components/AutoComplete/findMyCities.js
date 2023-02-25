@@ -1,4 +1,4 @@
-import dataNew from '../locations.json';
+import data from '../locations.json';
 
 export const findMyCities = (geometry, setmyJson) => {
 	///*****active on step 2********** */
@@ -9,7 +9,7 @@ export const findMyCities = (geometry, setmyJson) => {
 	let lat2, lon2, a, d;
 	let p = 0.017453292519943295;
 	let c = Math.cos;
-	Object.values(dataNew).forEach((e) => {
+	Object.values(data).forEach((e) => {
 		lat2 = e.latitude;
 		lon2 = e.longitude;
 		a =
@@ -29,5 +29,5 @@ export const findMyCities = (geometry, setmyJson) => {
 
 	let midata = [rescity];
 	setmyJson(midata);
-	// console.log(midata);
+	/* console.log(midata); */
 };
