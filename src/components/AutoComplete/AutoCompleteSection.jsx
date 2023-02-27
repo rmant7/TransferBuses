@@ -13,8 +13,8 @@ import classes from '../SearchCheapTrip/SearchComponent.module.css';
 import SearchResultView from '../SearchResult/SearchResultView';
 import SearchFailResultView from '../SearchResult/SearchFailResultView';
 
-import travelData from '../../utils/routes.json';
-import dataNew from '../../utils/locations.json';
+import travelData from '../../cheapTripData/travel_data.json';
+import dataNew from '../../cheapTripData/locations.json';
 
 export const AutoCompleteSection = () => {
 	const [cityName, setCityName] = useState(''); ///******data from input FROM******** */
@@ -32,7 +32,7 @@ export const AutoCompleteSection = () => {
 	const findCityData = (curCity) => {
 		const result = Object.values(dataNew).filter((item) => {
 			if (item.name === curCity[0].properties.display_name) return item;
-      // return [];
+      return [];
 		});
 		return result[0];
 	};
@@ -153,7 +153,8 @@ export const AutoCompleteSection = () => {
 		result.push(findRoutes(cityFromYouTravel, cityToYouTravel));
 		if (
 			result[0] === 'We have not found such a route' ||
-			result[0].length === 0
+			result[0].length === 0 ||
+			result[0] === []
 		) {
 			setIsResult(false);
 			setIsFailResult(true);

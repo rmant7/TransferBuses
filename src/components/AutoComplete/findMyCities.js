@@ -1,4 +1,4 @@
-import data from '../../utils/locations.json';
+import data from '../../cheapTripData/locations.json';
 
 export const findMyCities = (geometry, setMyJson) => {
 	///*****active on step 2********** */
