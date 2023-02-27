@@ -15,7 +15,7 @@ const Sidebar = () => {
   const classes = useStyles();
   const history = useHistory();
 
-  console.log(sidebar);
+  // console.log(sidebar);
 
   const closeHandler = (path) => {
     history.push(path);

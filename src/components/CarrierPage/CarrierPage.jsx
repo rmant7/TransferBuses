@@ -135,7 +135,7 @@ export default function CarrierPage() {
 
   const getCity = (lat, long) => {
     const URL = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}&accept-language=en`;
-    axios.get(URL).then((response) => console.log(response.data));
+    axios.get(URL).then((response) => console.log("getCity CarrierPAge", response.data));
   };
 
   // !! Compute Distance Between current city and nearest City in AutoComplete "From".
