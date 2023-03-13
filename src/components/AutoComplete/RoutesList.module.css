@@ -1,0 +1,6 @@
+.routeCityItem, .itemOfTheLittleTextOfCity{
+    display: none;
+}
+.routeCityItemActive, .itemOfTheLittleTextOfCity{
+    display: block;
+}

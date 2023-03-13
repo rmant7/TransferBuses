@@ -19,6 +19,14 @@ firebaseConfig = {
   messagingSenderId: `${process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID}`,
   appId: `${process.env.REACT_APP_FIREBASE_ID}`
 };
+firebaseConfig = {
+  apiKey: "AIzaSyCez9FnxSm3dO_VhCzu-VuD63cOLWh8U0M",
+  authDomain: "cheaptrip-tim.firebaseapp.com",
+  projectId: "cheaptrip-tim",
+  storageBucket: "cheaptrip-tim.appspot.com",
+  messagingSenderId: "552600711944",
+  appId: "1:552600711944:web:01634ca1b8b75e392b72bd"
+};
 // if(process.env.REACT_APP_BUILD_MODE === 'prod'){
 //   firebaseConfig = {
 //     apiKey: `${process.env.REACT_APP_FIREBASE_APIKEY}`,
