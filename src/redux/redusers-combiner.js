@@ -4,6 +4,7 @@ import { filtersReducer, selectFilterReducer } from "./reducers/filters-reducer"
 import { inputFromToCityReducer } from "./reducers/inputs-reducer";
 import { loadingReducer } from "./reducers/loading-reducer";
 import { fromCityTransfersReducer, saveNewTransferReducer, transfersReducer } from "./reducers/transfers-reducer";
+import dataReducer from "./reducers/dataSlice";
 
 export const rootReducer = combineReducers({
     app: appReducer,
@@ -13,5 +14,6 @@ export const rootReducer = combineReducers({
     filters: filtersReducer,
     selectFilter: selectFilterReducer,
     inputFromToCity: inputFromToCityReducer,
-    loading: loadingReducer
+    loading: loadingReducer,
+    data: dataReducer,
 });
