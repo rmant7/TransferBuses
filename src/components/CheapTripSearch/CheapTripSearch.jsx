@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {Autocomplete, TextField} from "@mui/material";
 import routes from '../../cheapTripData/routes.json'
+import s from './cheaptrip.module.css'
+import RouteCard from "./RouteCard";
 
 function CheapTripSearch(props) {
     const locations = useSelector(state => state.data.locations)
@@ -32,14 +34,15 @@ function CheapTripSearch(props) {
         }))]
         : []
 
+    const [selectedRoutesKeys, setSelectedRoutesKeys] = useState(null)
+
     const cleanForm = () => {
         setFrom('')
         setTo('')
         setFromKey('')
         setTo('')
+        setSelectedRoutesKeys(null)
     }
-
-    const [selectedRoutesKeys, setSelectedRoutesKeys] = useState(null)
     const submit = () => {
         if (fromKey === '') return
         let routesKeys = Object.keys(routes)
@@ -88,9 +91,9 @@ function CheapTripSearch(props) {
             <button onClick={submit}>Let's go!</button>
             <div>
                 {selectedRoutesKeys && selectedRoutesKeys.map(key => (
-                    <div></div>
-                    // <p key={key}>{routes[key].id}</p>
+                    <RouteCard route={routes[key]}/>
                 ))}
+                {selectedRoutesKeys && selectedRoutesKeys.length === 0 && <p>No such routes</p>}
             </div>
         </div>
     )
