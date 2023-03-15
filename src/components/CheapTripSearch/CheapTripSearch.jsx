@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {Autocomplete, TextField} from "@mui/material";
+import locations from '../../cheapTripData/locations.json'
 import routes from '../../cheapTripData/routes.json'
 import s from './cheaptrip.module.css'
 import RouteCard from "./RouteCard";
 
 function CheapTripSearch(props) {
-    const locations = useSelector(state => state.data.locations)
     const locationsKeysSorted = function () {
         if (!locations) return
         let temp = {...locations}
@@ -28,8 +28,10 @@ function CheapTripSearch(props) {
             }))
         : []
     const toOptions = locationsKeysSorted
-        ? [{label: 'Anywhere', key: 0}, ...locationsKeysSorted.map(key => ({
-            label: locations[key].name + ', ' + locations[key].country_name,
+        ? [{label: 'Anywhere', key: '0'}, ...locationsKeysSorted.map(key => ({
+            label: key !== '0'
+                ? locations[key].name + ', ' + locations[key].country_name
+                : '',
             key: key
         }))]
         : []
@@ -40,22 +42,29 @@ function CheapTripSearch(props) {
         setFrom('')
         setTo('')
         setFromKey('')
-        setTo('')
+        setToKey('')
         setSelectedRoutesKeys(null)
     }
     const submit = () => {
-        if (fromKey === '') return
+        if (from === '') return
         let routesKeys = Object.keys(routes)
         const filteredByFrom = routesKeys.filter(key => routes[key].from === +fromKey)
-        if (toKey === '0' || toKey === '') {
+        if (to === '') {
             setTo('Anywhere')
             setToKey('0')
-            setSelectedRoutesKeys(filteredByFrom)
+        } else if (to === 'Anywhere') {
+            const sortedByPrice = filteredByFrom
+                .sort((a, b) => routes[a].euro_price - routes[b].euro_price)
+            setSelectedRoutesKeys(sortedByPrice)
         } else {
             const filteredByTo = filteredByFrom.filter(key => routes[key].to === +toKey)
-            setSelectedRoutesKeys(filteredByTo)
+            const sortedByPrice = filteredByTo
+                .sort((a, b) => routes[a].euro_price - routes[b].euro_price)
+            setSelectedRoutesKeys(sortedByPrice)
         }
     }
+
+    const PAGINATION_LIMIT = 10
 
     return (
         <div>
@@ -64,7 +73,7 @@ function CheapTripSearch(props) {
                     value={from || ''}
                     onChange={(e, newValue) => {
                         setFrom(newValue ? newValue.label : '')
-                        setFromKey(newValue ? newValue.key : '')
+                        setFromKey(newValue.key ? newValue.key : '')
                     }}
                     disablePortal
                     blurOnSelect
@@ -90,9 +99,11 @@ function CheapTripSearch(props) {
             <button onClick={cleanForm}>Clean form</button>
             <button onClick={submit}>Let's go!</button>
             <div>
-                {selectedRoutesKeys && selectedRoutesKeys.map(key => (
-                    <RouteCard route={routes[key]}/>
-                ))}
+                {selectedRoutesKeys && selectedRoutesKeys.slice(0, PAGINATION_LIMIT).map(key => {
+                    return (
+                        <RouteCard route={routes[key]} key={key}/>
+                    )
+                })}
                 {selectedRoutesKeys && selectedRoutesKeys.length === 0 && <p>No such routes</p>}
             </div>
         </div>

@@ -21,12 +21,12 @@ const dataSlice = createSlice({
     }
 })
 
-export const getLocations = () => async (dispatch) => {
-    const { default: jsonObject } = await import('../../cheapTripData/locations.json')
-    dispatch(setLocations(jsonObject))
-}
-// export const getRoutes = () => async (dispatch) => {
-//     const { default: jsonObject } = await import('../../cheapTripData/routes.json')
+// export const getLocations = () => async (dispatch) => {
+//     const { default: jsonObject } = await import('../../cheapTripData/locations.json')
+//     dispatch(setLocations(jsonObject))
+// }
+// export const getRoutes = (fileNum) => async (dispatch) => {
+//     const { default: jsonObject } = await import(`../../cheapTripData/routes/partly/from_${fileNum}.json`)
 //     dispatch(setRoutes(jsonObject))
 // }
 // export const getTravelData = () => async (dispatch) => {

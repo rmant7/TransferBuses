@@ -29,15 +29,15 @@ function App() {
         process.env.REACT_APP_BUILD_MODE
     );
 
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getLocations())
-        // dispatch(getRoutes())
-        // dispatch(getTravelData())
-        // dispatch(getTransportationTypes())
-        // dispatch(getFlyingRoutes())
-        // dispatch(getOnlandRoutes())
-    }, [])
+    // const dispatch = useDispatch()
+    // useEffect(() => {
+    //     // dispatch(getLocations())
+    //     // dispatch(getRoutes())
+    //     // dispatch(getTravelData())
+    //     // dispatch(getTransportationTypes())
+    //     // dispatch(getFlyingRoutes())
+    //     // dispatch(getOnlandRoutes())
+    // }, [])
 
     return (
         <ThemeProvider theme={theme}>
