@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {Autocomplete, TextField} from "@mui/material";
+import routes from '../../cheapTripData/routes.json'
 
 function CheapTripSearch(props) {
     const locations = useSelector(state => state.data.locations)
@@ -14,6 +15,8 @@ function CheapTripSearch(props) {
 
     const [from, setFrom] = useState('')
     const [to, setTo] = useState('')
+    const [fromKey, setFromKey] = useState('')
+    const [toKey, setToKey] = useState('')
 
     const fromOptions = locationsKeysSorted
         ? locationsKeysSorted.map(key =>
@@ -32,15 +35,33 @@ function CheapTripSearch(props) {
     const cleanForm = () => {
         setFrom('')
         setTo('')
+        setFromKey('')
+        setTo('')
+    }
+
+    const [selectedRoutesKeys, setSelectedRoutesKeys] = useState(null)
+    const submit = () => {
+        if (fromKey === '') return
+        let routesKeys = Object.keys(routes)
+        const filteredByFrom = routesKeys.filter(key => routes[key].from === +fromKey)
+        if (toKey === '0' || toKey === '') {
+            setTo('Anywhere')
+            setToKey('0')
+            setSelectedRoutesKeys(filteredByFrom)
+        } else {
+            const filteredByTo = filteredByFrom.filter(key => routes[key].to === +toKey)
+            setSelectedRoutesKeys(filteredByTo)
+        }
     }
 
     return (
         <div>
             <form action="">
                 <Autocomplete
-                    value={from}
+                    value={from || ''}
                     onChange={(e, newValue) => {
-                        setFrom(newValue);
+                        setFrom(newValue ? newValue.label : '')
+                        setFromKey(newValue ? newValue.key : '')
                     }}
                     disablePortal
                     blurOnSelect
@@ -50,9 +71,10 @@ function CheapTripSearch(props) {
                     renderInput={(params) => <TextField {...params} label="From"/>}
                 />
                 <Autocomplete
-                    value={to}
+                    value={to || ''}
                     onChange={(e, newValue) => {
-                        setTo(newValue);
+                        setTo(newValue ? newValue.label : '')
+                        setToKey(newValue ? newValue.key : '')
                     }}
                     disablePortal
                     blurOnSelect
@@ -63,6 +85,13 @@ function CheapTripSearch(props) {
                 />
             </form>
             <button onClick={cleanForm}>Clean form</button>
+            <button onClick={submit}>Let's go!</button>
+            <div>
+                {selectedRoutesKeys && selectedRoutesKeys.map(key => (
+                    <div></div>
+                    // <p key={key}>{routes[key].id}</p>
+                ))}
+            </div>
         </div>
     )
 }
