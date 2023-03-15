@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {Autocomplete, TextField} from "@mui/material";
 import locations from '../../cheapTripData/locations.json'
-import routes from '../../cheapTripData/routes.json'
+import routes from '../../cheapTripData/routes/common/routes.json'
 import s from './cheaptrip.module.css'
 import RouteCard from "./RouteCard";
 
