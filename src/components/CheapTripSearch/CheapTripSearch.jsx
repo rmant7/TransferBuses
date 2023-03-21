@@ -2,11 +2,25 @@ import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {Autocomplete, TextField} from "@mui/material";
 import locations from '../../cheapTripData/locations.json'
-import routes from '../../cheapTripData/routes/common/routes.json'
+import routes from '../../cheapTripData/routes.json'
 import s from './cheaptrip.module.css'
 import RouteCard from "./RouteCard";
 
 function CheapTripSearch(props) {
+    // const [locations, setLocations] = useState(null)
+    // const [routes, setRoutes] = useState(null)
+    //
+    // useEffect(() => {
+    //     if (locations) return
+    //     import('../../cheapTripData/locations.json').then(obj => {
+    //         setLocations(obj.default)
+    //     })
+    //     if (routes) return;
+    //     import('../../cheapTripData/routes.json').then(obj => {
+    //         setRoutes(obj.default)
+    //     })
+    // }, [])
+
     const locationsKeysSorted = function () {
         if (!locations) return
         let temp = {...locations}
@@ -47,6 +61,8 @@ function CheapTripSearch(props) {
     }
     const submit = () => {
         if (from === '') return
+        console.log(from)
+        console.log(fromKey)
         let routesKeys = Object.keys(routes)
         const filteredByFrom = routesKeys.filter(key => routes[key].from === +fromKey)
         if (to === '') {
@@ -99,12 +115,12 @@ function CheapTripSearch(props) {
             <button onClick={cleanForm}>Clean form</button>
             <button onClick={submit}>Let's go!</button>
             <div>
-                {selectedRoutesKeys && selectedRoutesKeys.slice(0, PAGINATION_LIMIT).map(key => {
+                {routes && selectedRoutesKeys && selectedRoutesKeys.slice(0, PAGINATION_LIMIT).map(key => {
                     return (
-                        <RouteCard route={routes[key]} key={key}/>
+                        routes[key] ? <RouteCard route={routes[key]} key={key}/> : <div>Loading...</div>
                     )
                 })}
-                {selectedRoutesKeys && selectedRoutesKeys.length === 0 && <p>No such routes</p>}
+                {routes && selectedRoutesKeys && selectedRoutesKeys.length === 0 && <p>No such routes</p>}
             </div>
         </div>
     )

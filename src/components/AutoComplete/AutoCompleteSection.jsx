@@ -32,6 +32,16 @@ export const AutoCompleteSection = () => {
 	const [isActiveTo, setIsActiveTo] = useState(false);
 	const [routesList, setRoutesList] = useState([]); ////////****data after click and secod input has value Anywhere***/
 
+	function ping() {
+		const start = Date.now()
+		fetch('photon.komoot.io/api')
+			.then((response) => {
+				const end = Date.now()
+				console.log('ping: ' + (end - start) + 'ms')
+			})
+	}
+	ping()
+
 	const findCityData = (curCity) => {
 		const result = Object.values(dataNew).filter((item) => {
 			//   console.log(item);
@@ -193,7 +203,6 @@ export const AutoCompleteSection = () => {
 	};
 
 	const getListRoutes = () => {
-
 		const cityFromId = getIdByCityFrom(cityName);
 		const values = Object.values(travelData);
 		const filtered = values.filter((item) => cityFromId === item.from);
@@ -230,7 +239,7 @@ export const AutoCompleteSection = () => {
 		const sorted = array.sort((a, b) => (a.euro_price > b.euro_price ? 1 : -1));
 		setRoutesList(sorted);
 	};
-	//   import travelData from "../../cheapTripData/routes.json";
+	// import travelData from "../../cheapTripData/routes.json";
 	// import dataNew from "../../cheapTripData/locations.json";
 
 	return (
