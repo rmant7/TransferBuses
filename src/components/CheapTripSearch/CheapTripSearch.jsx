@@ -1,25 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {useSelector} from "react-redux";
+import React, {useState} from 'react';
 import {Autocomplete, TextField} from "@mui/material";
 import locations from '../../cheapTripData/locations.json'
-import routes from '../../cheapTripData/routes.json'
-import s from './cheaptrip.module.css'
+import common_routes from '../../cheapTripData/routes.json'
+import fixed_routes from '../../cheapTripData/fixed_routes.json'
+import flying_routes from '../../cheapTripData/flying_routes.json'
 import RouteCard from "./RouteCard";
+import s from './cheaptrip.module.css'
 
 function CheapTripSearch(props) {
-    // const [locations, setLocations] = useState(null)
-    // const [routes, setRoutes] = useState(null)
-    //
-    // useEffect(() => {
-    //     if (locations) return
-    //     import('../../cheapTripData/locations.json').then(obj => {
-    //         setLocations(obj.default)
-    //     })
-    //     if (routes) return;
-    //     import('../../cheapTripData/routes.json').then(obj => {
-    //         setRoutes(obj.default)
-    //     })
-    // }, [])
+    const routes = {...flying_routes, ...fixed_routes, ...common_routes}
 
     const locationsKeysSorted = function () {
         if (!locations) return
@@ -84,7 +73,7 @@ function CheapTripSearch(props) {
 
     return (
         <div>
-            <form action="">
+            <form action="" className={s.autocomplete}>
                 <Autocomplete
                     value={from || ''}
                     onChange={(e, newValue) => {
@@ -95,7 +84,7 @@ function CheapTripSearch(props) {
                     blurOnSelect
                     openOnFocus
                     options={fromOptions}
-                    sx={{width: 300}}
+                    sx={{width: '40%'}}
                     renderInput={(params) => <TextField {...params} label="From"/>}
                 />
                 <Autocomplete
@@ -108,18 +97,22 @@ function CheapTripSearch(props) {
                     blurOnSelect
                     openOnFocus
                     options={toOptions}
-                    sx={{width: 300}}
+                    sx={{width: '40%'}}
                     renderInput={(params) => <TextField {...params} label="To"/>}
                 />
             </form>
-            <button onClick={cleanForm}>Clean form</button>
-            <button onClick={submit}>Let's go!</button>
+            <div className={s.buttons}>
+                <button onClick={cleanForm}>Clean form</button>
+                <button onClick={submit}>Let's go!</button>
+            </div>
             <div>
-                {routes && selectedRoutesKeys && selectedRoutesKeys.slice(0, PAGINATION_LIMIT).map(key => {
-                    return (
-                        routes[key] ? <RouteCard route={routes[key]} key={key}/> : <div>Loading...</div>
-                    )
-                })}
+                {routes && selectedRoutesKeys && selectedRoutesKeys
+                    .sort((a, b) => routes[a].direct_routes.length - routes[b].direct_routes.length)
+                    .slice(0, PAGINATION_LIMIT).map(key => {
+                        return (
+                            routes[key] ? <RouteCard route={routes[key]} key={key}/> : <div>Loading...</div>
+                        )
+                    })}
                 {routes && selectedRoutesKeys && selectedRoutesKeys.length === 0 && <p>No such routes</p>}
             </div>
         </div>

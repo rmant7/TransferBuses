@@ -13,7 +13,7 @@ import classes from "../SearchCheapTrip/SearchComponent.module.css";
 import SearchResultView from "../SearchResult/SearchResultView";
 import SearchFailResultView from "../SearchResult/SearchFailResultView";
 
-import travelData from "../../cheapTripData/routes.json"; //----travel_data.json
+import travelData from "../../cheapTripData/direct_routes.json"; //----travel_data.json
 import dataNew from "../../cheapTripData/locations.json";
 import RoutesList  from "./RoutesList";
 
