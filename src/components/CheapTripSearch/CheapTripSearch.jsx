@@ -6,6 +6,10 @@ import fixed_routes from '../../cheapTripData/fixed_routes.json'
 import flying_routes from '../../cheapTripData/flying_routes.json'
 import RouteCard from "./RouteCard";
 import s from './cheaptrip.module.css'
+import classes from "../SearchCheapTrip/SearchComponent.module.css";
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+import {Button} from "@material-ui/core";
+import i18n from "../../i18n";
 
 function CheapTripSearch(props) {
     const routes = {...flying_routes, ...fixed_routes, ...common_routes}
@@ -84,9 +88,10 @@ function CheapTripSearch(props) {
                     blurOnSelect
                     openOnFocus
                     options={fromOptions}
-                    sx={{width: '40%'}}
+                    sx={{width: '100%'}}
                     renderInput={(params) => <TextField {...params} label="From"/>}
                 />
+                <DoubleArrowIcon className={classes.media_icon}/>
                 <Autocomplete
                     value={to || ''}
                     onChange={(e, newValue) => {
@@ -97,13 +102,23 @@ function CheapTripSearch(props) {
                     blurOnSelect
                     openOnFocus
                     options={toOptions}
-                    sx={{width: '40%'}}
+                    sx={{width: '100%'}}
                     renderInput={(params) => <TextField {...params} label="To"/>}
                 />
             </form>
-            <div className={s.buttons}>
-                <button onClick={cleanForm}>Clean form</button>
-                <button onClick={submit}>Let's go!</button>
+            <div className={classes.filter_buttons}>
+                <Button variant="outlined" onClick={cleanForm} type="reset">
+                    {i18n.t("Clean")}
+                </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={submit}
+                    style={{marginLeft: "10px"}}
+                    type="button"
+                >
+                    {i18n.t("Let's Go")}
+                </Button>
             </div>
             <div>
                 {routes && selectedRoutesKeys && selectedRoutesKeys
