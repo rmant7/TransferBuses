@@ -95,6 +95,9 @@ function TravelInfo({travelInfo}) {
                         >
                             <div className={s.modal}>
                                 <h5>Additional information</h5>
+
+                                <h5>A test message</h5>
+
                                 <p><b>From: </b></p>
                                 <p>Air code: {additional_information.from.air_code}</p>
                                 <p>Station: {additional_information.from.station}</p>
