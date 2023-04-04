@@ -10,11 +10,36 @@ import classes from "../SearchCheapTrip/SearchComponent.module.css";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import {Button} from "@material-ui/core";
 import i18n from "../../i18n";
-import { lowerCase } from 'lodash';
-import { asyncAutocomplete } from './asyncAutocomplete';
+import {lowerCase} from 'lodash';
+import {asyncAutocomplete} from './asyncAutocomplete';
 
 function CheapTripSearch(props) {
     const routes = {...flying_routes, ...fixed_routes, ...common_routes}
+
+    // Here the routes with a common key will merge into an array: 89091: [{...},{...}]
+    const routesForRender = {};
+    for (const key in flying_routes) {
+        routes[key] = [flying_routes[key]];
+    }
+    for (const key in fixed_routes) {
+        if (routes[key]) {
+            if (JSON.stringify(routes[key]) === JSON.stringify(fixed_routes[key])) {
+                routes[key].push(fixed_routes[key]);
+            }
+        } else {
+            routes[key] = fixed_routes[key] ? [fixed_routes[key]] : [];
+        }
+    }
+    for (const key in common_routes) {
+        if (routes[key]) {
+            if (JSON.stringify(routes[key]) === JSON.stringify(common_routes[key])) {
+                routes[key].push(common_routes[key]);
+            }
+        } else {
+            routes[key] = common_routes[key] ? [common_routes[key]] : [];
+        }
+    }
+    console.log(routes);
 
     const locationsKeysSorted = function () {
         if (!locations) return
@@ -81,7 +106,7 @@ function CheapTripSearch(props) {
     const PAGINATION_LIMIT = 10
     const startAsyncAutocomplete = (e, setState, options) => {
         // get geolocation
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             setGeoLocation({
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
@@ -90,9 +115,9 @@ function CheapTripSearch(props) {
         asyncAutocomplete(e, setState, options, geoLocation)
     }
 
-
     const checkFromOption = asyncFromOptions.length !== 0 ? asyncFromOptions : fromOptions
     const checkToOption = asyncToOptions.length !== 0 ? asyncToOptions : toOptions
+
     return (
         <div>
             <form action="" className={s.autocomplete}>
