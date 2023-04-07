@@ -10,6 +10,8 @@ import classes from "../SearchCheapTrip/SearchComponent.module.css";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import {Button} from "@material-ui/core";
 import i18n from "../../i18n";
+import { lowerCase } from 'lodash';
+import { asyncAutocomplete } from './asyncAutocomplete';
 
 function CheapTripSearch(props) {
     const routes = {...flying_routes, ...fixed_routes, ...common_routes}
@@ -26,6 +28,9 @@ function CheapTripSearch(props) {
     const [to, setTo] = useState('')
     const [fromKey, setFromKey] = useState('')
     const [toKey, setToKey] = useState('')
+    const [asyncFromOptions, setAsyncFromOptions] = useState([])
+    const [asyncToOptions, setAsyncToOptions] = useState([])
+    const [geoLocation, setGeoLocation] = useState({latitude: 0, longitude: 0})
 
     const fromOptions = locationsKeysSorted
         ? locationsKeysSorted.map(key =>
@@ -54,8 +59,8 @@ function CheapTripSearch(props) {
     }
     const submit = () => {
         if (from === '') return
-        console.log(from)
-        console.log(fromKey)
+        // console.log(from)
+        // console.log(fromKey)
         let routesKeys = Object.keys(routes)
         const filteredByFrom = routesKeys.filter(key => routes[key].from === +fromKey)
         if (to === '') {
@@ -74,7 +79,20 @@ function CheapTripSearch(props) {
     }
 
     const PAGINATION_LIMIT = 10
+    const startAsyncAutocomplete = (e, setState, options) => {
+        // get geolocation
+        navigator.geolocation.getCurrentPosition(function(position) {
+            setGeoLocation({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            })
+        });
+        asyncAutocomplete(e, setState, options, geoLocation)
+    }
 
+
+    const checkFromOption = asyncFromOptions.length !== 0 ? asyncFromOptions : fromOptions
+    const checkToOption = asyncToOptions.length !== 0 ? asyncToOptions : toOptions
     return (
         <div>
             <form action="" className={s.autocomplete}>
@@ -84,10 +102,11 @@ function CheapTripSearch(props) {
                         setFrom(newValue ? newValue.label : '')
                         setFromKey(newValue.key ? newValue.key : '')
                     }}
+                    onInputChange={(e) => startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
                     disablePortal
                     blurOnSelect
                     openOnFocus
-                    options={fromOptions}
+                    options={checkFromOption}
                     sx={{width: '100%'}}
                     renderInput={(params) => <TextField {...params} label="From"/>}
                 />
@@ -98,10 +117,11 @@ function CheapTripSearch(props) {
                         setTo(newValue ? newValue.label : '')
                         setToKey(newValue ? newValue.key : '')
                     }}
+                    onInputChange={(e) => startAsyncAutocomplete(e, setAsyncToOptions, toOptions)}
                     disablePortal
                     blurOnSelect
                     openOnFocus
-                    options={toOptions}
+                    options={checkToOption}
                     sx={{width: '100%'}}
                     renderInput={(params) => <TextField {...params} label="To"/>}
                 />
