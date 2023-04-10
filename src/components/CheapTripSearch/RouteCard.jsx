@@ -32,7 +32,11 @@ function RouteCard({route}) {
         console.log(tempKeys)
         let temp = []
         tempKeys.map(key => {
-            temp.push(directRoutes[key])
+            const routeItem = {
+                'route': key,
+                ...directRoutes[key],
+            }
+            temp.push(routeItem)
         })
         console.log(temp)
         setTravelInfo(temp)
