@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
-import locations from '../../cheapTripData/locations.json'
-import additional_information from '../../cheapTripData/inner_jsons/80001.json'
+import React, {useState, useEffect} from 'react';
+import locations from '../../cheapTripData/locations.json';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {resultItemStyle} from "../SearchResult/style";
 import {Box, Button, Link, Typography} from "@material-ui/core";
@@ -16,6 +15,14 @@ function TravelInfo({travelInfo}) {
     const lessThan480 = useMediaQuery('(max-width:480px)')
 
     const [additionalInfoOpened, setAdditionalInfoOpened] = useState(false)
+
+    const [additionalInformation, setAdditionalInformation] = useState(null)
+
+    useEffect(() => {
+        import(`../../cheapTripData/inner_jsons/${travelInfo.route}.json`)
+            .then((res) => setAdditionalInformation(res.default))
+            .catch(_ => null);
+    }, [travelInfo.route])
 
     return (
         <div>
@@ -86,7 +93,7 @@ function TravelInfo({travelInfo}) {
                     {/*<p>price: {travelInfo.price} euro</p>*/}
                     {/*<p>time: {travelInfo.duration} minutes</p>*/}
 
-                    {additional_information && additionalInfoOpened &&
+                    {additionalInformation && additionalInfoOpened &&
                         <Modal
                             open={additionalInfoOpened}
                             onClose={() => setAdditionalInfoOpened(false)}
@@ -99,21 +106,23 @@ function TravelInfo({travelInfo}) {
                                 <h5>A test message</h5>
 
                                 <p><b>From: </b></p>
-                                <p>Air code: {additional_information.from.air_code}</p>
-                                <p>Station: {additional_information.from.station}</p>
-                                <p>Latitude: {additional_information.from.coords.lat}</p>
-                                <p>Longtitude: {additional_information.from.coords.lon}</p>
+                                <p>Air code: {additionalInformation.from.air_code}</p>
+                                <p>Station: {additionalInformation.from.station}</p>
+                                <p>Latitude: {additionalInformation.from.coords.lat}</p>
+                                <p>Longtitude: {additionalInformation.from.coords.lon}</p>
                                 <p><b>To: </b></p>
-                                <p>Air code: {additional_information.to.air_code}</p>
-                                <p>Station: {additional_information.to.station}</p>
-                                <p>Latitude: {additional_information.to.coords.lat}</p>
-                                <p>Longtitude: {additional_information.to.coords.lon}</p>
+                                <p>Air code: {additionalInformation.to.air_code}</p>
+                                <p>Station: {additionalInformation.to.station}</p>
+                                <p>Latitude: {additionalInformation.to.coords.lat}</p>
+                                <p>Longtitude: {additionalInformation.to.coords.lon}</p>
                                 <p><b>Info: </b></p>
-                                <p>Duration: {Math.floor(additional_information.duration_min / 60)}
-                                    h {additional_information.duration_min % 60}m
+                                <p>Duration: {Math.floor(additionalInformation.duration_min / 60)}
+                                    h {additionalInformation.duration_min % 60}m
                                 </p>
-                                <p>Distance: {additional_information.distance_km}km</p>
-                                <p>Frequency: {additional_information.frequency.info}</p>
+                                <p>Distance: {additionalInformation.distance_km}km</p>
+                                {additionalInformation.frequency && (
+                                    <p>Frequency: {additionalInformation.frequency.info}</p>
+                                )}
                             </div>
                         </Modal>}
                 </>
