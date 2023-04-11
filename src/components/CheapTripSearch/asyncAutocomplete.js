@@ -1,4 +1,4 @@
-const PING_LIMIT = 300;
+const PING_LIMIT = 100;
 
 export const asyncAutocomplete = async (e, setState, options, geoLocation) => {
   const p = await ping();

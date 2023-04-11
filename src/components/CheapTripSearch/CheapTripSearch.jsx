@@ -16,30 +16,26 @@ import {asyncAutocomplete} from './asyncAutocomplete';
 function CheapTripSearch(props) {
     const routes = {...flying_routes, ...fixed_routes, ...common_routes}
 
-    // Here the routes with a common key will merge into an array: 89091: [{...},{...}]
+    // Here the routes with a common key will merge into an array like: 89091: [{...}, {...}]
     const routesForRender = {};
     for (const key in flying_routes) {
-        routes[key] = [flying_routes[key]];
+        routesForRender[key] = [flying_routes[key]];
     }
     for (const key in fixed_routes) {
-        if (routes[key]) {
-            if (JSON.stringify(routes[key]) === JSON.stringify(fixed_routes[key])) {
-                routes[key].push(fixed_routes[key]);
-            }
+        if (routesForRender[key]) {
+            routesForRender[key].push(fixed_routes[key]);
         } else {
-            routes[key] = fixed_routes[key] ? [fixed_routes[key]] : [];
+            routesForRender[key] = fixed_routes[key] ? [fixed_routes[key]] : [];
         }
     }
     for (const key in common_routes) {
-        if (routes[key]) {
-            if (JSON.stringify(routes[key]) === JSON.stringify(common_routes[key])) {
-                routes[key].push(common_routes[key]);
-            }
+        if (routesForRender[key]) {
+            routesForRender[key].push(common_routes[key]);
         } else {
-            routes[key] = common_routes[key] ? [common_routes[key]] : [];
+            routesForRender[key] = common_routes[key] ? [common_routes[key]] : [];
         }
     }
-    console.log(routes);
+    console.log(routesForRender);
 
     const locationsKeysSorted = function () {
         if (!locations) return
@@ -127,7 +123,7 @@ function CheapTripSearch(props) {
                         setFrom(newValue ? newValue.label : '')
                         setFromKey(newValue.key ? newValue.key : '')
                     }}
-                    onInputChange={(e) => startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
+                    // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
                     disablePortal
                     blurOnSelect
                     openOnFocus
@@ -142,7 +138,7 @@ function CheapTripSearch(props) {
                         setTo(newValue ? newValue.label : '')
                         setToKey(newValue ? newValue.key : '')
                     }}
-                    onInputChange={(e) => startAsyncAutocomplete(e, setAsyncToOptions, toOptions)}
+                    // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncToOptions, toOptions)}
                     disablePortal
                     blurOnSelect
                     openOnFocus
@@ -168,9 +164,10 @@ function CheapTripSearch(props) {
             <div>
                 {routes && selectedRoutesKeys && selectedRoutesKeys
                     .sort((a, b) => routes[a].direct_routes.length - routes[b].direct_routes.length)
-                    .slice(0, PAGINATION_LIMIT).map(key => {
-                        return (
-                            routes[key] ? <RouteCard route={routes[key]} key={key}/> : <div>Loading...</div>
+                    .slice(0, PAGINATION_LIMIT).map((key, index) => {
+                        return routesForRender[key].map(route => {
+                                return <RouteCard route={route} key={index}/>
+                            }
                         )
                     })}
                 {routes && selectedRoutesKeys && selectedRoutesKeys.length === 0 && <p>No such routes</p>}
