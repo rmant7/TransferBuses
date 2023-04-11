@@ -10,11 +10,32 @@ import classes from "../SearchCheapTrip/SearchComponent.module.css";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import {Button} from "@material-ui/core";
 import i18n from "../../i18n";
-import { lowerCase } from 'lodash';
-import { asyncAutocomplete } from './asyncAutocomplete';
+import {lowerCase} from 'lodash';
+import {asyncAutocomplete} from './asyncAutocomplete';
 
 function CheapTripSearch(props) {
     const routes = {...flying_routes, ...fixed_routes, ...common_routes}
+
+    // Here the routes with a common key will merge into an array like: 89091: [{...}, {...}]
+    const routesForRender = {};
+    for (const key in flying_routes) {
+        routesForRender[key] = [flying_routes[key]];
+    }
+    for (const key in fixed_routes) {
+        if (routesForRender[key]) {
+            routesForRender[key].push(fixed_routes[key]);
+        } else {
+            routesForRender[key] = fixed_routes[key] ? [fixed_routes[key]] : [];
+        }
+    }
+    for (const key in common_routes) {
+        if (routesForRender[key]) {
+            routesForRender[key].push(common_routes[key]);
+        } else {
+            routesForRender[key] = common_routes[key] ? [common_routes[key]] : [];
+        }
+    }
+    console.log(routesForRender);
 
     const locationsKeysSorted = function () {
         if (!locations) return
@@ -81,7 +102,7 @@ function CheapTripSearch(props) {
     const PAGINATION_LIMIT = 10
     const startAsyncAutocomplete = (e, setState, options) => {
         // get geolocation
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             setGeoLocation({
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
@@ -90,9 +111,9 @@ function CheapTripSearch(props) {
         asyncAutocomplete(e, setState, options, geoLocation)
     }
 
-
     const checkFromOption = asyncFromOptions.length !== 0 ? asyncFromOptions : fromOptions
     const checkToOption = asyncToOptions.length !== 0 ? asyncToOptions : toOptions
+
     return (
         <div>
             <form action="" className={s.autocomplete}>
@@ -102,7 +123,7 @@ function CheapTripSearch(props) {
                         setFrom(newValue ? newValue.label : '')
                         setFromKey(newValue.key ? newValue.key : '')
                     }}
-                    onInputChange={(e) => startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
+                    // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
                     disablePortal
                     blurOnSelect
                     openOnFocus
@@ -117,7 +138,7 @@ function CheapTripSearch(props) {
                         setTo(newValue ? newValue.label : '')
                         setToKey(newValue ? newValue.key : '')
                     }}
-                    onInputChange={(e) => startAsyncAutocomplete(e, setAsyncToOptions, toOptions)}
+                    // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncToOptions, toOptions)}
                     disablePortal
                     blurOnSelect
                     openOnFocus
@@ -143,9 +164,10 @@ function CheapTripSearch(props) {
             <div>
                 {routes && selectedRoutesKeys && selectedRoutesKeys
                     .sort((a, b) => routes[a].direct_routes.length - routes[b].direct_routes.length)
-                    .slice(0, PAGINATION_LIMIT).map(key => {
-                        return (
-                            routes[key] ? <RouteCard route={routes[key]} key={key}/> : <div>Loading...</div>
+                    .slice(0, PAGINATION_LIMIT).map((key, index) => {
+                        return routesForRender[key].map(route => {
+                                return <RouteCard route={route} key={index}/>
+                            }
                         )
                     })}
                 {routes && selectedRoutesKeys && selectedRoutesKeys.length === 0 && <p>No such routes</p>}
