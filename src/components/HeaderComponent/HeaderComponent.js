@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 import { AppBar, Toolbar } from "@material-ui/core";
 // import { Sidebar } from "..";
 import Sidebar from "./Sidebar/Sidebar";
 import css from "./HeaderComponent.module.css";
 import { LogoHeader } from "./Logos/Logos";
 import Nav from "./Nav/Nav";
-import { MAIN_ROUTE, CONTACTS_ROUTE } from "../../utils/constants";
-import { useLocation } from 'react-router';
+import { MAIN_ROUTE, CONTACTS_ROUTE, TIPS_ROUTE } from "../../utils/constants";
+import { useLocation } from "react-router";
 
 const HeaderComponent = () => {
   const page_mode = useStatePath();
@@ -19,7 +19,7 @@ const HeaderComponent = () => {
       <Sidebar page_mode={page_mode} />
     </AppBar>
   );
-}
+};
 
 export default HeaderComponent;
 
@@ -28,12 +28,8 @@ function useStatePath() {
   if (pathname === MAIN_ROUTE || pathname === CONTACTS_ROUTE) {
     return "CheapTrip";
   }
+  if (pathname === TIPS_ROUTE) {
+    return "Tips";
+  }
   return "TransferBuses";
 }
-
-
-
-
-
-
-

@@ -1,0 +1,37 @@
+.main_section {
+  margin-top: 67px;
+  font-family: Roboto, Helvetica Neue, sans-serif;
+}
+
+.form {
+  padding: 13px 10px;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.form__title {
+  font-size: 13px;
+  font-family: inherit;
+  margin-bottom: 6px;
+}
+
+.form__input {
+  min-height: 42px;
+  border: 1.5px solid #ff5722;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.form__input::placeholder {
+  color: #bbbbbb;
+  padding-left: 10px;
+}
+
+.form__button {
+  background-color: #ff5722;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  min-height: 36px;
+}

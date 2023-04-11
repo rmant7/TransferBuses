@@ -1,0 +1,37 @@
+.section__interesting {
+  padding: 25px;
+  margin: 10px auto;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.header {
+  color: #000;
+  font-weight: normal;
+  margin-left: 2.5%;
+  font-size: 1.62vw;
+
+  word-spacing: 1px;
+  font-family: Roboto, Helvetica Neue, sans-serif;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+@media (max-width: 785px) {
+  .header {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .section__interesting {
+    width: 100%;
+    padding: 10% 0;
+    margin: 10px 0;
+  }
+}

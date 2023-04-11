@@ -1,12 +1,22 @@
-import React from 'react';
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { MAIN_ROUTE, PASSENGER_ROUTE } from "../../../utils/constants";
 import { getBuildMode } from "../../../config/build-config";
 import css from "./Logos.module.css";
 
 export const LogoHeader = ({ page_mode }) => {
-  if(page_mode === "CheapTrip") return LogoTrip();
-  if(page_mode === "TransferBuses") return LogoBus();
+  if (page_mode === "CheapTrip") return LogoTrip();
+  if (page_mode === "TransferBuses") return LogoBus();
+  if (page_mode === "Tips") return LogoTips();
+};
+function LogoTips() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
+      <span className={css.logo} to={MAIN_ROUTE}>
+        <span className={css.logoTrip}>Budget Travel Tips</span>
+      </span>
+    </div>
+  );
 }
 
 function LogoBus() {
@@ -32,7 +42,7 @@ function LogoBus() {
 function LogoTrip() {
   return (
     <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
-      <NavLink className={css.logo}  to={MAIN_ROUTE}>
+      <NavLink className={css.logo} to={MAIN_ROUTE}>
         <span className={css.logoTrip}>CheapTrip</span>
       </NavLink>
       <span className={css.sloganHeader}>
@@ -42,6 +52,3 @@ function LogoTrip() {
     </div>
   );
 }
-
-
-

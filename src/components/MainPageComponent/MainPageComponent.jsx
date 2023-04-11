@@ -5,6 +5,8 @@ import css from "./MainPageComponent.module.css";
 import Logo_Cht from "./Logo_ChT_2.png";
 import { AutoCompleteSection } from "../AutoComplete/AutoCompleteSection";
 import CheapTripSearch from "../CheapTripSearch/CheapTripSearch";
+import InterestingCities from "../InterestingCities/InterestingCities";
+import InterestingCountries from "../InterestingCountries/InterestingCountries";
 
 export const MainPageComponent = () => {
   const SloganMain = () => (
@@ -21,12 +23,14 @@ export const MainPageComponent = () => {
       <div className={filtersClasses.filters_sector}>
         {/*<AutoCompleteSection />*/}
         {/* <FiltersCitiesFrom /> */}
-          <CheapTripSearch />
+        <CheapTripSearch />
       </div>
+      <InterestingCities />
+      <InterestingCountries />
 
-      <div className={css.Logo_Cht_Wrapper}>
+      {/* <div className={css.Logo_Cht_Wrapper}>
         <img className={css.Logo_Cht} src={Logo_Cht} alt="CheapTrip Logo" />
-      </div>
+      </div> */}
     </Container>
   );
 };

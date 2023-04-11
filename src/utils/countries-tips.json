@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Great Britain",
+    "description": "blah",
+    "facts": ["blah", "balh"],
+    "imgs": ["london.png", "buses.jpg", "london2.png", "buses2.jpg"]
+  },
+  {
+    "id": 2,
+    "name": "France",
+    "description": "blah",
+    "facts": ["blah", "balh"],
+    "imgs": ["paris.jpg", "arc.jpg", "paris.jpg", "arc.jpg"]
+  }
+]
