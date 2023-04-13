@@ -4,27 +4,27 @@
     "name": "London",
     "description": "London, the capital city of England, is a dynamic metropolis with a rich history and cultural diversity. The city offers an array of world-famous attractions such as the Big Ben, Buckingham Palace, and the Tower of London. Visitors can also enjoy a stroll along the River Thames, explore the many museums and galleries, or experience the vibrant nightlife of Soho or Camden. London is a food lover's paradise with a diverse range of cuisine from street food markets to Michelin-starred restaurants. With so much to see and do, London is a top tourist destination for anyone seeking a mix of history, culture, and modern cosmopolitanism.",
     "facts": ["blah", "balh"],
-    "img": "london.png"
+    "imgs": ["london.png", "london.png", "london.png"]
   },
   {
     "id": 2,
     "name": "Paris",
     "description": "Paris, the capital city of France, is renowned for its stunning architecture, world-famous landmarks, and rich cultural heritage. Known as the 'City of Light,' Paris offers visitors an enchanting experience with its iconic Eiffel Tower, Notre-Dame Cathedral, and the Louvre Museum. Paris is also celebrated for its culinary delights, from fresh croissants to fine dining restaurants, and its vibrant café culture, where locals and tourists alike can enjoy a leisurely coffee or glass of wine.",
     "facts": ["blah", "balh"],
-    "img": "paris.jpg"
+    "imgs": ["paris.jpg", "paris.jpg", "paris.jpg"]
   },
   {
     "id": 3,
     "name": "Berlin",
     "description": "Berlin, the capital city of Germany, is a vibrant and dynamic destination with a rich history and a unique cultural identity. The city is famous for its iconic landmarks such as the Berlin Wall, the Brandenburg Gate, and the Reichstag building. Visitors can explore the numerous museums and galleries, indulge in the vibrant food scene, and enjoy the lively nightlife in neighborhoods such as Kreuzberg and Friedrichshain. Berlin is also known for its green spaces, with over 2,500 public parks and gardens, making it a great destination for outdoor enthusiasts. With its eclectic mix of history, culture, and modern urban flair, Berlin is a must-visit destination for anyone traveling to Europe.",
     "facts": ["blah", "balh"],
-    "img": "berlin.jpg"
+    "imgs": ["berlin.jpg", "berlin.jpg", "berlin.jpg"]
   },
   {
     "id": 4,
     "name": "Amsterdam",
     "description": "Amsterdam, the capital city of the Netherlands, is a charming and picturesque city with a unique character and rich history. The city is famous for its extensive canal system, beautiful architecture, and world-class museums such as the Rijksmuseum and Van Gogh Museum. Visitors can explore the vibrant neighborhoods of Jordaan and De Pijp, indulge in delicious Dutch cuisine, and experience the laid-back and friendly culture. Amsterdam is also known for its cycling culture, and renting a bike is a great way to explore the city's many attractions. With its beautiful canals, historic buildings, and friendly locals, Amsterdam is a top tourist destination for anyone visiting Europe.",
     "facts": ["blah", "balh"],
-    "img": "amsterdam.jpg"
+    "imgs": ["amsterdam.jpg", "amsterdam.jpg", "amsterdam.jpg"]
   }
 ]

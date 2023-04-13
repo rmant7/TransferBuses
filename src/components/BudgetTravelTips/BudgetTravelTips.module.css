@@ -8,6 +8,7 @@
   font-family: inherit;
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 
 .form__title {
@@ -34,4 +35,70 @@
   border: none;
   border-radius: 8px;
   min-height: 36px;
+}
+
+.info {
+  margin: 0 25px;
+}
+
+.title_box {
+  margin: 34px 0 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description {
+  margin-bottom: 20px;
+}
+
+.cta {
+  display: inline-block;
+  min-width: 100%;
+  padding: 15px auto;
+  background-color: #ff5722;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  min-height: 48px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: normal;
+  line-height: 48px;
+  display: inline-block;
+}
+
+.cta_box {
+  margin: 0 10px 16px 10px;
+}
+
+.select {
+  border: none;
+  width: 75px;
+  height: 15px;
+}
+
+.icon {
+  height: 16px;
+  width: 16px;
+  margin-right: 10px;
+}
+
+.city_list {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.other {
+  margin: 15px 25px;
+}
+
+@media (min-width: 650px) {
+  .main_section {
+    max-width: 40vw;
+    margin: 0 auto;
+    margin-top: 67px;
+  }
 }
