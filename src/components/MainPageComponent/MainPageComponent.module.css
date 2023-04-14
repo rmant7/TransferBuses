@@ -1,0 +1,42 @@
+.Logo_Cht_Wrapper {
+    display: flex;
+}
+
+.Logo_Cht {
+    min-width: 300px;
+    width: 31.2%;
+    /* width: 460px; */
+    margin: 0 auto;
+}
+
+.MainSlogan {
+    width: fit-content;
+    font-size: 1.62vw;
+    word-spacing: 1px;
+    /* font-size: 1.6rem; */
+    color: #607d8b;
+    margin: 86px auto 0;
+    font-family: Roboto, Helvetica Neue, sans-serif;
+}
+
+@media (max-width: 860px) {
+    .MainSlogan {
+       display: none;
+    }
+
+    .tb_padding {
+        padding-top: 70px;
+    }
+}
+
+/* .transfers {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 25px;
+} */
+
+/* .tb_padding {
+    padding-top: 70px;
+    padding-bottom: 50px;
+} */

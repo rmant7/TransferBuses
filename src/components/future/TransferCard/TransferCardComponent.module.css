@@ -1,0 +1,187 @@
+.transfer_card {
+  transition: all ease-in-out 0.3s;
+  width: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  box-shadow: 0px 5px 25px -5px rgba(34, 60, 80, 0.2);
+  margin: 15px;
+  padding: 15px;
+  display: inline-block;
+  vertical-align: top;
+  background-color: #fff;
+  text-decoration: none;
+}
+
+.transfer_card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 5px 50px 5px rgba(34, 60, 80, 0.8);
+}
+
+.transfer_card_header {
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 600;
+  width: 100%;
+  display: flex;
+}
+
+.transfer_card_footer {
+  width: 100%;
+  vertical-align: middle;
+  display: flex;
+}
+
+.content {
+  padding: 10px;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.icon_text {
+  margin: 0 auto;
+  padding-bottom: 8px;
+  display: flex;
+}
+
+.text {
+  color: rgba(0, 0, 0, 0.8);
+  margin: auto 0;
+  display: flex;
+}
+
+.icon_style {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  padding-right: 10px;
+  /* filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)); */
+  padding-right: 10px;
+}
+
+.way {
+  display: flex;
+  margin: 0 auto;
+}
+
+.arrow_icon {
+  transform: rotate(90deg);
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+@media (max-width: 640px) {
+  .transfer_card {
+    width: 300px;
+  }
+/*   
+  .transfer_card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 50px 5px rgba(34, 60, 80, 0.8);
+  }
+  
+  .transfer_card_header {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+  }
+  
+  .transfer_card_footer {
+    width: 100%;
+    vertical-align: middle;
+    display: flex;
+  }
+  
+  .card_header_text {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  
+  .content {
+    padding: 10px;
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+  
+  .icon_text {
+    margin: 0 auto;
+    padding-bottom: 8px;
+    display: flex;
+    background-size: 64px;
+  }
+  
+  .text {
+    color: rgb(20, 20, 20);
+    margin: auto 0;
+    display: flex;
+  }
+  
+  .icon_style {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    padding-right: 10px;
+    padding-right: 10px;
+  }
+  
+  .way {
+    display: flex;
+    margin: 0 auto;
+  }
+  
+  .arrow_icon {
+    transform: rotate(90deg);
+    padding-left: 5px;
+    padding-right: 5px;
+  } */
+}
+
+@media (max-width: 480px) {
+  .transfer_card {
+    width: 200px;
+    margin: 15px;
+    padding: 15px;
+  }
+  
+  .transfer_card_header {
+    font-size: 1.1rem;
+  }
+  
+  .transfer_card_footer {
+    display: grid;
+  }
+  
+  .content {
+    font-size: 1rem;
+  }
+  
+  /* .icon_text {
+    padding-bottom: 8px;
+    display: flex;
+  } */
+  
+  /* .text {
+    margin: auto 0;
+    display: flex;
+  } */
+
+  .way {
+    display: grid;
+  }
+  
+  .icon_style {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    padding-right: 10px;
+    padding-right: 10px;
+  }
+  
+  .arrow_icon {
+    transform: rotate(180deg);
+    width: 20px;
+    height: 20px;
+  }
+}

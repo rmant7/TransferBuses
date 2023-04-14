@@ -1,34 +1,101 @@
+import { getNewDb } from "../config/build-config";
 import { fb } from "../config/firebase-config";
 
-export async function uploadTransfer(
-  transfer
-) {
+const fireBaseCollection = getNewDb();
+export const PAGE_SIZE = 15;
+const ORDER_BY_FIELD = "_id";
 
+function getUniqueId() {
+  return Math.random() * Math.floor(Math.random() * Date.now());
+}
+
+function getFBCollection() {
+  return fb.firestore().collection(fireBaseCollection);
+}
+
+function getNextTransfersQuery(pageSize) {
+  return getFBCollection().orderBy(ORDER_BY_FIELD).limit(pageSize);
+}
+
+function getNextTransfersFromLastQuery(last, pageSize) {
+  // delete lastTransfer.id;
+  console.log("last: ", last);
+  return getFBCollection().orderBy(ORDER_BY_FIELD).startAfter(last._id).limit(pageSize);
+}
+
+export async function getTransfersByFromCityId(fromCityId) {
+  console.log(fromCityId);
   try {
-    const collection = fb.firestore().collection("transfers");
-    const response = await collection.add(
-      transfer
-    );
-    console.log("response id", response.id);
-    // await ref.update({
-    //     lotsIds:firebase.firestore.FieldValue.arrayUnion(response.id)
-    // })
+    const collection = await getFBCollection().where("from", "==", fromCityId).get();
+    const data = collection.docs.map((v) => {
+      console.log(v.data());
+      return v.data();
+    });
+    return data;
   } catch (error) {
+    console.error(error);
     return Promise.reject(error);
   }
 }
 
+export async function uploadTransfer(transfer) {
+  if (!transfer.regularTrips) {
+    delete transfer.regularTripsDays;
+  }
+  try {
+    const collection = fb.firestore().collection(fireBaseCollection);
+    const response = await collection.add({ ...transfer, _id: getUniqueId(), timestamp: Date.now() });
+    console.log("response id", response.id);
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(error);
+  }
+}
+
+export async function uploadNewTransfer(transfer) {
+  const response = await getTransfersByFromCityId().add(transfer);
+  console.log("response", response);
+  return response;
+}
+
 export async function getTransfers() {
   try {
-    const collection = await fb.firestore().collection("transfers").get();
+    const collection = await getNextTransfersQuery(PAGE_SIZE).get();
+    // rewrite("transfers", "transfers-id-timestamp");
+    // rewrite("dev-transfers", "dev-transfers-id-timestamp");
     const transfers = collection.docs.map((doc) => {
-      return { ...doc.data(), id: doc.id };
+      return doc.data();
     });
     console.log("received transfers: ", transfers);
     return transfers;
   } catch (error) {
+    console.error(error);
     return Promise.reject(error);
   }
+}
+
+export async function getNextTransfers(last) {
+  try {
+    const collection = await getNextTransfersFromLastQuery(last, PAGE_SIZE).get();
+    const transfers = collection.docs.map((doc) => {
+      return doc.data();
+    });
+    console.log("next transfers: ", transfers);
+    return transfers;
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(error);
+  }
+}
+
+async function rewrite(dbFrom, dbTo) {
+  const c = await fb.firestore().collection(dbFrom).get();
+  c.docs.forEach((v) => {
+    console.log("old: ", v.data());
+    const res = { ...v.data(), _id: getUniqueId(), timestamp: new Date().toJSON() };
+    fb.firestore().collection(dbTo).add(res);
+    console.log("new: ", res);
+  });
 }
 
 // export async function getMyLots(uid){

@@ -1,0 +1,10 @@
+.navbar {
+    padding: 2px 0 1px;
+}
+
+@media (max-width: 450px) {
+    .navbar {
+        padding: 0;
+    }
+}
+

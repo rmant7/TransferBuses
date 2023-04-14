@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "cheaptrip-tim",
+    "firebase-react-deploy": "chiptripdmtr",
+    "tim": "cheaptrip-tim"
+  },
+  "targets": {},
+  "etags": {}
+}

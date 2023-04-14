@@ -1,15 +1,24 @@
 {
+  "Home": "Home",
   "A parcel delivery": "A parcel delivery",
+  "Additional information": "Additional information",
+  "Apply Filter": "Apply Filter",
+  "CheapTrip commercial": "Find most beneficial and unusual routes between cities with airports, combining flight, train, bus, ferry and rideshare. ",
+  "CheapTrip": "CheapTrip",
+  "Clear Filter": "Clear Filter",
+  "Contacts": "Contacts",
   "Date": "Date",
   "Date of travel": "Date of travel",
-  "Driver\u0027s comment": "Driver\u0027s comment",
-  "Driver\u0027s phone number": "Driver\u0027s phone number",
+  "Driver\u0027s phone number": "Carrier\u0027s phone number",
   "Duration of ride": "Duration of ride",
+  "Founder and Ceo": "Founder and CEO",
   "From": "From",
-  "I\u0027m a driver": "I\u0027m a driver",
+  "I\u0027m a driver": "I\u0027m a carrier",
   "I\u0027m a passenger": "I\u0027m a passenger",
-  "CheapTrip commercial": "Find most beneficial and unusual routes between cities with airports, combining flight, train, bus, ferry and rideshare.",
+  "Messenger": "Messenger",
+  "Name": "ROMAN MANTELMAKHER",
   "No": "No",
+  "Our partners": "Our partners:",
   "Pass a parcel": "Pass a parcel",
   "Phone number": "Phone Number",
   "Places": "Places",
@@ -18,6 +27,7 @@
   "Regular trips": "Regular trips",
   "Select all": "Select all",
   "Time": "Departure Time",
+  "Timezone": "Timezone",
   "To": "To",
   "Travel time": "Travel time",
   "Yes": "Yes",
@@ -45,17 +55,47 @@
       },
       "phoneNumber": {
         "Phone number is not valid": "Phone number is not valid",
-        "Required": "Required field"
+        "Required": "Required field",
+        "isNotValid": "Phone number is not valid"
       },
       "places": {
         "Required": "Required field"
       },
       "price": {
-        "Required": "Required field"
+        "Required": "Required field",
+        "OnlyPositive": "The price cannot be negative"
       },
       "to": {
         "Required": "Required field"
       }
     }
+  },
+  "FromCity": "From City",
+  "ToCity": "To City",
+  "Filter": "Filter By:",
+  "Apply": "Apply",
+  "Clean": "Clean",
+  "Cancel": "Cancel",
+  "Let's Go": "Let's Go",
+  "PetsAllowed": "Pets allowed",
+  "SuccessTrip": "Trip added successfully!",
+  "Negotiable": "Negotiable",
+  "More": "More",
+  "LoadMore": "Load more",
+  "NothingFound": "Nothing found",
+  "timezone": {
+    "0": " ",
+    "1": "Central Europe",
+    "10": "Vladivostok",
+    "11": "Magadan",
+    "12": "Kamchatka",
+    "2": "Eastern Europe",
+    "3": "Moscow",
+    "4": "Samara",
+    "5": "Ekaterinburg",
+    "6": "Omsk",
+    "7": "Krasnoyarsk",
+    "8": "Irkutsk",
+    "9": "Yakutiya"
   }
 }

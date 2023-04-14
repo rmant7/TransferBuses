@@ -1,0 +1,3490 @@
+﻿[
+  {
+    "ID": "9",
+    "name": "Tashkent",
+    "country_id": "191",
+    "latitude": "41.30",
+    "longitude": "69.27",
+    "name_ru": "Ташкент"
+  },
+  {
+    "ID": "21",
+    "name": "Dushanbe",
+    "country_id": "174",
+    "latitude": "38.57",
+    "longitude": "68.79",
+    "name_ru": "Душанбе"
+  },
+  {
+    "ID": "25",
+    "name": "Bishkek",
+    "country_id": "93",
+    "latitude": "42.87",
+    "longitude": "74.57",
+    "name_ru": "Бишкек"
+  },
+  {
+    "ID": "26",
+    "name": "Beirut",
+    "country_id": "96",
+    "latitude": "33.89",
+    "longitude": "35.51",
+    "name_ru": "Бейрут"
+  },
+  {
+    "ID": "29",
+    "name": "Astana",
+    "country_id": "88",
+    "latitude": "51.13",
+    "longitude": "71.43",
+    "name_ru": "Астана"
+  },
+  {
+    "ID": "30",
+    "name": "Ashgabat",
+    "country_id": "183",
+    "latitude": "37.95",
+    "longitude": "58.38",
+    "name_ru": "Ашхабад"
+  },
+  {
+    "ID": "33",
+    "name": "Tbilisi",
+    "country_id": "64",
+    "latitude": "41.72",
+    "longitude": "44.79",
+    "name_ru": "Тбилиси"
+  },
+  {
+    "ID": "34",
+    "name": "Baku",
+    "country_id": "11",
+    "latitude": "40.37",
+    "longitude": "49.84",
+    "name_ru": "Баку"
+  },
+  {
+    "ID": "35",
+    "name": "Yerevan",
+    "country_id": "8",
+    "latitude": "40.18",
+    "longitude": "44.51",
+    "name_ru": "Ереван"
+  },
+  {
+    "ID": "52",
+    "name": "Jerusalem",
+    "country_id": "83",
+    "latitude": "31.78",
+    "longitude": "35.22",
+    "name_ru": "Иерусалим"
+  },
+  {
+    "ID": "100",
+    "name": "Antwerp",
+    "country_id": "17",
+    "latitude": "51.22",
+    "longitude": "4.40",
+    "name_ru": "Антверпен"
+  },
+  {
+    "ID": "101",
+    "name": "Aberdeen",
+    "country_id": "188",
+    "latitude": "57.15",
+    "longitude": "-2.11",
+    "name_ru": "Абердин"
+  },
+  {
+    "ID": "102",
+    "name": "Augsburg",
+    "country_id": "65",
+    "latitude": "48.37",
+    "longitude": "10.90",
+    "name_ru": "Аугсбург"
+  },
+  {
+    "ID": "103",
+    "name": "Alexandroupolis",
+    "country_id": "67",
+    "latitude": "40.85",
+    "longitude": "25.87",
+    "name_ru": "Александруполис"
+  },
+  {
+    "ID": "104",
+    "name": "Athens",
+    "country_id": "67",
+    "latitude": "37.98",
+    "longitude": "23.72",
+    "name_ru": "Афины"
+  },
+  {
+    "ID": "105",
+    "name": "Alicante",
+    "country_id": "166",
+    "latitude": "38.35",
+    "longitude": "-0.48",
+    "name_ru": "Аликанте"
+  },
+  {
+    "ID": "106",
+    "name": "Almeria",
+    "country_id": "166",
+    "latitude": "36.84",
+    "longitude": "-2.46",
+    "name_ru": "Альмерия"
+  },
+  {
+    "ID": "107",
+    "name": "Aalborg",
+    "country_id": "47",
+    "latitude": "57.03",
+    "longitude": "9.92",
+    "name_ru": "Ольборг"
+  },
+  {
+    "ID": "108",
+    "name": "Aarhus",
+    "country_id": "47",
+    "latitude": "56.16",
+    "longitude": "10.21",
+    "name_ru": "Орхус"
+  },
+  {
+    "ID": "109",
+    "name": "Ancona",
+    "country_id": "84",
+    "latitude": "43.62",
+    "longitude": "13.52",
+    "name_ru": "Анкона"
+  },
+  {
+    "ID": "110",
+    "name": "Aosta",
+    "country_id": "84",
+    "latitude": "45.74",
+    "longitude": "7.32",
+    "name_ru": "Аоста"
+  },
+  {
+    "ID": "111",
+    "name": "Amsterdam",
+    "country_id": "124",
+    "latitude": "52.35",
+    "longitude": "4.92",
+    "name_ru": "Амстердам"
+  },
+  {
+    "ID": "112",
+    "name": "Alanya",
+    "country_id": "182",
+    "latitude": "36.54",
+    "longitude": "32.00",
+    "name_ru": "Аланья"
+  },
+  {
+    "ID": "113",
+    "name": "Ankara",
+    "country_id": "182",
+    "latitude": "39.93",
+    "longitude": "32.85",
+    "name_ru": "Анкара"
+  },
+  {
+    "ID": "114",
+    "name": "Antalya",
+    "country_id": "182",
+    "latitude": "36.91",
+    "longitude": "30.70",
+    "name_ru": "Анталия"
+  },
+  {
+    "ID": "115",
+    "name": "Altenrhein",
+    "country_id": "171",
+    "latitude": "47.49",
+    "longitude": "9.55",
+    "name_ru": "Альтенрайн"
+  },
+  {
+    "ID": "116",
+    "name": "Brussels",
+    "country_id": "17",
+    "latitude": "50.85",
+    "longitude": "4.35",
+    "name_ru": "Брюссель"
+  },
+  {
+    "ID": "117",
+    "name": "Burgas",
+    "country_id": "26",
+    "latitude": "42.50",
+    "longitude": "27.47",
+    "name_ru": "Бургас"
+  },
+  {
+    "ID": "118",
+    "name": "Banja Luka",
+    "country_id": "22",
+    "latitude": "44.77",
+    "longitude": "17.18",
+    "name_ru": "Баня-Лука"
+  },
+  {
+    "ID": "119",
+    "name": "Belfast",
+    "country_id": "188",
+    "latitude": "54.60",
+    "longitude": "-5.93",
+    "name_ru": "Белфаст"
+  },
+  {
+    "ID": "120",
+    "name": "Birmingham",
+    "country_id": "188",
+    "latitude": "52.48",
+    "longitude": "-1.90",
+    "name_ru": "Бирмингем"
+  },
+  {
+    "ID": "121",
+    "name": "Bournemouth",
+    "country_id": "188",
+    "latitude": "50.72",
+    "longitude": "-1.88",
+    "name_ru": "Борнмут"
+  },
+  {
+    "ID": "122",
+    "name": "Bristol",
+    "country_id": "188",
+    "latitude": "51.45",
+    "longitude": "-2.58",
+    "name_ru": "Бристоль"
+  },
+  {
+    "ID": "123",
+    "name": "Budapest",
+    "country_id": "76",
+    "latitude": "47.50",
+    "longitude": "19.04",
+    "name_ru": "Будапешт"
+  },
+  {
+    "ID": "124",
+    "name": "Berlin",
+    "country_id": "65",
+    "latitude": "52.52",
+    "longitude": "13.38",
+    "name_ru": "Берлин"
+  },
+  {
+    "ID": "126",
+    "name": "Bremen",
+    "country_id": "65",
+    "latitude": "53.12",
+    "longitude": "8.80",
+    "name_ru": "Бремен"
+  },
+  {
+    "ID": "127",
+    "name": "Billund",
+    "country_id": "47",
+    "latitude": "55.73",
+    "longitude": "9.12",
+    "name_ru": "Биллунд"
+  },
+  {
+    "ID": "128",
+    "name": "Barcelona",
+    "country_id": "166",
+    "latitude": "41.38",
+    "longitude": "2.18",
+    "name_ru": "Барселона"
+  },
+  {
+    "ID": "129",
+    "name": "Bilbao",
+    "country_id": "166",
+    "latitude": "43.26",
+    "longitude": "-2.95",
+    "name_ru": "Бильбао"
+  },
+  {
+    "ID": "130",
+    "name": "Bologna",
+    "country_id": "84",
+    "latitude": "44.49",
+    "longitude": "11.34",
+    "name_ru": "Болонья"
+  },
+  {
+    "ID": "131",
+    "name": "Bergen",
+    "country_id": "131",
+    "latitude": "60.39",
+    "longitude": "5.32",
+    "name_ru": "Берген"
+  },
+  {
+    "ID": "132",
+    "name": "Bodo",
+    "country_id": "131",
+    "latitude": "67.28",
+    "longitude": "14.38",
+    "name_ru": "Бодо"
+  },
+  {
+    "ID": "134",
+    "name": "Bucharest",
+    "country_id": "144",
+    "latitude": "44.40",
+    "longitude": "26.08",
+    "name_ru": "Бухарест"
+  },
+  {
+    "ID": "135",
+    "name": "Belgrade",
+    "country_id": "155",
+    "latitude": "44.82",
+    "longitude": "20.47",
+    "name_ru": "Белград"
+  },
+  {
+    "ID": "136",
+    "name": "Bratislava",
+    "country_id": "159",
+    "latitude": "48.14",
+    "longitude": "17.11",
+    "name_ru": "Братислава"
+  },
+  {
+    "ID": "137",
+    "name": "Bordeaux",
+    "country_id": "61",
+    "latitude": "44.84",
+    "longitude": "-0.58",
+    "name_ru": "Бордо"
+  },
+  {
+    "ID": "139",
+    "name": "Brno",
+    "country_id": "45",
+    "latitude": "49.20",
+    "longitude": "16.61",
+    "name_ru": "Брно"
+  },
+  {
+    "ID": "140",
+    "name": "Basel",
+    "country_id": "171",
+    "latitude": "47.56",
+    "longitude": "7.59",
+    "name_ru": "Базель"
+  },
+  {
+    "ID": "141",
+    "name": "Bern",
+    "country_id": "171",
+    "latitude": "46.95",
+    "longitude": "7.45",
+    "name_ru": "Берн"
+  },
+  {
+    "ID": "142",
+    "name": "Cardiff",
+    "country_id": "188",
+    "latitude": "51.48",
+    "longitude": "-3.18",
+    "name_ru": "Кардифф"
+  },
+  {
+    "ID": "143",
+    "name": "Cambridge",
+    "country_id": "188",
+    "latitude": "43.40",
+    "longitude": "-80.31",
+    "name_ru": "Кембридж"
+  },
+  {
+    "ID": "144",
+    "name": "Coventry",
+    "country_id": "188",
+    "latitude": "52.41",
+    "longitude": "-1.51",
+    "name_ru": "Ковентри"
+  },
+  {
+    "ID": "145",
+    "name": "Cologne",
+    "country_id": "65",
+    "latitude": "50.94",
+    "longitude": "6.96",
+    "name_ru": "Кёльн"
+  },
+  {
+    "ID": "146",
+    "name": "Corfu",
+    "country_id": "67",
+    "latitude": "39.59",
+    "longitude": "19.86",
+    "name_ru": "Корфу"
+  },
+  {
+    "ID": "147",
+    "name": "Copenhagen",
+    "country_id": "47",
+    "latitude": "55.68",
+    "longitude": "12.56",
+    "name_ru": "Копенгаген"
+  },
+  {
+    "ID": "150",
+    "name": "Cork",
+    "country_id": "82",
+    "latitude": "51.90",
+    "longitude": "-8.47",
+    "name_ru": "Корк"
+  },
+  {
+    "ID": "151",
+    "name": "Cagliari",
+    "country_id": "84",
+    "latitude": "39.22",
+    "longitude": "9.10",
+    "name_ru": "Кальяри"
+  },
+  {
+    "ID": "152",
+    "name": "Catania",
+    "country_id": "84",
+    "latitude": "37.50",
+    "longitude": "15.09",
+    "name_ru": "Катания"
+  },
+  {
+    "ID": "153",
+    "name": "Cluj-Napoca",
+    "country_id": "144",
+    "latitude": "46.78",
+    "longitude": "23.56",
+    "name_ru": "Клуж-Напока"
+  },
+  {
+    "ID": "154",
+    "name": "Clermont-Ferrand",
+    "country_id": "61",
+    "latitude": "45.78",
+    "longitude": "03.08",
+    "name_ru": "Клермон-Ферран"
+  },
+  {
+    "ID": "155",
+    "name": "Chambery-Savoie",
+    "country_id": "61",
+    "latitude": "45.57",
+    "longitude": "5.91",
+    "name_ru": "Шамбери-Савойя"
+  },
+  {
+    "ID": "156",
+    "name": "Cherbourg",
+    "country_id": "61",
+    "latitude": "49.65",
+    "longitude": "-1.65",
+    "name_ru": "Шербур"
+  },
+  {
+    "ID": "158",
+    "name": "Doncaster",
+    "country_id": "188",
+    "latitude": "53.52",
+    "longitude": "-1.13",
+    "name_ru": "Донкастер"
+  },
+  {
+    "ID": "159",
+    "name": "Dortmund",
+    "country_id": "65",
+    "latitude": "51.51",
+    "longitude": "7.47",
+    "name_ru": "Дортмунд"
+  },
+  {
+    "ID": "160",
+    "name": "Dresden",
+    "country_id": "65",
+    "latitude": "51.05",
+    "longitude": "13.74",
+    "name_ru": "Дрезден"
+  },
+  {
+    "ID": "161",
+    "name": "Duesseldorf",
+    "country_id": "65",
+    "latitude": "51.23",
+    "longitude": "6.78",
+    "name_ru": "Дюссельдорф"
+  },
+  {
+    "ID": "162",
+    "name": "Dublin",
+    "country_id": "82",
+    "latitude": "53.34",
+    "longitude": "-6.27",
+    "name_ru": "Дублин"
+  },
+  {
+    "ID": "163",
+    "name": "Dalaman",
+    "country_id": "182",
+    "latitude": "36.81",
+    "longitude": "28.88",
+    "name_ru": "Даламан"
+  },
+  {
+    "ID": "164",
+    "name": "Dubrovnik",
+    "country_id": "42",
+    "latitude": "42.64",
+    "longitude": "18.11",
+    "name_ru": "Дубровник"
+  },
+  {
+    "ID": "165",
+    "name": "East Midlands",
+    "country_id": "188",
+    "latitude": "52.80",
+    "longitude": "-0.67",
+    "name_ru": "Ист-Мидлендс"
+  },
+  {
+    "ID": "166",
+    "name": "Edinburgh",
+    "country_id": "188",
+    "latitude": "55.95",
+    "longitude": "-3.19",
+    "name_ru": "Эдинбург"
+  },
+  {
+    "ID": "167",
+    "name": "Exeter",
+    "country_id": "188",
+    "latitude": "50.72",
+    "longitude": "-3.53",
+    "name_ru": "Эксетер"
+  },
+  {
+    "ID": "169",
+    "name": "Esbjerg",
+    "country_id": "47",
+    "latitude": "55.47",
+    "longitude": "8.45",
+    "name_ru": "Эсбьерг"
+  },
+  {
+    "ID": "171",
+    "name": "Eilat",
+    "country_id": "83",
+    "latitude": "29.56",
+    "longitude": "34.95",
+    "name_ru": "Эйлат"
+  },
+  {
+    "ID": "172",
+    "name": "Eindhoven",
+    "country_id": "124",
+    "latitude": "51.43",
+    "longitude": "5.50",
+    "name_ru": "Эйндховен"
+  },
+  {
+    "ID": "174",
+    "name": "Frankfurt",
+    "country_id": "65",
+    "latitude": "50.11",
+    "longitude": "8.68",
+    "name_ru": "Франкфурт"
+  },
+  {
+    "ID": "175",
+    "name": "Friedrichshafen",
+    "country_id": "65",
+    "latitude": "47.65",
+    "longitude": "9.48",
+    "name_ru": "Фридрихсхафен"
+  },
+  {
+    "ID": "176",
+    "name": "Fuerteventura",
+    "country_id": "166",
+    "latitude": "28.40",
+    "longitude": "-14.00",
+    "name_ru": "Фуэртевентура"
+  },
+  {
+    "ID": "177",
+    "name": "Florence",
+    "country_id": "84",
+    "latitude": "43.77",
+    "longitude": "11.25",
+    "name_ru": "Флоренция"
+  },
+  {
+    "ID": "178",
+    "name": "Floro",
+    "country_id": "131",
+    "latitude": "61.60",
+    "longitude": "05.02",
+    "name_ru": "Флоро"
+  },
+  {
+    "ID": "179",
+    "name": "Faro",
+    "country_id": "142",
+    "latitude": "37.02",
+    "longitude": "-7.93",
+    "name_ru": "Фаро"
+  },
+  {
+    "ID": "180",
+    "name": "Funchal",
+    "country_id": "142",
+    "latitude": "32.65",
+    "longitude": "-16.92",
+    "name_ru": "Фуншал"
+  },
+  {
+    "ID": "181",
+    "name": "Graz",
+    "country_id": "10",
+    "latitude": "47.07",
+    "longitude": "15.43",
+    "name_ru": "Грац"
+  },
+  {
+    "ID": "182",
+    "name": "Gorna Oryahovitsa",
+    "country_id": "26",
+    "latitude": "43.12",
+    "longitude": "25.69",
+    "name_ru": "Горна Оряховица"
+  },
+  {
+    "ID": "183",
+    "name": "Guernsey",
+    "country_id": "188",
+    "latitude": "57.17",
+    "longitude": "-7.37",
+    "name_ru": "Гернси"
+  },
+  {
+    "ID": "184",
+    "name": "Glasgow",
+    "country_id": "188",
+    "latitude": "55.86",
+    "longitude": "-4.25",
+    "name_ru": "Глазго"
+  },
+  {
+    "ID": "185",
+    "name": "Gloucestershire",
+    "country_id": "188",
+    "latitude": "51.76",
+    "longitude": "-2.19",
+    "name_ru": "Глостершир"
+  },
+  {
+    "ID": "186",
+    "name": "Granada",
+    "country_id": "166",
+    "latitude": "37.18",
+    "longitude": "-3.60",
+    "name_ru": "Гранада"
+  },
+  {
+    "ID": "187",
+    "name": "Girona",
+    "country_id": "166",
+    "latitude": "41.98",
+    "longitude": "2.82",
+    "name_ru": "Жирона"
+  },
+  {
+    "ID": "188",
+    "name": "Galway",
+    "country_id": "82",
+    "latitude": "53.27",
+    "longitude": "-9.04",
+    "name_ru": "Голуэй"
+  },
+  {
+    "ID": "189",
+    "name": "Genoa",
+    "country_id": "84",
+    "latitude": "44.41",
+    "longitude": "8.93",
+    "name_ru": "Генуя"
+  },
+  {
+    "ID": "190",
+    "name": "Groningen",
+    "country_id": "124",
+    "latitude": "53.22",
+    "longitude": "6.58",
+    "name_ru": "Гронинген"
+  },
+  {
+    "ID": "191",
+    "name": "Gdansk",
+    "country_id": "141",
+    "latitude": "54.37",
+    "longitude": "18.63",
+    "name_ru": "Гданьск"
+  },
+  {
+    "ID": "192",
+    "name": "Geneva",
+    "country_id": "171",
+    "latitude": "46.20",
+    "longitude": "6.15",
+    "name_ru": "Женева"
+  },
+  {
+    "ID": "193",
+    "name": "Gothenburg",
+    "country_id": "170",
+    "latitude": "57.67",
+    "longitude": "11.98",
+    "name_ru": "Гетеборг"
+  },
+  {
+    "ID": "194",
+    "name": "Humberside",
+    "country_id": "188",
+    "latitude": "53.57",
+    "longitude": "-0.35",
+    "name_ru": "Хамберсайд"
+  },
+  {
+    "ID": "196",
+    "name": "Hamburg",
+    "country_id": "65",
+    "latitude": "53.55",
+    "longitude": "10.00",
+    "name_ru": "Гамбург"
+  },
+  {
+    "ID": "197",
+    "name": "Hannover",
+    "country_id": "65",
+    "latitude": "52.37",
+    "longitude": "9.74",
+    "name_ru": "Ганновер"
+  },
+  {
+    "ID": "200",
+    "name": "Heraklion",
+    "country_id": "67",
+    "latitude": "35.34",
+    "longitude": "25.13",
+    "name_ru": "Ираклион"
+  },
+  {
+    "ID": "201",
+    "name": "Helsinki",
+    "country_id": "60",
+    "latitude": "60.18",
+    "longitude": "24.93",
+    "name_ru": "Хельсинки"
+  },
+  {
+    "ID": "202",
+    "name": "Innsbruck",
+    "country_id": "10",
+    "latitude": "47.27",
+    "longitude": "11.39",
+    "name_ru": "Инсбрук"
+  },
+  {
+    "ID": "203",
+    "name": "Inverness",
+    "country_id": "188",
+    "latitude": "57.48",
+    "longitude": "-4.22",
+    "name_ru": "Инвернесс"
+  },
+  {
+    "ID": "204",
+    "name": "Debrecen",
+    "country_id": "76",
+    "latitude": "47.53",
+    "longitude": "21.64",
+    "name_ru": "Дебрецен"
+  },
+  {
+    "ID": "205",
+    "name": "Ibiza",
+    "country_id": "166",
+    "latitude": "38.91",
+    "longitude": "1.43",
+    "name_ru": "Ибица"
+  },
+  {
+    "ID": "206",
+    "name": "Izmir",
+    "country_id": "182",
+    "latitude": "38.41",
+    "longitude": "27.14",
+    "name_ru": "Измир"
+  },
+  {
+    "ID": "207",
+    "name": "Istanbul",
+    "country_id": "182",
+    "latitude": "41.01",
+    "longitude": "28.96",
+    "name_ru": "Стамбул"
+  },
+  {
+    "ID": "208",
+    "name": "Jonkoping",
+    "country_id": "170",
+    "latitude": "57.78",
+    "longitude": "14.17",
+    "name_ru": "Йёнчёпинг"
+  },
+  {
+    "ID": "209",
+    "name": "Klagenfurt",
+    "country_id": "10",
+    "latitude": "46.62",
+    "longitude": "14.30",
+    "name_ru": "Клагенфурт"
+  },
+  {
+    "ID": "210",
+    "name": "Karlsruhe",
+    "country_id": "65",
+    "latitude": "49.02",
+    "longitude": "8.40",
+    "name_ru": "Карлсруэ"
+  },
+  {
+    "ID": "211",
+    "name": "Kortrijk",
+    "country_id": "17",
+    "latitude": "50.83",
+    "longitude": "3.27",
+    "name_ru": "Кортрейк"
+  },
+  {
+    "ID": "212",
+    "name": "Kaunas",
+    "country_id": "101",
+    "latitude": "54.90",
+    "longitude": "23.93",
+    "name_ru": "Каунас"
+  },
+  {
+    "ID": "213",
+    "name": "Katowice",
+    "country_id": "141",
+    "latitude": "50.25",
+    "longitude": "19.00",
+    "name_ru": "Катовице"
+  },
+  {
+    "ID": "214",
+    "name": "Krakow",
+    "country_id": "141",
+    "latitude": "50.06",
+    "longitude": "19.94",
+    "name_ru": "Краков"
+  },
+  {
+    "ID": "215",
+    "name": "Kosice",
+    "country_id": "159",
+    "latitude": "48.72",
+    "longitude": "21.25",
+    "name_ru": "Кошице"
+  },
+  {
+    "ID": "216",
+    "name": "Karlovy Vary",
+    "country_id": "45",
+    "latitude": "50.23",
+    "longitude": "12.87",
+    "name_ru": "Карловы Вары"
+  },
+  {
+    "ID": "217",
+    "name": "Karlstad",
+    "country_id": "170",
+    "latitude": "59.37",
+    "longitude": "13.50",
+    "name_ru": "Карлстад"
+  },
+  {
+    "ID": "218",
+    "name": "Kuressaare",
+    "country_id": "56",
+    "latitude": "58.25",
+    "longitude": "22.49",
+    "name_ru": "Курессааре"
+  },
+  {
+    "ID": "219",
+    "name": "Linz",
+    "country_id": "10",
+    "latitude": "48.30",
+    "longitude": "14.28",
+    "name_ru": "Линц"
+  },
+  {
+    "ID": "220",
+    "name": "Liege",
+    "country_id": "17",
+    "latitude": "50.63",
+    "longitude": "5.59",
+    "name_ru": "Льеж"
+  },
+  {
+    "ID": "221",
+    "name": "Lands End",
+    "country_id": "188",
+    "latitude": "50.07",
+    "longitude": "-5.71",
+    "name_ru": "Лендс-Энд"
+  },
+  {
+    "ID": "222",
+    "name": "Liverpool",
+    "country_id": "188",
+    "latitude": "53.40",
+    "longitude": "-2.98",
+    "name_ru": "Ливерпуль"
+  },
+  {
+    "ID": "223",
+    "name": "Lydd",
+    "country_id": "188",
+    "latitude": "50.95",
+    "longitude": "0.91",
+    "name_ru": "Лидд"
+  },
+  {
+    "ID": "224",
+    "name": "Leeds",
+    "country_id": "188",
+    "latitude": "53.80",
+    "longitude": "-1.55",
+    "name_ru": "Лидс"
+  },
+  {
+    "ID": "225",
+    "name": "London",
+    "country_id": "188",
+    "latitude": "51.51",
+    "longitude": "-0.13",
+    "name_ru": "Лондон"
+  },
+  {
+    "ID": "226",
+    "name": "Luebeck",
+    "country_id": "65",
+    "latitude": "53.87",
+    "longitude": "10.68",
+    "name_ru": "Любек"
+  },
+  {
+    "ID": "227",
+    "name": "Lanzarote",
+    "country_id": "166",
+    "latitude": "29.01",
+    "longitude": "-13.63",
+    "name_ru": "Лансароте"
+  },
+  {
+    "ID": "228",
+    "name": "Las Palmas de Gran Canaria",
+    "country_id": "166",
+    "latitude": "28.10",
+    "longitude": "-15.41",
+    "name_ru": "Лас-Пальмас-де-Гран-Канария"
+  },
+  {
+    "ID": "230",
+    "name": "Lamezia Terme",
+    "country_id": "84",
+    "latitude": "38.96",
+    "longitude": "16.30",
+    "name_ru": "Ламеция Терме"
+  },
+  {
+    "ID": "231",
+    "name": "Larnaca",
+    "country_id": "44",
+    "latitude": "34.92",
+    "longitude": "33.63",
+    "name_ru": "Ларнака"
+  },
+  {
+    "ID": "232",
+    "name": "Liepaja",
+    "country_id": "95",
+    "latitude": "56.51",
+    "longitude": "21.01",
+    "name_ru": "Лиепая"
+  },
+  {
+    "ID": "233",
+    "name": "Luxembourg",
+    "country_id": "102",
+    "latitude": "49.61",
+    "longitude": "6.13",
+    "name_ru": "Люксембург"
+  },
+  {
+    "ID": "235",
+    "name": "Lisbon",
+    "country_id": "142",
+    "latitude": "38.75",
+    "longitude": "-9.16",
+    "name_ru": "Лиссабон"
+  },
+  {
+    "ID": "236",
+    "name": "Ljubljana",
+    "country_id": "160",
+    "latitude": "46.05",
+    "longitude": "14.52",
+    "name_ru": "Любляна"
+  },
+  {
+    "ID": "237",
+    "name": "Lappeenranta",
+    "country_id": "60",
+    "latitude": "61.06",
+    "longitude": "28.19",
+    "name_ru": "Лаппеенранта"
+  },
+  {
+    "ID": "238",
+    "name": "Le Touquet",
+    "country_id": "61",
+    "latitude": "43.87",
+    "longitude": "0.30",
+    "name_ru": "Ле-Туке-Пари-Плаж"
+  },
+  {
+    "ID": "239",
+    "name": "Lille",
+    "country_id": "61",
+    "latitude": "50.63",
+    "longitude": "03.06",
+    "name_ru": "Лилль"
+  },
+  {
+    "ID": "240",
+    "name": "Lyon",
+    "country_id": "61",
+    "latitude": "45.76",
+    "longitude": "4.84",
+    "name_ru": "Лион"
+  },
+  {
+    "ID": "241",
+    "name": "Lugano",
+    "country_id": "171",
+    "latitude": "46.01",
+    "longitude": "8.96",
+    "name_ru": "Лугано"
+  },
+  {
+    "ID": "242",
+    "name": "Lulea",
+    "country_id": "170",
+    "latitude": "65.58",
+    "longitude": "22.15",
+    "name_ru": "Лулео"
+  },
+  {
+    "ID": "243",
+    "name": "Manchester",
+    "country_id": "188",
+    "latitude": "53.48",
+    "longitude": "-2.25",
+    "name_ru": "Манчестер"
+  },
+  {
+    "ID": "244",
+    "name": "Mannheim",
+    "country_id": "65",
+    "latitude": "49.49",
+    "longitude": "8.47",
+    "name_ru": "Мангейм"
+  },
+  {
+    "ID": "245",
+    "name": "Memmingen",
+    "country_id": "65",
+    "latitude": "47.99",
+    "longitude": "10.18",
+    "name_ru": "Мемминген"
+  },
+  {
+    "ID": "246",
+    "name": "Muenster",
+    "country_id": "65",
+    "latitude": "51.96",
+    "longitude": "7.63",
+    "name_ru": "Мюнстер"
+  },
+  {
+    "ID": "247",
+    "name": "Munich",
+    "country_id": "65",
+    "latitude": "48.14",
+    "longitude": "11.58",
+    "name_ru": "Мюнхен"
+  },
+  {
+    "ID": "248",
+    "name": "Madrid",
+    "country_id": "166",
+    "latitude": "40.42",
+    "longitude": "-3.69",
+    "name_ru": "Мадрид"
+  },
+  {
+    "ID": "249",
+    "name": "Malaga",
+    "country_id": "166",
+    "latitude": "36.72",
+    "longitude": "-4.42",
+    "name_ru": "Малага"
+  },
+  {
+    "ID": "250",
+    "name": "Mahon",
+    "country_id": "82",
+    "latitude": "51.89",
+    "longitude": "-8.40",
+    "name_ru": "Махон"
+  },
+  {
+    "ID": "251",
+    "name": "Murcia",
+    "country_id": "166",
+    "latitude": "37.99",
+    "longitude": "-1.14",
+    "name_ru": "Мурсия"
+  },
+  {
+    "ID": "252",
+    "name": "Milan",
+    "country_id": "84",
+    "latitude": "45.47",
+    "longitude": "9.19",
+    "name_ru": "Милан"
+  },
+  {
+    "ID": "253",
+    "name": "Malta",
+    "country_id": "108",
+    "latitude": "42.99",
+    "longitude": "-73.79",
+    "name_ru": "Мальта"
+  },
+  {
+    "ID": "254",
+    "name": "Monte Carlo",
+    "country_id": "115",
+    "latitude": "43.74",
+    "longitude": "7.43",
+    "name_ru": "Монте-Карло"
+  },
+  {
+    "ID": "255",
+    "name": "Maastricht",
+    "country_id": "124",
+    "latitude": "50.85",
+    "longitude": "5.68",
+    "name_ru": "Маастрихт"
+  },
+  {
+    "ID": "257",
+    "name": "Milas",
+    "country_id": "182",
+    "latitude": "37.27",
+    "longitude": "27.81",
+    "name_ru": "Милас"
+  },
+  {
+    "ID": "259",
+    "name": "Marseille",
+    "country_id": "61",
+    "latitude": "43.30",
+    "longitude": "5.37",
+    "name_ru": "Марсель"
+  },
+  {
+    "ID": "260",
+    "name": "Metz",
+    "country_id": "61",
+    "latitude": "49.12",
+    "longitude": "6.18",
+    "name_ru": "Мец"
+  },
+  {
+    "ID": "261",
+    "name": "Montpellier",
+    "country_id": "61",
+    "latitude": "43.61",
+    "longitude": "3.88",
+    "name_ru": "Монпелье"
+  },
+  {
+    "ID": "262",
+    "name": "Malmo",
+    "country_id": "170",
+    "latitude": "55.61",
+    "longitude": "13.00",
+    "name_ru": "Мальме"
+  },
+  {
+    "ID": "263",
+    "name": "Norwich",
+    "country_id": "188",
+    "latitude": "52.63",
+    "longitude": "1.30",
+    "name_ru": "Норвич"
+  },
+  {
+    "ID": "264",
+    "name": "Newcastle",
+    "country_id": "188",
+    "latitude": "55.01",
+    "longitude": "-1.66",
+    "name_ru": "Ньюкасл"
+  },
+  {
+    "ID": "265",
+    "name": "Newquay",
+    "country_id": "188",
+    "latitude": "50.41",
+    "longitude": "-5.08",
+    "name_ru": "Ньюквей"
+  },
+  {
+    "ID": "266",
+    "name": "Nuremberg",
+    "country_id": "65",
+    "latitude": "49.45",
+    "longitude": "11.08",
+    "name_ru": "Нюрнберг"
+  },
+  {
+    "ID": "267",
+    "name": "Naples",
+    "country_id": "84",
+    "latitude": "40.83",
+    "longitude": "14.25",
+    "name_ru": "Неаполь"
+  },
+  {
+    "ID": "268",
+    "name": "Constanta",
+    "country_id": "144",
+    "latitude": "44.17",
+    "longitude": "28.64",
+    "name_ru": "Констанца"
+  },
+  {
+    "ID": "269",
+    "name": "Nantes",
+    "country_id": "61",
+    "latitude": "47.22",
+    "longitude": "-1.55",
+    "name_ru": "Нант"
+  },
+  {
+    "ID": "270",
+    "name": "Nice",
+    "country_id": "61",
+    "latitude": "43.70",
+    "longitude": "7.27",
+    "name_ru": "Ницца"
+  },
+  {
+    "ID": "271",
+    "name": "Norrkoping",
+    "country_id": "170",
+    "latitude": "58.59",
+    "longitude": "16.19",
+    "name_ru": "Норрчёпинг"
+  },
+  {
+    "ID": "272",
+    "name": "Ostend",
+    "country_id": "17",
+    "latitude": "51.23",
+    "longitude": "2.92",
+    "name_ru": "Остенде"
+  },
+  {
+    "ID": "273",
+    "name": "Alderney",
+    "country_id": "188",
+    "latitude": "49.73",
+    "longitude": "-2.23",
+    "name_ru": "Олдерни"
+  },
+  {
+    "ID": "274",
+    "name": "Oviedo",
+    "country_id": "166",
+    "latitude": "43.36",
+    "longitude": "-5.84",
+    "name_ru": "Овьедо"
+  },
+  {
+    "ID": "275",
+    "name": "Olbia",
+    "country_id": "84",
+    "latitude": "40.91",
+    "longitude": "9.52",
+    "name_ru": "Ольвия"
+  },
+  {
+    "ID": "276",
+    "name": "Ohrid",
+    "country_id": "130",
+    "latitude": "41.12",
+    "longitude": "20.80",
+    "name_ru": "Охрид"
+  },
+  {
+    "ID": "277",
+    "name": "Oslo",
+    "country_id": "131",
+    "latitude": "59.91",
+    "longitude": "10.75",
+    "name_ru": "Осло"
+  },
+  {
+    "ID": "279",
+    "name": "Ostrava",
+    "country_id": "45",
+    "latitude": "49.84",
+    "longitude": "18.29",
+    "name_ru": "Острава"
+  },
+  {
+    "ID": "280",
+    "name": "Plovdiv",
+    "country_id": "26",
+    "latitude": "42.14",
+    "longitude": "24.75",
+    "name_ru": "Пловдив"
+  },
+  {
+    "ID": "281",
+    "name": "Plymouth",
+    "country_id": "188",
+    "latitude": "50.37",
+    "longitude": "-4.14",
+    "name_ru": "Плимут"
+  },
+  {
+    "ID": "282",
+    "name": "Paderborn",
+    "country_id": "65",
+    "latitude": "51.72",
+    "longitude": "8.77",
+    "name_ru": "Падерборн"
+  },
+  {
+    "ID": "283",
+    "name": "Rostock",
+    "country_id": "65",
+    "latitude": "54.08",
+    "longitude": "12.13",
+    "name_ru": "Росток"
+  },
+  {
+    "ID": "284",
+    "name": "Palma Majorca",
+    "country_id": "166",
+    "latitude": "39.57",
+    "longitude": "2.65",
+    "name_ru": "Пальма Майорка"
+  },
+  {
+    "ID": "285",
+    "name": "Palermo",
+    "country_id": "84",
+    "latitude": "38.12",
+    "longitude": "13.36",
+    "name_ru": "Палермо"
+  },
+  {
+    "ID": "286",
+    "name": "Pescara",
+    "country_id": "84",
+    "latitude": "42.46",
+    "longitude": "14.21",
+    "name_ru": "Пескара"
+  },
+  {
+    "ID": "287",
+    "name": "Pisa",
+    "country_id": "84",
+    "latitude": "43.72",
+    "longitude": "10.40",
+    "name_ru": "Пиза"
+  },
+  {
+    "ID": "288",
+    "name": "Paphos",
+    "country_id": "44",
+    "latitude": "34.78",
+    "longitude": "32.43",
+    "name_ru": "Пафос"
+  },
+  {
+    "ID": "289",
+    "name": "Palanga",
+    "country_id": "101",
+    "latitude": "55.92",
+    "longitude": "21.06",
+    "name_ru": "Паланга"
+  },
+  {
+    "ID": "290",
+    "name": "Ponta Delgada",
+    "country_id": "142",
+    "latitude": "37.74",
+    "longitude": "-25.67",
+    "name_ru": "Понта-Делгада"
+  },
+  {
+    "ID": "291",
+    "name": "Porto",
+    "country_id": "142",
+    "latitude": "41.15",
+    "longitude": "-8.61",
+    "name_ru": "Порту"
+  },
+  {
+    "ID": "292",
+    "name": "Poprad",
+    "country_id": "159",
+    "latitude": "49.05",
+    "longitude": "20.30",
+    "name_ru": "Попрад"
+  },
+  {
+    "ID": "293",
+    "name": "Paris",
+    "country_id": "61",
+    "latitude": "48.86",
+    "longitude": "2.35",
+    "name_ru": "Париж"
+  },
+  {
+    "ID": "294",
+    "name": "Pula",
+    "country_id": "42",
+    "latitude": "44.87",
+    "longitude": "13.83",
+    "name_ru": "Пула"
+  },
+  {
+    "ID": "295",
+    "name": "Podgorica",
+    "country_id": "117",
+    "latitude": "42.44",
+    "longitude": "19.27",
+    "name_ru": "Подгорица"
+  },
+  {
+    "ID": "296",
+    "name": "Pardubice",
+    "country_id": "45",
+    "latitude": "50.04",
+    "longitude": "15.78",
+    "name_ru": "Пардубице"
+  },
+  {
+    "ID": "297",
+    "name": "Prague",
+    "country_id": "45",
+    "latitude": "50.08",
+    "longitude": "14.42",
+    "name_ru": "Прага"
+  },
+  {
+    "ID": "298",
+    "name": "Parnu",
+    "country_id": "56",
+    "latitude": "58.38",
+    "longitude": "24.50",
+    "name_ru": "Пярну"
+  },
+  {
+    "ID": "299",
+    "name": "Rhodes",
+    "country_id": "67",
+    "latitude": "36.44",
+    "longitude": "28.22",
+    "name_ru": "Родос"
+  },
+  {
+    "ID": "300",
+    "name": "Reykjavik",
+    "country_id": "77",
+    "latitude": "64.15",
+    "longitude": "-21.94",
+    "name_ru": "Рейкьявик"
+  },
+  {
+    "ID": "301",
+    "name": "Reus",
+    "country_id": "166",
+    "latitude": "41.16",
+    "longitude": "1.11",
+    "name_ru": "Реус"
+  },
+  {
+    "ID": "302",
+    "name": "Rijeka",
+    "country_id": "42",
+    "latitude": "45.33",
+    "longitude": "14.43",
+    "name_ru": "Риека"
+  },
+  {
+    "ID": "303",
+    "name": "Rome",
+    "country_id": "84",
+    "latitude": "41.89",
+    "longitude": "12.48",
+    "name_ru": "Рим"
+  },
+  {
+    "ID": "304",
+    "name": "Rimini",
+    "country_id": "84",
+    "latitude": "44.06",
+    "longitude": "12.57",
+    "name_ru": "Римини"
+  },
+  {
+    "ID": "305",
+    "name": "Riga",
+    "country_id": "95",
+    "latitude": "56.95",
+    "longitude": "24.11",
+    "name_ru": "Рига"
+  },
+  {
+    "ID": "306",
+    "name": "Rotterdam",
+    "country_id": "124",
+    "latitude": "51.92",
+    "longitude": "4.48",
+    "name_ru": "Роттердам"
+  },
+  {
+    "ID": "307",
+    "name": "Ronneby",
+    "country_id": "170",
+    "latitude": "56.30",
+    "longitude": "15.28",
+    "name_ru": "Роннеби"
+  },
+  {
+    "ID": "308",
+    "name": "Salzburg",
+    "country_id": "10",
+    "latitude": "47.80",
+    "longitude": "13.05",
+    "name_ru": "Зальцбург"
+  },
+  {
+    "ID": "309",
+    "name": "Sofia",
+    "country_id": "26",
+    "latitude": "42.70",
+    "longitude": "23.32",
+    "name_ru": "София"
+  },
+  {
+    "ID": "310",
+    "name": "Sarajevo",
+    "country_id": "22",
+    "latitude": "43.87",
+    "longitude": "18.42",
+    "name_ru": "Сараево"
+  },
+  {
+    "ID": "311",
+    "name": "Southampton",
+    "country_id": "188",
+    "latitude": "50.90",
+    "longitude": "-1.40",
+    "name_ru": "Саутгемптон"
+  },
+  {
+    "ID": "312",
+    "name": "Swansea",
+    "country_id": "188",
+    "latitude": "41.76",
+    "longitude": "-71.21",
+    "name_ru": "Суонси"
+  },
+  {
+    "ID": "313",
+    "name": "Shoreham",
+    "country_id": "188",
+    "latitude": "50.83",
+    "longitude": "-0.27",
+    "name_ru": "Шорхэм"
+  },
+  {
+    "ID": "314",
+    "name": "Poznan",
+    "country_id": "141",
+    "latitude": "52.40",
+    "longitude": "16.92",
+    "name_ru": "Познань"
+  },
+  {
+    "ID": "315",
+    "name": "Saarbruecken",
+    "country_id": "65",
+    "latitude": "49.23",
+    "longitude": "7.00",
+    "name_ru": "Саарбрюккен"
+  },
+  {
+    "ID": "316",
+    "name": "Stuttgart",
+    "country_id": "65",
+    "latitude": "48.78",
+    "longitude": "9.18",
+    "name_ru": "Штутгарт"
+  },
+  {
+    "ID": "317",
+    "name": "Santorini",
+    "country_id": "67",
+    "latitude": "36.41",
+    "longitude": "25.46",
+    "name_ru": "Санторини"
+  },
+  {
+    "ID": "318",
+    "name": "Shannon",
+    "country_id": "82",
+    "latitude": "52.71",
+    "longitude": "-8.87",
+    "name_ru": "Шеннон"
+  },
+  {
+    "ID": "319",
+    "name": "Salamanca",
+    "country_id": "166",
+    "latitude": "20.57",
+    "longitude": "-101.20",
+    "name_ru": "Саламанка"
+  },
+  {
+    "ID": "320",
+    "name": "Santiago de Compostela",
+    "country_id": "166",
+    "latitude": "42.88",
+    "longitude": "-8.55",
+    "name_ru": "Сантьяго-де-Компостела"
+  },
+  {
+    "ID": "321",
+    "name": "Sevilla",
+    "country_id": "166",
+    "latitude": "37.38",
+    "longitude": "-5.97",
+    "name_ru": "Севилья"
+  },
+  {
+    "ID": "322",
+    "name": "Siauliai",
+    "country_id": "101",
+    "latitude": "55.93",
+    "longitude": "23.32",
+    "name_ru": "Шяуляй"
+  },
+  {
+    "ID": "323",
+    "name": "Skopje",
+    "country_id": "130",
+    "latitude": "41.98",
+    "longitude": "21.43",
+    "name_ru": "Скопье"
+  },
+  {
+    "ID": "325",
+    "name": "Stavanger",
+    "country_id": "131",
+    "latitude": "58.97",
+    "longitude": "5.73",
+    "name_ru": "Ставангер"
+  },
+  {
+    "ID": "326",
+    "name": "Strasbourg",
+    "country_id": "61",
+    "latitude": "48.58",
+    "longitude": "7.75",
+    "name_ru": "Страсбург"
+  },
+  {
+    "ID": "327",
+    "name": "Split",
+    "country_id": "42",
+    "latitude": "43.51",
+    "longitude": "16.45",
+    "name_ru": "Расколоть"
+  },
+  {
+    "ID": "328",
+    "name": "Sion",
+    "country_id": "171",
+    "latitude": "46.23",
+    "longitude": "7.37",
+    "name_ru": "Сион"
+  },
+  {
+    "ID": "329",
+    "name": "Stockholm",
+    "country_id": "170",
+    "latitude": "59.33",
+    "longitude": "18.07",
+    "name_ru": "Стокгольм"
+  },
+  {
+    "ID": "330",
+    "name": "Tirana",
+    "country_id": "2",
+    "latitude": "41.33",
+    "longitude": "19.82",
+    "name_ru": "Тирана"
+  },
+  {
+    "ID": "331",
+    "name": "Thessaloniki",
+    "country_id": "67",
+    "latitude": "40.63",
+    "longitude": "22.95",
+    "name_ru": "Салоники"
+  },
+  {
+    "ID": "332",
+    "name": "Tenerife",
+    "country_id": "166",
+    "latitude": "28.22",
+    "longitude": "-16.59",
+    "name_ru": "Тенерифе"
+  },
+  {
+    "ID": "333",
+    "name": "Treviso",
+    "country_id": "84",
+    "latitude": "45.67",
+    "longitude": "12.24",
+    "name_ru": "Тревизо"
+  },
+  {
+    "ID": "334",
+    "name": "Trieste",
+    "country_id": "84",
+    "latitude": "45.64",
+    "longitude": "13.80",
+    "name_ru": "Триест"
+  },
+  {
+    "ID": "335",
+    "name": "Turin",
+    "country_id": "84",
+    "latitude": "45.07",
+    "longitude": "7.70",
+    "name_ru": "Турин"
+  },
+  {
+    "ID": "336",
+    "name": "Tel-Aviv",
+    "country_id": "83",
+    "latitude": "32.08",
+    "longitude": "34.80",
+    "name_ru": "Тель-Авив"
+  },
+  {
+    "ID": "337",
+    "name": "Terceira Island",
+    "country_id": "142",
+    "latitude": "38.72",
+    "longitude": "-27.22",
+    "name_ru": "Остров Терсейра"
+  },
+  {
+    "ID": "338",
+    "name": "Timisoara",
+    "country_id": "144",
+    "latitude": "45.76",
+    "longitude": "21.23",
+    "name_ru": "Тимишоара"
+  },
+  {
+    "ID": "339",
+    "name": "Trabzon",
+    "country_id": "182",
+    "latitude": "41.01",
+    "longitude": "39.72",
+    "name_ru": "Трабзон"
+  },
+  {
+    "ID": "340",
+    "name": "Tampere",
+    "country_id": "60",
+    "latitude": "61.50",
+    "longitude": "23.76",
+    "name_ru": "Тампере"
+  },
+  {
+    "ID": "341",
+    "name": "Turku",
+    "country_id": "60",
+    "latitude": "60.45",
+    "longitude": "22.27",
+    "name_ru": "Турку"
+  },
+  {
+    "ID": "342",
+    "name": "Toulouse",
+    "country_id": "61",
+    "latitude": "43.60",
+    "longitude": "1.44",
+    "name_ru": "Тулуза"
+  },
+  {
+    "ID": "343",
+    "name": "Tivat",
+    "country_id": "117",
+    "latitude": "42.43",
+    "longitude": "18.70",
+    "name_ru": "Тиват"
+  },
+  {
+    "ID": "344",
+    "name": "Trollhattan",
+    "country_id": "170",
+    "latitude": "58.28",
+    "longitude": "12.29",
+    "name_ru": "Тролльхеттан"
+  },
+  {
+    "ID": "345",
+    "name": "Tallinn",
+    "country_id": "56",
+    "latitude": "59.44",
+    "longitude": "24.75",
+    "name_ru": "Таллинн"
+  },
+  {
+    "ID": "346",
+    "name": "Tartu",
+    "country_id": "56",
+    "latitude": "58.38",
+    "longitude": "26.72",
+    "name_ru": "Тарту"
+  },
+  {
+    "ID": "347",
+    "name": "Umea",
+    "country_id": "170",
+    "latitude": "63.83",
+    "longitude": "20.26",
+    "name_ru": "Умео"
+  },
+  {
+    "ID": "348",
+    "name": "Vienna",
+    "country_id": "10",
+    "latitude": "48.21",
+    "longitude": "16.37",
+    "name_ru": "Вена"
+  },
+  {
+    "ID": "349",
+    "name": "Varna",
+    "country_id": "26",
+    "latitude": "43.21",
+    "longitude": "27.92",
+    "name_ru": "Варна"
+  },
+  {
+    "ID": "351",
+    "name": "Valencia",
+    "country_id": "166",
+    "latitude": "10.17",
+    "longitude": "-68.00",
+    "name_ru": "Валенсия"
+  },
+  {
+    "ID": "352",
+    "name": "Valladolid",
+    "country_id": "166",
+    "latitude": "41.65",
+    "longitude": "-4.73",
+    "name_ru": "Вальядолид"
+  },
+  {
+    "ID": "353",
+    "name": "Venice",
+    "country_id": "84",
+    "latitude": "45.44",
+    "longitude": "12.33",
+    "name_ru": "Венеция"
+  },
+  {
+    "ID": "354",
+    "name": "Verona",
+    "country_id": "84",
+    "latitude": "45.44",
+    "longitude": "10.99",
+    "name_ru": "Верона"
+  },
+  {
+    "ID": "355",
+    "name": "Ventspils",
+    "country_id": "95",
+    "latitude": "57.39",
+    "longitude": "21.56",
+    "name_ru": "Вентспилс"
+  },
+  {
+    "ID": "356",
+    "name": "Vilnius",
+    "country_id": "101",
+    "latitude": "54.68",
+    "longitude": "25.28",
+    "name_ru": "Вильнюс"
+  },
+  {
+    "ID": "357",
+    "name": "Iasi",
+    "country_id": "144",
+    "latitude": "47.16",
+    "longitude": "27.59",
+    "name_ru": "Яссы"
+  },
+  {
+    "ID": "358",
+    "name": "Vaxjo",
+    "country_id": "170",
+    "latitude": "56.88",
+    "longitude": "14.81",
+    "name_ru": "Ваксьо"
+  },
+  {
+    "ID": "359",
+    "name": "Visby",
+    "country_id": "170",
+    "latitude": "57.63",
+    "longitude": "18.31",
+    "name_ru": "Висбй"
+  },
+  {
+    "ID": "361",
+    "name": "Weeze",
+    "country_id": "65",
+    "latitude": "51.63",
+    "longitude": "6.20",
+    "name_ru": "Веце"
+  },
+  {
+    "ID": "362",
+    "name": "Westerland",
+    "country_id": "65",
+    "latitude": "54.91",
+    "longitude": "8.31",
+    "name_ru": "Вестерланд"
+  },
+  {
+    "ID": "363",
+    "name": "Wilhelmshaven",
+    "country_id": "65",
+    "latitude": "53.52",
+    "longitude": "8.13",
+    "name_ru": "Вильгельмсхафен"
+  },
+  {
+    "ID": "364",
+    "name": "Warsaw",
+    "country_id": "141",
+    "latitude": "52.22",
+    "longitude": "21.03",
+    "name_ru": "Варшава"
+  },
+  {
+    "ID": "365",
+    "name": "Wroclaw",
+    "country_id": "141",
+    "latitude": "51.11",
+    "longitude": "17.04",
+    "name_ru": "Вроцлав"
+  },
+  {
+    "ID": "366",
+    "name": "Zweibruecken",
+    "country_id": "65",
+    "latitude": "49.25",
+    "longitude": "7.36",
+    "name_ru": "Цвайбрюккен"
+  },
+  {
+    "ID": "367",
+    "name": "Zaragoza",
+    "country_id": "166",
+    "latitude": "41.65",
+    "longitude": "-0.88",
+    "name_ru": "Сарагоса"
+  },
+  {
+    "ID": "368",
+    "name": "Zagreb",
+    "country_id": "42",
+    "latitude": "45.80",
+    "longitude": "15.95",
+    "name_ru": "Загреб"
+  },
+  {
+    "ID": "369",
+    "name": "Zadar",
+    "country_id": "42",
+    "latitude": "44.12",
+    "longitude": "15.22",
+    "name_ru": "Задар"
+  },
+  {
+    "ID": "370",
+    "name": "Zurich",
+    "country_id": "171",
+    "latitude": "47.37",
+    "longitude": "8.54",
+    "name_ru": "Цюрих"
+  },
+  {
+    "ID": "371",
+    "name": "Chisinau",
+    "country_id": "114",
+    "latitude": "47.01",
+    "longitude": "28.86",
+    "name_ru": "Кишинёв"
+  },
+  {
+    "ID": "372",
+    "name": "Minsk",
+    "country_id": "16",
+    "latitude": "53.90",
+    "longitude": "27.56",
+    "name_ru": "Минск"
+  },
+  {
+    "ID": "373",
+    "name": "Gomel",
+    "country_id": "16",
+    "latitude": "52.44",
+    "longitude": "30.98",
+    "name_ru": "Гомель"
+  },
+  {
+    "ID": "374",
+    "name": "Brest",
+    "country_id": "16",
+    "latitude": "52.08",
+    "longitude": "23.66",
+    "name_ru": "Брест"
+  },
+  {
+    "ID": "375",
+    "name": "Vitebsk",
+    "country_id": "16",
+    "latitude": "55.18",
+    "longitude": "30.17",
+    "name_ru": "Витебск"
+  },
+  {
+    "ID": "376",
+    "name": "Hrodna",
+    "country_id": "16",
+    "latitude": "53.67",
+    "longitude": "23.82",
+    "name_ru": "Гродно"
+  },
+  {
+    "ID": "377",
+    "name": "Kiev",
+    "country_id": "186",
+    "latitude": "50.45",
+    "longitude": "30.52",
+    "name_ru": "Киев"
+  },
+  {
+    "ID": "378",
+    "name": "Kherson",
+    "country_id": "186",
+    "latitude": "46.63",
+    "longitude": "32.60",
+    "name_ru": "Херсон"
+  },
+  {
+    "ID": "379",
+    "name": "Chernivtsi",
+    "country_id": "186",
+    "latitude": "48.29",
+    "longitude": "25.93",
+    "name_ru": "Черновцы"
+  },
+  {
+    "ID": "380",
+    "name": "Odesa",
+    "country_id": "186",
+    "latitude": "46.48",
+    "longitude": "30.73",
+    "name_ru": "Одесса"
+  },
+  {
+    "ID": "381",
+    "name": "Zaporizhia",
+    "country_id": "186",
+    "latitude": "47.85",
+    "longitude": "35.12",
+    "name_ru": "Запорожье"
+  },
+  {
+    "ID": "382",
+    "name": "Vinnytsia",
+    "country_id": "186",
+    "latitude": "49.24",
+    "longitude": "28.47",
+    "name_ru": "Винница"
+  },
+  {
+    "ID": "383",
+    "name": "Lviv",
+    "country_id": "186",
+    "latitude": "49.84",
+    "longitude": "24.03",
+    "name_ru": "Львов"
+  },
+  {
+    "ID": "384",
+    "name": "Dnipro",
+    "country_id": "186",
+    "latitude": "48.45",
+    "longitude": "34.98",
+    "name_ru": "Днепр"
+  },
+  {
+    "ID": "385",
+    "name": "Kharkiv",
+    "country_id": "186",
+    "latitude": "50.00",
+    "longitude": "36.23",
+    "name_ru": "Харьков"
+  },
+  {
+    "ID": "386",
+    "name": "Ivano-Frankivsk",
+    "country_id": "186",
+    "latitude": "48.92",
+    "longitude": "24.71",
+    "name_ru": "Ивано-Франковск"
+  },
+  {
+    "ID": "387",
+    "name": "Moscow",
+    "country_id": "145",
+    "latitude": "55.76",
+    "longitude": "37.62",
+    "name_ru": "Москва"
+  },
+  {
+    "ID": "388",
+    "name": "Saint Petersburg",
+    "country_id": "145",
+    "latitude": "59.95",
+    "longitude": "30.32",
+    "name_ru": "Санкт-Петербург"
+  },
+  {
+    "ID": "389",
+    "name": "Sochi",
+    "country_id": "145",
+    "latitude": "43.59",
+    "longitude": "39.72",
+    "name_ru": "Сочи"
+  },
+  {
+    "ID": "390",
+    "name": "Novosibirsk",
+    "country_id": "145",
+    "latitude": "55.03",
+    "longitude": "82.92",
+    "name_ru": "Новосибирск"
+  },
+  {
+    "ID": "391",
+    "name": "Ekaterinburg",
+    "country_id": "145",
+    "latitude": "56.84",
+    "longitude": "60.61",
+    "name_ru": "Екатеринбург"
+  },
+  {
+    "ID": "392",
+    "name": "Krasnodar",
+    "country_id": "145",
+    "latitude": "45.03",
+    "longitude": "38.98",
+    "name_ru": "Краснодар"
+  },
+  {
+    "ID": "393",
+    "name": "Anapa",
+    "country_id": "145",
+    "latitude": "44.89",
+    "longitude": "37.32",
+    "name_ru": "Анапа"
+  },
+  {
+    "ID": "394",
+    "name": "Kaliningrad",
+    "country_id": "145",
+    "latitude": "54.72",
+    "longitude": "20.50",
+    "name_ru": "Калининград"
+  },
+  {
+    "ID": "395",
+    "name": "Platov",
+    "country_id": "145",
+    "latitude": "49.09",
+    "longitude": "41.68",
+    "name_ru": "Платов"
+  },
+  {
+    "ID": "396",
+    "name": "Samara",
+    "country_id": "145",
+    "latitude": "53.18",
+    "longitude": "50.12",
+    "name_ru": "Самара"
+  },
+  {
+    "ID": "397",
+    "name": "Irkutsk",
+    "country_id": "145",
+    "latitude": "52.28",
+    "longitude": "104.30",
+    "name_ru": "Иркутск"
+  },
+  {
+    "ID": "398",
+    "name": "Krasnoyarsk",
+    "country_id": "145",
+    "latitude": "56.02",
+    "longitude": "92.87",
+    "name_ru": "Красноярск"
+  },
+  {
+    "ID": "399",
+    "name": "Ufa",
+    "country_id": "145",
+    "latitude": "54.73",
+    "longitude": "55.97",
+    "name_ru": "Уфа"
+  },
+  {
+    "ID": "400",
+    "name": "Kazan",
+    "country_id": "145",
+    "latitude": "55.79",
+    "longitude": "49.11",
+    "name_ru": "Казань"
+  },
+  {
+    "ID": "401",
+    "name": "Mineralnye Vody",
+    "country_id": "145",
+    "latitude": "44.20",
+    "longitude": "43.11",
+    "name_ru": "Минеральные Воды"
+  },
+  {
+    "ID": "402",
+    "name": "Tyumen",
+    "country_id": "145",
+    "latitude": "57.15",
+    "longitude": "65.53",
+    "name_ru": "Тюмень"
+  },
+  {
+    "ID": "403",
+    "name": "Khabarovsk",
+    "country_id": "145",
+    "latitude": "48.48",
+    "longitude": "135.07",
+    "name_ru": "Хабаровск"
+  },
+  {
+    "ID": "404",
+    "name": "Surgut",
+    "country_id": "145",
+    "latitude": "61.25",
+    "longitude": "73.43",
+    "name_ru": "Сургут"
+  },
+  {
+    "ID": "405",
+    "name": "Vladivostok",
+    "country_id": "145",
+    "latitude": "43.12",
+    "longitude": "131.90",
+    "name_ru": "Владивосток"
+  },
+  {
+    "ID": "406",
+    "name": "Yakutsk",
+    "country_id": "145",
+    "latitude": "62.03",
+    "longitude": "129.73",
+    "name_ru": "Якутск"
+  },
+  {
+    "ID": "407",
+    "name": "Perm",
+    "country_id": "145",
+    "latitude": "58.01",
+    "longitude": "56.25",
+    "name_ru": "Пермь"
+  },
+  {
+    "ID": "408",
+    "name": "Chelyabinsk",
+    "country_id": "145",
+    "latitude": "55.15",
+    "longitude": "61.40",
+    "name_ru": "Челябинск"
+  },
+  {
+    "ID": "409",
+    "name": "Novy Urengoy",
+    "country_id": "145",
+    "latitude": "66.09",
+    "longitude": "76.70",
+    "name_ru": "Новый Уренгой"
+  },
+  {
+    "ID": "410",
+    "name": "Murmansk",
+    "country_id": "145",
+    "latitude": "68.97",
+    "longitude": "33.08",
+    "name_ru": "Мурманск"
+  },
+  {
+    "ID": "411",
+    "name": "Nizhniy Novgorod",
+    "country_id": "145",
+    "latitude": "56.33",
+    "longitude": "44.01",
+    "name_ru": "Нижний Новгород"
+  },
+  {
+    "ID": "412",
+    "name": "Volgograd",
+    "country_id": "145",
+    "latitude": "48.70",
+    "longitude": "44.48",
+    "name_ru": "Волгоград"
+  },
+  {
+    "ID": "413",
+    "name": "Yuzhno-Sakhalinsk",
+    "country_id": "145",
+    "latitude": "46.95",
+    "longitude": "142.73",
+    "name_ru": "Южно-Сахалинск"
+  },
+  {
+    "ID": "414",
+    "name": "Arkhangelsk",
+    "country_id": "145",
+    "latitude": "64.55",
+    "longitude": "40.53",
+    "name_ru": "Архангельск"
+  },
+  {
+    "ID": "415",
+    "name": "Omsk",
+    "country_id": "145",
+    "latitude": "54.97",
+    "longitude": "73.38",
+    "name_ru": "Омск"
+  },
+  {
+    "ID": "416",
+    "name": "Makhachkala",
+    "country_id": "145",
+    "latitude": "42.98",
+    "longitude": "47.48",
+    "name_ru": "Махачкала"
+  },
+  {
+    "ID": "417",
+    "name": "Gelendzik",
+    "country_id": "145",
+    "latitude": "44.56",
+    "longitude": "38.08",
+    "name_ru": "Геленджик"
+  },
+  {
+    "ID": "418",
+    "name": "Petropavlovsk-Kamchatsky",
+    "country_id": "145",
+    "latitude": "53.02",
+    "longitude": "158.65",
+    "name_ru": "Петропавловск-Камчатский"
+  },
+  {
+    "ID": "419",
+    "name": "Naberezhnye Chelny",
+    "country_id": "145",
+    "latitude": "55.70",
+    "longitude": "52.33",
+    "name_ru": "Набережные Челны"
+  },
+  {
+    "ID": "420",
+    "name": "Tomsk",
+    "country_id": "145",
+    "latitude": "56.49",
+    "longitude": "84.95",
+    "name_ru": "Томск"
+  },
+  {
+    "ID": "421",
+    "name": "Nizhnevartovsk",
+    "country_id": "145",
+    "latitude": "60.94",
+    "longitude": "76.60",
+    "name_ru": "Нижневартовск"
+  },
+  {
+    "ID": "422",
+    "name": "Orenburg",
+    "country_id": "145",
+    "latitude": "51.77",
+    "longitude": "55.10",
+    "name_ru": "Оренбург"
+  },
+  {
+    "ID": "423",
+    "name": "Voronezh",
+    "country_id": "145",
+    "latitude": "51.67",
+    "longitude": "39.21",
+    "name_ru": "Воронеж"
+  },
+  {
+    "ID": "424",
+    "name": "Syktyvkar",
+    "country_id": "145",
+    "latitude": "61.67",
+    "longitude": "50.82",
+    "name_ru": "Сыктывкар"
+  },
+  {
+    "ID": "425",
+    "name": "Barnaul",
+    "country_id": "145",
+    "latitude": "53.36",
+    "longitude": "83.79",
+    "name_ru": "Барнаул"
+  },
+  {
+    "ID": "426",
+    "name": "Astrakhan",
+    "country_id": "145",
+    "latitude": "46.33",
+    "longitude": "48.02",
+    "name_ru": "Астрахань"
+  },
+  {
+    "ID": "427",
+    "name": "Norilsk",
+    "country_id": "145",
+    "latitude": "69.33",
+    "longitude": "88.22",
+    "name_ru": "Норильск"
+  },
+  {
+    "ID": "428",
+    "name": "Belgorod",
+    "country_id": "145",
+    "latitude": "50.60",
+    "longitude": "36.60",
+    "name_ru": "Белгород"
+  },
+  {
+    "ID": "429",
+    "name": "Salehard",
+    "country_id": "145",
+    "latitude": "66.53",
+    "longitude": "66.63",
+    "name_ru": "Салехард"
+  },
+  {
+    "ID": "430",
+    "name": "Chita",
+    "country_id": "145",
+    "latitude": "52.03",
+    "longitude": "113.50",
+    "name_ru": "Чита"
+  },
+  {
+    "ID": "431",
+    "name": "Izhevsk",
+    "country_id": "145",
+    "latitude": "56.85",
+    "longitude": "53.22",
+    "name_ru": "Ижевск"
+  },
+  {
+    "ID": "432",
+    "name": "Khanty-Mansiysk",
+    "country_id": "145",
+    "latitude": "61.00",
+    "longitude": "69.00",
+    "name_ru": "Ханты-Мансийск"
+  },
+  {
+    "ID": "433",
+    "name": "Saratov",
+    "country_id": "145",
+    "latitude": "51.53",
+    "longitude": "46.00",
+    "name_ru": "Саратов"
+  },
+  {
+    "ID": "434",
+    "name": "Stavropol",
+    "country_id": "145",
+    "latitude": "45.05",
+    "longitude": "41.98",
+    "name_ru": "Ставрополь"
+  },
+  {
+    "ID": "437",
+    "name": "Kemerovo",
+    "country_id": "145",
+    "latitude": "55.33",
+    "longitude": "86.07",
+    "name_ru": "Кемерово"
+  },
+  {
+    "ID": "438",
+    "name": "Abakan",
+    "country_id": "145",
+    "latitude": "53.72",
+    "longitude": "91.42",
+    "name_ru": "Абакан"
+  },
+  {
+    "ID": "439",
+    "name": "Grozny",
+    "country_id": "145",
+    "latitude": "43.31",
+    "longitude": "45.70",
+    "name_ru": "Грозный"
+  },
+  {
+    "ID": "441",
+    "name": "Vladikavkaz",
+    "country_id": "145",
+    "latitude": "43.02",
+    "longitude": "44.65",
+    "name_ru": "Владикавказ"
+  },
+  {
+    "ID": "442",
+    "name": "Ulyanovsk",
+    "country_id": "145",
+    "latitude": "54.32",
+    "longitude": "48.37",
+    "name_ru": "Ульяновск"
+  },
+  {
+    "ID": "444",
+    "name": "Penza",
+    "country_id": "145",
+    "latitude": "53.20",
+    "longitude": "45.00",
+    "name_ru": "Пенза"
+  },
+  {
+    "ID": "445",
+    "name": "Saransk",
+    "country_id": "145",
+    "latitude": "54.18",
+    "longitude": "45.18",
+    "name_ru": "Саранск"
+  },
+  {
+    "ID": "446",
+    "name": "Nadym",
+    "country_id": "145",
+    "latitude": "65.53",
+    "longitude": "72.52",
+    "name_ru": "Надым"
+  },
+  {
+    "ID": "447",
+    "name": "Magnitogorsk",
+    "country_id": "145",
+    "latitude": "53.38",
+    "longitude": "59.03",
+    "name_ru": "Магнитогорск"
+  },
+  {
+    "ID": "448",
+    "name": "Rostov on Don",
+    "country_id": "145",
+    "latitude": "47.23",
+    "longitude": "39.72",
+    "name_ru": "Ростов на Дону"
+  },
+  {
+    "ID": "449",
+    "name": "Cheboksary",
+    "country_id": "145",
+    "latitude": "56.13",
+    "longitude": "47.25",
+    "name_ru": "Чебоксары"
+  },
+  {
+    "ID": "451",
+    "name": "Nalchik",
+    "country_id": "145",
+    "latitude": "43.48",
+    "longitude": "43.62",
+    "name_ru": "Нальчик"
+  },
+  {
+    "ID": "452",
+    "name": "Cherepovets",
+    "country_id": "145",
+    "latitude": "59.13",
+    "longitude": "37.92",
+    "name_ru": "Череповец"
+  },
+  {
+    "ID": "453",
+    "name": "Magas",
+    "country_id": "145",
+    "latitude": "43.17",
+    "longitude": "44.82",
+    "name_ru": "Магас"
+  },
+  {
+    "ID": "454",
+    "name": "Kirov",
+    "country_id": "145",
+    "latitude": "58.60",
+    "longitude": "49.65",
+    "name_ru": "Киров"
+  },
+  {
+    "ID": "455",
+    "name": "Naryan-Mar",
+    "country_id": "145",
+    "latitude": "67.64",
+    "longitude": "53.01",
+    "name_ru": "Нарьян-Мар"
+  },
+  {
+    "ID": "456",
+    "name": "Bratsk",
+    "country_id": "145",
+    "latitude": "56.17",
+    "longitude": "101.62",
+    "name_ru": "Братск"
+  },
+  {
+    "ID": "457",
+    "name": "Elista",
+    "country_id": "145",
+    "latitude": "46.32",
+    "longitude": "44.27",
+    "name_ru": "Элиста"
+  },
+  {
+    "ID": "458",
+    "name": "Gorno-Altaysk",
+    "country_id": "145",
+    "latitude": "51.96",
+    "longitude": "85.96",
+    "name_ru": "Горно-Алтайск"
+  },
+  {
+    "ID": "460",
+    "name": "Tambov",
+    "country_id": "145",
+    "latitude": "52.72",
+    "longitude": "41.43",
+    "name_ru": "Тамбов"
+  },
+  {
+    "ID": "461",
+    "name": "Vorkuta",
+    "country_id": "145",
+    "latitude": "67.50",
+    "longitude": "64.03",
+    "name_ru": "Воркута"
+  },
+  {
+    "ID": "462",
+    "name": "Neryungri",
+    "country_id": "145",
+    "latitude": "56.66",
+    "longitude": "124.73",
+    "name_ru": "Нерюнгри"
+  },
+  {
+    "ID": "463",
+    "name": "Ivanovo",
+    "country_id": "145",
+    "latitude": "57.00",
+    "longitude": "41.00",
+    "name_ru": "Иваново"
+  },
+  {
+    "ID": "464",
+    "name": "Anadyr",
+    "country_id": "145",
+    "latitude": "64.73",
+    "longitude": "177.52",
+    "name_ru": "Анадырь"
+  },
+  {
+    "ID": "465",
+    "name": "Kursk",
+    "country_id": "145",
+    "latitude": "51.74",
+    "longitude": "36.19",
+    "name_ru": "Курск"
+  },
+  {
+    "ID": "466",
+    "name": "Kogalym",
+    "country_id": "145",
+    "latitude": "62.27",
+    "longitude": "74.49",
+    "name_ru": "Когалым"
+  },
+  {
+    "ID": "467",
+    "name": "Kurgan",
+    "country_id": "145",
+    "latitude": "55.44",
+    "longitude": "65.34",
+    "name_ru": "Курган"
+  },
+  {
+    "ID": "468",
+    "name": "Petrozavodsk",
+    "country_id": "145",
+    "latitude": "61.78",
+    "longitude": "34.35",
+    "name_ru": "Петрозаводск"
+  },
+  {
+    "ID": "469",
+    "name": "Orsk",
+    "country_id": "145",
+    "latitude": "51.21",
+    "longitude": "58.54",
+    "name_ru": "Орск"
+  },
+  {
+    "ID": "471",
+    "name": "Kaluga",
+    "country_id": "145",
+    "latitude": "54.53",
+    "longitude": "36.27",
+    "name_ru": "Калуга"
+  },
+  {
+    "ID": "472",
+    "name": "Okha",
+    "country_id": "145",
+    "latitude": "53.58",
+    "longitude": "142.93",
+    "name_ru": "Оха"
+  },
+  {
+    "ID": "473",
+    "name": "Briansk",
+    "country_id": "145",
+    "latitude": "53.24",
+    "longitude": "34.37",
+    "name_ru": "Брянск"
+  },
+  {
+    "ID": "475",
+    "name": "Kyzyl",
+    "country_id": "145",
+    "latitude": "51.72",
+    "longitude": "94.45",
+    "name_ru": "Кызыл"
+  },
+  {
+    "ID": "476",
+    "name": "Tiksi",
+    "country_id": "145",
+    "latitude": "71.63",
+    "longitude": "128.84",
+    "name_ru": "Тикси"
+  },
+  {
+    "ID": "477",
+    "name": "Yaroslavl",
+    "country_id": "145",
+    "latitude": "57.62",
+    "longitude": "39.85",
+    "name_ru": "Ярославль"
+  },
+  {
+    "ID": "478",
+    "name": "Pevek",
+    "country_id": "145",
+    "latitude": "69.70",
+    "longitude": "170.32",
+    "name_ru": "Певек"
+  },
+  {
+    "ID": "480",
+    "name": "Velikij Ustyug",
+    "country_id": "145",
+    "latitude": "60.76",
+    "longitude": "46.30",
+    "name_ru": "Великий Устюг"
+  },
+  {
+    "ID": "481",
+    "name": "Aldan",
+    "country_id": "145",
+    "latitude": "58.60",
+    "longitude": "125.38",
+    "name_ru": "Алдан"
+  },
+  {
+    "ID": "483",
+    "name": "Beloyarsky",
+    "country_id": "145",
+    "latitude": "63.72",
+    "longitude": "66.67",
+    "name_ru": "Белоярский"
+  },
+  {
+    "ID": "484",
+    "name": "Bodaybo",
+    "country_id": "145",
+    "latitude": "57.85",
+    "longitude": "114.19",
+    "name_ru": "Бодайбо"
+  },
+  {
+    "ID": "485",
+    "name": "Ust-Kut",
+    "country_id": "145",
+    "latitude": "56.78",
+    "longitude": "105.75",
+    "name_ru": "Усть-Кут"
+  },
+  {
+    "ID": "486",
+    "name": "Usinsk",
+    "country_id": "145",
+    "latitude": "66.00",
+    "longitude": "57.54",
+    "name_ru": "Усинск"
+  },
+  {
+    "ID": "487",
+    "name": "Nyagan",
+    "country_id": "145",
+    "latitude": "62.13",
+    "longitude": "65.38",
+    "name_ru": "Нягань"
+  },
+  {
+    "ID": "489",
+    "name": "Lensk",
+    "country_id": "145",
+    "latitude": "60.72",
+    "longitude": "114.90",
+    "name_ru": "Ленск"
+  },
+  {
+    "ID": "490",
+    "name": "Batagay",
+    "country_id": "145",
+    "latitude": "67.66",
+    "longitude": "134.64",
+    "name_ru": "Батагай"
+  },
+  {
+    "ID": "491",
+    "name": "Uraj",
+    "country_id": "145",
+    "latitude": "60.13",
+    "longitude": "64.78",
+    "name_ru": "Урай"
+  },
+  {
+    "ID": "492",
+    "name": "Nikolaevsk-na-Amure",
+    "country_id": "145",
+    "latitude": "53.15",
+    "longitude": "140.73",
+    "name_ru": "Николаевск-на-Амуре"
+  },
+  {
+    "ID": "493",
+    "name": "Berezovo",
+    "country_id": "145",
+    "latitude": "54.09",
+    "longitude": "39.30",
+    "name_ru": "Березово"
+  },
+  {
+    "ID": "494",
+    "name": "Bugulma",
+    "country_id": "145",
+    "latitude": "54.53",
+    "longitude": "52.78",
+    "name_ru": "Бугульма"
+  },
+  {
+    "ID": "498",
+    "name": "Belaya Gora",
+    "country_id": "145",
+    "latitude": "68.54",
+    "longitude": "146.19",
+    "name_ru": "Белая Гора"
+  },
+  {
+    "ID": "499",
+    "name": "Mendeleyevo",
+    "country_id": "145",
+    "latitude": "56.04",
+    "longitude": "37.23",
+    "name_ru": "Менделеево"
+  },
+  {
+    "ID": "501",
+    "name": "Lipetsk",
+    "country_id": "145",
+    "latitude": "52.62",
+    "longitude": "39.60",
+    "name_ru": "Липецк"
+  },
+  {
+    "ID": "502",
+    "name": "Nyurba",
+    "country_id": "145",
+    "latitude": "63.28",
+    "longitude": "118.33",
+    "name_ru": "Нюрба"
+  },
+  {
+    "ID": "504",
+    "name": "Ust-Maya",
+    "country_id": "145",
+    "latitude": "60.46",
+    "longitude": "134.54",
+    "name_ru": "Усть-Майя"
+  },
+  {
+    "ID": "505",
+    "name": "Iturup",
+    "country_id": "145",
+    "latitude": "44.99",
+    "longitude": "147.84",
+    "name_ru": "Итуруп"
+  },
+  {
+    "ID": "507",
+    "name": "Keperveyem",
+    "country_id": "145",
+    "latitude": "67.84",
+    "longitude": "166.14",
+    "name_ru": "Кепервеем"
+  },
+  {
+    "ID": "508",
+    "name": "Deputatsky",
+    "country_id": "145",
+    "latitude": "69.34",
+    "longitude": "139.95",
+    "name_ru": "Депутатский"
+  },
+  {
+    "ID": "510",
+    "name": "Ust-Nera",
+    "country_id": "145",
+    "latitude": "64.57",
+    "longitude": "143.20",
+    "name_ru": "Усть-Нера"
+  },
+  {
+    "ID": "512",
+    "name": "Terney",
+    "country_id": "145",
+    "latitude": "45.05",
+    "longitude": "136.61",
+    "name_ru": "Терней"
+  },
+  {
+    "ID": "513",
+    "name": "Olenyok",
+    "country_id": "145",
+    "latitude": "68.53",
+    "longitude": "112.45",
+    "name_ru": "Оленек"
+  },
+  {
+    "ID": "514",
+    "name": "Cherskiy",
+    "country_id": "145",
+    "latitude": "68.75",
+    "longitude": "161.33",
+    "name_ru": "Черский"
+  },
+  {
+    "ID": "515",
+    "name": "Kavalerovo",
+    "country_id": "145",
+    "latitude": "44.27",
+    "longitude": "135.05",
+    "name_ru": "Кавалерово"
+  },
+  {
+    "ID": "516",
+    "name": "Igarka",
+    "country_id": "145",
+    "latitude": "67.47",
+    "longitude": "86.57",
+    "name_ru": "Игарка"
+  },
+  {
+    "ID": "517",
+    "name": "Igrim",
+    "country_id": "145",
+    "latitude": "63.19",
+    "longitude": "64.42",
+    "name_ru": "Игрим"
+  },
+  {
+    "ID": "519",
+    "name": "Ust-Kuyga",
+    "country_id": "145",
+    "latitude": "70.00",
+    "longitude": "135.55",
+    "name_ru": "Усть-Куйга"
+  },
+  {
+    "ID": "520",
+    "name": "Hatanga",
+    "country_id": "145",
+    "latitude": "72.04",
+    "longitude": "102.47",
+    "name_ru": "Хатанга"
+  },
+  {
+    "ID": "521",
+    "name": "Dalnegorsk",
+    "country_id": "145",
+    "latitude": "44.55",
+    "longitude": "135.57",
+    "name_ru": "Дальнегорск"
+  },
+  {
+    "ID": "522",
+    "name": "Nogliki",
+    "country_id": "145",
+    "latitude": "51.83",
+    "longitude": "143.17",
+    "name_ru": "Ноглики"
+  },
+  {
+    "ID": "523",
+    "name": "Chokurdah",
+    "country_id": "145",
+    "latitude": "70.62",
+    "longitude": "147.89",
+    "name_ru": "Чокурдах"
+  },
+  {
+    "ID": "526",
+    "name": "Tynda",
+    "country_id": "145",
+    "latitude": "55.15",
+    "longitude": "124.72",
+    "name_ru": "Тында"
+  },
+  {
+    "ID": "528",
+    "name": "Podkamennaya Tunguska",
+    "country_id": "145",
+    "latitude": "61.60",
+    "longitude": "90.12",
+    "name_ru": "Подкаменная Тунгуска"
+  },
+  {
+    "ID": "529",
+    "name": "Zhigansk",
+    "country_id": "145",
+    "latitude": "66.77",
+    "longitude": "123.37",
+    "name_ru": "Жиганск"
+  },
+  {
+    "ID": "530",
+    "name": "Dikson",
+    "country_id": "145",
+    "latitude": "73.51",
+    "longitude": "80.55",
+    "name_ru": "Диксон"
+  },
+  {
+    "ID": "531",
+    "name": "Verkhnevilyuysk",
+    "country_id": "145",
+    "latitude": "63.45",
+    "longitude": "120.32",
+    "name_ru": "Верхневилюйск"
+  },
+  {
+    "ID": "532",
+    "name": "Vilyuysk",
+    "country_id": "145",
+    "latitude": "63.75",
+    "longitude": "121.62",
+    "name_ru": "Вилюйск"
+  },
+  {
+    "ID": "533",
+    "name": "Dalnerechensk",
+    "country_id": "145",
+    "latitude": "45.93",
+    "longitude": "133.73",
+    "name_ru": "Дальнереченск"
+  },
+  {
+    "ID": "534",
+    "name": "Svetlaya",
+    "country_id": "145",
+    "latitude": "65.22",
+    "longitude": "41.01",
+    "name_ru": "Светлая"
+  },
+  {
+    "ID": "535",
+    "name": "Komsomolsk Na Amure",
+    "country_id": "145",
+    "latitude": "50.55",
+    "longitude": "137.02",
+    "name_ru": "Комсомольск на Амуре"
+  },
+  {
+    "ID": "538",
+    "name": "Plastun",
+    "country_id": "145",
+    "latitude": "44.76",
+    "longitude": "136.29",
+    "name_ru": "Пластун"
+  },
+  {
+    "ID": "539",
+    "name": "Kotlas",
+    "country_id": "145",
+    "latitude": "61.25",
+    "longitude": "46.65",
+    "name_ru": "Котлас"
+  },
+  {
+    "ID": "540",
+    "name": "Gagra",
+    "country_id": "64",
+    "latitude": "43.28",
+    "longitude": "40.27",
+    "name_ru": "Гагра"
+  },
+  {
+    "ID": "541",
+    "name": "New Athos",
+    "country_id": "64",
+    "latitude": "43.09",
+    "longitude": "40.81",
+    "name_ru": "Новый Афон"
+  },
+  {
+    "ID": "542",
+    "name": "Sukhumi",
+    "country_id": "64",
+    "latitude": "43",
+    "longitude": "41",
+    "name_ru": "Сухуми"
+  },
+  {
+    "ID": "543",
+    "name": "Ukhta",
+    "country_id": "145",
+    "latitude": "63.57",
+    "longitude": "53.70",
+    "name_ru": "Ухта"
+  },
+  {
+    "ID": "545",
+    "name": "Donetsk",
+    "country_id": "186",
+    "latitude": "48.00",
+    "longitude": "37.78",
+    "name_ru": "Донецк"
+  },
+  {
+    "ID": "546",
+    "name": "Pristina",
+    "country_id": "91",
+    "latitude": "42.67",
+    "longitude": "21.17",
+    "name_ru": "Приштина"
+  },
+  {
+    "ID": "2000",
+    "name": "Chernihiv",
+    "country_id": "186",
+    "latitude": "51.50551",
+    "longitude": "31.28487",
+    "name_ru": "Чернигов"
+  },
+  {
+    "ID": "2001",
+    "name": "Cherkasy",
+    "country_id": "186",
+    "latitude": "49.44452",
+    "longitude": "32.05738",
+    "name_ru": "Черкассы"
+  },
+  {
+    "ID": "2002",
+    "name": "Zhytomyr",
+    "country_id": "186",
+    "latitude": "50.26487",
+    "longitude": "28.67669",
+    "name_ru": "Житомир"
+  },
+  {
+    "ID": "2003",
+    "name": "Rivne",
+    "country_id": "186",
+    "latitude": "50.62308",
+    "longitude": "26.22743",
+    "name_ru": "Ровно "
+  },
+  {
+    "ID": "2004",
+    "name": "Lutsk",
+    "country_id": "186",
+    "latitude": "50.75932",
+    "longitude": "25.34244",
+    "name_ru": "Луцк"
+  },
+  {
+    "ID": "2005",
+    "name": "Khmelnytskyi",
+    "country_id": "186",
+    "latitude": "49.41835",
+    "longitude": "26.97936",
+    "name_ru": "Хмельницкий"
+  },
+  {
+    "ID": "2006",
+    "name": "Ternopil",
+    "country_id": "186",
+    "latitude": "49.55404",
+    "longitude": "25.59067",
+    "name_ru": "Тернополь"
+  },
+  {
+    "ID": "2007",
+    "name": "Mukachevo",
+    "country_id": "186",
+    "latitude": "48.44248",
+    "longitude": "22.718",
+    "name_ru": "Мукачево"
+  },
+  {
+    "ID": "2008",
+    "name": "Uzhgorod",
+    "country_id": "186",
+    "latitude": "48.6242",
+    "longitude": "22.2947",
+    "name_ru": "Ужгород"
+  },
+  {
+    "ID": "2009",
+    "name": "Poltava",
+    "country_id": "186",
+    "latitude": "49.62375",
+    "longitude": "38.12014",
+    "name_ru": "Полтава"
+  },
+  {
+    "ID": "2010",
+    "name": "Uman",
+    "country_id": "186",
+    "latitude": "48.75",
+    "longitude": "30.216667",
+    "name_ru": "Умань"
+  },
+  {
+    "ID": "2011",
+    "name": "Mykolaiv",
+    "country_id": "186",
+    "latitude": "46.966667",
+    "longitude": "32",
+    "name_ru": "Николаев"
+  },
+  {
+    "ID": "2012",
+    "name": "Pervomaisk (Luhansk Obl)",
+    "country_id": "186",
+    "latitude": "48.629722",
+    "longitude": "38.561944",
+    "name_ru": "Первомайск (Луг. обл)"
+  },
+  {
+    "ID": "2013",
+    "name": "Pervomaisk (Mykolaiv Obl)",
+    "country_id": "186",
+    "latitude": "48.043889",
+    "longitude": "30.85",
+    "name_ru": "Первомайск (Ник. обл)"
+  },
+  {
+    "ID": "2014",
+    "name": "Voznesensk",
+    "country_id": "186",
+    "latitude": "47.566667",
+    "longitude": "31.3",
+    "name_ru": "Вознесенск"
+  },
+  {
+    "ID": "2015",
+    "name": "Yuzhnoukrainsk",
+    "country_id": "186",
+    "latitude": "47.821667",
+    "longitude": "31.175",
+    "name_ru": "Южноукраинск"
+  },
+  {
+    "ID": "2016",
+    "name": "Kryvyi Rih",
+    "country_id": "186",
+    "latitude": "47.956802",
+    "longitude": "33.370531",
+    "name_ru": "Кривой рог"
+  },
+  {
+    "ID": "2017",
+    "name": "Pyatigorsk",
+    "country_id": "145",
+    "latitude": "44.0433664",
+    "longitude": "43.0055816",
+    "name_ru": "Пятигорск"
+  },
+  {
+    "ID": "2018",
+    "name": "Dombay",
+    "country_id": "145",
+    "latitude": "43.2844718",
+    "longitude": "41.6039282",
+    "name_ru": "Домбай"
+  },
+  {
+    "ID": "2019",
+    "name": "Arkhyz",
+    "country_id": "145",
+    "latitude": "43.564083",
+    "longitude": "41.280435",
+    "name_ru": "Архыз"
+  },
+  {
+    "ID": "2020",
+    "name": "Yessentuki",
+    "country_id": "145",
+    "latitude": "44.044526",
+    "longitude": "42.858910",
+    "name_ru": "Ессентуки"
+  },
+  {
+    "ID": "2021",
+    "name": "Yalta",
+    "country_id": "145",
+    "latitude": "44.497415",
+    "longitude": "34.169506",
+    "name_ru": "Ялта"
+  },
+  {
+    "ID": "2022",
+    "name": "Simferopol",
+    "country_id": "145",
+    "latitude": "44.948237",
+    "longitude": "34.100327",
+    "name_ru": "Симферополь"
+  },
+  {
+    "ID": "2023",
+    "name": "Sevastopol",
+    "country_id": "145",
+    "latitude": "44.616495",
+    "longitude": "33.525135",
+    "name_ru": "Севастополь"
+  },
+  {
+    "ID": "2023",
+    "name": "Kerch",
+    "country_id": "145",
+    "latitude": "45.356219",
+    "longitude": "36.467378",
+    "name_ru": "Керчь"
+  }
+]
