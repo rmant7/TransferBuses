@@ -9,7 +9,7 @@ import { useHistory } from 'react-router';
 import { setSidebarAction } from '../../../redux/actions/app-actions';
 import { PASSENGER_ROUTE, DRIVER_ROUTE } from '../../../utils/constants';
 
-export default () => {
+const MenuTrip = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -43,7 +43,7 @@ export default () => {
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
-        anchorOrigin={{ horizontal: 'center' }}
+        anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
@@ -58,6 +58,4 @@ export default () => {
   );
 }
 
-
-
-
+export default MenuTrip;

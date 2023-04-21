@@ -307,7 +307,7 @@ export default function CarrierPage() {
             // console.log(event.target.checked);
             const weekDays = {};
             Object.keys(props.values.regularTripsDays).map((weekDay) => {
-              weekDays[weekDay] = {
+              return weekDays[weekDay] = {
                 selected: event.target.checked,
                 departureTime: props.values.regularTripsDays[weekDay].departureTime,
               };

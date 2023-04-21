@@ -35,7 +35,7 @@ function CheapTripSearch(props) {
             routesForRender[key] = common_routes[key] ? [common_routes[key]] : [];
         }
     }
-    console.log(routesForRender);
+    //console.log(routesForRender);
 
     const locationsKeysSorted = function () {
         if (!locations) return
@@ -118,10 +118,10 @@ function CheapTripSearch(props) {
         <div>
             <form action="" className={s.autocomplete}>
                 <Autocomplete
-                    value={from || ''}
+                    value={from || null}
                     onChange={(e, newValue) => {
                         setFrom(newValue ? newValue.label : '')
-                        setFromKey(newValue.key ? newValue.key : '')
+                        setFromKey(newValue ? newValue.key : '')
                     }}
                     // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
                     disablePortal
@@ -130,10 +130,11 @@ function CheapTripSearch(props) {
                     options={checkFromOption}
                     sx={{width: '100%'}}
                     renderInput={(params) => <TextField {...params} label="From"/>}
+                    isOptionEqualToValue={(option, value) => option.label === value}
                 />
                 <DoubleArrowIcon className={classes.media_icon}/>
                 <Autocomplete
-                    value={to || ''}
+                    value={to || null}
                     onChange={(e, newValue) => {
                         setTo(newValue ? newValue.label : '')
                         setToKey(newValue ? newValue.key : '')
@@ -145,6 +146,7 @@ function CheapTripSearch(props) {
                     options={checkToOption}
                     sx={{width: '100%'}}
                     renderInput={(params) => <TextField {...params} label="To"/>}
+                    isOptionEqualToValue={(option, value) => option.label === value}
                 />
             </form>
             <div className={classes.filter_buttons}>
@@ -164,9 +166,9 @@ function CheapTripSearch(props) {
             <div>
                 {routes && selectedRoutesKeys && selectedRoutesKeys
                     .sort((a, b) => routes[a].direct_routes.length - routes[b].direct_routes.length)
-                    .slice(0, PAGINATION_LIMIT).map((key, index) => {
-                        return routesForRender[key].map(route => {
-                                return <RouteCard route={route} key={index}/>
+                    .slice(0, PAGINATION_LIMIT).map((key) => {
+                        return routesForRender[key].map((route, index) => {
+                                return <RouteCard route={route} key={key + index}/>
                             }
                         )
                     })}
