@@ -54,14 +54,14 @@
     "yup-phone-lite": "^1.0.5"
   },
   "scripts": {
-    "start": "env-cmd -e dev react-scripts start",
+    "start": "env-cmd -e dev react-scripts --max_old_space_size=4096 start",
     "start-yuvin": "env-cmd -e dev-yuvinogradov react-scripts start",
     "start-justedlev": "env-cmd -e dev-justedlev react-scripts start",
     "start-justedlev-new": "env-cmd -e dev-justedlev-new-design react-scripts start",
     "start-gin1104": "env-cmd -e dev-gin1104 react-scripts start",
     "run1": "node server.js",
-    "run": "react-scripts start",
-    "build": "react-scripts build",
+    "run": "react-scripts --max_old_space_size=4096 start",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "build-dev": "env-cmd -e dev react-scripts build",
     "build-yuvin": "env-cmd -e dev-yuvinogradov react-scripts build",
     "build-justedlev": "env-cmd -e dev-justedlev react-scripts build",

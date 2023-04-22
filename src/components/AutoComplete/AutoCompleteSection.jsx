@@ -43,11 +43,8 @@ export const AutoCompleteSection = () => {
 	ping()
 
 	const findCityData = (curCity) => {
-		const result = Object.values(dataNew).filter((item) => {
-			//   console.log(item);
-			if (item.name === curCity[0].properties.display_name) return item;
-			// return [];
-		});
+		const result = Object.values(dataNew)
+			.filter((item) => item.name === curCity[0].properties.display_name);
 
 		return result[0];
 	};
@@ -212,26 +209,21 @@ export const AutoCompleteSection = () => {
 
 	const getCitiesToListById = (filterArray) => {
 		const values = Object.values(dataNew);
-		let cache;
-		const ln1 = values.length;
-		const ln2 = routesList.length;
-		for(let i=0;i<filterArray.length;i++){
-			routesList[i] = filterArray[i]
-		}
-		for (let i = 0; i < ln1; ++i) {
-			cache = values[i];
-			setRoutesList(routesList.map((item)=>{
-				if(cache.id === item.to){
-					item.city = cache.name;
-					item.country = cache.country_name;
-					return routesList.push(item)
 
-				}
-				else{
-					return item;
-				}
-			}))
-		}
+		const updatedRoutesList = values.reduce((acc, cache) => {
+    const itemIndex = filterArray.findIndex(item => item.to === cache.id);
+
+    if (itemIndex > -1) {
+      const item = { ...filterArray[itemIndex] };
+      item.city = cache.name;
+      item.country = cache.country_name;
+      acc.push(item);
+    }
+
+    return acc;
+  }, []);
+
+  setRoutesList(updatedRoutesList);
 	};
 
 	const onBtnClick = () => {
