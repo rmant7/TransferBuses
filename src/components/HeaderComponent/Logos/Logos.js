@@ -6,15 +6,17 @@ import css from "./Logos.module.css";
 
 export const LogoHeader = ({ page_mode }) => {
   if(page_mode === "CheapTrip") return LogoTrip();
-  if(page_mode === "TransferBuses") return LogoBus();
+  if (page_mode === "TransferBuses") return LogoBus();
+  if(page_mode === "Contacts") return LogoContacts();
 }
 
 function LogoBus() {
   const mode = getBuildMode();
   return (
     <NavLink className={css.logo} to={PASSENGER_ROUTE}>
-      <span className={css.logoBus}>TransferBuses</span>
-      {mode.mode === "development" && (
+      {/* <span className={css.logoBus}>TransferBuses</span> */}
+      <span className={css.logoTrip}>BudgetTravelTips</span>
+      {/* {mode.mode === "development" && (
         <div
           style={{
             fontSize: "11px",
@@ -24,7 +26,7 @@ function LogoBus() {
         >
           {mode.version} by {mode.developer}
         </div>
-      )}
+      )} */}
     </NavLink>
   );
 }
@@ -40,6 +42,14 @@ function LogoTrip() {
         <span className={css.sloganHeaderChilds}> visit more!</span>
       </span>
     </div>
+  );
+}
+
+function LogoContacts() {
+  return (
+      <div className={css.logo}>
+        <span className={css.logoTrip}>Contacts</span>
+      </div>
   );
 }
 

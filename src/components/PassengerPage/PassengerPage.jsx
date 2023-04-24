@@ -41,9 +41,10 @@ export default function PassengerPage() {
   return (
     <Container maxWidth="xl" className={classes.tb_padding}>
       <div className={filtersClasses.filters_sector}>
-        <Typography variant="button" display="block" gutterBottom>
+        {/* <span>{i18n.t("Find a city")}</span> */}
+        {/* <Typography variant="button" display="block" gutterBottom>
           {i18next.t("Filter")}
-        </Typography>
+        </Typography> */}
         <FiltersCitiesFrom />
       </div>
       {/* <Divider style={{margin: "10px"}}/> */}
@@ -65,6 +66,8 @@ export default function PassengerPage() {
       <div style={{ width: "200px", margin: "10px auto", textAlign: "center" }}>
         {data.nextTransfers.length === PAGE_SIZE && data.transfers.length !== 0 && !data.isFilterApply && (
           <LoadingButton
+            // className={classes.filter_button}
+            style={{borderRadius: "8px"}}
             variant="contained"
             loading={loading.isLoadingNextTransfers}
             onClick={addNextHandler}

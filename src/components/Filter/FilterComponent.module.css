@@ -3,22 +3,37 @@
 }
 
 .filters_sector {
-    border: 1px solid #dadada;
-    border-radius: 15px;
-    background-color: rgb(247, 247, 247);
+    /* border: 1px solid #dadada; */
+    /* border-radius: 15px; */
+    /* background-color: rgb(247, 247, 247); */
     padding: 25px;
-    box-shadow: 0px 5px 25px -5px rgba(34, 60, 80, 0.2);
-    margin: 10px auto;
+    /* box-shadow: 0px 5px 25px -5px rgba(34, 60, 80, 0.2); */
+    /* margin: 50px auto; */
+            margin: 0 auto;
     width: 85%;
     box-sizing: border-box;
 }
-@media (max-width: 650px) {
+
+@media (max-width: 480px) {
+    .filters_sector {
+        width: 100%;
+
+        /* padding: 20px 0; */
+        padding: 0;
+        padding-bottom: 25px;
+        /* margin: 25px auto; */
+    }
+}
+
+/* @media (max-width: 650px) {
     .filters_sector {
         padding: 10px;
         width: 100%;
     }        
-}
+} */
+
 .filters {
+    position: relative;
     text-align: center;
     display: inline-block;
     width: 100%;
@@ -33,4 +48,68 @@
 .filter {
     display: inline-block;
     width: 80%;
+}
+
+.filter_label{
+    display: flex;
+    
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6px;
+    padding-left: 40px;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+@media (max-width: 480px) {
+    .filter_label{
+        max-width: 365px;
+        width: 100%;
+        padding: 0;
+        font-size: 13px;
+    }
+}
+
+.filter_button{
+    max-width: 95px;
+    width: 100%;
+    min-height: 35px;
+    border-radius: 8px;
+    font-size: 16px;
+    text-transform: none;
+}
+
+.filter_autocomplite {
+    padding: 0;
+    border-radius: 8px;
+}
+
+.filter_textfield input{
+    max-height: 42px;
+    font-size: 16px;
+}
+
+.filter_textfield fieldset{
+    /* border-color: #ff5722; */
+    border-radius: 8px;
+    padding: 5px;
+}
+
+@media (max-width: 480px) {
+    .filter {
+    display: inline-block;
+    max-width: 365px;
+    width: 100%;
+}
+
+    .filter_button{
+        max-width: 365px;
+        font-size: 13px;
+    }
+
+    .filter_textfield input{
+    font-size: 13px;
+}
 }

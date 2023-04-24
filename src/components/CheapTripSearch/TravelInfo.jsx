@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import locations from '../../cheapTripData/locations.json'
-import additional_information from '../../cheapTripData/inner_jsons/80001.json'
+import additional_information from '../../cheapTripData/80001.json'
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {resultItemStyle} from "../SearchResult/style";
 import {Box, Button, Link, Typography} from "@material-ui/core";

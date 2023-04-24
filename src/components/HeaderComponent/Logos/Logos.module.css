@@ -2,6 +2,7 @@
     text-decoration: none;
     color: #fff;
     position: relative;
+    padding-bottom: 5px;
 }
 
 .logoBus {
@@ -11,7 +12,8 @@
 
 .logoTrip {
     font-size: 3.3rem;
-    margin-top: -9px;
+    /* line-height: 2rem; */
+    /* margin-top: -9px; */
 }
 
 .sloganHeader {
@@ -19,7 +21,7 @@
     font-size: 2.1rem;
     letter-spacing: 1px;
     width: max-content;
-    padding-bottom: 12px;
+    /* padding-bottom: 12px; */
     display: flex;
     /* flex-wrap: wrap; */
 }
@@ -28,7 +30,7 @@
 .sloganHeader {
     font-style: italic;
     font-weight: bolder;
-    display: flex;
+    /* display: flex; */
 }
 
 .sloganHeaderChilds {
@@ -50,20 +52,20 @@
     }
 }
 
-@media (max-width: 750px) {
+/* @media (max-width: 750px) {
     .sloganHeader {
         font-size: 2.2rem;
     }
-}
+} */
 
-@media (max-width: 650px) {
+/* @media (max-width: 650px) {
     .sloganHeader {
         font-size: 1.05rem;
         margin-right: -10px;
     }
-}
+} */
 
-@media (max-width: 450px) {
+/* @media (max-width: 450px) {
     .logoTrip {
         font-size: 2rem;
     }
@@ -72,20 +74,20 @@
         font-size: 1.4rem;
         font-weight: 400;
     }
-}
+} */
 
-@media (max-width: 420px) {
+/* @media (max-width: 420px) {
     .sloganHeader {
         font-size: 0.95rem;
     }
-}
-@media (max-width: 410px) {
+} */
+/* @media (max-width: 410px) {  
     .sloganHeader {
         display: none;
     }
-}
+} */
 
-@media (max-width: 350px) {
+/* @media (max-width: 350px) { 
     .logoTrip {
         font-size: 1.6rem;
         padding-right: 10px;
@@ -94,5 +96,34 @@
     .logoBus {
         font-size: 1.1rem;
         font-weight: 400;
+    }
+} */
+
+@media (max-width: 480px) {
+    .logoTrip {
+        margin: 0;
+        padding: 0;
+
+        gap: 40px;
+
+        font-weight: 700;
+        font-size: 1.6rem;
+    }
+
+    .sloganHeader {
+        margin: 0;
+        padding: 0;
+        margin-left: 20px;
+
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+    }
+}
+
+@media (max-width: 370px) {
+    .sloganHeader {
+        /* display: none; */
+        margin-left: 10px;
     }
 }

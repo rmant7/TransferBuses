@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Autocomplete, TextField} from "@mui/material";
+import {Autocomplete, InputLabel, TextField} from "@mui/material";
 import locations from '../../cheapTripData/locations.json'
 import common_routes from '../../cheapTripData/routes.json'
 import fixed_routes from '../../cheapTripData/fixed_routes.json'
@@ -88,8 +88,24 @@ function CheapTripSearch(props) {
                     blurOnSelect
                     openOnFocus
                     options={fromOptions}
-                    sx={{width: '100%'}}
-                    renderInput={(params) => <TextField {...params} label="From"/>}
+                    sx={{
+                        width: '100%',
+                        padding: { md: '9px', xs: '4px' },
+                        borderColor: '#FF5722'
+                    }}
+                    renderInput={(params) => <div>
+                        <span className={s.label}>
+                            {i18n.t("From")}
+                        </span>
+                    <TextField {...params}
+                           sx={{
+                                input: {fontSize: { lg: '16px', xs: '13px' }},
+                                fieldset: {borderRadius: "8px"}
+                        }}                    
+                        // label="From"
+                        placeholder='Enter city name'
+                        color="warning" />
+                    </div>}
                 />
                 <DoubleArrowIcon className={classes.media_icon}/>
                 <Autocomplete
@@ -102,22 +118,45 @@ function CheapTripSearch(props) {
                     blurOnSelect
                     openOnFocus
                     options={toOptions}
-                    sx={{width: '100%'}}
-                    renderInput={(params) => <TextField {...params} label="To"/>}
+                    sx={{
+                        width: '100%',
+                        padding: { md: '9px', xs: '4px' }
+                    }}
+                    renderInput={(params) => <div>
+                        <span className={s.label}>
+                            {i18n.t("To")}
+                        </span>
+                        <TextField {...params}
+                            sx={{
+                                input: {fontSize: { md: '16px', xs: '13px' }},
+                                fieldset: {borderRadius: "8px"}
+                            }}
+                            // label="To"
+                            placeholder='Enter city name'
+                            color="warning"
+                            className={s.input} />
+                        </div>}
                 />
             </form>
             <div className={classes.filter_buttons}>
-                <Button variant="outlined" onClick={cleanForm} type="reset">
-                    {i18n.t("Clean")}
+                <Button
+                    className={s.button}
+                    variant="outlined"
+                    onClick={cleanForm}
+                    style={{ borderRadius: "8px", fontSize: {md: '16px', xs: '13px'}, textTransform: 'none', minHeight: "34px"}}
+                    type="reset"
+                >
+                    {i18n.t("Clear form")}
                 </Button>
                 <Button
+                    className={s.button}
                     variant="contained"
                     color="primary"
                     onClick={submit}
-                    style={{marginLeft: "10px"}}
+                    style={{ marginLeft: "10px", borderRadius: "8px", fontSize: { md: '16px', xs: '13px' }, textTransform: 'none', minHeight: "34px" }}
                     type="button"
                 >
-                    {i18n.t("Let's Go")}
+                    {i18n.t("Let`s Go")}
                 </Button>
             </div>
             <div>

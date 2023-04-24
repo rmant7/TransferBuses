@@ -11,7 +11,7 @@ import { useLocation } from 'react-router';
 const HeaderComponent = () => {
   const page_mode = useStatePath();
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" className={css.elevation4}>
       <Toolbar className={css.navbar}>
         <LogoHeader page_mode={page_mode} />
         <Nav />
@@ -25,15 +25,12 @@ export default HeaderComponent;
 
 function useStatePath() {
   const { pathname } = useLocation();
-  if (pathname === MAIN_ROUTE || pathname === CONTACTS_ROUTE) {
+  // if (pathname === MAIN_ROUTE || pathname === CONTACTS_ROUTE) {
+  if (pathname === MAIN_ROUTE) {
     return "CheapTrip";
+  }
+  if (pathname === CONTACTS_ROUTE) {
+    return "Contacts";
   }
   return "TransferBuses";
 }
-
-
-
-
-
-
-

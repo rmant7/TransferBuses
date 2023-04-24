@@ -21,7 +21,7 @@ const Nav = () => {
                 edge="end"
                 color="inherit"
                 aria-label="menu"
-                className={classes.menuButton}
+                // className={classes.menuButton}
             >
                 <MenuIcon />
             </IconButton>

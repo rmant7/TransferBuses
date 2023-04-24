@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { Drawer, ListItem, List, ListItemText } from '@material-ui/core';
+import { Drawer, ListItem, List, ListItemText, Typography } from '@material-ui/core';
+import AirplaneTicketOutlinedIcon from '@mui/icons-material/AirplaneTicketOutlined';
+import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import i18n from "../../../i18n";
 import { getSidebar } from '../../../redux/selectors';
@@ -25,9 +27,13 @@ const Sidebar = props => {
       open={sidebar}
       onClose={() => dispatch(setSidebarAction(false))}
     >
-
       <div className={css.sideBarHeader}>
         {/* <span>{props.page_mode}</span> */}
+        <Typography
+          style={{ fontSize: "1.25rem" }}
+          className={css.sideBarHeaderText}>
+          Our servises
+        </Typography>
         <CloseIcon
           style={{ cursor: "pointer" }}
           onClick={() => dispatch(setSidebarAction(false))}
@@ -38,6 +44,7 @@ const Sidebar = props => {
         <div className={css.sideBarLine} />
 
         <ListItem button key={MAIN_ROUTE}>
+          <AirplaneTicketOutlinedIcon style={{ marginRight: "5px" }}/>
           <ListItemText
             primary={i18n.t("CheapTrip")}
             onClick={() => closeHandler(MAIN_ROUTE)}
@@ -51,6 +58,7 @@ const Sidebar = props => {
         <div className={css.sideBarLine} />
 
         <ListItem button key={CONTACTS_ROUTE}>
+          <PhoneOutlinedIcon style={{ marginRight: "5px" }}/>
           <ListItemText
             primary={i18n.t("Contacts")}
             onClick={() => closeHandler(CONTACTS_ROUTE)}

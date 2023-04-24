@@ -34,15 +34,32 @@ export default function FiltersCitiesFrom() {
 
     return (
         <div className={classes.filters}>
+            <div>
+            <span className={classes.filter_label}>{i18n.t("Find a city")}</span>
             <FilterComponent
-                label={i18n.t("FromCity")}
+                // label={i18n.t("FromCity")}
+                placeholder={i18n.t("Enter city name")}
                 options={getCities()}
                 handler={handleInputFrom}
                 inputValue={inputFromTo.inputFromCity}
                 getOptionLabel={(o) => o.name}
             />
+            </div>
             <div className={classes.filter_buttons}>
-                <Button variant="contained" color="primary" onClick={handleApplyFilter}>
+                <Button
+                    className={classes.filter_button}
+                    style={{borderRadius: "8px"}}
+                    variant="contained"
+                    color="primary"
+                    onClick={handleApplyFilter}
+                >
+                    {i18n.t("Search")}
+                </Button>
+                {/* <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleApplyFilter}
+                >
                     {i18n.t("Apply")}
                 </Button>
                 <Button
@@ -51,7 +68,7 @@ export default function FiltersCitiesFrom() {
                     style={{ marginLeft: "10px" }}
                 >
                     {i18n.t("Clear")}
-                </Button>
+                </Button> */}
             </div>
         </div>
     );

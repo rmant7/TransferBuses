@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import css from "./MenuTrip.module.css";
 import { useStyles } from "../../../utils/useStyles";
 import { useDispatch } from 'react-redux';
@@ -30,14 +31,15 @@ export default () => {
   };
   return (
     <div className={css.MenuTrip}>
-
       <Button
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={handleClick}
         className={css.MenuTrip_btn}
       >
-        TransferBuses
+        <BookOutlinedIcon style={{ marginRight: "5px" }}/>
+        {/* TransferBuses */}
+        BudgetTravelTips
       </Button>
 
       <Menu
