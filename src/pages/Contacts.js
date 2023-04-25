@@ -25,7 +25,7 @@ const Contacts = () => {
           </Grid> */}
           <Grid item xs={12} className={css.item}>
             <Typography style={{fontWeight: 400}} display="block" gutterBottom>
-            {i18n.t("Name")}
+            {i18n.t("Roman Mantelmakher")}
             </Typography>
           </Grid>
           <Grid item xs={12} className={css.item}>
