@@ -108,9 +108,9 @@
 }
 
 @media (max-width: 1024px) {
-    /* .viber{
+    .viber{
         display: none;
-    } */
+    }
     .viber-mb{
         display: block;
     }
