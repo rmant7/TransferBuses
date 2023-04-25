@@ -65,6 +65,7 @@ export default function PassengerPage() {
       <div style={{ width: "200px", margin: "10px auto", textAlign: "center" }}>
         {data.nextTransfers.length === PAGE_SIZE && data.transfers.length !== 0 && !data.isFilterApply && (
           <LoadingButton
+            style={{borderRadius: "8px"}}
             variant="contained"
             loading={loading.isLoadingNextTransfers}
             onClick={addNextHandler}

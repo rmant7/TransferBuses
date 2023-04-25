@@ -3,18 +3,21 @@
     display: flex;
     justify-content: space-evenly;
 }
+
 .whatsapp{
     margin-top: 10px;
     color: rgb(255, 255, 255);
     width: 40px;
     height: auto;
 }
+
 .phone{
     margin-top: 14px;
     width: 30px;
     height: auto;
     color: rgb(255, 255, 255);
 }
+
 .telegram{
     margin-top: 10px;
     margin-right: 3px;
@@ -57,10 +60,57 @@
     background-color: rgb(143, 93, 183) !important
 }
 
+@media (max-width: 480px) {
+    .social-wrapper{
+        justify-content: flex-start;
+        gap: 10px;
+
+        margin: 15px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .whatsapp{
+       width: 24px;
+       height: 24px;
+
+       margin-top: 5px;
+    }
+
+    .phone{
+       width: 18px;
+       height: 18px;
+
+       margin-top: 8px;
+    }
+
+    .telegram{
+       width: 24px;
+       height: 24px;
+
+       margin-top: 5px;
+    }
+
+    .viber-mb{
+       width: 24px;
+       height: 24px;
+
+       margin-top: 6px;
+       margin-left: 5px;
+    }
+    
+    .social-button{
+       width: 34px;
+       height: 34px;
+
+       border-radius: 50%;
+    }
+}
+
 @media (max-width: 1024px) {
-    /* .viber{
+    .viber{
         display: none;
-    } */
+    }
     .viber-mb{
         display: block;
     }

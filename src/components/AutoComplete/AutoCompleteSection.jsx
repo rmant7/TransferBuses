@@ -173,7 +173,10 @@ export const AutoCompleteSection = () => {
 						onChange={(e) => {
 							onChangeHandlerFrom(e.target.value);
 						}}
-						placeholder='From'
+		                freeSolo
+						variant="outlined"
+						id="combo-box-demo"
+						placeholder={i18n.t("From")}
 						value={cityName}
 						setValue={setCityName}
 						options={optionsFrom}
@@ -217,14 +220,19 @@ export const AutoCompleteSection = () => {
 				</div>
 			</div>
 			<div className={classes.filter_buttons}>
-				<Button variant='outlined' onClick={handleClearFields} type='reset'>
+				<Button
+					variant='outlined'
+					onClick={handleClearFields}
+					style={{borderRadius: "8px", boxShadow:"none", minWidth: "100px"}}
+					type='reset'
+				>
 					{i18n.t('Clean')}
 				</Button>
 				<Button
 					variant='contained'
 					color='primary'
 					onClick={() => handleClickResults()}
-					style={{ marginLeft: '10px' }}
+					style={{ marginLeft: '10px', borderRadius: "8px", boxShadow:"none", minWidth: "100px" }}
 					type='submit'
 				>
 					{i18n.t("Let's Go")}

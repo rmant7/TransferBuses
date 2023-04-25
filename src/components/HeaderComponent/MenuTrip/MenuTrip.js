@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import DirectionsBusOutlinedIcon from '@mui/icons-material/DirectionsBusOutlined';
 import css from "./MenuTrip.module.css";
 import { useStyles } from "../../../utils/useStyles";
 import { useDispatch } from 'react-redux';
@@ -37,6 +38,7 @@ export default () => {
         onClick={handleClick}
         className={css.MenuTrip_btn}
       >
+        <DirectionsBusOutlinedIcon style={{ marginRight: "5px", width: "1.2rem", height: "1.2rem" }}/>
         TransferBuses
       </Button>
 
