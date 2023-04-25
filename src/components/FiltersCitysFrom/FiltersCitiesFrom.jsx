@@ -42,13 +42,17 @@ export default function FiltersCitiesFrom() {
                 getOptionLabel={(o) => o.name}
             />
             <div className={classes.filter_buttons}>
-                <Button variant="contained" color="primary" onClick={handleApplyFilter}>
+                <Button
+                    style={{borderRadius: "8px"}}
+                    variant="contained"
+                    color="primary"
+                    onClick={handleApplyFilter}>
                     {i18n.t("Apply")}
                 </Button>
                 <Button
                     variant="outlined"
                     onClick={handleClearFields}
-                    style={{ marginLeft: "10px" }}
+                    style={{ marginLeft: "10px", borderRadius: "8px" }}
                 >
                     {i18n.t("Clear")}
                 </Button>

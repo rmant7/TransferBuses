@@ -1,11 +1,18 @@
 .sideBarHeader {
     display: flex;
     padding: 1rem;
-    justify-content: flex-end;
-    /* justify-content: space-between; */
+    /* justify-content: flex-end; */
+    justify-content: space-between;
 }
 
-.sideBarLine {
+/* .sideBarLine {
    border-bottom: 1px solid white;
-}
+} */
 
+.sideBarHeaderText{
+    font-weight: 400;
+    /* font-size: 20px; */
+    line-height: 23px;
+
+    color: #FFFFFF;
+}

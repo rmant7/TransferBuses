@@ -6,7 +6,8 @@ import css from "./Logos.module.css";
 
 export const LogoHeader = ({ page_mode }) => {
   if(page_mode === "CheapTrip") return LogoTrip();
-  if(page_mode === "TransferBuses") return LogoBus();
+  if (page_mode === "TransferBuses") return LogoBus();
+  if(page_mode === "Contacts") return LogoContacts();
 }
 
 function LogoBus() {
@@ -43,5 +44,10 @@ function LogoTrip() {
   );
 }
 
-
-
+function LogoContacts() {
+  return (
+      <div className={css.logo}>
+        <span className={css.logoTrip}>Contacts</span>
+      </div>
+  );
+};

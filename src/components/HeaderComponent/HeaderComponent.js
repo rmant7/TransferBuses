@@ -25,15 +25,12 @@ export default HeaderComponent;
 
 function useStatePath() {
   const { pathname } = useLocation();
-  if (pathname === MAIN_ROUTE || pathname === CONTACTS_ROUTE) {
+  // if (pathname === MAIN_ROUTE || pathname === CONTACTS_ROUTE) {
+  if (pathname === MAIN_ROUTE) {
     return "CheapTrip";
+  }
+    if (pathname === CONTACTS_ROUTE) {
+    return "Contacts";
   }
   return "TransferBuses";
 }
-
-
-
-
-
-
-
