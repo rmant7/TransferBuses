@@ -121,7 +121,7 @@ export default function SearchResultItem({
 				<Typography style={style.boldText}>
 					{from} - {to}
 				</Typography>
-				{defineIconOfTransport(data.transportation_type)}
+				{/* {defineIconOfTransport(data.transportation_type)} */}
 			</Box>
 			<Box style={style.directions}>
 				<Typography sx={{ color: 'rgb(119, 87, 80)' }}>{time}</Typography>
@@ -136,7 +136,7 @@ export default function SearchResultItem({
 							: {}
 					}
 				>
-					{defineTypeOfTransport(data.transportation_type)}
+					{/* {defineTypeOfTransport(data.transportation_type)} */}
 					<Link
 						href='https://www.booking.com/index.en-gb.html'
 						target='_blank'

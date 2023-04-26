@@ -17,15 +17,22 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 export default function SearchResultView({ city, cityFrom, cityTo, data }) {
+	console.log(cityFrom)
+	console.log(cityTo)
+	console.log(data)
 	const style = useMediaQuery('(max-width:650px)')
 		? resultStyle.sm
 		: resultStyle.lg;
 
-	const timeTravel = `${Math.floor(data[0][0].trip_duration / 60)} h ${
-		data[0][0].trip_duration - Math.floor(data[0][0].trip_duration / 60) * 60
+	// const timeTravel = `${Math.floor(data[0][0].trip_duration / 60)} h ${
+	// 	data[0][0].trip_duration - Math.floor(data[0][0].trip_duration / 60) * 60
+	// } m`;
+	const timeTravel = `${Math.floor(data[0].duration / 60)} h ${
+		data[0].duration - Math.floor(data[0].duration / 60) * 60
 	} m`;
 
-	const priceTravel = `€ ${data[0][0].euro_price}`;
+
+	const priceTravel = `€ ${data[0].price}`;
 
 	const defineIconOfTransport = (transport) => {
 		let resultIcon;
@@ -77,7 +84,7 @@ export default function SearchResultView({ city, cityFrom, cityTo, data }) {
 				>
 					<Box style={style.box}>
 						<Box style={style.inline}>
-							{defineIconOfTransport(data[0][0].transportation_type)}
+							{/* {defineIconOfTransport(data[0][0].transportation_type)} */}
 						</Box>
 						<Typography>
 							{cityFrom[0].properties.display_name}
@@ -96,9 +103,10 @@ export default function SearchResultView({ city, cityFrom, cityTo, data }) {
 					</Box>
 				</AccordionSummary>
 				<AccordionDetails>
-					{[data[0].length].map((item) => (
+					{/* {[data[0].length].map((item) => ( */}
+					{data.map((item) => (
 						<SearchResultItem
-							key={item.id}
+							key={item}
 							item={item}
 							from={cityFrom[0].properties.display_name}
 							to={cityTo[0].properties.display_name}
