@@ -98,7 +98,7 @@ export default function SearchResultView({ city, cityFrom, cityTo, data }) {
 				<AccordionDetails>
 					{[data[0].length].map((item) => (
 						<SearchResultItem
-							key={item.id}
+							key={data[0]}
 							item={item}
 							from={cityFrom[0].properties.display_name}
 							to={cityTo[0].properties.display_name}
