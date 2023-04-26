@@ -13,8 +13,6 @@ import classes from '../SearchCheapTrip/SearchComponent.module.css';
 import SearchResultView from '../SearchResult/SearchResultView';
 import SearchFailResultView from '../SearchResult/SearchFailResultView';
 
-// import travelData from '../../cheapTripData/routesO.json'; //----travel_data.json
-// import dataNew from '../../cheapTripData/locationsO.json';
 import travelData from '../../cheapTripData/routes.json'; //----travel_data.json
 import dataNew from '../../cheapTripData/locations.json';
 
@@ -31,24 +29,13 @@ export const AutoCompleteSection = () => {
 	const [isFailResult, setIsFailResult] = useState(false);
 	const [resultOfSearch, setResultOfSearch] = useState(null);
 
-	// const findCityData = (curCity) => {
-	// 	const result = Object.values(dataNew).filter((item) => {
-	// 		if (item.name === curCity[0].properties.display_name) return item;
-    //   // return [];
-	// 	});
-
-	// 	console.log(result)
-	// 	console.log(result[0])
-	// 	// findCityData2(curCity)
-	// 	return result[0];
-	// };
-
 	const findCityData = (curCity) => {
+		// const result = Object.values(dataNew).filter((item) => {
+		// 	if (item.name === curCity[0].properties.display_name) return item;
+
 		const result = Object.entries(dataNew).filter((item) => {
 			if (item[1].name === curCity[0].properties.display_name) return item[0];
 		});
-
-		// console.log(result)
 		// console.log(result[0])
 		return result[0];
 	};
@@ -64,8 +51,8 @@ export const AutoCompleteSection = () => {
 			)
 				result.push(item);
 		});
-		console.log(result[0])
-		return result[0];
+		// console.log(result)
+		return result;
 	};
 
 	const resultClick = ({ geometry, display_name }) => {
@@ -165,15 +152,12 @@ export const AutoCompleteSection = () => {
 		setIsResult(false); 
 		setIsFailResult(false);
 	};
-
 	const handleClickResults = () => {
 		const result = [];
 		const cityFromYouTravel = findCityData(myJson);
 		const cityToYouTravel = findCityData(myJson2);
-		result.push(findRoutes(cityFromYouTravel, cityToYouTravel));
-		// console.log("cityFromYouTravel", cityFromYouTravel[0])
-		// console.log("cityToYouTravel", cityToYouTravel[0])
-		console.log(result)
+		result.push(findRoutes(cityFromYouTravel[0], cityToYouTravel[0]));
+		// console.log(result)
 		if (
 			result[0] === 'We have not found such a route' ||
 			result[0].length === 0 
@@ -201,7 +185,6 @@ export const AutoCompleteSection = () => {
 						id="combo-box-demo"
 						placeholder={i18n.t("From")}
 						value={cityName}
-						// value={'London'}
 						setValue={setCityName}
 						options={optionsFrom}
 						setOptions={setOptionsFrom}
@@ -226,7 +209,6 @@ export const AutoCompleteSection = () => {
 						}}
 						placeholder='To'
 						value={cityNameTo}
-						// value={"Paris"}
 						setValue={setCityNameTo}
 						options={optionsTo}
 						setOptions={setOptionsTo}
