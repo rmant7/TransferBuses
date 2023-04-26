@@ -46,8 +46,8 @@ export const AutoCompleteSection = () => {
 			if (
 				// item.from === parseInt(cityFrom.id) &&
 				// item.to === parseInt(cityTo.id)
-				item.from === parseInt(cityFrom) &&
-				item.to === parseInt(cityTo)
+				item.from === parseInt(cityFrom[0]) &&
+				item.to === parseInt(cityTo[0])
 			)
 				result.push(item);
 		});
@@ -156,7 +156,7 @@ export const AutoCompleteSection = () => {
 		const result = [];
 		const cityFromYouTravel = findCityData(myJson);
 		const cityToYouTravel = findCityData(myJson2);
-		result.push(findRoutes(cityFromYouTravel[0], cityToYouTravel[0]));
+		result.push(findRoutes(cityFromYouTravel, cityToYouTravel));
 		// console.log(result)
 		if (
 			result[0] === 'We have not found such a route' ||
