@@ -2,14 +2,15 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { publicRoutes } from '../../routes/publicRoutes';
 import { MAIN_ROUTE } from '../../utils/constants';
+import SearchResultView from '../SearchResult/SearchResultView';
 
 const AppRouter = () => {
   return (
-    //if delete switch we can try to add other rotes for components
     <Switch> 
       {publicRoutes.map(({ path, Component }) => (
         <Route key={path} path={path} component={Component} exact/>
       ))}
+      <Route path='/#/:id' component={SearchResultView}/>
       <Redirect to={MAIN_ROUTE} />
     </Switch>
   );
