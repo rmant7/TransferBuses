@@ -153,7 +153,8 @@ export const AutoCompleteSection = () => {
 		const result = [];
 		const cityFromYouTravel = findCityData(myJson);
 		const cityToYouTravel = findCityData(myJson2);
-		history.push(`/#/from_${cityFromYouTravel.name}`)
+		history.replace(`/#/from=${cityFromYouTravel.name}&fromID=${cityFromYouTravel.id}&
+			to=${cityToYouTravel.name}&toID=${cityToYouTravel.id}`);
 		result.push(findRoutes(cityFromYouTravel, cityToYouTravel));
 		if (
 			result[0] === 'We have not found such a route' ||
