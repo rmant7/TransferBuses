@@ -15,6 +15,7 @@ import SearchFailResultView from '../SearchResult/SearchFailResultView';
 
 import travelData from '../../cheapTripData/routes.json'; //----travel_data.json
 import dataNew from '../../cheapTripData/locations.json';
+import { useHistory } from 'react-router';
 
 export const AutoCompleteSection = () => {
 	const [cityName, setCityName] = useState(''); ///******data from input FROM******** */
@@ -28,6 +29,7 @@ export const AutoCompleteSection = () => {
 	const [isResult, setIsResult] = useState(false); //------ for display layout of Search results after click
 	const [isFailResult, setIsFailResult] = useState(false);
 	const [resultOfSearch, setResultOfSearch] = useState(null);
+	let history = useHistory();
 
 	const findCityData = (curCity) => {
 		const result = Object.values(dataNew).filter((item) => {
@@ -127,6 +129,7 @@ export const AutoCompleteSection = () => {
 	const handleClearFields = () => {
 		// dispatch(onChangeHandlerFrom(''));
 		// dispatch(onChangeHandlerTo(''));
+		history.goBack();
 		setCityNameTo('');
 		setCityName('');
 		setIsResult(false);
@@ -150,6 +153,7 @@ export const AutoCompleteSection = () => {
 		const result = [];
 		const cityFromYouTravel = findCityData(myJson);
 		const cityToYouTravel = findCityData(myJson2);
+		history.push(`/#/from_${cityFromYouTravel.name}`)
 		result.push(findRoutes(cityFromYouTravel, cityToYouTravel));
 		if (
 			result[0] === 'We have not found such a route' ||
