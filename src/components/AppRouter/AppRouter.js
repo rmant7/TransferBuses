@@ -5,7 +5,8 @@ import { MAIN_ROUTE } from '../../utils/constants';
 
 const AppRouter = () => {
   return (
-    <Switch>
+    //if delete switch we can try to add other rotes for components
+    <Switch> 
       {publicRoutes.map(({ path, Component }) => (
         <Route key={path} path={path} component={Component} exact/>
       ))}
