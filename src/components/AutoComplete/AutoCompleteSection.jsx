@@ -129,7 +129,7 @@ export const AutoCompleteSection = () => {
 	const handleClearFields = () => {
 		// dispatch(onChangeHandlerFrom(''));
 		// dispatch(onChangeHandlerTo(''));
-		history.goBack();
+		history.replace('/#');
 		setCityNameTo('');
 		setCityName('');
 		setIsResult(false);
