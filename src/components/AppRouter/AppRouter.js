@@ -10,7 +10,7 @@ const AppRouter = () => {
       {publicRoutes.map(({ path, Component }) => (
         <Route key={path} path={path} component={Component} exact/>
       ))}
-      <Route path='/#/:url' component={SearchResultView} exact/>
+      <Route path='/en-US/#/:url' component={SearchResultView} exact/>
       <Redirect to={MAIN_ROUTE} />
     </Switch>
   );
