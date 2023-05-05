@@ -129,7 +129,7 @@ export const AutoCompleteSection = () => {
 	const handleClearFields = () => {
 		// dispatch(onChangeHandlerFrom(''));
 		// dispatch(onChangeHandlerTo(''));
-		history.replace('/#');
+		history.push('/en-US');
 		setCityNameTo('');
 		setCityName('');
 		setIsResult(false);
@@ -153,8 +153,8 @@ export const AutoCompleteSection = () => {
 		const result = [];
 		const cityFromYouTravel = findCityData(myJson);
 		const cityToYouTravel = findCityData(myJson2);
-		history.push(`/#/myPath?from=${cityFromYouTravel.name}&fromID=${cityFromYouTravel.id}&
-			to=${cityToYouTravel.name}&toID=${cityToYouTravel.id}`);
+		const url = `search/myPath?from=${cityFromYouTravel.name}&fromID=${cityFromYouTravel.id}&
+		to=${cityToYouTravel.name}&toID=${cityToYouTravel.id}`;
 		result.push(findRoutes(cityFromYouTravel, cityToYouTravel));
 		if (
 			result[0] === 'We have not found such a route' ||
@@ -164,6 +164,7 @@ export const AutoCompleteSection = () => {
 			setIsResult(false);
 			setIsFailResult(true);
 		} else {
+			history.push(`/en-US/#/${url}`);
 			setIsResult(true);
 			setIsFailResult(false);
 			setResultOfSearch(result);
