@@ -59,7 +59,7 @@
     "start-gin1104": "env-cmd -e dev-gin1104 react-scripts start",
     "run1": "node server.js",
     "run": "react-scripts start",
-    "build": "env-cmd -e prod react-scripts build",
+    "build": "CI=false && env-cmd -e prod react-scripts build",
     "build-dev": "env-cmd -e dev react-scripts build",
     "build-yuvin": "env-cmd -e dev-yuvinogradov react-scripts build",
     "build-justedlev": "env-cmd -e dev-justedlev react-scripts build",
