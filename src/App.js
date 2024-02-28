@@ -1,12 +1,13 @@
 import React, {useEffect} from "react";
 import {useSelector} from "react-redux";
 // import './App.css';
-import {AppRouter} from "./components";
 import {ThemeProvider} from "@material-ui/core/styles";
 import {useTranslation} from "react-i18next";
-import {theme} from "./utils/useStyles";
 import {StylesProvider} from "@material-ui/core";
-import HeaderComponent from "./components/HeaderComponent/HeaderComponent";
+import HeaderComponent
+    from "./new_achitecture/modules/mainPage/presentation/components/HeaderComponent/HeaderComponent";
+import {AppRouter} from "./new_achitecture/general/routes/AppRouter";
+import {theme} from "./new_achitecture/general/MUI/useStyles";
 
 function App() {
     const {i18n} = useTranslation();

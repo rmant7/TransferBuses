@@ -1,12 +1,12 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
 import './index.css';
 import 'typeface-roboto';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Box, LinearProgress } from '@material-ui/core';
+import { store } from './new_achitecture/general/redux/store';
 
 console.log(performance.now())
 
