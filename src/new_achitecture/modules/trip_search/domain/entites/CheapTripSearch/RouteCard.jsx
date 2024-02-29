@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import locations from '../..//../data/jsons/cheapTripData/locations.json';
 import TravelInfo from './TravelInfo';
 import Accordion from '@mui/material/Accordion';
@@ -8,9 +8,6 @@ import { Box } from '@material-ui/core';
 import Typography from '@mui/material/Typography';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import SearchResultItem from '../../../presentation/components/searchResult/SearchResultItem';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { resultStyle } from '../../../presentation/components/searchResult/style';
 import useRouteCard from '../../../presentation/hooks/useRouteCard';
 
 function RouteCard({ route }) {

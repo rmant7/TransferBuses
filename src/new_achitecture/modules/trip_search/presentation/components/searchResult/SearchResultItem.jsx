@@ -1,11 +1,5 @@
 import React from 'react';
 import { Box, Link, Typography, Button } from '@material-ui/core';
-import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
-import DirectionsBoatIcon from '@mui/icons-material/DirectionsBoat';
-import TrainIcon from '@mui/icons-material/Train';
-import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
-import { resultItemStyle } from './style';
-import RideSharing from '../../../../../general/assets/car-sharing.png';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import useSearchResult from '../../hooks/useSearchResult';
 

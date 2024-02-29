@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import Button from '@material-ui/core/Button';
@@ -7,7 +6,6 @@ import TextField from '@material-ui/core/TextField';
 // import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import styles from './CarrierPage.module.css';
-import { uploadTransfer } from '../../../trip_search/data/api/data-service';
 import { useHistory } from 'react-router-dom';
 import {
   Checkbox,
@@ -25,18 +23,11 @@ import {
   Select,
   Tooltip,
 } from '@material-ui/core';
-import cities_json from '../../../trip_search/domain/entites/utils/jsons/cities.json';
 import i18n from '../../../trip_search/domain/entites/utils/language/i18n';
-import { useSelector } from 'react-redux';
 import { currencies } from '../currenciesSelector/currencies';
-import axios from 'axios';
 import 'yup-phone-lite';
-import { timeZones } from './timezones/timezones';
-import { getLoading } from '../../../trip_search/presentation/redux/reducers/selectors';
-import { useDispatch } from 'react-redux';
 import { LoadingButton } from '@mui/lab';
 import { Alert } from '@mui/material';
-import { loadingUploadTransferAction } from '../../../trip_search/presentation/redux/reducers/actions/loading-actions';
 import { useStyles } from '../../../../general/MUI/useStyles';
 import useCarrier from '../hooks/useCarrier';
 

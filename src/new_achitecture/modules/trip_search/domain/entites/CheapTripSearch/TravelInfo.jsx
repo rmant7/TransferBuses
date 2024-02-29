@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import locations from '../../../data/jsons/cheapTripData/locations.json';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { resultItemStyle } from '../../../presentation/components/searchResult/style';
 import { Box, Button, Link, Typography } from '@material-ui/core';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Modal from '@mui/material/Modal';
@@ -9,8 +7,13 @@ import s from './cheaptrip.module.css';
 import useTravelInfo from '../../../presentation/hooks/useTravelInfo';
 
 function TravelInfo({ travelInfo }) {
-  const { style, lessThan480, additionalInfoOpened, additionalInformation, setAdditionalInfoOpened } =
-    useTravelInfo(travelInfo);
+  const {
+    style,
+    lessThan480,
+    additionalInfoOpened,
+    additionalInformation,
+    setAdditionalInfoOpened,
+  } = useTravelInfo(travelInfo);
   return (
     <div>
       {locations ? (
