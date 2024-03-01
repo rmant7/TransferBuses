@@ -18,12 +18,32 @@ const useCarrier = () => {
   // const [nearestCity, setNearestCity] = useState();
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
+  const [message, setMessage] = useState({ type: 'info', msg: '' });
+  const [open, setOpen] = useState(false);
   const [userTimeZone, setUserTimeZone] = useState(() => {
     const timeZone = timeZones.find(
       (tz) => tz.shift === '' + new Date().getTimezoneOffset() / -60
     );
     return timeZone || timeZones[0];
   });
+
+  useEffect(() => {
+    let startPos;
+    const geoSuccess = function (position) {
+      startPos = position;
+      setLatitude(startPos.coords.latitude);
+      setLongitude(startPos.coords.longitude);
+      citiesApi.get(startPos.coords.latitude, startPos.coords.longitude);
+    };
+    // geolocation determination is temporary commented out. To turn it on, uncomment the line bellow
+    // navigator.geolocation.getCurrentPosition(geoSuccess);
+  }, []);
+
+  useEffect(() => {
+    if (latitude && longitude) {
+      getDefaultCity();
+    }
+  }, [latitude, longitude]);
 
   const maxDurationHour = 48;
   const durations = useMemo(() => {
@@ -35,9 +55,6 @@ const useCarrier = () => {
     durationsArray.push(maxDurationHour + ':00 +');
     return durationsArray;
   }, []);
-
-  const [message, setMessage] = useState({ type: 'info', msg: '' });
-  const [open, setOpen] = useState(false);
 
   const submitForm = (values) => {
     console.log('SUBMITTING');
@@ -149,24 +166,6 @@ const useCarrier = () => {
             return acc;
           }, [])
           .sort((a, b) => (a.title < b.title ? -1 : 1));
-
-  useEffect(() => {
-    let startPos;
-    const geoSuccess = function (position) {
-      startPos = position;
-      setLatitude(startPos.coords.latitude);
-      setLongitude(startPos.coords.longitude);
-      citiesApi.get(startPos.coords.latitude, startPos.coords.longitude);
-    };
-    // geolocation determination is temporary commented out. To turn it on, uncomment the line bellow
-    // navigator.geolocation.getCurrentPosition(geoSuccess);
-  }, []);
-
-  useEffect(() => {
-    if (latitude && longitude) {
-      getDefaultCity();
-    }
-  }, [latitude, longitude]);
 
   const carrierData = {
     loading,
