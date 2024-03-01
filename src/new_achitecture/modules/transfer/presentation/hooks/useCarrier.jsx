@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLoading } from '../../../trip_search/presentation/redux/reducers/selectors';
 import { timeZones } from '../carrierPage/timezones/timezones';
@@ -24,6 +24,17 @@ const useCarrier = () => {
     );
     return timeZone || timeZones[0];
   });
+
+  const maxDurationHour = 48;
+  const durations = useMemo(() => {
+    const durationsArray = [' '];
+    for (let i = 1; i <= maxDurationHour; i++) {
+      durationsArray.push(i + ':00');
+      // durationsArray.push(i + ':30');
+    }
+    durationsArray.push(maxDurationHour + ':00 +');
+    return durationsArray;
+  }, []);
 
   const [message, setMessage] = useState({ type: 'info', msg: '' });
   const [open, setOpen] = useState(false);
@@ -155,7 +166,7 @@ const useCarrier = () => {
     if (latitude && longitude) {
       getDefaultCity();
     }
-  });
+  }, [latitude, longitude]);
 
   const carrierData = {
     loading,
@@ -170,6 +181,7 @@ const useCarrier = () => {
     submitForm,
     getDefaultCity,
     userTimeZone,
+    durations,
   };
 
   return {

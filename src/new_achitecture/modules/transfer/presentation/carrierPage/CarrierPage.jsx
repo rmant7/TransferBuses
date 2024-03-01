@@ -63,6 +63,7 @@ export default function CarrierPage() {
     submitForm,
     getDefaultCity,
     userTimeZone,
+    durations
   } = useCarrier();
 
   const classes = useStyles();
@@ -74,21 +75,6 @@ export default function CarrierPage() {
   // console.log(lang);
   //
   // console.log("user time zone", userTimeZone);
-
-  // const durations = [" ", "0:30",]
-  // for(let i=1; i<=12;i++){
-  //   durations.push(i+":00")
-  //   durations.push(i+":30")
-  // }
-
-  const durations = [' '];
-  const maxDurationHour = 48;
-  for (let i = 1; i < maxDurationHour; i++) {
-    durations.push(i + ':00');
-    // durations.push(i+":30")
-  }
-  // durations.pop()
-  durations.push(maxDurationHour + ':00 +');
 
   const handleClose = () => {
     setOpen(false);

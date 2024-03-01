@@ -73,16 +73,8 @@ export default function CarrierComponent() {
     open,
     setOpen,
     submitForm,
+    durations,
   } = useCarrier();
-
-  const durations = [' '];
-  const maxDurationHour = 48;
-  for (let i = 1; i < maxDurationHour; i++) {
-    durations.push(i + ':00');
-    // durations.push(i+":30")
-  }
-  // durations.pop()
-  durations.push(maxDurationHour + ':00 +');
 
   const handleClose = () => {
     setOpen(false);
