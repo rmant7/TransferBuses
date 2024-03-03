@@ -50,7 +50,7 @@ const useCheapTripSearch = () => {
 
   const fromOptions = locationsKeysSorted
     ? locationsKeysSorted.map((key) => ({
-        label: locations[key].name + ', ' + locations[key].country_name,
+        label: locations[key].name,
         key: key,
       }))
     : [];
@@ -60,7 +60,7 @@ const useCheapTripSearch = () => {
         ...locationsKeysSorted.map((key) => ({
           label:
             key !== '0'
-              ? locations[key].name + ', ' + locations[key].country_name
+              ? locations[key].name
               : '',
           key: key,
         })),

@@ -17,7 +17,7 @@ function TravelInfo({ travelInfo }) {
 
   const handleOpenInfo = () => {
     setAddInfoOpen();
-  } 
+  };
 
   return (
     <div>

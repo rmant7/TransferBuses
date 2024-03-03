@@ -33,6 +33,7 @@ function CheapTripSearch(props) {
           value={from || null}
           onChange={(e, newValue) => {
             setFrom(newValue ? newValue.label : '');
+            console.log(newValue);
             setFromKey(newValue ? newValue.key : '');
           }}
           // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
