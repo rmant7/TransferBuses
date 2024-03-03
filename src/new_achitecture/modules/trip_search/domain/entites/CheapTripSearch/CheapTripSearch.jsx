@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {Autocomplete, TextField} from "@mui/material";
 import locations from '../../../data/jsons/cheapTripData/locations.json'
 import common_routes from '../../../data/jsons/cheapTripData/routes.json'
@@ -11,6 +11,8 @@ import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import {Button} from "@material-ui/core";
 import i18n from "../utils/language/i18n";
 import {asyncAutocomplete} from './asyncAutocomplete';
+import ClearIcon from "@material-ui/icons/Clear";
+import {IconButton} from "@material-ui/core";
 
 function CheapTripSearch(props) {
     const routes = {...flying_routes, ...fixed_routes, ...common_routes}
@@ -98,7 +100,7 @@ function CheapTripSearch(props) {
         }
     }
 
-    const PAGINATION_LIMIT = 10
+    const PAGINATION_LIMIT = 4;
     const startAsyncAutocomplete = (e, setState, options) => {
         // get geolocation
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -117,35 +119,61 @@ function CheapTripSearch(props) {
         <div>
             <form action="" className={s.autocomplete}>
                 <Autocomplete
-                    value={from || null}
+                    value={from}
                     onChange={(e, newValue) => {
                         setFrom(newValue ? newValue.label : '')
                         setFromKey(newValue ? newValue.key : '')
                     }}
                     // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
                     disablePortal
+                    freeSolo
                     blurOnSelect
                     openOnFocus
                     options={checkFromOption}
                     sx={{width: '100%'}}
-                    renderInput={(params) => <TextField {...params} label="From"/>}
+                    clearIcon={true}
+                    renderInput={(params) =>
+                        <TextField {...params}
+                                   label="From"
+                                   variant="standard"
+                        />
+                    }
                     isOptionEqualToValue={(option, value) => option.label === value}
                 />
+                <ClearIcon style={{color: 'rgb(118, 118, 118)'}}
+                           onClick={() => {
+                               setFrom('');
+                               setFromKey('')
+                           }}
+                />
+
                 <DoubleArrowIcon className={classes.media_icon}/>
                 <Autocomplete
-                    value={to || null}
+                    value={to}
                     onChange={(e, newValue) => {
                         setTo(newValue ? newValue.label : '')
                         setToKey(newValue ? newValue.key : '')
                     }}
                     // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncToOptions, toOptions)}
                     disablePortal
+                    freeSolo
                     blurOnSelect
                     openOnFocus
                     options={checkToOption}
                     sx={{width: '100%'}}
-                    renderInput={(params) => <TextField {...params} label="To"/>}
+                    clearIcon={true}
+                    renderInput={(params) =>
+                        <TextField {...params}
+                                   label="To"
+                                   variant="standard"
+                        />}
                     isOptionEqualToValue={(option, value) => option.label === value}
+                />
+                <ClearIcon style={{color: 'rgb(118, 118, 118)'}}
+                           onClick={() => {
+                               setTo('');
+                               setToKey('')
+                           }}
                 />
             </form>
             <div className={classes.filter_buttons}>
