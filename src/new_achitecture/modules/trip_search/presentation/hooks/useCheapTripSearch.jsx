@@ -38,7 +38,6 @@ const useCheapTripSearch = () => {
       routesForRender[key] = common_routes[key] ? [common_routes[key]] : [];
     }
   }
-  //console.log(routesForRender);
 
   const locationsKeysSorted = (function () {
     if (!locations) return;
@@ -58,10 +57,7 @@ const useCheapTripSearch = () => {
     ? [
         { label: 'Anywhere', key: '0' },
         ...locationsKeysSorted.map((key) => ({
-          label:
-            key !== '0'
-              ? locations[key].name
-              : '',
+          label: key !== '0' ? locations[key].name : '',
           key: key,
         })),
       ]
@@ -76,8 +72,6 @@ const useCheapTripSearch = () => {
   };
   const submit = () => {
     if (from === '') return;
-    // console.log(from)
-    // console.log(fromKey)
     let routesKeys = Object.keys(routes);
     const filteredByFrom = routesKeys.filter(
       (key) => routes[key].from === +fromKey
@@ -117,14 +111,21 @@ const useCheapTripSearch = () => {
   const checkToOption =
     asyncToOptions.length !== 0 ? asyncToOptions : toOptions;
 
+  const selectFrom = (value) => {
+    setFrom(value.label);
+    setFromKey(value.key);
+  };
+  const selectTo = (value) => {
+    setTo(value.label);
+    setToKey(value.key);
+  };
+
   return {
     from,
-    setFrom,
-    setFromKey,
+    selectFrom,
+    selectTo,
     checkFromOption,
     to,
-    setTo,
-    setToKey,
     checkToOption,
     cleanForm,
     submit,
@@ -132,7 +133,7 @@ const useCheapTripSearch = () => {
     selectedRoutesKeys,
     PAGINATION_LIMIT,
     routesForRender,
-  }
+  };
 };
 
 export default useCheapTripSearch;

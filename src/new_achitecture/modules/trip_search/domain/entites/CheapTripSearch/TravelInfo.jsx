@@ -28,9 +28,7 @@ function TravelInfo({ travelInfo }) {
               <Typography style={style.boldText}>
                 {locations[travelInfo.from] && (
                   <span>
-                    {locations[travelInfo.from].name +
-                      ', ' +
-                      locations[travelInfo.from].country_name}
+                    {locations[travelInfo.from].name}
                   </span>
                 )}
                 <ArrowForwardIcon
@@ -39,9 +37,7 @@ function TravelInfo({ travelInfo }) {
                 />
                 {locations[travelInfo.to] && (
                   <span>
-                    {locations[travelInfo.to].name +
-                      ', ' +
-                      locations[travelInfo.to].country_name}
+                    {locations[travelInfo.to].name}
                   </span>
                 )}
               </Typography>
@@ -66,6 +62,7 @@ function TravelInfo({ travelInfo }) {
                 <Button
                   variant='outlined'
                   type='button'
+                  style={style.buyTicket}
                   onClick={handleOpenInfo}
                 >
                   Additional information
@@ -98,7 +95,7 @@ function TravelInfo({ travelInfo }) {
                 </Link>
               </Box>
               <Typography style={style.price}>
-                {travelInfo.price + `$`}{' '}
+                {travelInfo.price + ` €`}{' '}
               </Typography>
             </Box>
           </Box>

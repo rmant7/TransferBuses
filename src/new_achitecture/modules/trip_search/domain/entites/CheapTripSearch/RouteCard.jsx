@@ -30,9 +30,7 @@ function RouteCard({ route }) {
                   <Typography>
                     {locations[route.from] && (
                       <span>
-                        {locations[route.from].name +
-                          ', ' +
-                          locations[route.from].country_name}
+                        {locations[route.from].name}
                       </span>
                     )}
                     <ArrowForwardIcon
@@ -41,9 +39,7 @@ function RouteCard({ route }) {
                     />
                     {locations[route.to] && (
                       <span>
-                        {locations[route.to].name +
-                          ', ' +
-                          locations[route.to].country_name}
+                        {locations[route.to].name}
                       </span>
                     )}
                   </Typography>

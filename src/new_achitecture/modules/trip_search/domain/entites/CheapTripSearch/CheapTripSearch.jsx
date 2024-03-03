@@ -11,12 +11,10 @@ import useCheapTripSearch from '../../../presentation/hooks/useCheapTripSearch';
 function CheapTripSearch(props) {
   const {
     from,
-    setFrom,
-    setFromKey,
+    selectFrom,
+    selectTo,
     checkFromOption,
     to,
-    setTo,
-    setToKey,
     checkToOption,
     cleanForm,
     submit,
@@ -26,17 +24,28 @@ function CheapTripSearch(props) {
     routesForRender,
   } = useCheapTripSearch();
 
+  const handleSelectFrom = (value) => {
+    selectFrom(value);
+  };
+  const handleSelectTo = (value) => {
+    selectTo(value);
+  };
+
+  const handleCleanForm = () => {
+    cleanForm();
+  };
+  const handleSubmit = () => {
+    submit();
+  };
+
   return (
     <div>
       <form action='' className={s.autocomplete}>
         <Autocomplete
           value={from || null}
           onChange={(e, newValue) => {
-            setFrom(newValue ? newValue.label : '');
-            console.log(newValue);
-            setFromKey(newValue ? newValue.key : '');
+            handleSelectFrom(newValue ? newValue : '');
           }}
-          // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
           disablePortal
           blurOnSelect
           openOnFocus
@@ -49,10 +58,8 @@ function CheapTripSearch(props) {
         <Autocomplete
           value={to || null}
           onChange={(e, newValue) => {
-            setTo(newValue ? newValue.label : '');
-            setToKey(newValue ? newValue.key : '');
+            handleSelectTo(newValue ? newValue : '');
           }}
-          // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncToOptions, toOptions)}
           disablePortal
           blurOnSelect
           openOnFocus
@@ -63,13 +70,13 @@ function CheapTripSearch(props) {
         />
       </form>
       <div className={classes.filter_buttons}>
-        <Button variant='outlined' onClick={cleanForm} type='reset'>
+        <Button variant='outlined' onClick={handleCleanForm} type='reset'>
           {i18n.t('Clean')}
         </Button>
         <Button
           variant='contained'
           color='primary'
-          onClick={submit}
+          onClick={handleSubmit}
           style={{ marginLeft: '10px' }}
           type='button'
         >
