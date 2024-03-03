@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import {Autocomplete, TextField} from "@mui/material";
 import locations from '../../../data/jsons/cheapTripData/locations.json'
 import common_routes from '../../../data/jsons/cheapTripData/routes.json'
@@ -12,7 +12,6 @@ import {Button} from "@material-ui/core";
 import i18n from "../utils/language/i18n";
 import {asyncAutocomplete} from './asyncAutocomplete';
 import ClearIcon from "@material-ui/icons/Clear";
-import {IconButton} from "@material-ui/core";
 
 function CheapTripSearch(props) {
     const routes = {...flying_routes, ...fixed_routes, ...common_routes}
@@ -36,7 +35,6 @@ function CheapTripSearch(props) {
             routesForRender[key] = common_routes[key] ? [common_routes[key]] : [];
         }
     }
-    //console.log(routesForRender);
 
     const locationsKeysSorted = function () {
         if (!locations) return
@@ -81,8 +79,6 @@ function CheapTripSearch(props) {
     }
     const submit = () => {
         if (from === '') return
-        // console.log(from)
-        // console.log(fromKey)
         let routesKeys = Object.keys(routes)
         const filteredByFrom = routesKeys.filter(key => routes[key].from === +fromKey)
         if (to === '') {
@@ -194,7 +190,7 @@ function CheapTripSearch(props) {
                     style={{marginLeft: "10px", textTransform: "none", color: "#fff"}}
                     type="button"
                     disableElevation="true"
-                    disabled={to === '' || from === ''} //todo depends on input
+                    disabled={to === '' || from === ''}
                 >
                     {i18n.t("Let's go")}
                 </Button>
