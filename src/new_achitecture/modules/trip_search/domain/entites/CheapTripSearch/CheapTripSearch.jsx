@@ -4,9 +4,13 @@ import RouteCard from './RouteCard';
 import s from './cheaptrip.module.css';
 import classes from '../../../presentation/components/searchResult/SearchComponent.module.css';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
-import { Button } from '@material-ui/core';
+import { Button, InputLabel, Menu, MenuItem, Select } from '@material-ui/core';
 import i18n from '../utils/language/i18n';
 import useCheapTripSearch from '../../../presentation/hooks/useCheapTripSearch';
+import {
+  SORT_OPTIONS,
+  SORT_DIRECTION_OPTIONS,
+} from '../utils/constants/sortConstants';
 
 function CheapTripSearch(props) {
   const {
@@ -19,9 +23,17 @@ function CheapTripSearch(props) {
     cleanForm,
     submit,
     routes,
-    selectedRoutesKeys,
+    filteredRoutes,
     PAGINATION_LIMIT,
     routesForRender,
+    openFilterMenu,
+    closeFilterMenu,
+    anchorEl,
+    open,
+    sortDirection,
+    sortBy,
+    changeDirection,
+    selectSortBy,
   } = useCheapTripSearch();
 
   const handleSelectFrom = (value) => {
@@ -36,6 +48,21 @@ function CheapTripSearch(props) {
   };
   const handleSubmit = () => {
     submit();
+  };
+
+  const handleOpenFilter = (event) => {
+    openFilterMenu(event.currentTarget);
+  };
+  const handleCloseFilter = () => {
+    closeFilterMenu(null);
+  };
+
+  const handleChangeDirection = (event) => {
+    changeDirection(event.target.value);
+  };
+
+  const handleSelectSortBy = (event) => {
+    selectSortBy(event.target.value);
   };
 
   return (
@@ -84,23 +111,41 @@ function CheapTripSearch(props) {
         </Button>
       </div>
       <div>
+        {routes && filteredRoutes ? (
+          <>
+            <InputLabel id='demo-simple-select-label'>Sort</InputLabel>
+            <Select
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
+              value={sortBy}
+              label='Sort'
+              onChange={handleSelectSortBy}
+            >
+              {SORT_OPTIONS.map((item, index) => (
+                <MenuItem value={item} key={index}>
+                  {item}
+                </MenuItem>
+              ))}
+            </Select>
+          </>
+        ) : null}
         {routes &&
-          selectedRoutesKeys &&
-          selectedRoutesKeys
-            .sort(
-              (a, b) =>
-                routes[a].direct_routes.length - routes[b].direct_routes.length
-            )
+          filteredRoutes &&
+          filteredRoutes
+            // .sort(
+            //   (a, b) =>
+            //     routes[a].direct_routes.length - routes[b].direct_routes.length
+            // )
             .slice(0, PAGINATION_LIMIT)
-            .map((key) => {
-              return routesForRender[key]
-                .sort((route1, route2) => route1.price - route2.price)
-                .map((route, index) => {
-                  console.log(route);
-                  return <RouteCard route={route} key={key + index} />;
-                });
+            .map((route, index) => {
+              // return routesForRender[key]
+              // .sort((route1, route2) => route1.price - route2.price)
+              // .map((route, index) => {
+                console.log(route);
+              return <RouteCard route={route} key={route + index} />;
+              // });
             })}
-        {routes && selectedRoutesKeys && selectedRoutesKeys.length === 0 && (
+        {routes && filteredRoutes && filteredRoutes.length === 0 && (
           <p>No such routes</p>
         )}
       </div>

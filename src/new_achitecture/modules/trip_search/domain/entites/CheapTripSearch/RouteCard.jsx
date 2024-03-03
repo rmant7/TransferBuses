@@ -29,18 +29,14 @@ function RouteCard({ route }) {
                   </Box>
                   <Typography>
                     {locations[route.from] && (
-                      <span>
-                        {locations[route.from].name}
-                      </span>
+                      <span>{locations[route.from].name}</span>
                     )}
                     <ArrowForwardIcon
                       fontSize='small'
                       sx={{ verticalAlign: 'text-bottom' }}
                     />
                     {locations[route.to] && (
-                      <span>
-                        {locations[route.to].name}
-                      </span>
+                      <span>{locations[route.to].name}</span>
                     )}
                   </Typography>
                   <Box style={style.bottomContainer}>
@@ -56,7 +52,10 @@ function RouteCard({ route }) {
                   {travelInfo &&
                     travelInfo.length !== 0 &&
                     travelInfo.map((travelInformation) => (
-                      <TravelInfo travelInfo={travelInformation} key={travelInformation.to} />
+                      <TravelInfo
+                        travelInfo={travelInformation}
+                        key={travelInformation.to}
+                      />
                     ))}
                 </div>
               </AccordionDetails>

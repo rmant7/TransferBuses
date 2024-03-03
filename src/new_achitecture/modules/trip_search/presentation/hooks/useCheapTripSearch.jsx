@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import common_routes from '../../data/jsons/cheapTripData/routes.json';
 import fixed_routes from '../../data/jsons/cheapTripData/fixed_routes.json';
 import flying_routes from '../../data/jsons/cheapTripData/flying_routes.json';
 import locations from '../../data/jsons/cheapTripData/locations.json';
 import { asyncAutocomplete } from '../../domain/entites/CheapTripSearch/asyncAutocomplete';
+import {
+  SORT_OPTIONS,
+  SORT_DIRECTION_OPTIONS,
+} from '../../domain/entites/utils/constants/sortConstants';
 
 const useCheapTripSearch = () => {
   const [from, setFrom] = useState('');
@@ -14,6 +18,11 @@ const useCheapTripSearch = () => {
   const [asyncToOptions, setAsyncToOptions] = useState([]);
   const [geoLocation, setGeoLocation] = useState({ latitude: 0, longitude: 0 });
   const [selectedRoutesKeys, setSelectedRoutesKeys] = useState(null);
+  const [sortBy, setSortBy] = useState(SORT_OPTIONS[0]);
+  const [sortDirection, setSortDirection] = useState(SORT_DIRECTION_OPTIONS[0]);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [filteredRoutes, setFilteredRoutes] = useState(null);
+  const open = Boolean(anchorEl);
 
   const PAGINATION_LIMIT = 10;
 
@@ -76,27 +85,26 @@ const useCheapTripSearch = () => {
     const filteredByFrom = routesKeys.filter(
       (key) => routes[key].from === +fromKey
     );
-    console.log(`in filteredByFrom`, filteredByFrom);
     if (to === '') {
       setTo('Anywhere');
       setToKey('0');
     } else if (to === 'Anywhere') {
-      const sortedByPrice = filteredByFrom.sort(
-        (a, b) => routes[a].euro_price - routes[b].euro_price
-      );
-      setSelectedRoutesKeys(sortedByPrice);
+      // const sortedByPrice = filteredByFrom.sort(
+      //   (a, b) => routes[a].price - routes[b].price
+      // );
+      // console.log(`in anywhere sortedByPrice`, sortedByPrice);
+      setSelectedRoutesKeys(filteredByFrom);
     } else {
       const filteredByTo = filteredByFrom.filter(
         (key) => routes[key].to === +toKey
       );
-    console.log(`in filteredByTo`, filteredByTo);
 
       const sortedByPrice = filteredByTo.sort(
         (a, b) => routes[a].price - routes[b].price
       );
       setSelectedRoutesKeys(sortedByPrice);
-      console.log(`in selectedRoutesKeys`, selectedRoutesKeys);
     }
+    setSortBy(SORT_OPTIONS[0])
   };
 
   const startAsyncAutocomplete = (e, setState, options) => {
@@ -124,6 +132,60 @@ const useCheapTripSearch = () => {
     setToKey(value.key);
   };
 
+  const sortByDuration = (arr) => {
+    const allRoutes = [].concat(...arr.map((key) => routesForRender[key]));
+    console.log(allRoutes);
+    // Sort the array
+    return allRoutes.sort((route1, route2) => route1.direct_routes - route2.direct_routes);
+  
+  };
+
+  const sortByPrice = (arr) => {
+    // Create a single array with all routes
+    const allRoutes = [].concat(...arr.map((key) => routesForRender[key]));
+    console.log(allRoutes);
+    // Sort the array
+    return allRoutes.sort((route1, route2) => route1.price - route2.price);
+  };
+
+  const openFilterMenu = (target) => {
+    setAnchorEl(target);
+  };
+
+  const closeFilterMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const changeDirection = () => {
+    sortDirection === SORT_DIRECTION_OPTIONS[0]
+      ? setSortDirection(SORT_DIRECTION_OPTIONS[1])
+      : setSortDirection(SORT_DIRECTION_OPTIONS[0]);
+  };
+
+  const selectSortBy = (value) => {
+    setSortBy(value);
+  };
+
+  useEffect(() => {
+    if (selectedRoutesKeys) {
+      let sortedRoutes;
+      switch (sortBy) {
+        case SORT_OPTIONS[0]:
+          console.log(`in sort by ${SORT_OPTIONS[0]}`);
+          sortedRoutes = sortByPrice([...selectedRoutesKeys]);
+          break;
+        case SORT_OPTIONS[1]:
+          console.log(`in sort by ${SORT_OPTIONS[1]}`);
+          sortedRoutes = sortByDuration([...selectedRoutesKeys]);
+          break;
+        default:
+          return;
+      }
+      console.log(sortedRoutes);
+      setFilteredRoutes(sortedRoutes);
+    }
+  }, [sortBy, selectedRoutesKeys]);
+
   return {
     from,
     selectFrom,
@@ -134,9 +196,19 @@ const useCheapTripSearch = () => {
     cleanForm,
     submit,
     routes,
-    selectedRoutesKeys,
+    filteredRoutes,
     PAGINATION_LIMIT,
     routesForRender,
+    sortByDuration,
+    sortByPrice,
+    anchorEl,
+    openFilterMenu,
+    closeFilterMenu,
+    open,
+    sortDirection,
+    sortBy,
+    changeDirection,
+    selectSortBy,
   };
 };
 
