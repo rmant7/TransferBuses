@@ -21,7 +21,6 @@ const useRouteCard = (route) => {
     // .map(tdId => {
     //     return (Object.keys(directRoutes)).filter(key => directRoutes[key].id == tdId)[0]
     // })
-    console.log(tempKeys);
     let temp = [];
     tempKeys.map((key) => {
       const routeItem = {
@@ -30,13 +29,12 @@ const useRouteCard = (route) => {
       };
       temp.push(routeItem);
     });
-    console.log(temp);
     setTravelInfo(temp);
   }, [directRoutes]);
 
-  useEffect(() => {
-    console.log(travelInfo);
-  }, [travelInfo]);
+  // useEffect(() => {
+  //   console.log(travelInfo);
+  // }, [travelInfo]);
 
   return { style, timeTravel, priceTravel, travelInfo };
 };

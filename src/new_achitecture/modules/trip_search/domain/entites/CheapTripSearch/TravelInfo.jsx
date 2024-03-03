@@ -12,8 +12,13 @@ function TravelInfo({ travelInfo }) {
     lessThan480,
     additionalInfoOpened,
     additionalInformation,
-    setAdditionalInfoOpened,
+    setAddInfoOpen,
   } = useTravelInfo(travelInfo);
+
+  const handleOpenInfo = () => {
+    setAddInfoOpen();
+  } 
+
   return (
     <div>
       {locations ? (
@@ -61,7 +66,7 @@ function TravelInfo({ travelInfo }) {
                 <Button
                   variant='outlined'
                   type='button'
-                  onClick={() => setAdditionalInfoOpened(true)}
+                  onClick={handleOpenInfo}
                 >
                   Additional information
                 </Button>
@@ -112,7 +117,7 @@ function TravelInfo({ travelInfo }) {
           {additionalInformation && additionalInfoOpened && (
             <Modal
               open={additionalInfoOpened}
-              onClose={() => setAdditionalInfoOpened(false)}
+              onClose={handleOpenInfo}
               aria-labelledby='modal-modal-title'
               aria-describedby='modal-modal-description'
             >

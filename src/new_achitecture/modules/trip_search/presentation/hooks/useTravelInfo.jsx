@@ -19,7 +19,9 @@ const useTravelInfo = (travelInfo) => {
       .catch((_) => null);
   }, [travelInfo.route]);
 
-  return { style, lessThan480, additionalInfoOpened, additionalInformation, setAdditionalInfoOpened };
+  const setAddInfoOpen = () => setAdditionalInfoOpened(true);
+
+  return { style, lessThan480, additionalInfoOpened, additionalInformation, setAddInfoOpen };
 };
 
 export default useTravelInfo;
