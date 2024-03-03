@@ -76,6 +76,7 @@ const useCheapTripSearch = () => {
     const filteredByFrom = routesKeys.filter(
       (key) => routes[key].from === +fromKey
     );
+    console.log(`in filteredByFrom`, filteredByFrom);
     if (to === '') {
       setTo('Anywhere');
       setToKey('0');
@@ -88,10 +89,13 @@ const useCheapTripSearch = () => {
       const filteredByTo = filteredByFrom.filter(
         (key) => routes[key].to === +toKey
       );
+    console.log(`in filteredByTo`, filteredByTo);
+
       const sortedByPrice = filteredByTo.sort(
-        (a, b) => routes[a].euro_price - routes[b].euro_price
+        (a, b) => routes[a].price - routes[b].price
       );
       setSelectedRoutesKeys(sortedByPrice);
+      console.log(`in selectedRoutesKeys`, selectedRoutesKeys);
     }
   };
 

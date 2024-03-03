@@ -55,8 +55,8 @@ function RouteCard({ route }) {
                 <div>
                   {travelInfo &&
                     travelInfo.length !== 0 &&
-                    travelInfo.map((travelInfo) => (
-                      <TravelInfo travelInfo={travelInfo} key={travelInfo.to} />
+                    travelInfo.map((travelInformation) => (
+                      <TravelInfo travelInfo={travelInformation} key={travelInformation.to} />
                     ))}
                 </div>
               </AccordionDetails>

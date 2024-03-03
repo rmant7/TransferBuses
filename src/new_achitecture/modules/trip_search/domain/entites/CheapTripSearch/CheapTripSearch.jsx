@@ -93,9 +93,12 @@ function CheapTripSearch(props) {
             )
             .slice(0, PAGINATION_LIMIT)
             .map((key) => {
-              return routesForRender[key].map((route, index) => {
-                return <RouteCard route={route} key={key + index} />;
-              });
+              return routesForRender[key]
+                .sort((route1, route2) => route1.price - route2.price)
+                .map((route, index) => {
+                  console.log(route);
+                  return <RouteCard route={route} key={key + index} />;
+                });
             })}
         {routes && selectedRoutesKeys && selectedRoutesKeys.length === 0 && (
           <p>No such routes</p>
