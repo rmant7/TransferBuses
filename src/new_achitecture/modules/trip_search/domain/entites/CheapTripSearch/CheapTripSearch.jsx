@@ -10,7 +10,6 @@ import classes from "../../../presentation/components/searchResult/SearchCompone
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import {Button} from "@material-ui/core";
 import i18n from "../utils/language/i18n";
-import {lowerCase} from 'lodash';
 import {asyncAutocomplete} from './asyncAutocomplete';
 
 function CheapTripSearch(props) {
@@ -150,17 +149,26 @@ function CheapTripSearch(props) {
                 />
             </form>
             <div className={classes.filter_buttons}>
-                <Button variant="outlined" onClick={cleanForm} type="reset">
-                    {i18n.t("Clean")}
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={cleanForm}
+                    type="reset"
+                    disableElevation={true} // disable shade
+                    style={{textTransform: "none"}}
+                >
+                    {i18n.t("Clear form")}
                 </Button>
                 <Button
                     variant="contained"
                     color="primary"
                     onClick={submit}
-                    style={{marginLeft: "10px"}}
+                    style={{marginLeft: "10px", textTransform: "none", color: "#fff"}}
                     type="button"
+                    disableElevation="true"
+                    disabled={to === '' || from === ''} //todo depends on input
                 >
-                    {i18n.t("Let's Go")}
+                    {i18n.t("Let's go")}
                 </Button>
             </div>
             <div>
