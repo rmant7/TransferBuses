@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Autocomplete, TextField} from "@mui/material";
 import locations from '../../../data/jsons/cheapTripData/locations.json'
 import common_routes from '../../../data/jsons/cheapTripData/routes.json'
@@ -52,18 +52,16 @@ function CheapTripSearch(props) {
     const [asyncToOptions, setAsyncToOptions] = useState([])
     const [geoLocation, setGeoLocation] = useState({latitude: 0, longitude: 0})
 
-    const fromOptions = locationsKeysSorted
-        ? locationsKeysSorted.map(key =>
+    const fromOptions = locationsKeysSorted ?
+        locationsKeysSorted.map(key =>
             ({
                 label: locations[key].name,
                 key: key
             }))
         : []
-    const toOptions = locationsKeysSorted
-        ? [{label: 'Anywhere', key: '0'}, ...locationsKeysSorted.map(key => ({
-            label: key !== '0'
-                ? locations[key].name
-                : '',
+    const toOptions = locationsKeysSorted ?
+        [{label: 'Anywhere', key: '0'}, ...locationsKeysSorted.map(key => ({
+            label: key !== '0' ? locations[key].name : '',
             key: key
         }))]
         : []
@@ -96,7 +94,7 @@ function CheapTripSearch(props) {
         }
     }
 
-    const PAGINATION_LIMIT = 4;
+    const PAGINATION_LIMIT = 10;
     const startAsyncAutocomplete = (e, setState, options) => {
         // get geolocation
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -108,8 +106,19 @@ function CheapTripSearch(props) {
         asyncAutocomplete(e, setState, options, geoLocation)
     }
 
-    const checkFromOption = asyncFromOptions.length !== 0 ? asyncFromOptions : fromOptions
-    const checkToOption = asyncToOptions.length !== 0 ? asyncToOptions : toOptions
+    const checkFromOption = asyncFromOptions.length !== 0 ? asyncFromOptions : fromOptions;
+    const checkToOption = asyncToOptions.length !== 0 ? asyncToOptions : toOptions;
+
+    let inputFromStyle = {
+        color: "rgb(118, 118, 118)"
+    }
+    let inputToStyle = {
+        color: "rgb(118, 118, 118)"
+    }
+
+    useEffect(() => {
+
+    }, []);
 
     return (
         <div>
@@ -126,12 +135,21 @@ function CheapTripSearch(props) {
                     blurOnSelect
                     openOnFocus
                     options={checkFromOption}
+                    onFocus={() => inputFromStyle = {color: "#ff5722"}}
+                    onBlur={() => inputFromStyle = {color: "rgb(118, 118, 118)"}}
                     sx={{width: '100%'}}
                     clearIcon={true}
                     renderInput={(params) =>
                         <TextField {...params}
                                    label="From"
                                    variant="standard"
+                                   InputLabelProps={{
+                                       style: inputFromStyle
+                                   }}
+                                   sx={{
+                                       '& .MuiInput-underline:before': { borderBottomColor: 'rgb(118, 118, 118)' },
+                                       '& .MuiInput-underline:after': { borderBottomColor: '#ff5722' },
+                                   }}
                         />
                     }
                     isOptionEqualToValue={(option, value) => option.label === value}
@@ -156,12 +174,21 @@ function CheapTripSearch(props) {
                     blurOnSelect
                     openOnFocus
                     options={checkToOption}
+                    onFocus={() => inputToStyle = {color: "#ff5722"}}
+                    onBlur={() => inputToStyle = {color: "rgb(118, 118, 118)"}}
                     sx={{width: '100%'}}
                     clearIcon={true}
                     renderInput={(params) =>
                         <TextField {...params}
                                    label="To"
                                    variant="standard"
+                                   InputLabelProps={{
+                                       style: inputToStyle
+                                   }}
+                                   sx={{
+                                       '& .MuiInput-underline:before': { borderBottomColor: 'rgb(118, 118, 118)' },
+                                       '& .MuiInput-underline:after': { borderBottomColor: '#ff5722' },
+                                   }}
                         />}
                     isOptionEqualToValue={(option, value) => option.label === value}
                 />
