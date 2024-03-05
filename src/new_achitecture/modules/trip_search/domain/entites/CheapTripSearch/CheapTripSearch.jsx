@@ -32,6 +32,7 @@ function CheapTripSearch(props) {
     open,
     sortDirection,
     sortBy,
+    filterBy,
     changeDirection,
     selectSortBy,
   } = useCheapTripSearch();
@@ -117,7 +118,7 @@ function CheapTripSearch(props) {
             <Select
               labelId='demo-simple-select-label'
               id='demo-simple-select'
-              value={sortBy}
+              value={filterBy}
               label='Sort'
               onChange={handleSelectSortBy}
             >

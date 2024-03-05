@@ -8,6 +8,8 @@ import {
   SORT_OPTIONS,
   SORT_DIRECTION_OPTIONS,
 } from '../../domain/entites/utils/constants/sortConstants';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from './../redux/reducers/cheapTripSearch/cheapTripSearchSlice';
 
 const useCheapTripSearch = () => {
   const [from, setFrom] = useState('');
@@ -18,11 +20,14 @@ const useCheapTripSearch = () => {
   const [asyncToOptions, setAsyncToOptions] = useState([]);
   const [geoLocation, setGeoLocation] = useState({ latitude: 0, longitude: 0 });
   const [selectedRoutesKeys, setSelectedRoutesKeys] = useState(null);
-  const [sortBy, setSortBy] = useState(SORT_OPTIONS[0]);
   const [sortDirection, setSortDirection] = useState(SORT_DIRECTION_OPTIONS[0]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [filteredRoutes, setFilteredRoutes] = useState(null);
   const open = Boolean(anchorEl);
+  const { filterBy } = useSelector((state) => {
+    return state.cheapTripSearch;
+  });
+  const dispatch = useDispatch();
 
   const PAGINATION_LIMIT = 10;
 
@@ -103,7 +108,7 @@ const useCheapTripSearch = () => {
       );
       setSelectedRoutesKeys(sortedByPrice);
     }
-    setSortBy(SORT_OPTIONS[0]);
+    dispatch(setFilter(SORT_OPTIONS[0]));
   };
 
   const startAsyncAutocomplete = (e, setState, options) => {
@@ -165,13 +170,14 @@ const useCheapTripSearch = () => {
   };
 
   const selectSortBy = (value) => {
-    setSortBy(value);
+    console.log(value);
+    dispatch(setFilter(value));
   };
 
   useEffect(() => {
     if (selectedRoutesKeys) {
       let sortedRoutes;
-      switch (sortBy) {
+      switch (filterBy) {
         case SORT_OPTIONS[0]:
           sortedRoutes = sortByPrice([...selectedRoutesKeys]);
           break;
@@ -185,9 +191,11 @@ const useCheapTripSearch = () => {
         default:
           return;
       }
+    console.log(`in useEffect useCheapTripSearch`, sortedRoutes);
+
       setFilteredRoutes(sortedRoutes);
     }
-  }, [sortBy, selectedRoutesKeys]);
+  }, [filterBy, selectedRoutesKeys]);
 
   return {
     from,
@@ -209,9 +217,9 @@ const useCheapTripSearch = () => {
     closeFilterMenu,
     open,
     sortDirection,
-    sortBy,
     changeDirection,
     selectSortBy,
+    filterBy,
   };
 };
 
