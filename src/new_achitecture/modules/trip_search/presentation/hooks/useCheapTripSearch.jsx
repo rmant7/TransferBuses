@@ -191,8 +191,6 @@ const useCheapTripSearch = () => {
         default:
           return;
       }
-    console.log(`in useEffect useCheapTripSearch`, sortedRoutes);
-
       setFilteredRoutes(sortedRoutes);
     }
   }, [filterBy, selectedRoutesKeys]);
