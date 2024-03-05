@@ -141,7 +141,6 @@ function CheapTripSearch(props) {
               // return routesForRender[key]
               // .sort((route1, route2) => route1.price - route2.price)
               // .map((route, index) => {
-                console.log(route);
               return <RouteCard route={route} key={route + index} />;
               // });
             })}

@@ -27,25 +27,23 @@ function TravelInfo({ travelInfo }) {
             <Box style={style.directions}>
               <Typography style={style.boldText}>
                 {locations[travelInfo.from] && (
-                  <span>
-                    {locations[travelInfo.from].name}
-                  </span>
+                  <span>{locations[travelInfo.from].name}</span>
                 )}
                 <ArrowForwardIcon
                   fontSize='small'
                   sx={{ verticalAlign: 'text-bottom' }}
                 />
                 {locations[travelInfo.to] && (
-                  <span>
-                    {locations[travelInfo.to].name}
-                  </span>
+                  <span>{locations[travelInfo.to].name}</span>
                 )}
               </Typography>
               {/*{defineIconOfTransport(data.transportation_type)}*/}
             </Box>
             <Box style={style.directions}>
               <Typography sx={{ color: 'rgb(119, 87, 80)' }}>
-                {travelInfo.duration} min
+                {`${Math.floor(travelInfo.duration / 60)}h ${
+                  travelInfo.duration % 60
+                }m`}
               </Typography>
               <Box
                 sx={

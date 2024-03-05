@@ -98,13 +98,12 @@ const useCheapTripSearch = () => {
       const filteredByTo = filteredByFrom.filter(
         (key) => routes[key].to === +toKey
       );
-
       const sortedByPrice = filteredByTo.sort(
         (a, b) => routes[a].price - routes[b].price
       );
       setSelectedRoutesKeys(sortedByPrice);
     }
-    setSortBy(SORT_OPTIONS[0])
+    setSortBy(SORT_OPTIONS[0]);
   };
 
   const startAsyncAutocomplete = (e, setState, options) => {
@@ -134,18 +133,21 @@ const useCheapTripSearch = () => {
 
   const sortByDuration = (arr) => {
     const allRoutes = [].concat(...arr.map((key) => routesForRender[key]));
-    console.log(allRoutes);
-    // Sort the array
-    return allRoutes.sort((route1, route2) => route1.duration - route2.duration);
-  
+    return allRoutes.sort(
+      (route1, route2) => route1.duration - route2.duration
+    );
   };
 
   const sortByPrice = (arr) => {
-    // Create a single array with all routes
     const allRoutes = [].concat(...arr.map((key) => routesForRender[key]));
-    console.log(allRoutes);
-    // Sort the array
     return allRoutes.sort((route1, route2) => route1.price - route2.price);
+  };
+
+  const sortByLayovers = (arr) => {
+    const allRoutes = [].concat(...arr.map((key) => routesForRender[key]));
+    return allRoutes.sort(
+      (route1, route2) => route1.direct_routes - route2.direct_routes
+    );
   };
 
   const openFilterMenu = (target) => {
@@ -171,12 +173,14 @@ const useCheapTripSearch = () => {
       let sortedRoutes;
       switch (sortBy) {
         case SORT_OPTIONS[0]:
-          console.log(`in sort by ${SORT_OPTIONS[0]}`);
           sortedRoutes = sortByPrice([...selectedRoutesKeys]);
           break;
         case SORT_OPTIONS[1]:
-          console.log(`in sort by ${SORT_OPTIONS[1]}`);
           sortedRoutes = sortByDuration([...selectedRoutesKeys]);
+          break;
+        case SORT_OPTIONS[2]:
+          sortedRoutes = sortByLayovers([...selectedRoutesKeys]);
+          console.log(`in sorting by layovers`, sortedRoutes);
           break;
         default:
           return;
