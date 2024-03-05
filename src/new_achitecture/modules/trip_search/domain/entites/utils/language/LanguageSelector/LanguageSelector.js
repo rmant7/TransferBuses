@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FormControl, Select, MenuItem } from '@material-ui/core';
 import { languages } from './languages';
 import {useTranslation} from "react-i18next";
-import { getLanguage } from '../../../../../presentation/redux/reducers/selectors';
-import { setLanguageAction } from '../../../../../presentation/redux/reducers/actions/app-actions';
+import { getLanguage } from '../../../../../../../general/redux/selectors';
+import { setLanguage } from '../../../../../../../general/redux/slices/appSettingsSlice';
 import {useStyles} from "../../../../../../../general/MUI/useStyles";
 
 
@@ -42,7 +42,7 @@ const LanguageSelector = () => {
               onClick={() => {
                 localStorage.setItem("locale", lng.locale);
                 changeLanguage(lng.locale);
-                dispatch(setLanguageAction(lng.locale));
+                dispatch(setLanguage(lng.locale));
               }}
             >
               <img className={classes.flag} src={lng.icon} alt={lng.label} />

@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormControl, Select, MenuItem } from '@material-ui/core';
 import { currencies } from './currencies';
-import { getCurrency } from '../../../trip_search/presentation/redux/reducers/selectors';
-import { setCurrencyAction } from '../../../trip_search/presentation/redux/reducers/actions/app-actions';
+import { getCurrency } from '../../../../general/redux/selectors';
+import { setCurrency } from '../../../../general/redux/slices/appSettingsSlice';
 import {useStyles} from "../../../../general/MUI/useStyles";
 
 const CurrenciesSelector = () => {
@@ -29,7 +29,7 @@ const CurrenciesSelector = () => {
               key={item.code}
               onClick={() => {
                 localStorage.setItem("currency", item.code);
-                dispatch(setCurrencyAction(item.code));
+                dispatch(setCurrency(item.code));
               }}
             >
               {item.code + `  ` + item.name}

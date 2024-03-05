@@ -3,10 +3,10 @@ import { getCities, getCityByName } from "../cities/cities";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
 import FilterComponent from "./FilterComponent";
-import { getFilters, getInputFromToCity } from "../../../presentation/redux/reducers/selectors";
-import { inputFromCityAction, inputToCityAction } from "../../../presentation/redux/reducers/actions/inputs-actions";
-import { applyFilterFromCityIdAction } from "../../../presentation/redux/reducers/actions/filters-actions";
-import { getTransfersAction } from "../../../presentation/redux/reducers/actions/transfers-actions";
+import { getInputFromToCity } from "../../../../../general/redux/selectors";
+import { setFromCity, setToCity } from "../../../presentation/redux/slices/inputSlice";
+import { applyFilterFromCityIdAction } from "../../../../../general/redux/redux-using functions/filters-actions";
+import { getTransfersAction } from "../../../../../general/redux/redux-using functions/transfers-actions";
 import i18n from "../../../domain/entites/utils/language/i18n";
 
 export default function FiltersCitiesFrom() {
@@ -24,12 +24,12 @@ export default function FiltersCitiesFrom() {
     };
 
     const handleInputFrom = (e, v) => {
-        dispatch(inputFromCityAction(v));
+        dispatch(setFromCity(v));
     };
 
     const handleClearFields = () => {
-        dispatch(inputFromCityAction(""));
-        dispatch(inputToCityAction(""));
+        dispatch(setFromCity(""));
+        dispatch(setToCity(""));
     };
 
     return (
