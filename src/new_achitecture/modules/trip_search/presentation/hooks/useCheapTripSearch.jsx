@@ -136,7 +136,7 @@ const useCheapTripSearch = () => {
     const allRoutes = [].concat(...arr.map((key) => routesForRender[key]));
     console.log(allRoutes);
     // Sort the array
-    return allRoutes.sort((route1, route2) => route1.direct_routes - route2.direct_routes);
+    return allRoutes.sort((route1, route2) => route1.duration - route2.duration);
   
   };
 
@@ -181,7 +181,6 @@ const useCheapTripSearch = () => {
         default:
           return;
       }
-      console.log(sortedRoutes);
       setFilteredRoutes(sortedRoutes);
     }
   }, [sortBy, selectedRoutesKeys]);
