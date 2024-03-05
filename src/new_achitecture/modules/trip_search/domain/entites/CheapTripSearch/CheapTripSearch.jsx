@@ -4,27 +4,66 @@ import RouteCard from './RouteCard';
 import s from './cheaptrip.module.css';
 import classes from '../../../presentation/components/searchResult/SearchComponent.module.css';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
-import { Button } from '@material-ui/core';
+import { Button, InputLabel, Menu, MenuItem, Select } from '@material-ui/core';
 import i18n from '../utils/language/i18n';
 import useCheapTripSearch from '../../../presentation/hooks/useCheapTripSearch';
+import {
+  SORT_OPTIONS,
+  SORT_DIRECTION_OPTIONS,
+} from '../utils/constants/sortConstants';
 
 function CheapTripSearch(props) {
   const {
     from,
-    setFrom,
-    setFromKey,
+    selectFrom,
+    selectTo,
     checkFromOption,
     to,
-    setTo,
-    setToKey,
     checkToOption,
     cleanForm,
     submit,
     routes,
-    selectedRoutesKeys,
+    filteredRoutes,
     PAGINATION_LIMIT,
     routesForRender,
+    openFilterMenu,
+    closeFilterMenu,
+    anchorEl,
+    open,
+    sortDirection,
+    sortBy,
+    changeDirection,
+    selectSortBy,
   } = useCheapTripSearch();
+
+  const handleSelectFrom = (value) => {
+    selectFrom(value);
+  };
+  const handleSelectTo = (value) => {
+    selectTo(value);
+  };
+
+  const handleCleanForm = () => {
+    cleanForm();
+  };
+  const handleSubmit = () => {
+    submit();
+  };
+
+  const handleOpenFilter = (event) => {
+    openFilterMenu(event.currentTarget);
+  };
+  const handleCloseFilter = () => {
+    closeFilterMenu(null);
+  };
+
+  const handleChangeDirection = (event) => {
+    changeDirection(event.target.value);
+  };
+
+  const handleSelectSortBy = (event) => {
+    selectSortBy(event.target.value);
+  };
 
   return (
     <div>
@@ -32,11 +71,8 @@ function CheapTripSearch(props) {
         <Autocomplete
           value={from || null}
           onChange={(e, newValue) => {
-            setFrom(newValue ? newValue.label : '');
-            console.log(newValue);
-            setFromKey(newValue ? newValue.key : '');
+            handleSelectFrom(newValue ? newValue : '');
           }}
-          // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
           disablePortal
           blurOnSelect
           openOnFocus
@@ -49,10 +85,8 @@ function CheapTripSearch(props) {
         <Autocomplete
           value={to || null}
           onChange={(e, newValue) => {
-            setTo(newValue ? newValue.label : '');
-            setToKey(newValue ? newValue.key : '');
+            handleSelectTo(newValue ? newValue : '');
           }}
-          // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncToOptions, toOptions)}
           disablePortal
           blurOnSelect
           openOnFocus
@@ -63,13 +97,13 @@ function CheapTripSearch(props) {
         />
       </form>
       <div className={classes.filter_buttons}>
-        <Button variant='outlined' onClick={cleanForm} type='reset'>
+        <Button variant='outlined' onClick={handleCleanForm} type='reset'>
           {i18n.t('Clean')}
         </Button>
         <Button
           variant='contained'
           color='primary'
-          onClick={submit}
+          onClick={handleSubmit}
           style={{ marginLeft: '10px' }}
           type='button'
         >
@@ -77,20 +111,40 @@ function CheapTripSearch(props) {
         </Button>
       </div>
       <div>
+        {routes && filteredRoutes ? (
+          <>
+            <InputLabel id='demo-simple-select-label'>Sort</InputLabel>
+            <Select
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
+              value={sortBy}
+              label='Sort'
+              onChange={handleSelectSortBy}
+            >
+              {SORT_OPTIONS.map((item, index) => (
+                <MenuItem value={item} key={index}>
+                  {item}
+                </MenuItem>
+              ))}
+            </Select>
+          </>
+        ) : null}
         {routes &&
-          selectedRoutesKeys &&
-          selectedRoutesKeys
-            .sort(
-              (a, b) =>
-                routes[a].direct_routes.length - routes[b].direct_routes.length
-            )
+          filteredRoutes &&
+          filteredRoutes
+            // .sort(
+            //   (a, b) =>
+            //     routes[a].direct_routes.length - routes[b].direct_routes.length
+            // )
             .slice(0, PAGINATION_LIMIT)
-            .map((key) => {
-              return routesForRender[key].map((route, index) => {
-                return <RouteCard route={route} key={key + index} />;
-              });
+            .map((route, index) => {
+              // return routesForRender[key]
+              // .sort((route1, route2) => route1.price - route2.price)
+              // .map((route, index) => {
+              return <RouteCard route={route} key={route + index} />;
+              // });
             })}
-        {routes && selectedRoutesKeys && selectedRoutesKeys.length === 0 && (
+        {routes && filteredRoutes && filteredRoutes.length === 0 && (
           <p>No such routes</p>
         )}
       </div>
