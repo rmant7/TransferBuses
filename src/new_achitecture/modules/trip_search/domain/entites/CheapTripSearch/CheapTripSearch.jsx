@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Autocomplete, TextField} from "@mui/material";
+import {Autocomplete, createFilterOptions, TextField} from "@mui/material";
 import locations from '../../../data/jsons/cheapTripData/locations.json'
 import common_routes from '../../../data/jsons/cheapTripData/routes.json'
 import fixed_routes from '../../../data/jsons/cheapTripData/fixed_routes.json'
@@ -12,6 +12,7 @@ import {Button} from "@material-ui/core";
 import i18n from "../utils/language/i18n";
 import {asyncAutocomplete} from './asyncAutocomplete';
 import ClearIcon from "@material-ui/icons/Clear";
+import {matchSorter} from "match-sorter";
 
 function CheapTripSearch(props) {
     const routes = {...flying_routes, ...fixed_routes, ...common_routes}
@@ -51,6 +52,11 @@ function CheapTripSearch(props) {
     const [asyncFromOptions, setAsyncFromOptions] = useState([])
     const [asyncToOptions, setAsyncToOptions] = useState([])
     const [geoLocation, setGeoLocation] = useState({latitude: 0, longitude: 0})
+    const [matchFromFrom,setMatchFromFrom] = useState('start')
+    const [limitFrom, setLimitFrom] = useState(0)
+    const [matchFromTo,setMatchFromTo] = useState('start')
+    const [limitTo, setLimitTo] = useState(0)
+    const [inputValue, setInputValue] = useState('')
 
     const fromOptions = locationsKeysSorted ?
         locationsKeysSorted.map(key =>
@@ -120,6 +126,20 @@ function CheapTripSearch(props) {
 
     }, []);
 
+    //<Autocomplete filterOptions={(x) => x} />
+
+    const filterOptionsFrom = createFilterOptions({
+        matchFrom: matchFromFrom,
+        limit: limitFrom,
+    });
+
+    const filterOptionsTo = createFilterOptions({
+        matchFrom: matchFromTo,
+        limit: limitTo,
+    });
+
+
+
     return (
         <div>
             <form action="" className={s.autocomplete}>
@@ -129,11 +149,15 @@ function CheapTripSearch(props) {
                         setFrom(newValue ? newValue.label : '')
                         setFromKey(newValue ? newValue.key : '')
                     }}
-                    // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
+                    onInputChange={(e,newInput) => {newInput.length ? setLimitFrom(4) : setLimitFrom(0)
+                    setInputValue(newInput)}}
+                        //startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
                     disablePortal
                     freeSolo
                     blurOnSelect
                     openOnFocus
+                    filterOptions={filterOptionsFrom}
+                    inputValue={inputValue}
                     options={checkFromOption}
                     onFocus={() => inputFromStyle = {color: "#ff5722"}}
                     onBlur={() => inputFromStyle = {color: "rgb(118, 118, 118)"}}
@@ -168,11 +192,13 @@ function CheapTripSearch(props) {
                         setTo(newValue ? newValue.label : '')
                         setToKey(newValue ? newValue.key : '')
                     }}
+                    onInputChange={(e,newInput) => newInput.length ? setLimitTo(4) : setLimitTo(0)}
                     // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncToOptions, toOptions)}
                     disablePortal
                     freeSolo
                     blurOnSelect
                     openOnFocus
+                    filterOptions={filterOptionsTo}
                     options={checkToOption}
                     onFocus={() => inputToStyle = {color: "#ff5722"}}
                     onBlur={() => inputToStyle = {color: "rgb(118, 118, 118)"}}
