@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { publicRoutes } from '../publicRoutes';
 import { MAIN_ROUTE } from '../../../modules/trip_search/domain/entites/utils/constants/constants';
 
+
 const AppRouter = () => {
   return (
     <Switch>
