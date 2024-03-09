@@ -4,7 +4,7 @@ import accommodations from './dataExample';
 
 const TipsComponent = () => {
     return (
-        <div>
+        <div className={styles.containerTips}>
             <div className={styles.sectionTitle}>
                 <h2>Accommodations in CITY_NAME</h2>
             </div>

@@ -1,21 +1,18 @@
 import React from 'react';
+import TipsComponent from "../TipsComponent/TipsComponent";
 import FooterComponent from "../FooterComponent/FooterComponent";
 import FindBudget from "../Buttons/Find&Budget";
 import BookingHostel from "../Buttons/Booking&Hostel";
 
-const DescriptionComponent = () => {
-    const divStyle = {
-        margin: '100px 0',
-    };
+const AccommodationsComponent = () => {
     return (
-        // <div style={divStyle}>
         <div>
             <FindBudget/>
-            <div>City detail page</div>
+            <TipsComponent/>
             <BookingHostel/>
             <FooterComponent/>
         </div>
     );
 };
 
-export default DescriptionComponent;
+export default AccommodationsComponent;

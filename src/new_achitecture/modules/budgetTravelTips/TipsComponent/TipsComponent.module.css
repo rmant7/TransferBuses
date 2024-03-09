@@ -1,12 +1,16 @@
 * {
     box-sizing: border-box;
-    margin: 0;
+
     padding: 0;
+}
+
+.containerTips {
+    /*margin: 100px 0;*/
 }
 
 .sectionTitle {
     color: black;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     text-align: center;
 }
 
@@ -44,13 +48,14 @@ img {
     text-align: center;
     margin: 20px 0 10px;
 }
-/*h3,h2 {*/
-/*    font-size: calc(1.3rem + .6vw);*/
-/*    margin-top: 0;*/
-/*    margin-bottom: 0.5rem;*/
-/*    font-weight: 500;*/
-/*    line-height: 1.2;*/
-/*}*/
+
+h3 {
+    font-size: calc(1.3rem + .6vw);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
 
 
 .text {
@@ -88,15 +93,17 @@ a {
     }
 }
 
+@media screen and (max-width: 1500px) {
+    .itemContainer {
+        flex: 1 0 30%;
+    }
+}
+
 @media screen and (max-width: 1000px) {
     .itemContainer {
         flex: 1 0 48%;
     }
 }
 
-@media screen and (max-width: 1500px) {
-    .itemContainer {
-        flex: 1 0 30%;
-    }
-}
+
 

@@ -18,11 +18,12 @@ import {
     TRAVEL_TIPS_CHILDREN_ATTRACTIONS,
     TRAVEL_TIPS_TRANSPORTATIONS,
     TRAVEL_TIPS_ROUTES_FROM_CITY_NAME,
+    TRAVEL_TIPS_CITY_ATTRACTION,
 } from "../../modules/trip_search/domain/entites/utils/constants/constants";
 import {MainPageComponent} from "../../modules/mainPage/presentation/components/MainPageComponent/MainPageComponent";
 import FooterComponent from "../../modules/budgetTravelTips/FooterComponent/FooterComponent";
-import TipsComponent from "../../modules/budgetTravelTips/TipsComponent/TipsComponent";
 import DescriptionComponent from "../../modules/budgetTravelTips/DescriptionComponent/DescriptionComponent";
+import AccommodationsComponent from "../../modules/budgetTravelTips/AccomodationsComponent/AccommodationsComponent";
 
 
 export const publicRoutes = [
@@ -68,6 +69,30 @@ export const publicRoutes = [
     },
     {
         path: TRAVEL_TIPS_ACCOMMODATION,
-        Component: TipsComponent,
+        Component: AccommodationsComponent,
+    },
+    {
+        path: TRAVEL_TIPS_EVENTS_FESTIVALS,
+        Component: AccommodationsComponent,
+    },
+    {
+        path: TRAVEL_TIPS_CITY_ATTRACTION,
+        Component: AccommodationsComponent,
+    },
+    {
+        path: TRAVEL_TIPS_CHEAP_EATS,
+        Component: AccommodationsComponent,
+    },
+    {
+        path: TRAVEL_TIPS_CHILDREN_ATTRACTIONS,
+        Component: AccommodationsComponent,
+    },
+    {
+        path: TRAVEL_TIPS_TRANSPORTATIONS,
+        Component: AccommodationsComponent,
+    },
+    {
+        path: TRAVEL_TIPS_ROUTES_FROM_CITY_NAME,
+        Component: AccommodationsComponent,
     },
 ];

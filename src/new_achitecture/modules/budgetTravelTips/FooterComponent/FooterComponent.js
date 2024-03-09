@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './FooterComponent.module.css';
-import { Link } from 'react-router-dom';
-import {buttonDataTravelTips} from "../../trip_search/domain/entites/utils/constants/constants";
+import {Link} from 'react-router-dom';
+import {buttonDataTravelTips} from "./footerButtonsData";
 
-const Button = ({ text, to }) => {
+
+const Button = ({text, to}) => {
     return (
         <div className={styles.buttonsDiv}>
             <Link to={to} className={styles.actionBtn}>
@@ -16,11 +17,11 @@ const Button = ({ text, to }) => {
 const FooterComponent = () => {
 
     return (
-        <div>
+        <div className={styles.containerFooter}>
             <div className={styles.customDivider}></div>
             <div className={styles.buttons}>
                 {buttonDataTravelTips.map((button) => (
-                    <Button key={button.to} text={button.text} to={button.to} />
+                    <Button key={button.to} text={button.text} to={button.to}/>
                 ))}
             </div>
         </div>
