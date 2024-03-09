@@ -52,11 +52,8 @@ function CheapTripSearch(props) {
     const [asyncFromOptions, setAsyncFromOptions] = useState([])
     const [asyncToOptions, setAsyncToOptions] = useState([])
     const [geoLocation, setGeoLocation] = useState({latitude: 0, longitude: 0})
-    const [matchFromFrom,setMatchFromFrom] = useState('start')
-    const [limitFrom, setLimitFrom] = useState(0)
-    const [matchFromTo,setMatchFromTo] = useState('start')
-    const [limitTo, setLimitTo] = useState(0)
-    const [inputValue, setInputValue] = useState('')
+    const [inputValueFrom, setInputValueFrom] = useState('')
+    const [inputValueTo, setInputValueTo] = useState('')
 
     const fromOptions = locationsKeysSorted ?
         locationsKeysSorted.map(key =>
@@ -126,17 +123,6 @@ function CheapTripSearch(props) {
 
     }, []);
 
-    //<Autocomplete filterOptions={(x) => x} />
-
-    const filterOptionsFrom = createFilterOptions({
-        matchFrom: matchFromFrom,
-        limit: limitFrom,
-    });
-
-    const filterOptionsTo = createFilterOptions({
-        matchFrom: matchFromTo,
-        limit: limitTo,
-    });
 
 
 
@@ -149,20 +135,24 @@ function CheapTripSearch(props) {
                         setFrom(newValue ? newValue.label : '')
                         setFromKey(newValue ? newValue.key : '')
                     }}
-                    onInputChange={(e,newInput) => {newInput.length ? setLimitFrom(4) : setLimitFrom(0)
-                    setInputValue(newInput)}}
-                        //startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
+                    onInputChange={(e, newValue) => {
+                        setInputValueFrom(newValue)
+                    }}
                     disablePortal
                     freeSolo
                     blurOnSelect
                     openOnFocus
-                    filterOptions={filterOptionsFrom}
-                    inputValue={inputValue}
-                    options={checkFromOption}
+                    inputValue={inputValueFrom}
+                    options={checkFromOption.sort((a, b)=> {
+                        if (a.label.toLowerCase().startsWith(inputValueFrom.toLowerCase()) &&
+                            !b.label.toLowerCase().startsWith(inputValueFrom.toLowerCase()))
+                            return -1
+                    })}
                     onFocus={() => inputFromStyle = {color: "#ff5722"}}
                     onBlur={() => inputFromStyle = {color: "rgb(118, 118, 118)"}}
                     sx={{width: '100%'}}
                     clearIcon={true}
+                    ListboxProps={{ style: { maxHeight: 140 } }}
                     renderInput={(params) =>
                         <TextField {...params}
                                    label="From"
@@ -181,6 +171,7 @@ function CheapTripSearch(props) {
                 <ClearIcon style={{color: 'rgb(118, 118, 118)'}}
                            onClick={() => {
                                setFrom('');
+                               setInputValueFrom('')
                                setFromKey('')
                            }}
                 />
@@ -192,18 +183,24 @@ function CheapTripSearch(props) {
                         setTo(newValue ? newValue.label : '')
                         setToKey(newValue ? newValue.key : '')
                     }}
-                    onInputChange={(e,newInput) => newInput.length ? setLimitTo(4) : setLimitTo(0)}
-                    // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncToOptions, toOptions)}
+                    onInputChange={(e, newValue) => {
+                        setInputValueTo(newValue)
+                    }}
                     disablePortal
                     freeSolo
                     blurOnSelect
                     openOnFocus
-                    filterOptions={filterOptionsTo}
-                    options={checkToOption}
+                    inputValue={inputValueTo}
+                    options={checkFromOption.sort((a, b)=> {
+                        if (a.label.toLowerCase().startsWith(inputValueTo.toLowerCase()) &&
+                            !b.label.toLowerCase().startsWith(inputValueTo.toLowerCase()))
+                            return -1
+                    })}
                     onFocus={() => inputToStyle = {color: "#ff5722"}}
                     onBlur={() => inputToStyle = {color: "rgb(118, 118, 118)"}}
                     sx={{width: '100%'}}
                     clearIcon={true}
+                    ListboxProps={{ style: { maxHeight: 140 } }}
                     renderInput={(params) =>
                         <TextField {...params}
                                    label="To"
@@ -221,6 +218,7 @@ function CheapTripSearch(props) {
                 <ClearIcon style={{color: 'rgb(118, 118, 118)'}}
                            onClick={() => {
                                setTo('');
+                               setInputValueTo('')
                                setToKey('')
                            }}
                 />
