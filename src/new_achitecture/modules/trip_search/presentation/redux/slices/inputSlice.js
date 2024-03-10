@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const transferSlice = createSlice({
+const inputSlice = createSlice({
     name: 'inputFromToCity',
     initialState: {
         inputFromCity: '',
@@ -12,7 +12,7 @@ const transferSlice = createSlice({
     }
 })
 
-const {actions, reducer} = transferSlice;
+const {actions, reducer} = inputSlice;
 export default reducer;
 export const {
     setFromCity, setToCity} = actions;

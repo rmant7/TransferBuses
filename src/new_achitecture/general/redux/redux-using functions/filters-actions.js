@@ -4,7 +4,7 @@ import {setFilterApply, setTransfers} from "../../../modules/trip_search/present
 
 export function applyFilterFromCityIdAction(fromCityId) {
   return async (dispatch) => {
-    dispatch(setLoadingTransfers(true));
+    dispatch( setLoadingTransfers(true));
     try {
       const filteredCities = await getTransfersByFromCityId(fromCityId);
       dispatch(setFilterApply(true));
