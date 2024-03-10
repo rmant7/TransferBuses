@@ -9,6 +9,7 @@ import HeaderComponent
 import {AppRouter} from "./new_achitecture/general/routes/AppRouter";
 import {theme} from "./new_achitecture/general/MUI/useStyles";
 
+
 function App() {
     const {i18n} = useTranslation();
     const changeLanguage = (language) => {
