@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Autocomplete, TextField} from "@mui/material";
+import React, {useEffect, useState} from 'react';
+import {Autocomplete, createFilterOptions, TextField} from "@mui/material";
 import locations from '../../../data/jsons/cheapTripData/locations.json'
 import common_routes from '../../../data/jsons/cheapTripData/routes.json'
 import fixed_routes from '../../../data/jsons/cheapTripData/fixed_routes.json'
@@ -10,8 +10,9 @@ import classes from "../../../presentation/components/searchResult/SearchCompone
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import {Button} from "@material-ui/core";
 import i18n from "../utils/language/i18n";
-import {lowerCase} from 'lodash';
 import {asyncAutocomplete} from './asyncAutocomplete';
+import ClearIcon from "@material-ui/icons/Clear";
+import {matchSorter} from "match-sorter";
 
 function CheapTripSearch(props) {
     const routes = {...flying_routes, ...fixed_routes, ...common_routes}
@@ -35,7 +36,6 @@ function CheapTripSearch(props) {
             routesForRender[key] = common_routes[key] ? [common_routes[key]] : [];
         }
     }
-    //console.log(routesForRender);
 
     const locationsKeysSorted = function () {
         if (!locations) return
@@ -52,19 +52,19 @@ function CheapTripSearch(props) {
     const [asyncFromOptions, setAsyncFromOptions] = useState([])
     const [asyncToOptions, setAsyncToOptions] = useState([])
     const [geoLocation, setGeoLocation] = useState({latitude: 0, longitude: 0})
+    const [inputValueFrom, setInputValueFrom] = useState('')
+    const [inputValueTo, setInputValueTo] = useState('')
 
-    const fromOptions = locationsKeysSorted
-        ? locationsKeysSorted.map(key =>
+    const fromOptions = locationsKeysSorted ?
+        locationsKeysSorted.map(key =>
             ({
-                label: locations[key].name + ', ' + locations[key].country_name,
+                label: locations[key].name,
                 key: key
             }))
         : []
-    const toOptions = locationsKeysSorted
-        ? [{label: 'Anywhere', key: '0'}, ...locationsKeysSorted.map(key => ({
-            label: key !== '0'
-                ? locations[key].name + ', ' + locations[key].country_name
-                : '',
+    const toOptions = locationsKeysSorted ?
+        [{label: 'Anywhere', key: '0'}, ...locationsKeysSorted.map(key => ({
+            label: key !== '0' ? locations[key].name : '',
             key: key
         }))]
         : []
@@ -80,8 +80,6 @@ function CheapTripSearch(props) {
     }
     const submit = () => {
         if (from === '') return
-        // console.log(from)
-        // console.log(fromKey)
         let routesKeys = Object.keys(routes)
         const filteredByFrom = routesKeys.filter(key => routes[key].from === +fromKey)
         if (to === '') {
@@ -99,7 +97,7 @@ function CheapTripSearch(props) {
         }
     }
 
-    const PAGINATION_LIMIT = 10
+    const PAGINATION_LIMIT = 10;
     const startAsyncAutocomplete = (e, setState, options) => {
         // get geolocation
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -111,56 +109,141 @@ function CheapTripSearch(props) {
         asyncAutocomplete(e, setState, options, geoLocation)
     }
 
-    const checkFromOption = asyncFromOptions.length !== 0 ? asyncFromOptions : fromOptions
-    const checkToOption = asyncToOptions.length !== 0 ? asyncToOptions : toOptions
+    const checkFromOption = asyncFromOptions.length !== 0 ? asyncFromOptions : fromOptions;
+    const checkToOption = asyncToOptions.length !== 0 ? asyncToOptions : toOptions;
+
+    let inputFromStyle = {
+        color: "rgb(118, 118, 118)"
+    }
+    let inputToStyle = {
+        color: "rgb(118, 118, 118)"
+    }
+
+    useEffect(() => {
+
+    }, []);
+
+
+
 
     return (
         <div>
             <form action="" className={s.autocomplete}>
                 <Autocomplete
-                    value={from || null}
+                    value={from}
                     onChange={(e, newValue) => {
                         setFrom(newValue ? newValue.label : '')
                         setFromKey(newValue ? newValue.key : '')
                     }}
-                    // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncFromOptions, fromOptions)}
+                    onInputChange={(e, newValue) => {
+                        setInputValueFrom(newValue)
+                    }}
                     disablePortal
+                    freeSolo
                     blurOnSelect
                     openOnFocus
-                    options={checkFromOption}
+                    inputValue={inputValueFrom}
+                    options={checkFromOption.sort((a, b)=> {
+                        if (a.label.toLowerCase().startsWith(inputValueFrom.toLowerCase()) &&
+                            !b.label.toLowerCase().startsWith(inputValueFrom.toLowerCase()))
+                            return -1
+                    })}
+                    onFocus={() => inputFromStyle = {color: "#ff5722"}}
+                    onBlur={() => inputFromStyle = {color: "rgb(118, 118, 118)"}}
                     sx={{width: '100%'}}
-                    renderInput={(params) => <TextField {...params} label="From"/>}
+                    clearIcon={true}
+                    ListboxProps={{ style: { maxHeight: 140 } }}
+                    renderInput={(params) =>
+                        <TextField {...params}
+                                   label="From"
+                                   variant="standard"
+                                   InputLabelProps={{
+                                       style: inputFromStyle
+                                   }}
+                                   sx={{
+                                       '& .MuiInput-underline:before': { borderBottomColor: 'rgb(118, 118, 118)' },
+                                       '& .MuiInput-underline:after': { borderBottomColor: '#ff5722' },
+                                   }}
+                        />
+                    }
                     isOptionEqualToValue={(option, value) => option.label === value}
                 />
+                <ClearIcon style={{color: 'rgb(118, 118, 118)'}}
+                           onClick={() => {
+                               setFrom('');
+                               setInputValueFrom('')
+                               setFromKey('')
+                           }}
+                />
+
                 <DoubleArrowIcon className={classes.media_icon}/>
                 <Autocomplete
-                    value={to || null}
+                    value={to}
                     onChange={(e, newValue) => {
                         setTo(newValue ? newValue.label : '')
                         setToKey(newValue ? newValue.key : '')
                     }}
-                    // onInputChange={(e) => startAsyncAutocomplete(e, setAsyncToOptions, toOptions)}
+                    onInputChange={(e, newValue) => {
+                        setInputValueTo(newValue)
+                    }}
                     disablePortal
+                    freeSolo
                     blurOnSelect
                     openOnFocus
-                    options={checkToOption}
+                    inputValue={inputValueTo}
+                    options={checkFromOption.sort((a, b)=> {
+                        if (a.label.toLowerCase().startsWith(inputValueTo.toLowerCase()) &&
+                            !b.label.toLowerCase().startsWith(inputValueTo.toLowerCase()))
+                            return -1
+                    })}
+                    onFocus={() => inputToStyle = {color: "#ff5722"}}
+                    onBlur={() => inputToStyle = {color: "rgb(118, 118, 118)"}}
                     sx={{width: '100%'}}
-                    renderInput={(params) => <TextField {...params} label="To"/>}
+                    clearIcon={true}
+                    ListboxProps={{ style: { maxHeight: 140 } }}
+                    renderInput={(params) =>
+                        <TextField {...params}
+                                   label="To"
+                                   variant="standard"
+                                   InputLabelProps={{
+                                       style: inputToStyle
+                                   }}
+                                   sx={{
+                                       '& .MuiInput-underline:before': { borderBottomColor: 'rgb(118, 118, 118)' },
+                                       '& .MuiInput-underline:after': { borderBottomColor: '#ff5722' },
+                                   }}
+                        />}
                     isOptionEqualToValue={(option, value) => option.label === value}
+                />
+                <ClearIcon style={{color: 'rgb(118, 118, 118)'}}
+                           onClick={() => {
+                               setTo('');
+                               setInputValueTo('')
+                               setToKey('')
+                           }}
                 />
             </form>
             <div className={classes.filter_buttons}>
-                <Button variant="outlined" onClick={cleanForm} type="reset">
-                    {i18n.t("Clean")}
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={cleanForm}
+                    type="reset"
+                    disableElevation={true} // disable shade
+                    style={{textTransform: "none"}}
+                >
+                    {i18n.t("Clear form")}
                 </Button>
                 <Button
                     variant="contained"
                     color="primary"
                     onClick={submit}
-                    style={{marginLeft: "10px"}}
+                    style={{marginLeft: "10px", textTransform: "none", color: "#fff"}}
                     type="button"
+                    disableElevation="true"
+                    disabled={to === '' || from === ''}
                 >
-                    {i18n.t("Let's Go")}
+                    {i18n.t("Let's go")}
                 </Button>
             </div>
             <div>
