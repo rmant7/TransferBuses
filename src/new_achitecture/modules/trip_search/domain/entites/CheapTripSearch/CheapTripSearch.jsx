@@ -12,7 +12,6 @@ import {Button} from "@material-ui/core";
 import i18n from "../utils/language/i18n";
 import {asyncAutocomplete} from './asyncAutocomplete';
 import ClearIcon from "@material-ui/icons/Clear";
-import {matchSorter} from "match-sorter";
 
 function CheapTripSearch(props) {
     const routes = {...flying_routes, ...fixed_routes, ...common_routes}
@@ -38,7 +37,7 @@ function CheapTripSearch(props) {
     }
 
     const locationsKeysSorted = function () {
-        if (!locations) return
+        if (!locations) return;
         let temp = {...locations}
         return (Object.keys(temp)).sort((a, b) => {
             return temp[a].name > temp[b].name ? 1 : -1

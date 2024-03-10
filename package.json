@@ -22,7 +22,6 @@
     "formik": "^2.2.9",
     "i18next-browser-languagedetector": "^6.1.2",
     "i18next-http-backend": "^1.2.6",
-    "match-sorter": "^6.3.4",
     "react": "^17.0.2",
     "react-i18next": "^11.11.2",
     "react-icons": "^4.3.1",
