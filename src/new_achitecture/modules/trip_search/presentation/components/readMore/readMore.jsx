@@ -1,8 +1,6 @@
 
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import "./readMore.css";
-import { Button } from 'react-bootstrap';
 import dataForReadMore from "./readMoreJson.json";
 // import { makeStyles } from '@material-ui/core/styles';
 // import Button from '@material-ui/core/Button';
