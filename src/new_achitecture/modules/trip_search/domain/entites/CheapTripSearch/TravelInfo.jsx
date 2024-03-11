@@ -5,6 +5,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Modal from '@mui/material/Modal';
 import s from './cheaptrip.module.css';
 import useTravelInfo from '../../../presentation/hooks/useTravelInfo';
+import { HOSTEL_WORLD_AFFILIATE } from '../utils/constants/links';
 
 function TravelInfo({ travelInfo }) {
   const {
@@ -79,7 +80,7 @@ function TravelInfo({ travelInfo }) {
                   </Button>
                 </Link>
                 <Link
-                  href='https://www.hostelworldgroup.com'
+                  href={HOSTEL_WORLD_AFFILIATE}
                   target='_blank'
                   rel='noreferrer'
                 >
