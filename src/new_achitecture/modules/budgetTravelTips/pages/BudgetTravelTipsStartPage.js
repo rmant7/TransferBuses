@@ -1,5 +1,5 @@
 import React from 'react';
-import FindBudget from "../Buttons/Find&Budget";
+import FindBudget from "../presentation/ButtonsComponent/Find&Budget";
 import {TRAVEL_TIPS_DESCRIPTION} from "../../trip_search/domain/entites/utils/constants/constants";
 
 const BudgetTravelTipsStartPage = () => {

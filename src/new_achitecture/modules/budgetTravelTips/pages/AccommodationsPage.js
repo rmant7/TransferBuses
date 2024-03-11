@@ -1,8 +1,8 @@
 import React from 'react';
 import TipsComponent from "../presentation/TipsComponent/TipsComponent";
 import FooterComponent from "../presentation/FooterComponent/FooterComponent";
-import FindBudget from "../Buttons/Find&Budget";
-import BookingHostel from "../Buttons/Booking&Hostel";
+import FindBudget from "../presentation/ButtonsComponent/Find&Budget";
+import BookingHostel from "../presentation/ButtonsComponent/Booking&Hostel";
 
 const AccommodationsPage = () => {
     return (
