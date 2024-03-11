@@ -55,7 +55,7 @@
 }
 
 @media screen and (max-width: 1415px) {
-    .act-btn-cont {
+    .actBtnCont {
         text-align: center;
         margin: 20px auto;
         justify-content: center;

@@ -2,7 +2,11 @@
     box-sizing: border-box;
 }
 
-.section-btn {
+.containerDescription{
+    margin: 100px auto 20px auto;
+}
+
+.sectionBtn {
     text-align: center;
     margin: 20px auto;
     display: flex;
@@ -11,7 +15,7 @@
     font-weight: bold;
 }
 
-.action-btn {
+.actionBtn {
     color: #ff5722;
     padding: 7px;
     border: #ff5722 solid 2px;
@@ -21,12 +25,12 @@
     text-decoration: none;
 }
 
-.action-btn:hover {
+.actionBtn:hover {
     color: white;
     background-color: #ff5722;
 }
 
-.budget-btn {
+.budgetBtn {
     padding: 7px;
     border: #ff5722 solid 2px;
     border-radius: 15px;
@@ -36,11 +40,11 @@
     text-decoration: none;
 }
 
-.budget-btn:hover {
+.budgetBtn:hover {
     color: white;
 }
 
-.action-btn-active {
+.actionBtnActive {
     color: #ffffff;
     padding: 7px;
     border: #ff5722 solid 1px;
@@ -50,11 +54,11 @@
 
 }
 
-.action-btn-active:hover {
+.actionBtnActive:hover {
     color: white;
 }
 
-.act-btn-cont{
+.actBtnCont{
     text-align: center;
     margin: 20px auto;
     justify-content: center;

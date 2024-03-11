@@ -31,7 +31,7 @@
 }
 
 @media screen and (max-width: 350px) {
-    .section-btn {
+    .sectionBtn {
         flex-direction: column;
         width: fit-content;
     }

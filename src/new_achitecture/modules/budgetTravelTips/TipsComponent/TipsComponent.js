@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './TipsComponent.module.css';
 import accommodations from './dataExample';
+import {TRAVEL_TIPS_ACCOMMODATION_READ_MORE} from "../../trip_search/domain/entites/utils/constants/constants";
 
 const TipsComponent = () => {
     return (
@@ -17,7 +18,7 @@ const TipsComponent = () => {
                             <p className={styles.text}>{accommodation.description}</p>
                         </div>
                         <div>
-                            <a className={styles.actionBtn} href={accommodation.link}>Read more...</a>
+                            <a className={styles.actionBtn} href={TRAVEL_TIPS_ACCOMMODATION_READ_MORE}/*href={accommodation.link}*/>Read more...</a>
                         </div>
                     </div>
                 ))}
