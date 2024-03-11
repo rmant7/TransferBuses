@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { currencies } from "../../currenciesSelector/currencies";
 import { getCityById } from "../../../../trip_search/lib/filterSearch/cities/cities";
-import { getCurrency, getLanguage } from "../../../../trip_search/presentation/redux/reducers/selectors";
+import { getCurrency, getLanguage } from "../../../../../general/redux/selectors";
 import { Button, Divider } from "@material-ui/core";
 import { PASSENGER_ROUTE } from "../../../../trip_search/domain/entites/utils/constants/constants";
 import ArrowIcon from "../../../../../general/assets/upward-arrow.png";

@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import css from "./MenuTrip.module.css";
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { setSidebarAction } from '../../../../../trip_search/presentation/redux/reducers/actions/app-actions';
+import {setSidebar} from '../../../../../../general/redux/slices/appSettingsSlice';
 import { PASSENGER_ROUTE, DRIVER_ROUTE } from '../../../../../trip_search/domain/entites/utils/constants/constants';
 import {useStyles} from "../../../../../../general/MUI/useStyles";
 
@@ -26,7 +26,7 @@ const MenuTrip = () => {
   const rowHandleClick = path => {
     history.push(path);
     setAnchorEl(null);
-    dispatch(setSidebarAction(false));
+    dispatch(setSidebar(false));
   };
   return (
     <div className={css.MenuTrip}>

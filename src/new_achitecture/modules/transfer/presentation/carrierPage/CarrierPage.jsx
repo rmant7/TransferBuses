@@ -32,11 +32,11 @@ import { currencies } from "../currenciesSelector/currencies";
 import axios from "axios";
 import "yup-phone-lite";
 import { timeZones } from "./timezones/timezones";
-import { getLoading } from "../../../trip_search/presentation/redux/reducers/selectors";
+import { getLoading } from "../../../../general/redux/selectors";
 import { useDispatch } from "react-redux";
 import { LoadingButton } from "@mui/lab";
 import { Alert } from "@mui/material";
-import { loadingUploadTransferAction } from "../../../trip_search/presentation/redux/reducers/actions/loading-actions";
+import { setLoadingUploadTransfers } from "../../../trip_search/presentation/redux/slices/loadingSlice";
 import {useStyles} from "../../../../general/MUI/useStyles";
 
 const schema = yup.object().shape({
@@ -272,12 +272,12 @@ export default function CarrierPage() {
           console.log(values);
           // dispatch(saveNewTransferAction(values));
           // history.push("/");
-          dispatch(loadingUploadTransferAction(true));
+          dispatch(setLoadingUploadTransfers(true));
           uploadTransfer(values)
             .then((response) => {
               console.log(response);
               setMessage({ type: "success", msg: i18n.t("SuccessTrip") });
-              dispatch(loadingUploadTransferAction(false));
+              dispatch(setLoadingUploadTransfers(false));
               setOpen(true);
               // history.push("/");
             })

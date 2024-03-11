@@ -4,8 +4,8 @@ import { useHistory } from 'react-router';
 import { Drawer, ListItem, List, ListItemText } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import i18n from "../../../../../trip_search/domain/entites/utils/language/i18n";
-import { getSidebar } from '../../../../../trip_search/presentation/redux/reducers/selectors';
-import { setSidebarAction } from '../../../../../trip_search/presentation/redux/reducers/actions/app-actions';
+import { getSidebar } from '../../../../../../general/redux/selectors';
+import { setSidebar} from '../../../../../../general/redux/slices/appSettingsSlice';
 import css from "./Sidebar.module.css";
 import { MAIN_ROUTE, CONTACTS_ROUTE } from '../../../../../trip_search/domain/entites/utils/constants/constants';
 import MenuTrip from "../MenuTrip/MenuTrip";
@@ -17,20 +17,20 @@ const Sidebar = props => {
 
   const closeHandler = path => {
     history.push(path);
-    dispatch(setSidebarAction(false));
+    dispatch(setSidebar(false));
   };
   return (
     <Drawer
       anchor="right"
       open={sidebar}
-      onClose={() => dispatch(setSidebarAction(false))}
+      onClose={() => dispatch(setSidebar(false))}
     >
 
       <div className={css.sideBarHeader}>
         {/* <span>{props.page_mode}</span> */}
         <CloseIcon
           style={{ cursor: "pointer" }}
-          onClick={() => dispatch(setSidebarAction(false))}
+          onClick={() => dispatch(setSidebar(false))}
         />
       </div>
 

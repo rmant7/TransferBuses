@@ -23,9 +23,9 @@ import {
   Select,
   Tooltip,
 } from "@material-ui/core";
-import { getLoading } from "../../../../trip_search/presentation/redux/reducers/selectors";
+import { getLoading } from "../../../../../general/redux/selectors";
 import axios from "axios";
-import { loadingUploadTransferAction } from "../../../../trip_search/presentation/redux/reducers/actions/loading-actions";
+import { setLoadingUploadTransfers } from "../../../../trip_search/presentation/redux/slices/loadingSlice";
 import { uploadTransfer } from "../../../../trip_search/data/api/data-service";
 import { timeZones } from "../timezones/timezones";
 import { currencies } from "../../currenciesSelector/currencies";
@@ -176,12 +176,12 @@ export default function CarrierComponent() {
           console.log(values);
           // dispatch(saveNewTransferAction(values));
           // history.push("/");
-          dispatch(loadingUploadTransferAction(true));
+          dispatch(setLoadingUploadTransfers(true));
           uploadTransfer(values)
             .then((response) => {
               console.log(response);
               setMessage({ type: "success", msg: i18n.t("SuccessTrip") });
-              dispatch(loadingUploadTransferAction(false));
+              dispatch(setLoadingUploadTransfers(false));
               setOpen(true);
               // history.push("/");
             })
