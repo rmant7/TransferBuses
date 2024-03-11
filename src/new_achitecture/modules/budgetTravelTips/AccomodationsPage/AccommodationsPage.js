@@ -4,7 +4,7 @@ import FooterComponent from "../FooterComponent/FooterComponent";
 import FindBudget from "../Buttons/Find&Budget";
 import BookingHostel from "../Buttons/Booking&Hostel";
 
-const AccommodationsComponent = () => {
+const AccommodationsPage = () => {
     return (
         <div>
             <FindBudget/>
@@ -15,4 +15,4 @@ const AccommodationsComponent = () => {
     );
 };
 
-export default AccommodationsComponent;
+export default AccommodationsPage;
