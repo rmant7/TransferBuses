@@ -11,7 +11,7 @@ import {useLocation} from 'react-router';
 import {LogoHeader} from "./Logos/Logos";
 import Nav from "./Nav/Nav";
 import Sidebar from "./Sidebar/Sidebar";
-import {buttonDataTravelTips} from "../../../../budgetTravelTips/FooterComponent/footerButtonsData";
+import {buttonDataTravelTips} from "../../../../budgetTravelTips/presentation/FooterComponent/footerButtonsData";
 
 const HeaderComponent = () => {
     const page_mode = useStatePath();

@@ -21,10 +21,10 @@ import {
     TRAVEL_TIPS_CITY_ATTRACTION, TRAVEL_TIPS_ACCOMMODATION_READ_MORE,
 } from "../../modules/trip_search/domain/entites/utils/constants/constants";
 import {MainPageComponent} from "../../modules/mainPage/presentation/components/MainPageComponent/MainPageComponent";
-import FooterComponent from "../../modules/budgetTravelTips/FooterComponent/FooterComponent";
-import AccommodationsPage from "../../modules/budgetTravelTips/AccomodationsPage/AccommodationsPage";
-import CityDetailComponent from "../../modules/budgetTravelTips/CityDetailComponent/CityDetailComponent";
-import ReadMoreComponent from '../../modules/budgetTravelTips/ReadMoreComponent/ReadMoreComponent'
+import BudgetTravelTipsStartPage from "../../modules/budgetTravelTips/pages/BudgetTravelTipsStartPage";
+import CityDescriptionPage from "../../modules/budgetTravelTips/pages/CityDescriptionPage";
+import AccommodationsPage from "../../modules/budgetTravelTips/pages/AccommodationsPage";
+import ReadMorePage from "../../modules/budgetTravelTips/pages/ReadMorePage";
 
 export const publicRoutes = [
     // {
@@ -62,11 +62,11 @@ export const publicRoutes = [
     //BUDGET TRAVEL TIPS
     {
         path: TRAVEL_TIPS,
-        Component: FooterComponent,
+        Component: BudgetTravelTipsStartPage,
     },
     {
         path: TRAVEL_TIPS_DESCRIPTION,
-        Component: CityDetailComponent,
+        Component: CityDescriptionPage,
     },
     {
         path: TRAVEL_TIPS_ACCOMMODATION,
@@ -100,7 +100,7 @@ export const publicRoutes = [
     //BUDGET TRAVEL TIPS_READ_MORE
     {
         path: TRAVEL_TIPS_ACCOMMODATION_READ_MORE,
-        Component: ReadMoreComponent,
+        Component: ReadMorePage,
     },
 
 ];

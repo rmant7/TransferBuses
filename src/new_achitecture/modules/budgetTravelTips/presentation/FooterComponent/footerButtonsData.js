@@ -7,7 +7,7 @@ import {
     TRAVEL_TIPS_EVENTS_FESTIVALS,
     TRAVEL_TIPS_ROUTES_FROM_CITY_NAME,
     TRAVEL_TIPS_TRANSPORTATIONS
-} from "../../trip_search/domain/entites/utils/constants/constants";
+} from "../../../trip_search/domain/entites/utils/constants/constants";
 
 export const buttonDataTravelTips = [
     { text: 'Description', to: TRAVEL_TIPS_DESCRIPTION },

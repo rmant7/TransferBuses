@@ -2,10 +2,6 @@
     box-sizing: border-box;
 }
 
-.containerDescription{
-    margin: 100px auto 20px auto;
-}
-
 .sectionBtn {
     text-align: center;
     margin: 20px auto;
@@ -69,7 +65,7 @@
 
 
 @media screen and (max-width: 350px) {
-    .section-btn {
+    .sectionBtn {
         flex-direction: column;
         width: fit-content;
     }

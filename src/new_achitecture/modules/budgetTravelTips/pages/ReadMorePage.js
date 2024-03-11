@@ -1,18 +1,18 @@
 import React from 'react';
-import TipsComponent from "../TipsComponent/TipsComponent";
-import FooterComponent from "../FooterComponent/FooterComponent";
 import FindBudget from "../Buttons/Find&Budget";
 import BookingHostel from "../Buttons/Booking&Hostel";
+import FooterComponent from "../presentation/FooterComponent/FooterComponent";
+import ReadMoreComponent from "../presentation/ReadMoreComponent/ReadMoreComponent";
 
-const AccommodationsPage = () => {
+const ReadMorePage = () => {
     return (
         <div>
             <FindBudget/>
-            <TipsComponent/>
+            <ReadMoreComponent/>
             <BookingHostel/>
             <FooterComponent/>
         </div>
     );
 };
 
-export default AccommodationsPage;
+export default ReadMorePage;

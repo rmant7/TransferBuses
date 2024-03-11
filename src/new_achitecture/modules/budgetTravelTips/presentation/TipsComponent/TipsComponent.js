@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './TipsComponent.module.css';
 import accommodations from './dataExample';
-import {TRAVEL_TIPS_ACCOMMODATION_READ_MORE} from "../../trip_search/domain/entites/utils/constants/constants";
+import {TRAVEL_TIPS_ACCOMMODATION_READ_MORE} from "../../../trip_search/domain/entites/utils/constants/constants";
 
 const TipsComponent = () => {
     return (
