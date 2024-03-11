@@ -23,6 +23,8 @@ const useCheapTripSearch = () => {
   const [sortDirection, setSortDirection] = useState(SORT_DIRECTION_OPTIONS[0]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [filteredRoutes, setFilteredRoutes] = useState(null);
+  const [inputValueFrom, setInputValueFrom] = useState('');
+  const [inputValueTo, setInputValueTo] = useState('');
   const open = Boolean(anchorEl);
   const { filterBy } = useSelector((state) => {
     return state.cheapTripSearch;
@@ -61,19 +63,46 @@ const useCheapTripSearch = () => {
     });
   })();
 
+  const clearFromField = () => {
+    setFrom('');
+    setInputValueFrom('');
+    setFromKey('');
+  };
+  const clearToField = () => {
+    setTo('');
+    setInputValueTo('');
+    setToKey('');
+  };
+
   const fromOptions = locationsKeysSorted
-    ? locationsKeysSorted.map((key) => ({
-        label: locations[key].name,
-        key: key,
-      }))
+    ? locationsKeysSorted
+        .map((key) => ({
+          label: locations[key].name,
+          key: key,
+        }))
+        .sort((a, b) => {
+          if (
+            a.label.toLowerCase().startsWith(inputValueFrom.toLowerCase()) &&
+            !b.label.toLowerCase().startsWith(inputValueFrom.toLowerCase())
+          )
+            return -1;
+        })
     : [];
   const toOptions = locationsKeysSorted
     ? [
         { label: 'Anywhere', key: '0' },
-        ...locationsKeysSorted.map((key) => ({
-          label: key !== '0' ? locations[key].name : '',
-          key: key,
-        })),
+        ...locationsKeysSorted
+          .map((key) => ({
+            label: key !== '0' ? locations[key].name : '',
+            key: key,
+          }))
+          .sort((a, b) => {
+            if (
+              a.label.toLowerCase().startsWith(inputValueTo.toLowerCase()) &&
+              !b.label.toLowerCase().startsWith(inputValueTo.toLowerCase())
+            )
+              return -1;
+          }),
       ]
     : [];
 
@@ -124,6 +153,23 @@ const useCheapTripSearch = () => {
 
   const checkFromOption =
     asyncFromOptions.length !== 0 ? asyncFromOptions : fromOptions;
+
+  /*
+      checkFromOption.sort((a, b)=> {
+                        if (a.label.toLowerCase().startsWith(inputValueFrom.toLowerCase()) &&
+                            !b.label.toLowerCase().startsWith(inputValueFrom.toLowerCase()))
+                            return -1
+                    })
+
+
+
+                    checkToOption.sort((a, b)=> {
+                        if (a.label.toLowerCase().startsWith(inputValueTo.toLowerCase()) &&
+                            !b.label.toLowerCase().startsWith(inputValueTo.toLowerCase()))
+                            return -1
+                    })
+    
+    */
   const checkToOption =
     asyncToOptions.length !== 0 ? asyncToOptions : toOptions;
 
@@ -131,6 +177,7 @@ const useCheapTripSearch = () => {
     setFrom(value.label);
     setFromKey(value.key);
   };
+
   const selectTo = (value) => {
     setTo(value.label);
     setToKey(value.key);
@@ -172,6 +219,12 @@ const useCheapTripSearch = () => {
   const selectSortBy = (value) => {
     console.log(value);
     dispatch(setFilter(value));
+  };
+  const setInputFrom = (value) => {
+    setInputValueFrom(value);
+  };
+  const setInputTo = (value) => {
+    setInputValueTo(value);
   };
 
   useEffect(() => {
@@ -218,6 +271,12 @@ const useCheapTripSearch = () => {
     changeDirection,
     selectSortBy,
     filterBy,
+    clearFromField,
+    clearToField,
+    inputValueFrom,
+    inputValueTo,
+    setInputFrom,
+    setInputTo,
   };
 };
 

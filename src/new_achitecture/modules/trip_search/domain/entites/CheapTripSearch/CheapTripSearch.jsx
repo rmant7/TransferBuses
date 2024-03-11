@@ -1,5 +1,5 @@
 import React from 'react';
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, createFilterOptions, TextField } from '@mui/material';
 import RouteCard from './RouteCard';
 import s from './cheaptrip.module.css';
 import classes from '../../../presentation/components/searchResult/SearchComponent.module.css';
@@ -11,6 +11,7 @@ import {
   SORT_OPTIONS,
   SORT_DIRECTION_OPTIONS,
 } from '../utils/constants/sortConstants';
+import ClearIcon from '@material-ui/icons/Clear';
 
 function CheapTripSearch(props) {
   const {
@@ -35,6 +36,12 @@ function CheapTripSearch(props) {
     filterBy,
     changeDirection,
     selectSortBy,
+    clearFromField,
+    clearToField,
+    inputValueFrom,
+    inputValueTo,
+    setInputFrom,
+    setInputTo,
   } = useCheapTripSearch();
 
   const handleSelectFrom = (value) => {
@@ -44,6 +51,10 @@ function CheapTripSearch(props) {
     selectTo(value);
   };
 
+  const handleClearInput = (value) => {
+    value === 'from' ? clearFromField() : clearToField();
+  };
+
   const handleCleanForm = () => {
     cleanForm();
   };
@@ -51,19 +62,32 @@ function CheapTripSearch(props) {
     submit();
   };
 
-  const handleOpenFilter = (event) => {
-    openFilterMenu(event.currentTarget);
+  const handleFromInputValue = (value) => {
+    setInputFrom(value);
   };
-  const handleCloseFilter = () => {
-    closeFilterMenu(null);
+  const handleToInputValue = (value) => {
+    setInputTo(value);
   };
+  // const handleOpenFilter = (event) => {
+  //   openFilterMenu(event.currentTarget);
+  // };
+  // const handleCloseFilter = () => {
+  //   closeFilterMenu(null);
+  // };
 
-  const handleChangeDirection = (event) => {
-    changeDirection(event.target.value);
-  };
+  // const handleChangeDirection = (event) => {
+  //   changeDirection(event.target.value);
+  // };
 
   const handleSelectSortBy = (event) => {
     selectSortBy(event.target.value);
+  };
+
+  let inputFromStyle = {
+    color: 'rgb(118, 118, 118)',
+  };
+  let inputToStyle = {
+    color: 'rgb(118, 118, 118)',
   };
 
   return (
@@ -74,13 +98,43 @@ function CheapTripSearch(props) {
           onChange={(e, newValue) => {
             handleSelectFrom(newValue ? newValue : '');
           }}
+          onInputChange={(e, newValue) => {
+            handleFromInputValue(newValue);
+          }}
+          inputValue={inputValueFrom}
           disablePortal
+          freeSolo
           blurOnSelect
           openOnFocus
           options={checkFromOption}
           sx={{ width: '100%' }}
-          renderInput={(params) => <TextField {...params} label='From' />}
+          onFocus={() => (inputFromStyle = { color: '#ff5722' })}
+          onBlur={() => (inputFromStyle = { color: 'rgb(118, 118, 118)' })}
+          disableClearable
+          ListboxProps={{ style: { maxHeight: 140 } }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label='From'
+              variant='standard'
+              InputLabelProps={{
+                style: inputFromStyle,
+              }}
+              sx={{
+                '& .MuiInput-underline:before': {
+                  borderBottomColor: 'rgb(118, 118, 118)',
+                },
+                '& .MuiInput-underline:after': { borderBottomColor: '#ff5722' },
+              }}
+            />
+          )}
           isOptionEqualToValue={(option, value) => option.label === value}
+        />
+        <ClearIcon
+          style={{ color: 'rgb(118, 118, 118)' }}
+          onClick={() => {
+            handleClearInput('from');
+          }}
         />
         <DoubleArrowIcon className={classes.media_icon} />
         <Autocomplete
@@ -88,27 +142,66 @@ function CheapTripSearch(props) {
           onChange={(e, newValue) => {
             handleSelectTo(newValue ? newValue : '');
           }}
+          onInputChange={(e, newValue) => {
+            handleToInputValue(newValue);
+          }}
+          inputValue={inputValueTo}
           disablePortal
+          freeSolo
           blurOnSelect
           openOnFocus
           options={checkToOption}
           sx={{ width: '100%' }}
-          renderInput={(params) => <TextField {...params} label='To' />}
+          onFocus={() => (inputToStyle = { color: '#ff5722' })}
+          onBlur={() => (inputToStyle = { color: 'rgb(118, 118, 118)' })}
+          disableClearable
+          ListboxProps={{ style: { maxHeight: 140 } }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label='To'
+              variant='standard'
+              InputLabelProps={{
+                style: inputToStyle,
+              }}
+              sx={{
+                '& .MuiInput-underline:before': {
+                  borderBottomColor: 'rgb(118, 118, 118)',
+                },
+                '& .MuiInput-underline:after': { borderBottomColor: '#ff5722' },
+              }}
+            />
+          )}
           isOptionEqualToValue={(option, value) => option.label === value}
+        />
+        <ClearIcon
+          style={{ color: 'rgb(118, 118, 118)' }}
+          onClick={() => {
+            handleClearInput('to');
+          }}
         />
       </form>
       <div className={classes.filter_buttons}>
-        <Button variant='outlined' onClick={handleCleanForm} type='reset'>
-          {i18n.t('Clean')}
+        <Button
+          variant='contained'
+          color='secondary'
+          onClick={handleCleanForm}
+          type='reset'
+          disableElevation // disable shade
+          style={{ textTransform: 'none' }}
+        >
+          {i18n.t('Clear form')}
         </Button>
         <Button
           variant='contained'
           color='primary'
           onClick={handleSubmit}
-          style={{ marginLeft: '10px' }}
+          style={{ marginLeft: '10px', textTransform: 'none', color: '#fff' }}
           type='button'
+          disableElevation
+          disabled={to === '' || from === ''}
         >
-          {i18n.t("Let's Go")}
+          {i18n.t("Let's go")}
         </Button>
       </div>
       <div>

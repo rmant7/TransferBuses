@@ -20,8 +20,6 @@ export const MainPageComponent = () => {
       {SloganMain()}
 
       <div className={filtersClasses.filters_sector}>
-        {/*<AutoCompleteSection />*/}
-        {/* <FiltersCitiesFrom /> */}
           <CheapTripSearch />
       </div>
 
