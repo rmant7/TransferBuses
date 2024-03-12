@@ -1,16 +1,11 @@
 import React from 'react';
 import RouteCard from './RouteCard';
-import { InputLabel, MenuItem, Select } from '@material-ui/core';
 import useCheapTripSearch from '../../../presentation/hooks/useCheapTripSearch';
-import {
-  SORT_OPTIONS,
-} from '../utils/constants/sortConstants';
 import SearchForm from '../../../presentation/components/SearchForm/SearchForm';
 import SelectSortRoutes from '../../../presentation/components/SelectSortRoutes/SelectSortRoutes';
 
 function CheapTripSearch(props) {
-  const { routes, filteredRoutes, PAGINATION_LIMIT, filterBy, selectSortBy } =
-    useCheapTripSearch();
+  const { routes, filteredRoutes, PAGINATION_LIMIT } = useCheapTripSearch();
 
   return (
     <>
@@ -18,7 +13,7 @@ function CheapTripSearch(props) {
       <div>
         {routes && filteredRoutes ? (
           <>
-            <SelectSortRoutes/>
+            <SelectSortRoutes />
           </>
         ) : null}
         {routes &&
