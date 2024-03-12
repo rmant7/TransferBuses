@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { Autocomplete, createFilterOptions, TextField } from '@mui/material';
 import { Button, Menu } from '@material-ui/core';
 import useCheapTripSearch from '../../hooks/useCheapTripSearch';
 import s from './../../../domain/entites/CheapTripSearch/cheaptrip.module.css';
-import classes from './../../../presentation/components/searchResult/SearchComponent.module.css'
+import classes from './../../../presentation/components/searchResult/SearchComponent.module.css';
 import i18n from './../../../domain/entites/utils/language/i18n';
 import ClearIcon from '@material-ui/icons/Clear';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import AutocompleteEl from './AutocompleteEl/AutocompleteEl';
+import { inputFromStyle, inputToStyle, basicColor } from './searchFormStyles';
 
 const SearchForm = () => {
   const {
@@ -51,99 +53,36 @@ const SearchForm = () => {
     setInputTo(value);
   };
 
-  let inputFromStyle = {
-    color: 'rgb(118, 118, 118)',
-  };
-  let inputToStyle = {
-    color: 'rgb(118, 118, 118)',
-  };
-
   return (
     <>
-          <form action='' className={s.autocomplete}>
-        <Autocomplete
+      <form action='' className={s.autocomplete}>
+        <AutocompleteEl
           value={from || null}
-          onChange={(e, newValue) => {
-            handleSelectFrom(newValue ? newValue : '');
-          }}
-          onInputChange={(e, newValue) => {
-            handleFromInputValue(newValue);
-          }}
+          handleChange={handleSelectFrom}
+          handleInputChange={handleFromInputValue}
           inputValue={inputValueFrom}
-          disablePortal
-          freeSolo
-          blurOnSelect
-          openOnFocus
           options={checkFromOption}
-          sx={{ width: '100%' }}
-          onFocus={() => (inputFromStyle = { color: '#ff5722' })}
-          onBlur={() => (inputFromStyle = { color: 'rgb(118, 118, 118)' })}
-          disableClearable
-          ListboxProps={{ style: { maxHeight: 140 } }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label='From'
-              variant='standard'
-              InputLabelProps={{
-                style: inputFromStyle,
-              }}
-              sx={{
-                '& .MuiInput-underline:before': {
-                  borderBottomColor: 'rgb(118, 118, 118)',
-                },
-                '& .MuiInput-underline:after': { borderBottomColor: '#ff5722' },
-              }}
-            />
-          )}
-          isOptionEqualToValue={(option, value) => option.label === value}
+          textFieldLabel={'From'}
+          inputStyle={inputFromStyle}
         />
         <ClearIcon
-          style={{ color: 'rgb(118, 118, 118)' }}
+          style={basicColor}
           onClick={() => {
             handleClearInput('from');
           }}
         />
         <DoubleArrowIcon className={classes.media_icon} />
-        <Autocomplete
+        <AutocompleteEl
           value={to || null}
-          onChange={(e, newValue) => {
-            handleSelectTo(newValue ? newValue : '');
-          }}
-          onInputChange={(e, newValue) => {
-            handleToInputValue(newValue);
-          }}
+          handleChange={handleSelectTo}
+          handleInputChange={handleToInputValue}
           inputValue={inputValueTo}
-          disablePortal
-          freeSolo
-          blurOnSelect
-          openOnFocus
           options={checkToOption}
-          sx={{ width: '100%' }}
-          onFocus={() => (inputToStyle = { color: '#ff5722' })}
-          onBlur={() => (inputToStyle = { color: 'rgb(118, 118, 118)' })}
-          disableClearable
-          ListboxProps={{ style: { maxHeight: 140 } }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label='To'
-              variant='standard'
-              InputLabelProps={{
-                style: inputToStyle,
-              }}
-              sx={{
-                '& .MuiInput-underline:before': {
-                  borderBottomColor: 'rgb(118, 118, 118)',
-                },
-                '& .MuiInput-underline:after': { borderBottomColor: '#ff5722' },
-              }}
-            />
-          )}
-          isOptionEqualToValue={(option, value) => option.label === value}
+          textFieldLabel={'To'}
+          inputStyle={inputToStyle}
         />
         <ClearIcon
-          style={{ color: 'rgb(118, 118, 118)' }}
+          style={basicColor}
           onClick={() => {
             handleClearInput('to');
           }}
@@ -158,8 +97,7 @@ const SearchForm = () => {
           disableElevation // disable shade
           style={{ textTransform: 'none' }}
         >
-          {/* {i18n.t('Clear form')} */}
-          Clear form
+          {i18n.t('Clear form')}
         </Button>
         <Button
           variant='contained'
@@ -170,12 +108,11 @@ const SearchForm = () => {
           disableElevation
           disabled={to === '' || from === ''}
         >
-          {/* {i18n.t("Let's go")} */}
-          Let's go
+          {i18n.t("Let's go")}
         </Button>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SearchForm
+export default SearchForm;
