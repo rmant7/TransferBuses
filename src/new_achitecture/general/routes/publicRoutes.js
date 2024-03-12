@@ -10,10 +10,11 @@ import {
   DRIVER_ROUTE,
   TRANSFER_ROUTE,
   CONTACTS_ROUTE,
-  READ_MORE_ROUTE
+  READ_MORE_ROUTE, TIPS_MAIN
 } from "../../modules/trip_search/domain/entites/utils/constants/constants";
 import {MainPageComponent} from "../../modules/mainPage/presentation/components/MainPageComponent/MainPageComponent";
 import {readMore} from "../../modules/trip_search/presentation/components/readMore/readMore";
+import BudgetTravelTips from "../../modules/BudjetTrevelTips/BudgetTravelTips";
 
 export const publicRoutes = [
   // {
@@ -52,4 +53,8 @@ export const publicRoutes = [
     path: READ_MORE_ROUTE,
     Component: readMore,
   },
+  {
+    path: TIPS_MAIN,
+    Component: BudgetTravelTips
+  }
 ];

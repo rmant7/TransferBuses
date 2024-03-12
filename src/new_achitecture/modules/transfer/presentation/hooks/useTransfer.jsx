@@ -1,13 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import {
-  getCurrency,
-  getLanguage,
-} from '../../../trip_search/presentation/redux/reducers/selectors';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { currencies } from '../currenciesSelector/currencies';
 import cities from './../../../trip_search/domain/entites/utils/jsons/cities';
 import i18n from '../../../../../i18n';
+import {getCurrency, getLanguage} from "../../../../general/redux/selectors";
 
 const useTransfer = (transfer, id) => {
   const globalCurrencyCode = useSelector(getCurrency);

@@ -6,6 +6,7 @@ import css from "./MainPageComponent.module.css";
 import Logo_Cht from "./Logo_ChT_2.png";
 import {AutoCompleteSection} from "../../../../trip_search/lib/autoComplete/AutoCompleteSection";
 import CheapTripSearch from "../../../../trip_search/domain/entites/CheapTripSearch/CheapTripSearch";
+import {Link} from "react-router-dom";
 
 export const MainPageComponent = () => {
     const SloganMain = () => (
@@ -17,6 +18,7 @@ export const MainPageComponent = () => {
 
   return (
     <Container maxWidth="xl" className={css.tb_padding}>
+        <Link to={'/travelTips'}>Budget travel tips</Link>
       {SloganMain()}
 
       <div className={filtersClasses.filters_sector}>

@@ -18,7 +18,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <StylesProvider>
-        <HeaderComponent />
+        {/*<HeaderComponent />*/}
         {/* <Navbar/> */}
         <AppRouter />
       </StylesProvider>

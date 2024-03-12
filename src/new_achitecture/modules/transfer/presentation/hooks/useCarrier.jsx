@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLoading } from '../../../trip_search/presentation/redux/reducers/selectors';
 import { timeZones } from '../carrierPage/timezones/timezones';
 import cities_json from '../../../trip_search/domain/entites/utils/jsons/cities';
 import citiesApi from './../../data/api/cityApi/api';
-import { loadingUploadTransferAction } from '../../../trip_search/presentation/redux/reducers/actions/loading-actions';
 import { uploadTransfer } from '../../../trip_search/data/api/data-service';
 import i18n from '../../../../../i18n';
+import {getLoading} from "../../../../general/redux/selectors";
+import {setNextTransfers} from "../../../trip_search/presentation/redux/slices/transferSlice";
 
 const useCarrier = () => {
   const dispatch = useDispatch();
@@ -64,12 +64,12 @@ const useCarrier = () => {
     console.log(values);
     // dispatch(saveNewTransferAction(values));
     // history.push("/");
-    dispatch(loadingUploadTransferAction(true));
+    dispatch(setNextTransfers(true));
     uploadTransfer(values)
       .then((response) => {
         console.log(response);
         setMessage({ type: 'success', msg: i18n.t('SuccessTrip') });
-        dispatch(loadingUploadTransferAction(false));
+        dispatch(setNextTransfers(false));
         setOpen(true);
         // history.push("/");
       })

@@ -1,13 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getLoading,
-  getTransfersData,
-} from '../../../trip_search/presentation/redux/reducers/selectors';
-import {
-  getNextTransfersAction,
-  getTransfersAction,
-} from '../../../trip_search/presentation/redux/reducers/actions/transfers-actions';
+import {getLoading, getTransfersData} from "../../../../general/redux/selectors";
+import {getNextTransfers} from "../../../trip_search/data/api/data-service";
+import {getTransfersAction} from "../../../../general/redux/redux-using functions/transfers-actions";
 
 const usePassenger = () => {
   const dispatch = useDispatch();
@@ -17,7 +12,7 @@ const usePassenger = () => {
   const loading = useSelector(getLoading);
 
   const addNextHandler = () => {
-    dispatch(getNextTransfersAction(data.transfers));
+    dispatch(getNextTransfers(data.transfers));
   };
 
   useEffect(() => {

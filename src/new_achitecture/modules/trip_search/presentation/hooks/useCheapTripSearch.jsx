@@ -6,7 +6,7 @@ import locations from '../../data/jsons/cheapTripData/locations.json';
 import { asyncAutocomplete } from '../../domain/entites/CheapTripSearch/asyncAutocomplete';
 import { SORT_OPTIONS } from '../../domain/entites/utils/constants/sortConstants';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from './../redux/reducers/cheapTripSearch/cheapTripSearchSlice';
+import {setFilter} from "../redux/reducers/cheapTripSearch/cheapTripSearchSlice";
 
 const useCheapTripSearch = () => {
   const [from, setFrom] = useState('');
