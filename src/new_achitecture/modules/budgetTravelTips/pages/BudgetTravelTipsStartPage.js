@@ -1,6 +1,9 @@
 import React from 'react';
 import FindBudget from "../presentation/ButtonsComponent/Find&Budget";
 import {TRAVEL_TIPS_DESCRIPTION} from "../../trip_search/domain/entites/utils/constants/constants";
+import Gallery from "../presentation/BTTStartComponent/GalleryComponent";
+import TitlebarImageList from "../presentation/BTTStartComponent/galleryMUI";
+import Cities from "../presentation/BTTStartComponent/CitiesComponent";
 
 const BudgetTravelTipsStartPage = () => {
     return (
@@ -15,6 +18,10 @@ const BudgetTravelTipsStartPage = () => {
                 <p1>Cities (list)</p1> <br />
                 <a href={TRAVEL_TIPS_DESCRIPTION}> city1 </a>
             </div>
+
+            {/*<Gallery/>*/}
+            {/*<TitlebarImageList/>*/}
+            {/*<Cities/>*/}
         </div>
     );
 };
