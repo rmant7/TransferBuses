@@ -6,7 +6,6 @@ import i18n from "../../../trip_search/domain/entites/utils/language/i18n";
 import SocialButtons from "../../../../general/MUI/SocialButtons/SocialButtons";
 
 const Contacts = () => {
-  // const classes = useStyles();
   return (
     <div>
     <Grid
