@@ -112,6 +112,8 @@ const useCheapTripSearch = () => {
     setFromKey('');
     setToKey('');
     setSelectedRoutesKeys(null);
+    setInputFrom('');
+    setInputValueTo('')
   };
   const submit = () => {
     if (from === '') return;
