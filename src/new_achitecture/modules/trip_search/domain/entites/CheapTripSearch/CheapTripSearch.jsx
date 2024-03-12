@@ -6,34 +6,19 @@ import {
   SORT_OPTIONS,
 } from '../utils/constants/sortConstants';
 import SearchForm from '../../../presentation/components/SearchForm/SearchForm';
+import SelectSortRoutes from '../../../presentation/components/SelectSortRoutes/SelectSortRoutes';
 
 function CheapTripSearch(props) {
   const { routes, filteredRoutes, PAGINATION_LIMIT, filterBy, selectSortBy } =
     useCheapTripSearch();
 
-  const handleSelectSortBy = (event) => {
-    selectSortBy(event.target.value);
-  };
   return (
     <>
       <SearchForm />
       <div>
         {routes && filteredRoutes ? (
           <>
-            <InputLabel id='demo-simple-select-label'>Sort</InputLabel>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={filterBy}
-              label='Sort'
-              onChange={handleSelectSortBy}
-            >
-              {SORT_OPTIONS.map((item, index) => (
-                <MenuItem value={item} key={index}>
-                  {item}
-                </MenuItem>
-              ))}
-            </Select>
+            <SelectSortRoutes/>
           </>
         ) : null}
         {routes &&

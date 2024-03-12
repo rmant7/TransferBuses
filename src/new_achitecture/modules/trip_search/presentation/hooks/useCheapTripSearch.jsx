@@ -197,9 +197,7 @@ const useCheapTripSearch = () => {
     );
   };
 
-  const selectSortBy = (value) => {
-    dispatch(setFilter(value));
-  };
+
   const setInputFrom = (value) => {
     setInputValueFrom(value);
   };
@@ -221,7 +219,6 @@ const useCheapTripSearch = () => {
     PAGINATION_LIMIT,
     sortByDuration,
     sortByPrice,
-    selectSortBy,
     filterBy,
     clearFromField,
     clearToField,
