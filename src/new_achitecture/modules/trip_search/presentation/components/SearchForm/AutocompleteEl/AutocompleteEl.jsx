@@ -1,9 +1,6 @@
 import { Autocomplete } from '@mui/material';
 import React from 'react';
 import {
-  inputFromStyle,
-  inputToStyle,
-  basicColor,
   colorOnFocus,
   colorOnBlur,
   sxForTextField,
