@@ -26,15 +26,7 @@ function CheapTripSearch(props) {
     routes,
     filteredRoutes,
     PAGINATION_LIMIT,
-    routesForRender,
-    openFilterMenu,
-    closeFilterMenu,
-    anchorEl,
-    open,
-    sortDirection,
-    sortBy,
     filterBy,
-    changeDirection,
     selectSortBy,
     clearFromField,
     clearToField,
@@ -68,17 +60,6 @@ function CheapTripSearch(props) {
   const handleToInputValue = (value) => {
     setInputTo(value);
   };
-  // const handleOpenFilter = (event) => {
-  //   openFilterMenu(event.currentTarget);
-  // };
-  // const handleCloseFilter = () => {
-  //   closeFilterMenu(null);
-  // };
-
-  // const handleChangeDirection = (event) => {
-  //   changeDirection(event.target.value);
-  // };
-
   const handleSelectSortBy = (event) => {
     selectSortBy(event.target.value);
   };
@@ -226,17 +207,9 @@ function CheapTripSearch(props) {
         {routes &&
           filteredRoutes &&
           filteredRoutes
-            // .sort(
-            //   (a, b) =>
-            //     routes[a].direct_routes.length - routes[b].direct_routes.length
-            // )
             .slice(0, PAGINATION_LIMIT)
             .map((route, index) => {
-              // return routesForRender[key]
-              // .sort((route1, route2) => route1.price - route2.price)
-              // .map((route, index) => {
               return <RouteCard route={route} key={route + index} />;
-              // });
             })}
         {routes && filteredRoutes && filteredRoutes.length === 0 && (
           <p>No such routes</p>
