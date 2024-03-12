@@ -1,12 +1,11 @@
-import { Autocomplete } from '@mui/material';
 import React from 'react';
+import { Autocomplete, TextField } from '@mui/material';
 import {
   colorOnFocus,
   colorOnBlur,
   sxForTextField,
   sxForAutocomplete,
 } from './../searchFormStyles';
-import { TextField } from '@material-ui/core';
 
 const AutocompleteEl = ({
   value,
@@ -34,7 +33,7 @@ const AutocompleteEl = ({
       openOnFocus
       options={options}
       sx={sxForAutocomplete}
-      onFocus={() => (inputStyle = { colorOnFocus })}
+      onFocus={() => (inputStyle = colorOnFocus)}
       onBlur={() => (inputStyle = colorOnBlur)}
       disableClearable
       ListboxProps={{ style: { maxHeight: 140 } }}

@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { Autocomplete, createFilterOptions, TextField } from '@mui/material';
-import { Button, Menu } from '@material-ui/core';
+import React from 'react';
+import { Button } from '@material-ui/core';
 import useCheapTripSearch from '../../hooks/useCheapTripSearch';
 import s from './../../../domain/entites/CheapTripSearch/cheaptrip.module.css';
 import classes from './../../../presentation/components/searchResult/SearchComponent.module.css';

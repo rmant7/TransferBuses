@@ -18,4 +18,4 @@ export let sxForTextField = {
   '& .MuiInput-underline:after': { borderBottomColor: '#ff5722' },
 };
 
-export let sxForAutocomplete = { width: '100%'};
+export let sxForAutocomplete = { width: '100%' };
