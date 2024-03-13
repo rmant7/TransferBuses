@@ -2,16 +2,16 @@
 
 export const itemData = [
     {
-        img: require('./images/shutterstock_112137761 (1).jpg'),
+        img: require('./images/shutterstock.jpg'),
         title: 'Paris',
         featured: true,
     },
     {
-        img: require('./images/Schloss_Charlottenburg_(233558373).jpeg'),
+        img: require('./images/Schloss_Charlottenburg.jpeg'),
         title: 'Berlin',
     },
     {
-        img: require('./images/Tower_Bridge_from_Shad_Thames.jpg'),
+        img: require('./images/Tower_Bridge.jpg'),
         title: 'London',
     },
 ];

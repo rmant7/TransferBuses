@@ -1,26 +1,28 @@
 import React from 'react';
-import "./ReadMore.css";
 import dataForReadMore from "./readMoreJson.json";
+import readMoreStyles from "./ReadMore.module.css";
+
 
 const readMore = () => {
     const data = dataForReadMore[0];
+    // console.log(data)
 
     return (
         <div>
-            <div style={{textAlign: "center"}}>
-                <h2 className="section-title">
+            <div style={{ textAlign: "center" }}>
+                <h2 className={readMoreStyles.section_title}>
                     {data.title}
                 </h2>
             </div>
-            <div id="container">
-                <img className='city-img-attraction' alt="City Attraction Image" id="image" src={data.imageUrl}/>
-                <h3 id="title">
+            <div className={readMoreStyles.container}>
+                <img className={readMoreStyles.city_img_attraction} alt="City Attraction Image" className={readMoreStyles.image} src={data.imageUrl} />
+                <h3 className={readMoreStyles.title}>
                     {data.description}
                 </h3>
-                <p id="text">
+                <p className={readMoreStyles.text}>
                     {data.text}
                 </p>
-                <div id="links">
+                <div className={readMoreStyles.links}>
                     <a href={data.relatedSiteLink} id="link_1" target="_blank">
                         Visit related site
                     </a>

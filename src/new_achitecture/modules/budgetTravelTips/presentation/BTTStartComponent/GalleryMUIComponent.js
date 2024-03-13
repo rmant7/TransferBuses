@@ -1,6 +1,6 @@
-// import Schloss_Charlottenburg from "./images/Schloss_Charlottenburg_(233558373).jpeg";
-// import shutterstock from "../images/shutterstock_112137761 (1).jpg"
-// import Tower_Bridge from "../images/Tower_Bridge_from_Shad_Thames.jpg"
+// import Schloss_Charlottenburg from "./images/Schloss_Charlottenburg.jpeg";
+// import shutterstock from "../images/shutterstock.jpg"
+// import Tower_Bridge from "../images/Tower_Bridge.jpg"
 // import  New_york    from "../images/New20City_GettyImages-1347979016.webp"
 // import London from "../images/study-in-london.jpg"
 import * as React from 'react';
@@ -10,10 +10,11 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import {itemData} from "./itemData";
+import style from './GalleryMUIComponent.module.css';
 
 export default function TitlebarImageList() {
     return (
-        <ImageList className={'imageList'}
+        <ImageList className={style.imageList}
                    sx={{ width: 1000, height: 550 }}>
             {itemData.map((item) => (
                 <ImageListItem key={item.img}>
@@ -21,7 +22,7 @@ export default function TitlebarImageList() {
                         srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                         src={`${item.img}?w=248&fit=crop&auto=format`}
                         alt={item.title}
-                        className={'image'}
+                        className={style.image}
                         loading="lazy"
                     />
                     <ImageListItemBar
