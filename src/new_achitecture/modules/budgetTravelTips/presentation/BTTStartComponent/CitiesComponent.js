@@ -2,6 +2,7 @@ import React from 'react';
 import cities_json from '../../data/cities-fullList.json';
 import styles from './CitiesComponent.module.css'
 import {Link} from "react-router-dom";
+import {TRAVEL_TIPS_DESCRIPTION} from "../../../trip_search/domain/entites/utils/constants/constants";
 
 const Cities = () => {
     const sortCities = cities_json.sort((a, b) => {
@@ -24,14 +25,15 @@ const Cities = () => {
             <div>
                 <ul className={styles.cityList}>
                     {sortCities.map((item, key) => (
-                        // return <li className={styles.list} key={key} onClick={goToCity(item.id)}>
-                        //     {item.name}</li>
                         <li className={styles.list} key={key}>
-                            <Link to={`/budgetTravelTips/description/${item.name}`}>
+                            {/*<Link to={`${TRAVEL_TIPS_DESCRIPTION}/${item.name}`}>*/}
+                            {/*    {item.name}*/}
+                            {/*</Link>*/}
+                            <Link to={TRAVEL_TIPS_DESCRIPTION}>
                                 {item.name}
                             </Link>
                         </li>
-                        ))}
+                    ))}
                 </ul>
             </div>
         </div>

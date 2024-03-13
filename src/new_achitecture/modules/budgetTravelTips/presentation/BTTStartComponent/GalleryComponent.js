@@ -38,7 +38,7 @@ const Gallery = () => {
             <div className={styles.navGallery}>
                 <button className={styles.galBut} onClick={prevImg}>Prev</button>
                 <img className={styles.image}
-                     src={src} alt={styles.town}/>
+                     src={src} alt={"town"}/>
                 <button className={styles.galBut} onClick={nextImg}>Next</button>
             </div>
         </div>
