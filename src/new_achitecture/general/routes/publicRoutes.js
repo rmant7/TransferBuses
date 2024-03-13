@@ -65,7 +65,7 @@ export const publicRoutes = [
         Component: BudgetTravelTipsStartPage,
     },
     {
-        path: TRAVEL_TIPS_DESCRIPTION,
+        path: `${TRAVEL_TIPS_DESCRIPTION}/:cityId`,
         Component: CityDescriptionPage,
     },
     {
