@@ -8,14 +8,14 @@
 
 .sectionTitle {
     color: #000;
-    font-size: 3rem;
+    font-size: 48px;
     text-align: center;
-    padding: 5px;
+    /*padding: 5px;*/
 
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    line-height: 1.2;
+    /*margin-top: 0;*/
+    /*margin-bottom: 0.5rem;*/
+    /*font-weight: 500;*/
+    /*line-height: 1.2;*/
 }
 
 .cityDetailsMain {

@@ -1,4 +1,4 @@
-import {TRAVEL_TIPS} from "../../../trip_search/domain/entites/utils/constants/constants";
+import {TRAVEL_TIPS} from "../../trip_search/domain/entites/utils/constants/constants";
 
 
 export const dataButtons = [{

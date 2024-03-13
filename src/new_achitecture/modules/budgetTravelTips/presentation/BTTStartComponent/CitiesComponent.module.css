@@ -3,7 +3,7 @@
 * {
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
-    line-height: 1.6rem;
+    /*line-height: 1.6rem;*/
 }
 
 .ruler {
@@ -35,12 +35,12 @@
     align-items: center;
 }
 
-.list {
+.list a{
     color: #ff5722;
     /*font-size: 1.23em;*/
     line-height: 1.6;
 }
 
-.list:hover {
+.list:hover a{
     cursor: pointer;
 }

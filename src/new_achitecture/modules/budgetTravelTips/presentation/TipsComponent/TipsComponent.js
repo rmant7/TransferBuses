@@ -4,6 +4,7 @@ import accommodations from './dataExampleTips';
 import {TRAVEL_TIPS_ACCOMMODATION_READ_MORE} from "../../../trip_search/domain/entites/utils/constants/constants";
 
 const TipsComponent = () => {
+
     return (
         <div className={styles.containerTips}>
             <div className={styles.sectionTitle}>

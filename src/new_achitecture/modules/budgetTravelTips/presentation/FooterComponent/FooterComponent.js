@@ -2,9 +2,11 @@ import React from 'react';
 import styles from './FooterComponent.module.css';
 import {Link} from 'react-router-dom';
 import {buttonDataTravelTips} from "./footerButtonsData";
+import {useParams} from "react-router";
 
 
 const Button = ({text, to}) => {
+    // const to = `/budgetTravelTips/accommodation/${cityName}`;
     return (
         <div className={styles.buttonsDiv}>
             <Link to={to} className={styles.actionBtn}>

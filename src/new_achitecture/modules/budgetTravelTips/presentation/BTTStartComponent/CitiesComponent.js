@@ -1,5 +1,5 @@
 import React from 'react';
-import cities_json from "./cities-fullList.json";
+import cities_json from '../../data/cities-fullList.json';
 import styles from './CitiesComponent.module.css'
 import {Link} from "react-router-dom";
 
@@ -27,7 +27,7 @@ const Cities = () => {
                         // return <li className={styles.list} key={key} onClick={goToCity(item.id)}>
                         //     {item.name}</li>
                         <li className={styles.list} key={key}>
-                            <Link to={`/budgetTravelTips/description/${item.id}`}>
+                            <Link to={`/budgetTravelTips/description/${item.name}`}>
                                 {item.name}
                             </Link>
                         </li>

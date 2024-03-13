@@ -11,7 +11,6 @@ const BudgetTravelTipsStartPage = () => {
             <FindBudget/>
             <Gallery/>
             {/*<TitlebarImageList/>*/}
-            <a href={TRAVEL_TIPS_DESCRIPTION}> city1 </a>
             <Cities/>
         </div>
     );

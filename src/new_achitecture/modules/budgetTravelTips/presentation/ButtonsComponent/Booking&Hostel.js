@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./BookingHostel.module.css";
-import {dataButtons} from "./dataButtons";
+import {dataButtons} from "../../data/dataButtons";
+
 
 const BookingHostel = () => {
     const data = dataButtons[0];

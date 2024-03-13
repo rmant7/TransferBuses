@@ -1,11 +1,11 @@
 import React from 'react';
 import dataForReadMore from "./readMoreJson.json";
 import readMoreStyles from "./ReadMore.module.css";
+import {useParams} from "react-router";
 
 
 const readMore = () => {
     const data = dataForReadMore[0];
-    // console.log(data)
 
     return (
         <div>
