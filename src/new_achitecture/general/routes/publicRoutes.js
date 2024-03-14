@@ -1,6 +1,5 @@
 import { MainPage, PassengerPage, BusPage, CarrierPage, TransferPage } from "../../modules";
 import TransferViewComponent from "../../modules/transfer/presentation/transferPage/transferCard/transferView/TransferViewComponent";
-import { Contacts } from "../../modules/contacts/presentation/pages";
 
 
 import {
@@ -15,6 +14,7 @@ import {
 import {MainPageComponent} from "../../modules/mainPage/presentation/components/MainPageComponent/MainPageComponent";
 import {readMore} from "../../modules/trip_search/presentation/components/readMore/readMore";
 import BudgetTravelTips from "../../modules/BudjetTrevelTips/BudgetTravelTips";
+//import {Contacts} from "../../modules/contacts/presentation/pages";
 
 export const publicRoutes = [
   // {
@@ -45,10 +45,10 @@ export const publicRoutes = [
     path: TRANSFER_ROUTE,
     Component: TransferPage,
   },
-  {
+  /*{
     path: CONTACTS_ROUTE,
     Component: Contacts,
-  },
+  },*/
   {
     path: READ_MORE_ROUTE,
     Component: readMore,
