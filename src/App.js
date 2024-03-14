@@ -8,6 +8,8 @@ import HeaderComponent
     from "./new_achitecture/modules/mainPage/presentation/components/HeaderComponent/HeaderComponent";
 import {AppRouter} from "./new_achitecture/general/routes/AppRouter";
 import {theme} from "./new_achitecture/general/MUI/useStyles";
+import CityHeaderComponent
+    from "./new_achitecture/modules/budgetTravelTips/presentation/HeaderComponent/CityHeaderComponent";
 
 
 function App() {
@@ -32,7 +34,8 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <StylesProvider>
-                <HeaderComponent/>
+                {/*<HeaderComponent/>*/}
+                <CityHeaderComponent/>
                 {/* <Navbar/> */}
                 <AppRouter/>
             </StylesProvider>
