@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-<<<<<<<< HEAD:src/new_achitecture/modules/budgetTravelTips/presentation/FooterComponent/FooterComponent.module.css
     font-family: "Roboto", sans-serif;
     /*line-height: 1.6rem;*/
 }
@@ -8,8 +7,6 @@
 .containerFooter {
     /*margin: 100px 0;*/
     line-height: 1.6rem;
-========
->>>>>>>> origin/masa/dev:src/new_achitecture/modules/city_details/cityFoooterComponent/FooterComponent.module.css
 }
 
 .customDivider {

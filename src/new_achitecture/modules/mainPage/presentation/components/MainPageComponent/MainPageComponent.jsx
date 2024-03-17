@@ -20,7 +20,7 @@ export const MainPageComponent = () => {
     <Container maxWidth="xl" className={css.tb_padding}>
 
       {SloganMain()}
-        <Link to={'/travelTips'}>Budget travel tips</Link>
+        <Link to={'/budgetTravelTips'}>Budget travel tips</Link>
       <div className={filtersClasses.filters_sector}>
           <CheapTripSearch />
       </div>
