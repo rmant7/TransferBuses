@@ -66,6 +66,7 @@
     margin-right: 75px;
     color: #ff5722;
     display: block;
+    align-self: center;
 }
 
 .media_search {
@@ -73,6 +74,7 @@
     width: 100%;
     align-items: center;
 }
+
 
 
 

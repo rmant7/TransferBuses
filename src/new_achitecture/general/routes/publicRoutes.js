@@ -55,10 +55,10 @@ export const publicRoutes = [
         path: TRANSFER_ROUTE,
         Component: TransferPage,
     },
-    {
+    /*{
         path: CONTACTS_ROUTE,
         Component: Contacts,
-    },
+    },*/
     //BUDGET TRAVEL TIPS
     {
         path: TRAVEL_TIPS,
@@ -108,3 +108,8 @@ export const publicRoutes = [
     },
 
 ];
+
+export const PAGES_WITH_MUI_HEADER = [
+  CONTACTS_ROUTE, TRANSFER_ROUTE, DRIVER_ROUTE,
+  BUS_ROUTE, PASSENGER_ROUTE, MAIN_ROUTE
+]

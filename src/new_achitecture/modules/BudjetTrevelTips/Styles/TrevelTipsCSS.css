@@ -1,0 +1,135 @@
+.advPage{
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #e7680b;
+    height: 70px;
+    width: 100vw;
+    font-size: 35px;
+}
+.slogan{
+    font-style: italic;
+    font-family: Arial;
+    font-weight: bold;
+    color: whitesmoke;
+}
+.navButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial;
+    margin-right: 100px;
+    margin-top: 40px;
+    gap: 20px;
+}
+.navClick2 {
+    cursor: pointer;
+    background-color: #e7680b;
+    color: whitesmoke;
+    border: 1px solid #e7680b;
+    border-radius: 15px;
+    height: 50px;
+    width: 180px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.navClick1 {
+    cursor: pointer;
+    background-color: white;
+    color: #e7680b;
+    border: 2px solid #e7680b;
+    border-radius: 15px;
+    height: 50px;
+    width: 190px;
+    font-weight: bold;
+    font-size: 17px;
+}
+.navClick1:hover{
+    background-color: #e7680b;
+    color: whitesmoke;
+}
+.gallery{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+#mpCities{
+    margin-right: 60px;
+    font-size: 40px;
+    font-family: Arial;
+    font-weight: bold;
+}
+#explore{
+    font-family: Arial;
+    font-size: 20px;
+}
+.list{
+    list-style: none;
+    cursor: pointer;
+    width: 18vw;
+    margin-top: 7px;
+    font-size: 20px;
+}
+.list:hover{
+    color: #e7680b;
+}
+.cityHeader{
+    align-items: center;
+}
+.image{
+    width: 200px;
+    height: 200px;
+}
+.imageList{
+    margin-left: 10vw;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+.navGallery{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.galBut{
+    border: 2px solid #e7680b;
+    border-radius: 80px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    background-color: white;
+    font-family: Arial;
+    font-size: 17px;
+    font-weight: bold;
+    color: #e7680b;
+}
+.galBut:hover{
+    background-color: #e7680b;
+    color: whitesmoke;
+}
+.cityHeader{
+    margin-left: 45vw;
+    font-size: 20px;
+    font-weight: bold;
+}
+.hr{
+    border-color: #e7680b;
+}
+.cityList{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.cities{
+    margin-top: 10px;
+}

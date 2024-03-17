@@ -11,7 +11,6 @@ import { store } from './new_achitecture/general/redux/store';
 console.log(performance.now())
 
 ReactDOM.render(
-  <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         {/* <Suspense fallback={<div>loading...</div>}> */}
@@ -23,8 +22,7 @@ ReactDOM.render(
           <App />
         </Suspense>
       </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
   document.getElementById('root'),
 );
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {Container} from "@material-ui/core";
 import filtersClasses from "../../../../../modules/trip_search/lib/filterSearch/Filter/FilterComponent.module.css";
 
@@ -6,27 +6,24 @@ import css from "./MainPageComponent.module.css";
 import Logo_Cht from "./Logo_ChT_2.png";
 import {AutoCompleteSection} from "../../../../trip_search/lib/autoComplete/AutoCompleteSection";
 import CheapTripSearch from "../../../../trip_search/domain/entites/CheapTripSearch/CheapTripSearch";
-
-
+import {Link} from "react-router-dom";
 
 export const MainPageComponent = () => {
-    const SloganMain = () => (
+    const SloganMain = useCallback(() => (
         <div className={css.MainSlogan}>
             Find most beneficial and unusual routes between cities, combining flight,
             train, bus, ferry and rideshare.
         </div>
-    );
+    ), []);
 
-    return (
-        <Container maxWidth="xl" className={css.tb_padding}>
+  return (
+    <Container maxWidth="xl" className={css.tb_padding}>
 
-            {SloganMain()}
-
-            <div className={filtersClasses.filters_sector}>
-                {/*<AutoCompleteSection />*/}
-                {/* <FiltersCitiesFrom /> */}
-                <CheapTripSearch/>
-            </div>
+      {SloganMain()}
+        <Link to={'/travelTips'}>Budget travel tips</Link>
+      <div className={filtersClasses.filters_sector}>
+          <CheapTripSearch />
+      </div>
 
 
             <div className={css.Logo_Cht_Wrapper}>
