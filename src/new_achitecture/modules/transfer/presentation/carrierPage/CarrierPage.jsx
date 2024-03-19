@@ -34,6 +34,7 @@ import RouteInput from "./subComponents/RouteInput";
 import DepartureTimeField from "./subComponents/DepartureTimeField";
 import DateField from "./subComponents/DateField";
 import TravelTimeField from "./subComponents/TravelTimeField";
+import PhoneField from "./subComponents/PhoneField";
 
 export default function CarrierPage() {
   const {
@@ -293,34 +294,13 @@ export default function CarrierPage() {
                   handleChange={props.handleChange}
                   durations={durations}
               />
-              <Grid
-                container
-                justifyContent='space-between'
-                alignItems='flex-end'
-              >
-                <Grid item xs={8}>
-                  <TextField
-                    fullWidth
-                    id='phoneNumber'
-                    name='phoneNumber'
-                    label={i18n.t('Phone number')}
-                    placeholder={'+1234567890'}
-                    margin='normal'
-                    value={props.values.phoneNumber}
-                    onBlur={props.handleBlur}
-                    error={
-                      Boolean(props.errors.phoneNumber) &&
-                      props.touched.phoneNumber
-                    }
-                    helperText={
-                      Boolean(props.errors.phoneNumber) &&
-                      props.touched.phoneNumber &&
-                      i18n.t(`form.errors.${props.errors.phoneNumber}`)
-                    }
-                    onChange={props.handleChange}
-                  />
-                </Grid>
-              </Grid>
+              <PhoneField
+                  valuePhoneNumber={props.values.phoneNumber}
+                  errorPhoneNumber={props.errors.phoneNumber}
+                  touchedPhoneNumber={props.touched.phoneNumber}
+                  handleBlur={props.handleBlur}
+                  handleChange={props.handleChange}
+              />
               <Grid
                 item
                 xs={12}
