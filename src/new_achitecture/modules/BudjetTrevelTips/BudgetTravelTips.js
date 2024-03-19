@@ -9,8 +9,7 @@ import css from "./Styles/TrevelTipsCSS.css"
 const BudgetTravelTips = () => {
     return (
         <div className={css.advPage}>
-            <Header/>
-            <NavButtons/>
+            <div style={{height: '100px'}}></div>
             <Gallery/>
             <TitlebarImageList/>
             <Cities/>

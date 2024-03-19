@@ -10,6 +10,7 @@ import i18n from '../../../../../i18n';
 import { PAGE_SIZE } from '../../../trip_search/data/api/data-service';
 import FiltersCitiesFrom from '../../../trip_search/lib/filterSearch/Filter/FiltersCitiesFrom';
 import usePassenger from '../hooks/usePassenger';
+import {Link} from "react-router-dom";
 
 function isNewDesign() {
   return (
@@ -27,7 +28,13 @@ export default function PassengerPage() {
 
   return (
     <Container maxWidth='xl' className={classes.tb_padding}>
+
       <div className={filtersClasses.filters_sector}>
+          <div style={{marginBottom: '15px'}}>
+              <Link to={'/viewRoutes'} className={classes.btn}>I'm a passenger</Link>
+              <Link to={'/addTransfer'} className={classes.btn}>I'm a carrier</Link>
+          </div>
+
         <Typography variant='button' display='block' gutterBottom>
           {i18next.t('Filter')}
         </Typography>

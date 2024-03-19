@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 // import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import styles from './CarrierPage.module.css';
-import { useHistory } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {
   Checkbox,
   Container,
@@ -30,6 +30,7 @@ import { LoadingButton } from '@mui/lab';
 import { Alert } from '@mui/material';
 import { useStyles } from '../../../../general/MUI/useStyles';
 import useCarrier from '../hooks/useCarrier';
+import css from './CarrierPage.module.css';
 
 const schema = yup.object().shape({
   from: yup.string().required('from.Required'),
@@ -95,7 +96,11 @@ export default function CarrierPage() {
 
   return (
     // <Container maxWidth="sm" className={classes.drivePage}>
-    <Container maxWidth='sm' style={{ marginTop: '75px' }}>
+    <Container maxWidth='sm' style={{ paddingTop: '100px' }}>
+      <div style={{marginTop: '60px'}}>
+        <Link to={'/viewRoutes'} className={css.btn}>I'm a passenger</Link>
+        <Link to={'/addTransfer'} className={css.btn}>I'm a carrier</Link>
+      </div>
       <Formik
         initialValues={{
           date: new Date().toJSON().slice(0, 10),
