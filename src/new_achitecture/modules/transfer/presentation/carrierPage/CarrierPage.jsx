@@ -31,6 +31,8 @@ import useCarrier from '../hooks/useCarrier';
 import { schema } from './validationSchema';
 import React from "react";
 import RouteInput from "./subComponents/RouteInput";
+import DepartureTimeField from "./subComponents/DepartureTimeField";
+import DateField from "./subComponents/DateField";
 
 export default function CarrierPage() {
   const {
@@ -262,65 +264,26 @@ export default function CarrierPage() {
                   </Grid>
                 </Paper>
               )}
+              {/**** 'Regular trips' checkbox is off ****/}
               {!props.values.regularTrips && (
                 <>
-                  <Grid container justifyContent='space-between'>
-                    <Grid item xs={6}>
-                      <TextField
-                        id='date'
-                        label={i18n.t('Date')}
-                        type='date'
-                        margin='normal'
-                        fullWidth
-                        onBlur={props.handleBlur}
-                        error={Boolean(props.errors.date) && props.touched.date}
-                        // size={"small"}
-                        helperText={
-                          Boolean(props.errors.date) &&
-                          props.touched.date &&
-                          i18n.t(`form.errors.${props.errors.date}`)
-                        }
-                        value={props.values.date}
-                        onChange={props.handleChange}
-                        inputProps={{
-                          min: new Date().toISOString().slice(0, 10),
-                        }}
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                      />
-                    </Grid>
-                  </Grid>
+                  {/**** DATE ****/}
+                  <DateField
+                      handleBlur={props.handleBlur}
+                      errorDate={props.errors.date}
+                      touchedDate={props.touched.date}
+                      valuesDate={props.values.date}
+                      handleChange={props.handleChange}
+
+                  />
                   {/**** DEPARTURE TIME ****/}
-                  <Grid container justifyContent='space-between'>
-                    <Grid item xs={5}>
-                      <TextField
-                        id='departureTime'
-                        label={i18n.t('Time')}
-                        type='time'
-                        margin='normal'
-                        fullWidth
-                        onBlur={props.handleBlur}
-                        error={
-                          Boolean(props.errors.departureTime) &&
-                          props.touched.departureTime
-                        }
-                        helperText={
-                          Boolean(props.errors.departureTime) &&
-                          props.touched.departureTime &&
-                          i18n.t(`form.errors.${props.errors.departureTime}`)
-                        }
-                        value={props.values.departureTime}
-                        onChange={props.handleChange}
-                        inputProps={{
-                          min: new Date().toISOString().slice(0, 16),
-                        }}
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                      />
-                    </Grid>
-                  </Grid>
+                  <DepartureTimeField
+                      handleBlur={props.handleBlur}
+                      errorDepartureTime={props.errors.departureTime}
+                      touchedDepartureTime={props.touched.departureTime}
+                      valueDepartureTime={props.values.departureTime}
+                      handleChange={props.handleChange}
+                  />
                 </>
               )}
               <Grid container justifyContent='space-between'>
