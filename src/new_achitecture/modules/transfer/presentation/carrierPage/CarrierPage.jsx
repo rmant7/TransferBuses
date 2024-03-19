@@ -2,8 +2,6 @@ import * as yup from 'yup';
 import { Formik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-// import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-// import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import styles from './CarrierPage.module.css';
 import { useHistory } from 'react-router-dom';
@@ -30,24 +28,9 @@ import { LoadingButton } from '@mui/lab';
 import { Alert } from '@mui/material';
 import { useStyles } from '../../../../general/MUI/useStyles';
 import useCarrier from '../hooks/useCarrier';
-
-const schema = yup.object().shape({
-  from: yup.string().required('from.Required'),
-  to: yup.string().required('to.Required'),
-  date: yup.date().required('date.Required'), //!!! date, departureTime, and duration are conditionally reassigned later;
-  departureTime: yup.string().required('departureTime.Required'),
-  // duration: yup.string().required("duration.Required"),
-  places: yup
-    .number()
-    .min(1, 'Available places must be more or equal to 1')
-    .max(8, 'Available places must be less or equal to 8')
-    .required('places.Required'),
-  phoneNumber: yup
-    .string()
-    .required('phoneNumber.Required')
-    .phone(undefined, 'phoneNumber.isNotValid'),
-  price: yup.number().positive('price.OnlyPositive'),
-});
+import { schema } from './validationSchema';
+import React from "react";
+import RouteInput from "./subComponents/RouteInput";
 
 export default function CarrierPage() {
   const {
@@ -58,33 +41,19 @@ export default function CarrierPage() {
     message,
     open,
     setOpen,
-    latitude,
-    longitude,
     submitForm,
-    getDefaultCity,
     userTimeZone,
     durations
   } = useCarrier();
 
-  const classes = useStyles();
-
-  // console.log("cur: ", cur);
-  // console.log("rideCurrency: ", rideCurrency);
-  // console.log("Current latitude", latitude);
-  // console.log("Current longitude", longitude);
-  // console.log(lang);
-  //
-  // console.log("user time zone", userTimeZone);
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const history = useHistory();
   const defaultProps = {
     options: cities,
     getOptionLabel: (option) => {
-      // console.log(option.title);
       return option.title;
     },
   };
@@ -94,7 +63,6 @@ export default function CarrierPage() {
   };
 
   return (
-    // <Container maxWidth="sm" className={classes.drivePage}>
     <Container maxWidth='sm' style={{ marginTop: '75px' }}>
       <Formik
         initialValues={{
@@ -147,8 +115,6 @@ export default function CarrierPage() {
         validationSchema={schema}
       >
         {(props) => {
-          // console.log("Formik props: ", props);
-
           if (props.values.regularTrips) {
             schema.fields.date = null;
             schema.fields.duration = null;
@@ -158,12 +124,9 @@ export default function CarrierPage() {
             schema.fields.departureTime = yup
               .string()
               .required('departureTime.Required');
-            // schema.fields.duration = yup.string().required("duration.Required");
           }
 
           const handleSelectAllDaysChange = (event) => {
-            // console.log(event.target);
-            // console.log(event.target.checked);
             const weekDays = {};
             Object.keys(props.values.regularTripsDays).map((weekDay) => {
               return (weekDays[weekDay] = {
@@ -172,63 +135,20 @@ export default function CarrierPage() {
                   props.values.regularTripsDays[weekDay].departureTime,
               });
             });
-
-            // console.log("weekdays: ", weekDays);
             props.setFieldValue('regularTripsDays', weekDays);
           };
 
           return (
             <form onSubmit={props.handleSubmit} className={styles.form_style}>
-              <Autocomplete
-                className={styles.height95px}
-                {...defaultProps}
-                id='from'
-                name={'from'}
-                value={props.values.from}
-                margin='dense'
-                onChange={(e, v) => {
-                  props.setFieldValue('from', v?.id || '');
-                }}
-                onBlur={props.handleBlur}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label={i18n.t('From')}
-                    margin='normal'
-                    error={Boolean(props.errors.from) && props.touched.from}
-                    helperText={
-                      Boolean(props.errors.from) &&
-                      props.touched.from &&
-                      i18n.t(`form.errors.${props.errors.from}`)
-                    }
-                  />
-                )}
-                ListboxProps={{ style: { maxHeight: '7rem' } }}
-              />
-              <Autocomplete
-                className={styles.height95px}
-                {...defaultProps}
-                id='to'
-                name={'to'}
-                value={props.values.to}
-                onBlur={props.handleBlur}
-                onChange={(e, v) => {
-                  props.setFieldValue('to', v?.id || '');
-                }}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label={i18n.t('To')}
-                    margin='dense'
-                    error={Boolean(props.errors.to) && props.touched.to}
-                    helperText={
-                      Boolean(props.errors.to) &&
-                      props.touched.to &&
-                      i18n.t(`form.errors.${props.errors.to}`)
-                    }
-                  />
-                )}
-                // ListboxProps={{ style: { maxHeight: "7rem" } }}
+              <RouteInput
+              defaultProps={defaultProps}
+              valueFrom={props.values.from}
+              valueTo={props.values.to}
+              handleBlur={props.handleBlur}
+              errorsFrom={props.errors.from}
+              errorsTo={props.errors.to}
+              touchedFrom={props.touched.from}
+              touchedTo={props.touched.to}
               />
               <FormControlLabel
                 control={
@@ -246,9 +166,6 @@ export default function CarrierPage() {
                   <Grid
                     container
                     direction='column'
-                    // alignItems="center"
-                    // justify="center"
-                    // style={{minHeight: "100vh"}}
                   >
                     <Grid container direction={'row'}>
                       <Grid item xs={9}>
@@ -419,17 +336,14 @@ export default function CarrierPage() {
                       value={props.values.duration}
                       renderValue={(value) => `${value}`}
                       margin='dense'
-                      // disableUnderline
                       onChange={props.handleChange}
                       label='duration'
-                      //style={{paddingTop: "9px"}}
                     >
                       {durations.map((item) => {
                         return (
                           <MenuItem
                             key={item}
                             value={item}
-                            // onClick={() => setRideCurrency(item.code)}
                           >
                             {item}
                           </MenuItem>
@@ -439,13 +353,11 @@ export default function CarrierPage() {
                   </FormControl>
                 </Grid>
               </Grid>
-              {/* Phone number block */}
               <Grid
                 container
                 justifyContent='space-between'
                 alignItems='flex-end'
               >
-                {/* Phone */}
                 <Grid item xs={8}>
                   <TextField
                     fullWidth
@@ -469,7 +381,6 @@ export default function CarrierPage() {
                   />
                 </Grid>
               </Grid>
-              {/*<Grid container >*/}
               <Grid
                 item
                 xs={12}
@@ -492,11 +403,6 @@ export default function CarrierPage() {
                       props.touched.price &&
                       i18n.t(`form.errors.${props.errors.price}`)
                     }
-                    // inputProps={{
-                    //   min: 0,
-                    //   type: "price",
-                    //   "aria-labelledby": "input-slider",
-                    // }}
                   />
                 </Grid>
 
@@ -526,9 +432,7 @@ export default function CarrierPage() {
                     })}
                   </Select>
                 </Grid>
-                {/*CURRENCY ^*/}
               </Grid>
-              {/*</Grid>*/}
               <FormControlLabel
                 control={
                   <Checkbox
@@ -597,7 +501,6 @@ export default function CarrierPage() {
                     </Button>
                   </DialogActions>
                 </Dialog>
-                {/* {loading ? <CircularProgress /> : null} */}
               </div>
             </form>
           );
