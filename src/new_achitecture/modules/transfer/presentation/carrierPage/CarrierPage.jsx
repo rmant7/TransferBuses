@@ -35,6 +35,7 @@ import DepartureTimeField from "./subComponents/DepartureTimeField";
 import DateField from "./subComponents/DateField";
 import TravelTimeField from "./subComponents/TravelTimeField";
 import PhoneField from "./subComponents/PhoneField";
+import PriceField from "./subComponents/PriceField";
 
 export default function CarrierPage() {
   const {
@@ -294,6 +295,7 @@ export default function CarrierPage() {
                   handleChange={props.handleChange}
                   durations={durations}
               />
+              {/**** PHONE NUMBER ****/}
               <PhoneField
                   valuePhoneNumber={props.values.phoneNumber}
                   errorPhoneNumber={props.errors.phoneNumber}
@@ -308,23 +310,14 @@ export default function CarrierPage() {
                 alignItems='flex-end'
                 style={{ display: 'flex', alignItems: 'center' }}
               >
-                <Grid item xs={8}>
-                  <TextField
-                    type='number'
-                    value={props.values.price}
-                    margin='dense'
-                    id='price'
-                    label={i18n.t('Price')}
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    error={Boolean(props.errors.price) && props.touched.price}
-                    helperText={
-                      Boolean(props.errors.price) &&
-                      props.touched.price &&
-                      i18n.t(`form.errors.${props.errors.price}`)
-                    }
-                  />
-                </Grid>
+                {/**** PRICE ****/}
+                <PriceField
+                    valuePrice={props.values.price}
+                    errorPrice={props.errors.price}
+                    touchedPrice={props.touched.price}
+                    handleBlur={props.handleBlur}
+                    handleChange={props.handleChange}
+                />
 
                 {/*CURRENCY v*/}
                 <Grid item xs={4}>
