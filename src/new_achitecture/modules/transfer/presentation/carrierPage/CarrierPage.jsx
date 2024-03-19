@@ -33,6 +33,7 @@ import React from "react";
 import RouteInput from "./subComponents/RouteInput";
 import DepartureTimeField from "./subComponents/DepartureTimeField";
 import DateField from "./subComponents/DateField";
+import TravelTimeField from "./subComponents/TravelTimeField";
 
 export default function CarrierPage() {
   const {
@@ -286,36 +287,12 @@ export default function CarrierPage() {
                   />
                 </>
               )}
-              <Grid container justifyContent='space-between'>
-                <Grid item xs={5}>
-                  <FormControl fullWidth>
-                    <InputLabel shrink id='duration-label'>
-                      {i18n.t('Travel time')}
-                    </InputLabel>
-                    <Select
-                      labelId='duration-label'
-                      id='duration'
-                      name={'duration'}
-                      value={props.values.duration}
-                      renderValue={(value) => `${value}`}
-                      margin='dense'
-                      onChange={props.handleChange}
-                      label='duration'
-                    >
-                      {durations.map((item) => {
-                        return (
-                          <MenuItem
-                            key={item}
-                            value={item}
-                          >
-                            {item}
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                  </FormControl>
-                </Grid>
-              </Grid>
+              {/**** TRAVEL TIME ****/}
+              <TravelTimeField
+                  valueDuration={props.values.duration}
+                  handleChange={props.handleChange}
+                  durations={durations}
+              />
               <Grid
                 container
                 justifyContent='space-between'
