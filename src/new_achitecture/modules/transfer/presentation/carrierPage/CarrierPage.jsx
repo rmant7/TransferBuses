@@ -2,6 +2,7 @@ import * as yup from 'yup';
 import { Formik } from 'formik';
 import Button from '@material-ui/core/Button';
 import styles from './CarrierPage.module.css';
+import {Link, useHistory} from 'react-router-dom';
 import {
   Checkbox,
   Container,
@@ -61,7 +62,12 @@ export default function CarrierPage() {
   };
 
   return (
-    <Container maxWidth='sm' style={{ marginTop: '75px' }}>
+    // <Container maxWidth="sm" className={classes.drivePage}>
+    <Container maxWidth='sm' style={{ paddingTop: '100px' }}>
+      <div style={{marginTop: '60px'}}>
+        <Link to={'/viewRoutes'} className={css.btn}>I'm a passenger</Link>
+        <Link to={'/addTransfer'} className={css.btn}>I'm a carrier</Link>
+      </div>
       <Formik
         initialValues={{
           date: new Date().toJSON().slice(0, 10),
