@@ -40,6 +40,7 @@ import CurrencyField from "./subComponents/CurrencyField";
 import RegularTripsDaySelection from "./subComponents/RegularTripsDaySelection";
 import RegularTripDayCheckbox from "./subComponents/RegularTripDayCheckbox";
 import RegularTripDayTimeInput from "./subComponents/RegularTripDayTimeInput";
+import AdditionalInfoField from "./subComponents/AdditionalInfoField";
 
 
 export default function CarrierPage() {
@@ -171,6 +172,8 @@ export default function CarrierPage() {
                 }
                 label={i18n.t('Regular trips')}
               />
+
+              {/**** 'Regular trips' checkbox is on ****/}
               {props.values.regularTrips && (
                 <Paper variant='outlined' style={{ padding: '8px' }}>
                   <Grid
@@ -294,25 +297,13 @@ export default function CarrierPage() {
                 }
                 label={i18n.t('PetsAllowed')}
               />
-              <TextField
-                value={props.values.additionalInfo}
-                margin='normal'
-                id='additionalInfo'
-                name='additionalInfo'
-                fullWidth
-                multiline
-                rows={2}
-                error={
-                  Boolean(props.errors.additionalInfo) &&
-                  props.touched.additionalInfo
-                }
-                label={i18n.t('Additional information')}
-                onChange={props.handleChange}
-                helperText={
-                  Boolean(props.errors.additionalInfo) &&
-                  props.touched.additionalInfo &&
-                  i18n.t(`form.errors.${props.errors.additionalInfo}`)
-                }
+
+              <AdditionalInfoField
+                  valueAdditionalInfo={props.values.additionalInfo}
+                  errorAdditionalInfo={props.errors.additionalInfo}
+                  touchedAdditionalInfo={props.touched.additionalInfo}
+                  handleChange={props.handleChange}
+
               />
 
               <div style={{ margin: '10px' }} className={'submitBtn'}>
