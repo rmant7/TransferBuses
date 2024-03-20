@@ -37,6 +37,7 @@ import TravelTimeField from "./subComponents/TravelTimeField";
 import PhoneField from "./subComponents/PhoneField";
 import PriceField from "./subComponents/PriceField";
 import CurrencyField from "./subComponents/CurrencyField";
+import RegularTripsDaySelection from "./subComponents/RegularTripsDaySelection";
 
 export default function CarrierPage() {
   const {
@@ -173,31 +174,10 @@ export default function CarrierPage() {
                     container
                     direction='column'
                   >
-                    <Grid container direction={'row'}>
-                      <Grid item xs={9}>
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              checked={
-                                Object.values(
-                                  props.values.regularTripsDays
-                                ).reduce(
-                                  (acc, val) => (acc += +val.selected),
-                                  0
-                                ) === 7
-                              }
-                              onChange={handleSelectAllDaysChange}
-                              name='selectAll'
-                              margin={''}
-                            />
-                          }
-                          label={i18n.t('Select all')}
-                        />
-                      </Grid>
-                      <Grid item xs={3}>
-                        {i18n.t('Time')}
-                      </Grid>
-                    </Grid>
+                    <RegularTripsDaySelection
+                        valueRegularTripsDay={props.values.regularTripsDays}
+                        handleSelectAllDaysChange={handleSelectAllDaysChange}
+                    />
 
                     {Object.keys(props.values.regularTripsDays).map(
                       (weekDay) => {
