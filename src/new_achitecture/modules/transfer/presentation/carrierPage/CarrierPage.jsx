@@ -39,6 +39,7 @@ import PriceField from "./subComponents/PriceField";
 import CurrencyField from "./subComponents/CurrencyField";
 import RegularTripsDaySelection from "./subComponents/RegularTripsDaySelection";
 import RegularTripDayCheckbox from "./subComponents/RegularTripDayCheckbox";
+import RegularTripDayTimeInput from "./subComponents/RegularTripDayTimeInput";
 
 
 export default function CarrierPage() {
@@ -197,33 +198,12 @@ export default function CarrierPage() {
                                 valueRegularTripsDays={props.values.regularTripsDays}
 
                             />
-                            <Grid item xs={3}>
-                              <Tooltip title={i18n.t('Time')} placement='top'>
-                                <TextField
-                                  id={
-                                    'regularTripsDays.' +
-                                    weekDay +
-                                    '.departureTime'
-                                  }
-                                  name={
-                                    'regularTripsDays.' +
-                                    weekDay +
-                                    '.departureTime'
-                                  }
-                                  type='time'
-                                  margin='normal'
-                                  disabled={
-                                    !props.values.regularTripsDays[weekDay]
-                                      .selected
-                                  }
-                                  value={
-                                    props.values.regularTripsDays[weekDay]
-                                      .departureTime
-                                  }
-                                  onChange={props.handleChange}
-                                />
-                              </Tooltip>
-                            </Grid>
+                            <RegularTripDayTimeInput
+                                weekDay={weekDay}
+                                handleChange={props.handleChange}
+                                valueRegularTripsDays={props.values.regularTripsDays}
+                            />
+
                           </Grid>
                         );
                       }
