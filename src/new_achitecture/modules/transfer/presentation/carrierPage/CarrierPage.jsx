@@ -1,32 +1,21 @@
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import styles from './CarrierPage.module.css';
-import { useHistory } from 'react-router-dom';
 import {
   Checkbox,
   Container,
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
-  FormControl,
   FormControlLabel,
   Grid,
-  InputLabel,
-  MenuItem,
   Paper,
-  Select,
-  Tooltip,
 } from '@material-ui/core';
 import i18n from '../../../trip_search/domain/entites/utils/language/i18n';
-import { currencies } from '../currenciesSelector/currencies';
 import 'yup-phone-lite';
 import { LoadingButton } from '@mui/lab';
 import { Alert } from '@mui/material';
-import { useStyles } from '../../../../general/MUI/useStyles';
 import useCarrier from '../hooks/useCarrier';
 import { schema } from './validationSchema';
 import React from "react";
@@ -42,7 +31,6 @@ import RegularTripDayCheckbox from "./subComponents/RegularTripDayCheckbox";
 import RegularTripDayTimeInput from "./subComponents/RegularTripDayTimeInput";
 import AdditionalInfoField from "./subComponents/AdditionalInfoField";
 
-
 export default function CarrierPage() {
   const {
     loading,
@@ -56,7 +44,6 @@ export default function CarrierPage() {
     userTimeZone,
     durations
   } = useCarrier();
-
 
   const handleClose = () => {
     setOpen(false);
@@ -161,6 +148,8 @@ export default function CarrierPage() {
               touchedFrom={props.touched.from}
               touchedTo={props.touched.to}
               />
+
+              {/**** REGULAR TRIPS CHECKBOX ****/}
               <FormControlLabel
                 control={
                   <Checkbox
@@ -273,6 +262,8 @@ export default function CarrierPage() {
                     setRideCurrency={setRideCurrency}
                 />
               </Grid>
+
+              {/**** PASS A PARCEL CHECKBOX ****/}
               <FormControlLabel
                 control={
                   <Checkbox
@@ -285,6 +276,8 @@ export default function CarrierPage() {
                 }
                 label={i18n.t('Pass a parcel')}
               />
+
+              {/**** PETS ALLOWED CHECKBOX ****/}
               <FormControlLabel
                 control={
                   <Checkbox
@@ -298,12 +291,12 @@ export default function CarrierPage() {
                 label={i18n.t('PetsAllowed')}
               />
 
+              {/**** ADDITIONAL INFO FIELD ****/}
               <AdditionalInfoField
                   valueAdditionalInfo={props.values.additionalInfo}
                   errorAdditionalInfo={props.errors.additionalInfo}
                   touchedAdditionalInfo={props.touched.additionalInfo}
                   handleChange={props.handleChange}
-
               />
 
               <div style={{ margin: '10px' }} className={'submitBtn'}>
