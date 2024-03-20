@@ -8,6 +8,9 @@ import { theme } from './new_achitecture/general/MUI/useStyles';
 import useApp from './new_achitecture/general/hooks/useApp';
 import {useLocation} from "react-router";
 import {PAGES_WITH_MUI_HEADER} from "./new_achitecture/general/routes/publicRoutes";
+import CityHeaderComponent from "./new_achitecture/modules/city_details/cityHeaderComponent/CityHeaderComponent";
+import Nav from "./new_achitecture/modules/mainPage/presentation/components/HeaderComponent/Nav/Nav";
+import MainHeader from "./new_achitecture/modules/mainPage/presentation/components/MainHeader";
 
 function App() {
   const { i18n, lang } = useApp();
@@ -20,9 +23,15 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <StylesProvider>
+      <StylesProvider/>
           <Header />
-          <AppRouter />
+        {/* 
+          {
+              (!pathname || PAGES_WITH_MUI_HEADER.includes(pathname))?
+                  <MainHeader/>
+                  :<CityHeaderComponent/>
+          } */}
+        <AppRouter />
       </StylesProvider>
     </ThemeProvider>
   );

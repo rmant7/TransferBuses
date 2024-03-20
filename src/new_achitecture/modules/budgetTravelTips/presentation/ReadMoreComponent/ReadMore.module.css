@@ -1,0 +1,314 @@
+
+/* ==============main css=============*/
+
+/*==========================================common====================================================*/
+/* подключение шрифта Roboto */
+@font-face {
+    font-family: "Roboto";
+    src: url('https://fonts.googleapis.com/css2?family=Poller+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+}
+/* установка Roboto в качестве основного шрифта */
+body {
+    font-family: Roboto, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.image {
+    border-radius: 20px;
+    width: 100%
+}
+
+
+/*==========================================header====================================================*/
+.container_fluid {
+    background-color: #ff5722;
+    width: 100%;
+    margin: 0;
+}
+
+.headline {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.headline__logo {
+    font-style: italic;
+    font-weight: bold;
+    color: #fff;
+    font-size: 3.5rem;
+}
+
+.headline__slogan {
+    font-style: italic;
+    font-weight: bold;
+    color: #fff;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+h6.headline__slogan {
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 650px) {
+
+    .headline__logo {
+        font-size: 2.5rem;
+    }
+
+    .headline__slogan {
+        font-size: 1.8rem;
+        letter-spacing: normal;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .headline {
+        height: fit-content;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .headline__slogan{
+        align-items: center;
+    }
+}
+
+/*!*==========================================main button====================================================*!*/
+/*.section-btn {*/
+/*    text-align: center;*/
+/*    margin: 20px auto;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    font-size: 1.1rem;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.action-btn {*/
+/*    color: #ff5722;*/
+/*    padding: 7px;*/
+/*    border: #ff5722 solid 2px;*/
+/*    border-radius: 15px;*/
+/*    margin: 2px 2px;*/
+/*    background-color: white;*/
+/*}*/
+
+/*.action-btn:hover {*/
+/*    color: white;*/
+/*    background-color: #ff5722;*/
+/*}*/
+
+/*.budget-btn {*/
+/*    padding: 7px;*/
+/*    border: #ff5722 solid 2px;*/
+/*    border-radius: 15px;*/
+/*    background-color: #ff5722;*/
+/*    margin: 2px 2px;*/
+/*    color: white;*/
+/*}*/
+
+/*.budget-btn:hover {*/
+/*    color: white;*/
+/*}*/
+
+/*.action-btn-active {*/
+/*    color: #ffffff;*/
+/*    padding: 7px;*/
+/*    border: #ff5722 solid 1px;*/
+/*    border-radius: 15px;*/
+/*    background-color: #ff5722;*/
+/*    font-size: 1.3rem;*/
+/*}*/
+
+/*.action-btn-active:hover {*/
+/*    color: white;*/
+/*}*/
+
+/*@media screen and (max-width: 350px) {*/
+/*    .section-btn {*/
+/*        flex-direction: column;*/
+/*        width: fit-content;*/
+/*    }*/
+/*}*/
+
+
+/*==========================================description====================================================*/
+.centered_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.section_title {
+    color: black;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.flex_container {
+    display: flex;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.city_img_attraction {
+    min-width: 40%;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.text {
+    text-align: justify;
+    padding: 0 0 0 20px;
+    font-size: 1.3rem;
+    color: black;
+    margin: 0;
+
+}
+
+@media screen and (max-width: 1440px) {
+    .flex-container {
+        flex-direction: column;
+    }
+
+    .city_img_attraction {
+        max-width: 100%;
+    }
+
+    .text {
+        padding: 40px 0 0;
+    }
+
+}
+
+
+/*======================================== custom-divider ============================================================*/
+.custom_divider {
+    height: 1px;
+    background-color: orangered;
+    margin: 20px 0;
+}
+
+
+/*======================================== buttons under description =================================================*/
+.buttons {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 100%;
+    justify-content: center;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.buttons div {
+    text-align: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+
+@media screen and (max-width: 725px) {
+    .buttons {
+        flex-direction: column;
+    }
+    .buttons div {
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        max-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 1415px) {
+    .buttons {
+        flex-wrap: wrap;
+    }
+    .act_btn_cont {
+        text-align: center;
+        margin: 20px auto;
+        justify-content: center;
+        font-size: 1.3rem;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+/* ===================target css==================*/
+.container {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 0px;
+    margin: auto;
+}
+
+@media screen and (max-width: 1500px) {
+    #container {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+.title {
+    text-align: center;
+    margin: 20px 0px 10px;
+    padding: 0px;
+    font-size: 28px;
+    color: #4F4F4F;
+}
+
+.text {
+    width: 100%;
+    text-align: justify;
+    padding: 0px;
+    margin: 0px;
+    font-size: 1.3rem;
+}
+
+div .links {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.links a {
+    color: orangered;
+}
+
+div.buttons {
+    margin: 0px 0px;
+}
+
+div.act_btn_cont {
+    margin: 10px;
+}
+/* ==============mdb min css========================*/
+a {
+    text-decoration: none;
+}
+:root {
+    --mdb-font-roboto: "Roboto", sans-serif;
+    --mdb-bg-opacity: 1;
+}

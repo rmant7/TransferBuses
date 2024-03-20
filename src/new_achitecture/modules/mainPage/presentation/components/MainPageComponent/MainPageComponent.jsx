@@ -20,7 +20,6 @@ export const MainPageComponent = () => {
     <Container maxWidth="xl" className={css.tb_padding}>
 
       {SloganMain()}
-
       <div className={filtersClasses.filters_sector}>
           <CheapTripSearch />
       </div>

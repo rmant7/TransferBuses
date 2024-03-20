@@ -1,0 +1,12 @@
+export const city = [{
+    Dublin: {
+        cityName: "Dublin",
+        description: "Dublin, the capital city of Ireland, is a vibrant and exciting destination for budget travellers. With its rich history, unique culture, and stunning architecture, Dublin offers a wealth of experiences for visitors to enjoy. From the bustling streets of Temple Bar to the tranquil beauty of St. Stephen's Green, there is something for everyone in this charming city.\n" +
+            "Dublin is a city steeped in tradition, with a rich cultural heritage that is celebrated throughout the year. From the famous St. Patrick's Day parade to the Dublin Fringe Festival, there is always something happening in this lively city. Visitors can explore the city's many museums and galleries, including the National Museum of Ireland and the Irish Museum of Modern Art, or take a stroll through the historic Trinity College.\n" +
+            "One of the most striking features of Dublin is its architecture, which ranges from medieval castles to modern skyscrapers. The city is home to many iconic landmarks, such as the Guinness Storehouse and the Ha'penny Bridge, which offer stunning views of the cityscape. Visitors can also explore the city's many parks and gardens, including Phoenix Park, the largest enclosed park in Europe.\n" +
+            "Dublin is also known for its delicious national food, including hearty stews, fresh seafood, and of course, the famous Irish breakfast. Visitors can sample these culinary delights at one of the city's many pubs and restaurants, or visit the vibrant food markets that are held throughout the city.\n" +
+            "For budget travellers, Dublin offers a range of free and low-cost attractions, including the National Botanic Gardens, the Dublin City Gallery, and the Chester Beatty Library. Visitors can also take a walking tour of the city, exploring its hidden gems and discovering its unique character.\n" +
+            "Overall, Dublin is a city that is sure to captivate and inspire visitors with its rich history, unique culture, and stunning architecture. Whether you are a first-time visitor or a seasoned traveller, there is always something new to discover in this vibrant and exciting destination.",
+        src: require('./image_of_landmark_Dublin.jpg')
+    }
+}]
