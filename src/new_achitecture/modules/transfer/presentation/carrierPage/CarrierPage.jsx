@@ -36,6 +36,7 @@ import DateField from "./subComponents/DateField";
 import TravelTimeField from "./subComponents/TravelTimeField";
 import PhoneField from "./subComponents/PhoneField";
 import PriceField from "./subComponents/PriceField";
+import CurrencyField from "./subComponents/CurrencyField";
 
 export default function CarrierPage() {
   const {
@@ -319,32 +320,12 @@ export default function CarrierPage() {
                     handleChange={props.handleChange}
                 />
 
-                {/*CURRENCY v*/}
-                <Grid item xs={4}>
-                  <Select
-                    id='currency'
-                    name={'currency'}
-                    value={rideCurrency}
-                    renderValue={(value) => `${value.toUpperCase()}`}
-                    margin='dense'
-                    disableUnderline
-                    onChange={props.handleChange}
-                    label='currency'
-                    style={{ paddingTop: '8px' }}
-                  >
-                    {currencies.map((item) => {
-                      return (
-                        <MenuItem
-                          key={item.code}
-                          value={item.code}
-                          onClick={() => setRideCurrency(item.code)}
-                        >
-                          {item.code + `  ` + item.name}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </Grid>
+                {/**** CURRENCY ****/}
+                <CurrencyField
+                    handleChange={props.handleChange}
+                    rideCurrency={rideCurrency}
+                    setRideCurrency={setRideCurrency}
+                />
               </Grid>
               <FormControlLabel
                 control={
@@ -390,6 +371,7 @@ export default function CarrierPage() {
                   i18n.t(`form.errors.${props.errors.additionalInfo}`)
                 }
               />
+
               <div style={{ margin: '10px' }} className={'submitBtn'}>
                 <LoadingButton
                   loading={loading}
