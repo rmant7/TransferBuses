@@ -38,6 +38,8 @@ import PhoneField from "./subComponents/PhoneField";
 import PriceField from "./subComponents/PriceField";
 import CurrencyField from "./subComponents/CurrencyField";
 import RegularTripsDaySelection from "./subComponents/RegularTripsDaySelection";
+import RegularTripDayCheckbox from "./subComponents/RegularTripDayCheckbox";
+
 
 export default function CarrierPage() {
   const {
@@ -189,31 +191,12 @@ export default function CarrierPage() {
                             id={'regularTripsDays.' + weekDay}
                             key={'regularTripsDays.' + weekDay}
                           >
-                            <Grid item xs={9}>
-                              <FormControlLabel
-                                style={{ marginLeft: '10px' }}
-                                control={
-                                  <Checkbox
-                                    id={
-                                      'regularTripsDays.' +
-                                      weekDay +
-                                      '.selected'
-                                    }
-                                    checked={
-                                      props.values.regularTripsDays[weekDay]
-                                        .selected
-                                    }
-                                    onChange={props.handleChange}
-                                    name={
-                                      'regularTripsDays.' +
-                                      weekDay +
-                                      '.selected'
-                                    }
-                                  />
-                                }
-                                label={i18n.t(weekDay)}
-                              />
-                            </Grid>
+                            <RegularTripDayCheckbox
+                                weekDay={weekDay}
+                                handleChange={props.handleChange}
+                                valueRegularTripsDays={props.values.regularTripsDays}
+
+                            />
                             <Grid item xs={3}>
                               <Tooltip title={i18n.t('Time')} placement='top'>
                                 <TextField
