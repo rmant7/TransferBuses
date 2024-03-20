@@ -2,22 +2,31 @@ import * as yup from 'yup';
 import { Formik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import styles from './CarrierPage.module.css';
+import { useHistory } from 'react-router-dom';
 import {
   Checkbox,
   Container,
   Dialog,
   DialogActions,
   DialogContent,
+  DialogContentText,
+  FormControl,
   FormControlLabel,
   Grid,
+  InputLabel,
+  MenuItem,
   Paper,
+  Select,
   Tooltip,
 } from '@material-ui/core';
 import i18n from '../../../trip_search/domain/entites/utils/language/i18n';
+import { currencies } from '../currenciesSelector/currencies';
 import 'yup-phone-lite';
 import { LoadingButton } from '@mui/lab';
 import { Alert } from '@mui/material';
+import { useStyles } from '../../../../general/MUI/useStyles';
 import useCarrier from '../hooks/useCarrier';
 import { schema } from './validationSchema';
 import React from "react";
@@ -28,8 +37,6 @@ import TravelTimeField from "./subComponents/TravelTimeField";
 import PhoneField from "./subComponents/PhoneField";
 import PriceField from "./subComponents/PriceField";
 import CurrencyField from "./subComponents/CurrencyField";
-import AdditionalInfoField from "./subComponents/AdditionalInfoField";
-import {formikInitialValue} from "./utils/constants";
 
 export default function CarrierPage() {
   const {
@@ -64,7 +71,50 @@ export default function CarrierPage() {
   return (
     <Container maxWidth='sm' style={{ marginTop: '75px' }}>
       <Formik
-        initialValues={formikInitialValue}
+        initialValues={{
+          date: new Date().toJSON().slice(0, 10),
+          departureTime: '',
+          timeZone: userTimeZone.shift,
+          phoneNumber: '',
+          places: 1,
+          price: '',
+          currency: rideCurrency,
+          duration: '',
+          passAParcel: false,
+          isPetsAllowed: false,
+          additionalInfo: '',
+          regularTrips: false,
+          regularTripsDays: {
+            _0monday: {
+              selected: false,
+              departureTime: '',
+            },
+            _1tuesday: {
+              selected: false,
+              departureTime: '',
+            },
+            _2wednesday: {
+              selected: false,
+              departureTime: '',
+            },
+            _3thursday: {
+              selected: false,
+              departureTime: '',
+            },
+            _4friday: {
+              selected: false,
+              departureTime: '',
+            },
+            _5saturday: {
+              selected: false,
+              departureTime: '',
+            },
+            _6sunday: {
+              selected: false,
+              departureTime: '',
+            },
+          },
+        }}
         onSubmit={(values) => {
           handleSubmitForm(values);
         }}
@@ -301,14 +351,25 @@ export default function CarrierPage() {
                 }
                 label={i18n.t('PetsAllowed')}
               />
-
-              {/**** ADDITIONAL INFO ****/}
-              <AdditionalInfoField
-                  valueAdditionalInfo={props.values.additionalInfo}
-                  errorAdditionalInfo={props.errors.additionalInfo}
-                  touchedAdditionalInfo={props.touched.additionalInfo}
-                  handleChange={props.handleChange}
-
+              <TextField
+                value={props.values.additionalInfo}
+                margin='normal'
+                id='additionalInfo'
+                name='additionalInfo'
+                fullWidth
+                multiline
+                rows={2}
+                error={
+                  Boolean(props.errors.additionalInfo) &&
+                  props.touched.additionalInfo
+                }
+                label={i18n.t('Additional information')}
+                onChange={props.handleChange}
+                helperText={
+                  Boolean(props.errors.additionalInfo) &&
+                  props.touched.additionalInfo &&
+                  i18n.t(`form.errors.${props.errors.additionalInfo}`)
+                }
               />
 
               <div style={{ margin: '10px' }} className={'submitBtn'}>
