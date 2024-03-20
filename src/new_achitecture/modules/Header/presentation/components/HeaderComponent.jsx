@@ -25,10 +25,9 @@ const Header = () => {
 
     const underHeader =  () => {
         if (pathname === MAIN_ROUTE || pathname === CONTACTS_ROUTE) {
-            return <div className={css.tipsUnderHeader}><Link to={'/travelTips'} className={css.tips}>Budget travel tips</Link></div>;
+            return <div className={css.tipsUnderHeader}><Link to={'/budgetTravelTips'} className={css.tips}>Budget travel tips</Link></div>;
         }
-        return <div className={css.tipsUnderHeader}><Link to={'/'} className={css.tipsButton}>Budget travel tips</Link>
-            <Link to={'/travelTips'} className={css.tipsButton}>Budget travel tips</Link></div>;
+        return <></>;
     }
 
     return (

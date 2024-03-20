@@ -65,8 +65,8 @@ export default function CarrierPage() {
     // <Container maxWidth="sm" className={classes.drivePage}>
     <Container maxWidth='sm' style={{ paddingTop: '100px' }}>
       <div style={{marginTop: '60px'}}>
-        <Link to={'/viewRoutes'} className={css.btn}>I'm a passenger</Link>
-        <Link to={'/addTransfer'} className={css.btn}>I'm a carrier</Link>
+        <Link to={'/viewRoutes'} className={styles.btn}>I'm a passenger</Link>
+        <Link to={'/addTransfer'} className={styles.btn}>I'm a carrier</Link>
       </div>
       <Formik
         initialValues={{
