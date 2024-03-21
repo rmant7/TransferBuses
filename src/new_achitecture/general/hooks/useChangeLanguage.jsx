@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-const useApp = () => {
+const useChangeLanguage = () => {
   const { i18n } = useTranslation();
   const changeLanguage = (language) => {
     i18n
@@ -18,4 +18,4 @@ const useApp = () => {
   return {i18n, lang};
 };
 
-export default useApp;
+export default useChangeLanguage;
