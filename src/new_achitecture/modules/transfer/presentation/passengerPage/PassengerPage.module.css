@@ -6,6 +6,15 @@
 }
 
 .tb_padding {
-    padding-top: 70px;
+    padding-top: 120px;
     padding-bottom: 50px;
+}
+
+.btn {
+    background-color: #ff5722;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    margin-right: 30px;
+    font-size: 1.2rem;
 }

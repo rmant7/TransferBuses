@@ -3,15 +3,18 @@ import { SORT_OPTIONS } from '../../../../domain/entites/utils/constants/sortCon
 
 const cheapTripSearchSlice = createSlice({
   name: 'cheapTripSearch',
-  initialState: { filterBy: SORT_OPTIONS[0] },
+  initialState: { filterBy: SORT_OPTIONS[0], filteredRoutes: null },
   reducers: {
     setFilter(state, { payload }) {
       state.filterBy = payload;
+    },
+    setFilteredRoutes(state, { payload }) {
+      state.filteredRoutes = payload;
     },
   },
 });
 const { actions, reducer } = cheapTripSearchSlice;
 
-export const { setFilter } = actions;
+export const { setFilter, setFilteredRoutes } = actions;
 
 export default reducer;

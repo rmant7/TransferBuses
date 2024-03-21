@@ -6,7 +6,7 @@ import locations from '../../data/jsons/cheapTripData/locations.json';
 import { asyncAutocomplete } from '../../domain/entites/CheapTripSearch/asyncAutocomplete';
 import { SORT_OPTIONS } from '../../domain/entites/utils/constants/sortConstants';
 import { useDispatch, useSelector } from 'react-redux';
-import {setFilter} from "../redux/reducers/cheapTripSearch/cheapTripSearchSlice";
+import { setFilter, setFilteredRoutes } from '../redux/reducers/cheapTripSearch/cheapTripSearchSlice';
 
 const useCheapTripSearch = () => {
   const [from, setFrom] = useState('');
@@ -17,37 +17,15 @@ const useCheapTripSearch = () => {
   const [asyncToOptions, setAsyncToOptions] = useState([]);
   const [geoLocation, setGeoLocation] = useState({ latitude: 0, longitude: 0 });
   const [selectedRoutesKeys, setSelectedRoutesKeys] = useState(null);
-  const [filteredRoutes, setFilteredRoutes] = useState(null);
   const [inputValueFrom, setInputValueFrom] = useState('');
   const [inputValueTo, setInputValueTo] = useState('');
-  const { filterBy } = useSelector((state) => {
+  const { filterBy, filteredRoutes } = useSelector((state) => {
     return state.cheapTripSearch;
   });
   const dispatch = useDispatch();
 
   const PAGINATION_LIMIT = 10;
   const routes = { ...flying_routes, ...fixed_routes, ...common_routes };
-
-  useEffect(() => {
-    if (selectedRoutesKeys) {
-      let sortedRoutes;
-      switch (filterBy) {
-        case SORT_OPTIONS[0]:
-          sortedRoutes = sortByPrice([...selectedRoutesKeys]);
-          break;
-        case SORT_OPTIONS[1]:
-          sortedRoutes = sortByDuration([...selectedRoutesKeys]);
-          break;
-        case SORT_OPTIONS[2]:
-          sortedRoutes = sortByLayovers([...selectedRoutesKeys]);
-          console.log(`in sorting by layovers`, sortedRoutes);
-          break;
-        default:
-          return;
-      }
-      setFilteredRoutes(sortedRoutes);
-    }
-  }, [filterBy, selectedRoutesKeys]);
 
   // Here the routes with a common key will merge into an array like: 89091: [{...}, {...}]
   const routesForRender = {};
@@ -152,16 +130,37 @@ const useCheapTripSearch = () => {
     dispatch(setFilter(SORT_OPTIONS[0]));
   };
 
-  const startAsyncAutocomplete = (e, setState, options) => {
-    // get geolocation
-    navigator.geolocation.getCurrentPosition(function (position) {
-      setGeoLocation({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      });
-    });
-    asyncAutocomplete(e, setState, options, geoLocation);
-  };
+  useEffect(() => {
+    if (selectedRoutesKeys) {
+      let sortedRoutes = [];
+      switch (filterBy) {
+        case SORT_OPTIONS[0]:
+          sortedRoutes = sortByPrice([...selectedRoutesKeys]);
+          break;
+        case SORT_OPTIONS[1]:
+          sortedRoutes = sortByDuration([...selectedRoutesKeys]);
+          break;
+        case SORT_OPTIONS[2]:
+          sortedRoutes = sortByLayovers([...selectedRoutesKeys]);
+          break;
+        default:
+          return;
+      }
+
+      dispatch(setFilteredRoutes(sortedRoutes));
+    }
+  }, [filterBy, selectedRoutesKeys]);
+
+  // const startAsyncAutocomplete = (e, setState, options) => {
+  //   // get geolocation
+  //   navigator.geolocation.getCurrentPosition(function (position) {
+  //     setGeoLocation({
+  //       latitude: position.coords.latitude,
+  //       longitude: position.coords.longitude,
+  //     });
+  //   });
+  //   asyncAutocomplete(e, setState, options, geoLocation);
+  // };
 
   const checkFromOption =
     asyncFromOptions.length !== 0 ? asyncFromOptions : fromOptions;
@@ -193,14 +192,12 @@ const useCheapTripSearch = () => {
   const sortByLayovers = (arr) => {
     const allRoutes = [].concat(...arr.map((key) => routesForRender[key]));
     return allRoutes.sort(
-      (route1, route2) => route1.direct_routes.length - route2.direct_routes.length
+      (route1, route2) =>
+        route1.direct_routes.length - route2.direct_routes.length
     );
   };
 
-  const selectSortBy = (value) => {
-    console.log(value);
-    dispatch(setFilter(value));
-  };
+
   const setInputFrom = (value) => {
     setInputValueFrom(value);
   };
@@ -222,7 +219,6 @@ const useCheapTripSearch = () => {
     PAGINATION_LIMIT,
     sortByDuration,
     sortByPrice,
-    selectSortBy,
     filterBy,
     clearFromField,
     clearToField,

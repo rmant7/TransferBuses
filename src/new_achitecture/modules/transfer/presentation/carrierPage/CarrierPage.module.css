@@ -20,7 +20,7 @@
 }
 
 .height95px {
-  height: 95px;
+  height: 70px;
 }
 
 .form_style {
@@ -30,4 +30,12 @@
   box-shadow: 0px 5px 25px -5px rgba(34, 60, 80, 0.2);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 7px;
+}
+.btn {
+  background-color: #ff5722;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  margin-right: 30px;
+  font-size: 1.2rem;
 }

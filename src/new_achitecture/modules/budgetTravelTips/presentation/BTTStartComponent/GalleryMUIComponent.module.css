@@ -1,0 +1,11 @@
+.image {
+    width: 200px;
+    height: 200px;
+}
+
+.imageList {
+    margin-left: 10vw;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}

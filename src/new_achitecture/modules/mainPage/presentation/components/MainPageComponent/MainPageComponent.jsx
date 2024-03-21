@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {Container} from "@material-ui/core";
 import filtersClasses from "../../../../../modules/trip_search/lib/filterSearch/Filter/FilterComponent.module.css";
 
@@ -9,18 +9,17 @@ import CheapTripSearch from "../../../../trip_search/domain/entites/CheapTripSea
 import {Link} from "react-router-dom";
 
 export const MainPageComponent = () => {
-    const SloganMain = () => (
+    const SloganMain = useCallback(() => (
         <div className={css.MainSlogan}>
             Find most beneficial and unusual routes between cities, combining flight,
             train, bus, ferry and rideshare.
         </div>
-    );
+    ), []);
 
   return (
     <Container maxWidth="xl" className={css.tb_padding}>
-        <Link to={'/travelTips'}>Budget travel tips</Link>
-      {SloganMain()}
 
+      {SloganMain()}
       <div className={filtersClasses.filters_sector}>
           <CheapTripSearch />
       </div>
