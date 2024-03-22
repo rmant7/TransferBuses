@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import useRouteCard from '../../../presentation/hooks/useRouteCard';
+import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 
 function RouteCard({ route }) {
   const { style, timeTravel, priceTravel, travelInfo } = useRouteCard(route);
@@ -16,27 +17,39 @@ function RouteCard({ route }) {
     <>
       {locations ? (
         <>
-          <div style={{ marginTop: '20px' }}>
+          <div style={{ marginTop: '20px', padding: '0 24px'}}>
             <Accordion>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls='panel1a-content'
                 id='panel1a-header'
               >
+                {travelInfo &&
+                    travelInfo.length !== 0 &&
+                    <Box style={style.transportIcons}>
+                      {travelInfo.map(() => (
+                      <Box style={{padding: '0 2,5px'}}>
+                        <AirplanemodeActiveIcon sx={{ fontSize: 24, color: '#607D8B'}}  />
+                      </Box>
+                      ))}
+                    </Box>}
                 <Box style={style.box}>
-                  <Box style={style.inline}>
-                    {/*{defineIconOfTransport(data.transportation_type)}*/}
-                  </Box>
                   <Typography>
-                    {locations[route.from] && (
-                      <span>{locations[route.from].name}</span>
-                    )}
+                    {travelInfo && travelInfo.length !== 0 && travelInfo.map((travelInformation, index) => (
+                        <React.Fragment key={travelInformation.to}>
+                          {index !== 0 && <ArrowForwardIcon
+                              fontSize='small'
+                              sx={{ verticalAlign: 'text-bottom' }}
+                          />}
+                          <span style={{fontStyle: 'italic'}}>{locations[travelInformation.from].name}</span>
+                        </React.Fragment>
+                    ))}
                     <ArrowForwardIcon
-                      fontSize='small'
-                      sx={{ verticalAlign: 'text-bottom' }}
+                        fontSize='small'
+                        sx={{ verticalAlign: 'text-bottom' }}
                     />
                     {locations[route.to] && (
-                      <span>{locations[route.to].name}</span>
+                        <span style={{fontStyle: 'italic'}}>{locations[route.to].name}</span>
                     )}
                   </Typography>
                   <Box style={style.bottomContainer}>

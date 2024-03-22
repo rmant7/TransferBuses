@@ -1,18 +1,10 @@
 const resultStyle = {
   lg: {
-    inline: {
-      display: 'flex',
-      flexDirection: "row",
-      paddingBottom: 2.5,
-      marginLeft: 5,
-      color: "#607d8b",
-      alignItems: "baseline",
-    },
     box: {
       display: 'flex',
       flexDirection: 'column',
       flex: 1,
-      justifyContent: 'space-between',
+      justifyContent: 'flex-start',
       marginTop: 10,
       borderRadius: 5,
       borderColor: "grey",
@@ -56,21 +48,23 @@ const resultStyle = {
       verticalAlign: "text-bottom",
       margin: "0 2px",
     },
+    transportIcons: {
+      width: '70px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    sortMenu: {
+      paddingLeft: '24px'
+    },
   },
   sm: {
-    inline: {
-      display: 'flex',
-      flexDirection: "row",
-      paddingBottom: 2,
-      marginLeft: 5,
-      color: "#607d8b",
-      alignItems: "baseline",
-    },
     box: {
       display: 'flex',
       flexDirection: 'column',
       flex: 1,
-      justifyContent: 'space-between',
+      justifyContent: 'flex-start',
       marginTop: 8,
       borderRadius: 5,
       borderColor: "grey",
@@ -113,6 +107,16 @@ const resultStyle = {
       fontSize: 'medium',
       verticalAlign: "text-top",
       margin: 0,
+    },
+    transportIcons: {
+      width: '70px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    sortMenu: {
+      paddingLeft: '24px'
     },
   },
 };
@@ -225,6 +229,11 @@ const resultItemStyle = {
       fontSize: "0.8rem",
       textAlign: 'right',
     },
+    inLine: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    }
   },
 };
 export { resultStyle, resultItemStyle };
