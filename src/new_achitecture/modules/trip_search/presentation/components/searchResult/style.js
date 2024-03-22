@@ -6,13 +6,14 @@ const resultStyle = {
       paddingBottom: 2.5,
       marginLeft: 5,
       color: "#607d8b",
-      alignItems: "baseline",
+      alignItems: "right",
+
     },
     box: {
       display: 'flex',
       flexDirection: 'column',
       flex: 1,
-      justifyContent: 'space-between',
+      justifyContent: 'flex-starts',
       marginTop: 10,
       borderRadius: 5,
       borderColor: "grey",
@@ -22,7 +23,8 @@ const resultStyle = {
     bottomContainer: {
       display: 'flex',
       flexDirection: 'row',
-      width: '85%',
+      width: '100%',
+      marginRight: 13,
       justifyContent: 'space-between',
       alignItems: 'center',
       paddingHorizontal: 4,
@@ -65,12 +67,13 @@ const resultStyle = {
       marginLeft: 5,
       color: "#607d8b",
       alignItems: "baseline",
+
     },
     box: {
       display: 'flex',
       flexDirection: 'column',
       flex: 1,
-      justifyContent: 'space-between',
+      justifyContent: 'flex-start',
       marginTop: 8,
       borderRadius: 5,
       borderColor: "grey",
@@ -80,7 +83,8 @@ const resultStyle = {
     bottomContainer: {
       display: 'flex',
       flexDirection: 'row',
-      width: '85%',
+      width: '100%',
+      marginRight: 13,
       justifyContent: 'space-between',
       alignItems: 'center',
       paddingHorizontal: 4,
@@ -140,14 +144,17 @@ const resultItemStyle = {
     },
     buyTicket: {
       borderWidth: 1,
-      borderColor: "rgb(177, 44, 22)",
-      fontSize: "12px",
-      padding: "0 7px",
-      margin: "0 5px",
-      color: "rgb(177, 44, 22)",
+      borderRadius: "2",
+      borderColor: "#ff6721",
+      fontSize: "10px",
+      padding: "13px 7px",
+      margin: "0 2px",
+      color: "rgb(10,4,3)",
+      fontWeight: "bold",
+
     },
     price: {
-      color: "rgb(177, 44, 22)",
+      color: "rgb(10,4,3)",
     },
     icon: {
       color: "#607d8b",
@@ -194,15 +201,16 @@ const resultItemStyle = {
     },
     buyTicket: {
       borderWidth: 1,
-      borderColor: "rgb(177, 44, 22)",
+      borderColor: "#ff6721",
       fontSize: "10px",
-      padding: "0 5px",
+      fontWeight: "bold",
+      padding: "15px 7px",
       margin: "0 2px",
-      color: "rgb(177, 44, 22)",
+      color: "rgb(10,4,3)",
+
     },
     price: {
-      color: "rgb(177, 44, 22)",
-      fontSize: "0.8rem",
+      color: "rgb(10,4,3)",
     },
     icon: {
       color: "#607d8b",
