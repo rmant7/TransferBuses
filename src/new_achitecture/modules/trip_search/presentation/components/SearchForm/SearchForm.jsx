@@ -55,7 +55,8 @@ const SearchForm = () => {
   return (
     <>
       <form action='' className={s.autocomplete}>
-        <AutocompleteEl
+        <div className={classes.city_box}>
+          <AutocompleteEl
           value={from || null}
           handleChange={handleSelectFrom}
           handleInputChange={handleFromInputValue}
@@ -70,8 +71,10 @@ const SearchForm = () => {
             handleClearInput('from');
           }}
         />
+        </div>
         <DoubleArrowIcon className={classes.media_icon} />
-        <AutocompleteEl
+        <div className={classes.city_box}>
+          <AutocompleteEl
           value={to || null}
           handleChange={handleSelectTo}
           handleInputChange={handleToInputValue}
@@ -86,15 +89,17 @@ const SearchForm = () => {
             handleClearInput('to');
           }}
         />
+        </div>
       </form>
       <div className={classes.filter_buttons}>
+
         <Button
           variant='contained'
           color='secondary'
           onClick={handleCleanForm}
           type='reset'
           disableElevation // disable shade
-          style={{ textTransform: 'none' }}
+          style={{width:"110px", textTransform: 'none' }}
         >
           {i18n.t('Clear form')}
         </Button>
@@ -102,7 +107,7 @@ const SearchForm = () => {
           variant='contained'
           color='primary'
           onClick={handleSubmit}
-          style={{ marginLeft: '10px', textTransform: 'none', color: '#fff' }}
+          style={{width:"110px", textTransform: 'none', color: '#fff' }}
           type='button'
           disableElevation
           disabled={to === '' || from === ''}
