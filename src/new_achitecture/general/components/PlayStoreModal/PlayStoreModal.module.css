@@ -1,0 +1,53 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 400px;
+  background: url('./../../assets/modal_bg.png') no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y: 20%;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 12px;
+  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+  padding: 32px 32px 10px;
+}
+
+.store-icon {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #e66f0d;
+  border-radius: 100px;
+  width: 150px;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+.store-icon .btnText {
+  margin: 0;
+  color: #498c9d;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%; /* 24px */
+}
+
+.store-icon .btnText .btnTextSpan {
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 140%; /* 14px */
+}
