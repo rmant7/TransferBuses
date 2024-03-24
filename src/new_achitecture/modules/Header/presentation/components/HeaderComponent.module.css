@@ -13,6 +13,7 @@
     font-family: "Roboto",sans-serif;
     font-size: 1.5rem;
     margin-left: 20px;
+    padding: 12px;
 }
 
 @media (max-width: 450px) {
@@ -84,20 +85,6 @@
 
 
 }
-/*.tips {*/
-/*    border-radius: 12px;*/
-/*    margin-right: 30px ;*/
-/*    background-color: white;*/
-/*    !*border: 1px solid #ff5722;*!*/
-/*    text-align: center;*/
-/*    padding: 5px;*/
-/*    font-family: "Roboto",sans-serif;*/
-/*    font-weight: bold;*/
-/*    color: #ff5722;*/
-/*    font-size: 2rem;*/
-/*    box-shadow: none;*/
-/*    border: 3px solid #ff5722;*/
-/*}*/
 
 .Link_tips {
     display: flex;
@@ -110,14 +97,6 @@
     font-weight: bolder;
     color: orangered;
 }
-
-
-/*.tips:hover {*/
-/*    background-color: #ff5722;*/
-/*    color: #ffffff;*/
-/*    border: 3px solid #ff5722;*/
-/*}*/
-
 
 .tipsUnderHeader{
     margin-top: 1px;
