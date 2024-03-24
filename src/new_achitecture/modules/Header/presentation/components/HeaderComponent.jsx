@@ -44,12 +44,6 @@ const Header = () => {
                 </div>
                 <nav className={css.nav}>
                     <Link
-                        to={PASSENGER_ROUTE}
-                        edge='end'
-                        className={css.menuButton}>
-                        TransferBuses
-                    </Link>
-                    <Link
                     to={CONTACTS_ROUTE}
                     edge='end'
                     className={css.menuButton}>
