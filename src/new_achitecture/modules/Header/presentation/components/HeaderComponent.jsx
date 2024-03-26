@@ -5,7 +5,7 @@ import {useLocation} from 'react-router';
 import {
     CONTACTS_ROUTE,
     MAIN_ROUTE,
-    PASSENGER_ROUTE,
+    PASSENGER_ROUTE, TRAVEL_TIPS,
 } from "../../../trip_search/domain/entites/utils/constants/constants";
 import {useStyles} from "../../../../general/MUI/useStyles";
 import {Link, NavLink} from "react-router-dom";
@@ -43,6 +43,20 @@ const Header = () => {
                     </span>
                 </div>
                 <nav className={css.nav}>
+                    <Link
+                        to={PASSENGER_ROUTE}
+                        edge='end'
+                        className={css.menuButton}
+                    >
+                        Transfer Buses
+                    </Link>
+                    <Link
+                    to={TRAVEL_TIPS}
+                    edge='end'
+                    className={css.menuButton}
+                    >
+                        Travel Tips
+                    </Link>
                     <Link
                     to={CONTACTS_ROUTE}
                     edge='end'
