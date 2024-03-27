@@ -137,8 +137,9 @@
 
 @media (max-width: 860px) {
     .sloganHeader {
-        font-size: 1.5rem;
-        margin-left: 20px;
+        /*font-size: 1.5rem;*/
+        /*margin-left: 20px;*/
+        display: none;
     }
 
     .logoTrip {
