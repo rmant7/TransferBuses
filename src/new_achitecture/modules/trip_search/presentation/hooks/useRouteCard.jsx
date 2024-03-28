@@ -8,9 +8,23 @@ const useRouteCard = (route) => {
     ? resultStyle.sm
     : resultStyle.lg;
 
-  const timeTravel = `${Math.floor(route.duration / 60)}h ${
-    route.duration % 60
-  }m`;
+  const calculateTravelTime = (duration) => {
+    const days = Math.floor(duration / (24 * 60))
+    const hours = Math.floor((duration % (24 * 60)) / 60)
+    const minutes = duration % 60
+
+    let displayTime = ''
+
+    if(days > 0)
+      displayTime += `${days}d`
+    if(hours > 0)
+      displayTime += ` ${hours}h`
+    displayTime += ` ${minutes}min`
+
+    return displayTime
+  }
+
+  const timeTravel = calculateTravelTime(route.duration)
 
   const priceTravel = `€ ${route.price}`;
 

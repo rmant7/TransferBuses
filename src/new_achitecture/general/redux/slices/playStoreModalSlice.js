@@ -4,7 +4,7 @@ const playStoreModalSlice = createSlice({
   name: 'playStore',
   initialState: {
     open: sessionStorage.getItem('playstoreModal')
-      ? sessionStorage.getItem('playstoreModal')
+      ? sessionStorage.getItem('playstoreModal') === 'true'
       : true,
   },
   reducers: {

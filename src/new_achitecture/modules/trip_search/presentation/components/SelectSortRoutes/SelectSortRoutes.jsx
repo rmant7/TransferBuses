@@ -2,7 +2,7 @@ import { InputLabel, MenuItem, Select } from '@material-ui/core'
 import React from 'react'
 import { SORT_OPTIONS } from '../../../domain/entites/utils/constants/sortConstants'
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from './../../redux/reducers/cheapTripSearch/cheapTripSearchSlice';
+import { setFilter } from '../../redux/reducers/cheapTripSearch/cheapTripSearchSlice';
 
 
 const SelectSortRoutes = () => {

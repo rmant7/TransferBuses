@@ -5,7 +5,7 @@
 .filters_sector {
     padding: 25px;
     margin: 10px auto;
-    width: 85%;
+    width: 100%;
     box-sizing: border-box;
 }
 @media (max-width: 650px) {

@@ -5,7 +5,7 @@ import {useHistory, useLocation} from 'react-router';
 import {
     CONTACTS_ROUTE,
     MAIN_ROUTE,
-    PASSENGER_ROUTE,
+    PASSENGER_ROUTE, TRAVEL_TIPS,
 } from "../../../trip_search/domain/entites/utils/constants/constants";
 import {useStyles} from "../../../../general/MUI/useStyles";
 import {Link, NavLink} from "react-router-dom";
@@ -37,7 +37,6 @@ const Header = () => {
         history.push(path);
         closeMenu();
     }
-
     const underHeader = () => {
         if (pathname === MAIN_ROUTE || pathname === CONTACTS_ROUTE) {
             return <div className={css.tipsUnderHeader}><Link to={'/budgetTravelTips'} className={css.Link_tips}>Budget
@@ -46,7 +45,6 @@ const Header = () => {
         }
         return <></>;
     }
-
     return (
         <AppBar className={css.appbar} elevation={0}>
             <Toolbar className={css.navbar}>
@@ -60,11 +58,25 @@ const Header = () => {
                 </div>
                 <nav className={css.nav}>
                     <Link
-                        to={CONTACTS_ROUTE}
+                        to={PASSENGER_ROUTE}
                         edge='end'
-                        className={css.menuButton}>
-                        <ContactMailIcon/>
+                        className={css.menuButton}
+                    >
+                        Transfer Buses
                     </Link>
+                    <Link
+                    to={TRAVEL_TIPS}
+                    edge='end'
+                    className={css.menuButton}
+                    >
+                        Travel Tips
+                    </Link>
+                    <Link
+                    to={CONTACTS_ROUTE}
+                    edge='end'
+                    className={css.menuButton}>
+                    <ContactMailIcon/>
+                </Link>
                 </nav>
                 <Box className={css.burger}>
                     <IconButton onClick={openMenu} edge="end" color='inherit' aria-controls="simple-menu"
@@ -92,7 +104,6 @@ const Header = () => {
                     </Menu>
                 </Box>
             </Toolbar>
-            <div className={css.blockForTips}>{underHeader()}</div>
 
         </AppBar>
     );
