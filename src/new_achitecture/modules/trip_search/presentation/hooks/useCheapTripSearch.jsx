@@ -6,10 +6,9 @@ import locations from '../../data/jsons/cheapTripData/locations.json';
 import { asyncAutocomplete } from '../../domain/entites/CheapTripSearch/asyncAutocomplete';
 import { SORT_OPTIONS } from '../../domain/entites/utils/constants/sortConstants';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setFilter,
-  setFilteredRoutes,
-} from '../redux/reducers/cheapTripSearch/cheapTripSearchSlice';
+import { setFilter, setFilteredRoutes } from '../redux/reducers/cheapTripSearch/cheapTripSearchSlice';
+import {useMediaQuery} from "@material-ui/core";
+import {resultStyle} from "../components/searchResult/style";
 
 const useCheapTripSearch = () => {
   const [from, setFrom] = useState('');
@@ -26,6 +25,10 @@ const useCheapTripSearch = () => {
     return state.cheapTripSearch;
   });
   const dispatch = useDispatch();
+
+  const style = useMediaQuery('(max-width:650px)')
+      ? resultStyle.sm
+      : resultStyle.lg;
 
   const PAGINATION_LIMIT = 10;
   const routes = { ...flying_routes, ...fixed_routes, ...common_routes };
@@ -228,6 +231,7 @@ const useCheapTripSearch = () => {
     inputValueTo,
     setInputFrom,
     setInputTo,
+    style,
   };
 };
 
