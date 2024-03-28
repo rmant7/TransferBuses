@@ -99,7 +99,15 @@ const Header = () => {
                                     onClick={() => closeHandler(CONTACTS_ROUTE)}
                                 />
                             </MenuItem>
-                            <MenuItem className={css.burgerText} button key={PASSENGER_ROUTE}>Transfer Buses</MenuItem>
+                            <MenuItem className={css.burgerText} button key={PASSENGER_ROUTE}>
+                                <ListItemText
+                                primary={"Transfer Buses"}
+                                onClick={() => closeHandler(PASSENGER_ROUTE)}
+                            /></MenuItem>
+                            <MenuItem className={css.burgerText} button key={TRAVEL_TIPS}><ListItemText
+                                primary={"Travel Tips"}
+                                onClick={() => closeHandler(TRAVEL_TIPS)}
+                            /></MenuItem>
                         </MenuList>
                     </Menu>
                 </Box>
