@@ -5,7 +5,7 @@ import {useLocation} from 'react-router';
 import {
     CONTACTS_ROUTE,
     MAIN_ROUTE,
-    PASSENGER_ROUTE,
+    PASSENGER_ROUTE, TRAVEL_TIPS,
 } from "../../../trip_search/domain/entites/utils/constants/constants";
 import {useStyles} from "../../../../general/MUI/useStyles";
 import {Link, NavLink} from "react-router-dom";
@@ -25,7 +25,8 @@ const Header = () => {
 
     const underHeader =  () => {
         if (pathname === MAIN_ROUTE || pathname === CONTACTS_ROUTE) {
-            return <div className={css.tipsUnderHeader}><Link to={'/budgetTravelTips'} className={css.tips}>Budget travel tips</Link></div>;
+            return <div className={css.tipsUnderHeader}><Link to={'/budgetTravelTips'} className={css.Link_tips}>Budget travel tips &gt;&gt;
+            </Link></div>;
         }
         return <></>;
     }
@@ -45,8 +46,16 @@ const Header = () => {
                     <Link
                         to={PASSENGER_ROUTE}
                         edge='end'
-                        className={css.menuButton}>
-                        TransferBuses
+                        className={css.menuButton}
+                    >
+                        Transfer Buses
+                    </Link>
+                    <Link
+                    to={TRAVEL_TIPS}
+                    edge='end'
+                    className={css.menuButton}
+                    >
+                        Travel Tips
                     </Link>
                     <Link
                     to={CONTACTS_ROUTE}

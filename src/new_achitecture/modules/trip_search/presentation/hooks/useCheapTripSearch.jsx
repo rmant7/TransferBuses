@@ -203,7 +203,6 @@ const useCheapTripSearch = () => {
     );
   };
 
-
   const setInputFrom = (value) => {
     setInputValueFrom(value);
   };

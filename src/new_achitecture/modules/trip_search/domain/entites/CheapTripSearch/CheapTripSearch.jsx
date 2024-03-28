@@ -8,6 +8,7 @@ import {Box} from "@material-ui/core";
 function CheapTripSearch(props) {
   const { routes, filteredRoutes, PAGINATION_LIMIT, style } = useCheapTripSearch();
 
+
   return (
     <>
       <SearchForm />

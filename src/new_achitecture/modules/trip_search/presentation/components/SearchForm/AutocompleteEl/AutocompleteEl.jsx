@@ -1,5 +1,6 @@
-import React from 'react';
-import { Autocomplete, TextField } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 import {
   colorOnFocus,
   colorOnBlur,
@@ -16,12 +17,22 @@ const AutocompleteEl = ({
   textFieldLabel,
   inputStyle,
 }) => {
-  console.log(value);
+  const filterOptions = createFilterOptions({
+    matchFrom: [2],
+  });
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(inputValue.length >= 2 ? true : false);
+  }, [inputValue]);
+
   return (
     <Autocomplete
       value={value || null}
       onChange={(e, newValue) => {
         handleChange(newValue ? newValue : '');
+        setTimeout(() => setIsOpen(false), 100);
       }}
       onInputChange={(e, newValue) => {
         handleInputChange(newValue);
@@ -30,12 +41,14 @@ const AutocompleteEl = ({
       disablePortal
       freeSolo
       blurOnSelect
-      openOnFocus
+      disableClearable
+      filterOptions={filterOptions}
       options={options}
+      open={isOpen}
+      onClose={() => setIsOpen(false)}
       sx={sxForAutocomplete}
       onFocus={() => (inputStyle = colorOnFocus)}
       onBlur={() => (inputStyle = colorOnBlur)}
-      disableClearable
       ListboxProps={{ style: { maxHeight: 140 } }}
       renderInput={(params) => (
         <TextField
