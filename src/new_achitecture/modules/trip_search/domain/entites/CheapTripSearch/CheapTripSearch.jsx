@@ -3,7 +3,7 @@ import RouteCard from './RouteCard';
 import useCheapTripSearch from '../../../presentation/hooks/useCheapTripSearch';
 import SearchForm from '../../../presentation/components/SearchForm/SearchForm';
 
-function CheapTripSearch(props) {
+function CheapTripSearch() {
   const { routes, filteredRoutes, PAGINATION_LIMIT } = useCheapTripSearch();
 
   return (
