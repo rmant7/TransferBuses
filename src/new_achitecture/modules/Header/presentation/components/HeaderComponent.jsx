@@ -23,14 +23,6 @@ const Header = () => {
         {name: 'TransferBuses', path: PASSENGER_ROUTE},
     ]
 
-    const underHeader =  () => {
-        if (pathname === MAIN_ROUTE || pathname === CONTACTS_ROUTE) {
-            return <div className={css.tipsUnderHeader}><Link to={'/budgetTravelTips'} className={css.Link_tips}>Budget travel tips &gt;&gt;
-            </Link></div>;
-        }
-        return <></>;
-    }
-
     return (
         <AppBar className={css.appbar} elevation={0}>
             <Toolbar className={css.navbar}>
@@ -66,7 +58,6 @@ const Header = () => {
                 </nav>
 
             </Toolbar>
-            <div className={css.blockForTips}>{underHeader()}</div>
 
         </AppBar>
     );
