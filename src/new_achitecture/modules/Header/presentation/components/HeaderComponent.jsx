@@ -65,18 +65,18 @@ const Header = () => {
                         Transfer Buses
                     </Link>
                     <Link
-                    to={TRAVEL_TIPS}
-                    edge='end'
-                    className={css.menuButton}
+                        to={TRAVEL_TIPS}
+                        edge='end'
+                        className={css.menuButton}
                     >
                         Travel Tips
                     </Link>
                     <Link
-                    to={CONTACTS_ROUTE}
-                    edge='end'
-                    className={css.menuButton}>
-                    <ContactMailIcon/>
-                </Link>
+                        to={CONTACTS_ROUTE}
+                        edge='end'
+                        className={css.menuButton}>
+                        <ContactMailIcon/>
+                    </Link>
                 </nav>
                 <Box className={css.burger}>
                     <IconButton onClick={openMenu} edge="end" color='inherit' aria-controls="simple-menu"
@@ -88,8 +88,8 @@ const Header = () => {
                         onClose={closeMenu}
                         anchorEl={anchorEl}
                         keepMounted
-                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                        anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
+                        transformOrigin={{vertical: 'top', horizontal: 'right'}}
                     >
                         <MenuList>
                             <MenuItem className={css.burgerText} button key={CONTACTS_ROUTE}>
@@ -99,7 +99,15 @@ const Header = () => {
                                     onClick={() => closeHandler(CONTACTS_ROUTE)}
                                 />
                             </MenuItem>
-                            <MenuItem className={css.burgerText} button key={PASSENGER_ROUTE}>Transfer Buses</MenuItem>
+                            <MenuItem className={css.burgerText} button key={PASSENGER_ROUTE}>
+                                <ListItemText
+                                    primary={"Transfer Buses"}
+                                    onClick={() => closeHandler(PASSENGER_ROUTE)}
+                                /></MenuItem>
+                            <MenuItem className={css.burgerText} button key={TRAVEL_TIPS}><ListItemText
+                                primary={"Travel Tips"}
+                                onClick={() => closeHandler(TRAVEL_TIPS)}
+                            /></MenuItem>
                         </MenuList>
                     </Menu>
                 </Box>
