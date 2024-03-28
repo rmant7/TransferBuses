@@ -11,9 +11,11 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import useRouteCard from '../../../presentation/hooks/useRouteCard';
 import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 
-function RouteCard({ route }) {
+function RouteCard({ route, setIsSearchListIsOpen }) {
   const { style, timeTravel, priceTravel, travelInfo } = useRouteCard(route);
   const price = priceTravel + '.00';
+
+  setIsSearchListIsOpen(true);
 
   return (
     <>

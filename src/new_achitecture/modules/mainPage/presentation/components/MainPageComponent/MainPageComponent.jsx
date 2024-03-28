@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, {useCallback, useState} from "react";
 import {Container} from "@material-ui/core";
 import filtersClasses from "../../../../../modules/trip_search/lib/filterSearch/Filter/FilterComponent.module.css";
 
@@ -9,6 +9,9 @@ import CheapTripSearch from "../../../../trip_search/domain/entites/CheapTripSea
 import {Link} from "react-router-dom";
 
 export const MainPageComponent = () => {
+
+    const [isSearchListOpen, setIsSearchListOpen] = useState(false);
+
     const SloganMain = useCallback(() => (
         <div className={css.MainSlogan}>
             Find most beneficial and unusual routes between cities, combining flight,
@@ -21,13 +24,14 @@ export const MainPageComponent = () => {
 
       {SloganMain()}
       <div className={filtersClasses.filters_sector}>
-          <CheapTripSearch />
+          <CheapTripSearch setIsSearchListIsOpen={setIsSearchListOpen}/>
       </div>
 
-
+        {isSearchListOpen === false ? (
             <div className={css.Logo_Cht_Wrapper}>
                 <img className={css.Logo_Cht} src={Logo_Cht} alt="CheapTrip Logo"/>
             </div>
+        ) : null }
         </Container>
     );
 };
