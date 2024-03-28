@@ -13,11 +13,6 @@ function CheapTripSearch(props) {
     <>
       <SearchForm />
       <div>
-        {routes && filteredRoutes ? (
-          <Box style={style.sortMenu}>
-            <SelectSortRoutes />
-          </Box>
-        ) : null}
         {routes &&
           filteredRoutes &&
           filteredRoutes.slice(0, PAGINATION_LIMIT).map((route, index) => {
