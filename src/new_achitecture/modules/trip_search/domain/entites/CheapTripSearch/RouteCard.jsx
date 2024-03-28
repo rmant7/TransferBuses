@@ -13,6 +13,8 @@ import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 
 function RouteCard({ route }) {
   const { style, timeTravel, priceTravel, travelInfo } = useRouteCard(route);
+  const price = priceTravel + '.00';
+
   return (
     <>
       {locations ? (
@@ -55,7 +57,7 @@ function RouteCard({ route }) {
                   <Box style={style.bottomContainer}>
                     <Typography style={style.time}>{timeTravel}</Typography>
                     <Box style={style.priceContainer}>
-                      <Typography style={style.price}>{priceTravel}</Typography>
+                      <Typography style={style.price}>{price}</Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -68,6 +70,7 @@ function RouteCard({ route }) {
                       <TravelInfo
                         travelInfo={travelInformation}
                         key={travelInformation.to}
+                        price={price}
                       />
                     ))}
                 </div>
