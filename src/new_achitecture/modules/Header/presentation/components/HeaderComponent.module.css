@@ -27,6 +27,31 @@
     align-items: center;
     margin-left: auto;
 }
+
+.burger{
+    display: none;
+
+}
+@media (max-width: 860px){
+    .nav{
+        display: none;
+    }
+
+    .burger{
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        padding-right: 10px;
+    }
+
+}
+
+.burgerText{
+    font-weight: 400;
+    line-height: 23px;
+    color: #FFFFFF;
+}
+
 .logo {
     text-decoration: none;
     color: #fff;
