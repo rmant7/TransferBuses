@@ -57,49 +57,48 @@ const SearchForm = () => {
       <form action='' className={s.autocomplete}>
         <div className={classes.city_box}>
           <AutocompleteEl
-          value={from || null}
-          handleChange={handleSelectFrom}
-          handleInputChange={handleFromInputValue}
-          inputValue={inputValueFrom}
-          options={checkFromOption}
-          textFieldLabel={'From'}
-          inputStyle={inputFromStyle}
-        />
-        <ClearIcon
-          style={basicColor}
-          onClick={() => {
-            handleClearInput('from');
-          }}
-        />
+            value={from || null}
+            handleChange={handleSelectFrom}
+            handleInputChange={handleFromInputValue}
+            inputValue={inputValueFrom}
+            options={checkFromOption}
+            textFieldLabel={'From'}
+            inputStyle={inputFromStyle}
+          />
+          <ClearIcon
+            style={basicColor}
+            onClick={() => {
+              handleClearInput('from');
+            }}
+          />
         </div>
         <DoubleArrowIcon className={classes.media_icon} />
         <div className={classes.city_box}>
           <AutocompleteEl
-          value={to || null}
-          handleChange={handleSelectTo}
-          handleInputChange={handleToInputValue}
-          inputValue={inputValueTo}
-          options={checkToOption}
-          textFieldLabel={'To'}
-          inputStyle={inputToStyle}
-        />
-        <ClearIcon
-          style={basicColor}
-          onClick={() => {
-            handleClearInput('to');
-          }}
-        />
+            value={to || null}
+            handleChange={handleSelectTo}
+            handleInputChange={handleToInputValue}
+            inputValue={inputValueTo}
+            options={checkToOption}
+            textFieldLabel={'To'}
+            inputStyle={inputToStyle}
+          />
+          <ClearIcon
+            style={basicColor}
+            onClick={() => {
+              handleClearInput('to');
+            }}
+          />
         </div>
       </form>
       <div className={classes.filter_buttons}>
-
         <Button
           variant='contained'
           color='secondary'
           onClick={handleCleanForm}
           type='reset'
           disableElevation // disable shade
-          style={{width:"110px", textTransform: 'none' }}
+          style={{ width: '110px', textTransform: 'none' }}
         >
           {i18n.t('Clear form')}
         </Button>
@@ -107,7 +106,7 @@ const SearchForm = () => {
           variant='contained'
           color='primary'
           onClick={handleSubmit}
-          style={{width:"110px", textTransform: 'none', color: '#fff' }}
+          style={{ width: '110px', textTransform: 'none', color: '#fff' }}
           type='button'
           disableElevation
           disabled={to === '' || from === ''}
